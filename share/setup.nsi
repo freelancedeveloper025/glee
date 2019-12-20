@@ -5,24 +5,24 @@ SetCompressor /SOLID lzma
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 0.15.0
 !define COMPANY "GleecBTC Core project"
 !define URL https://gleecbtccore.org/
 
 # MUI Symbol Definitions
-!define MUI_ICON "/home/GleecBTC-1.5/share/pixmaps/gleecbtc.ico"
-!define MUI_WELCOMEFINISHPAGE_BITMAP "/home/GleecBTC-1.5/share/pixmaps/nsis-wizard.bmp"
+!define MUI_ICON "/home/GLEEC/share/pixmaps/gleecbtc.ico"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "/home/GLEEC/share/pixmaps/nsis-wizard.bmp"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
-!define MUI_HEADERIMAGE_BITMAP "/home/GleecBTC-1.5/share/pixmaps/nsis-header.bmp"
+!define MUI_HEADERIMAGE_BITMAP "/home/GLEEC/share/pixmaps/nsis-header.bmp"
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME StartMenuGroup
 !define MUI_STARTMENUPAGE_DEFAULTFOLDER "GleecBTC Core"
-!define MUI_FINISHPAGE_RUN $INSTDIR\gleecbtc-qt
+!define MUI_FINISHPAGE_RUN "$WINDIR\explorer.exe"
+!define MUI_FINISHPAGE_RUN_PARAMETERS $INSTDIR\gleecbtc-qt
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/home/GleecBTC-1.5/share/pixmaps/nsis-wizard.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/home/GLEEC/share/pixmaps/nsis-wizard.bmp"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 
 # Included files
@@ -48,7 +48,7 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile /home/GleecBTC-1.5/gleecbtc-${VERSION}-win-setup.exe
+OutFile /home/GLEEC/gleecbtc-0.19.0.1-win-setup.exe
 !if "" == "64"
 InstallDir $PROGRAMFILES64\GleecBTC
 !else
@@ -58,12 +58,12 @@ CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
-VIProductVersion ${VERSION}.1
+VIProductVersion 0.19.0.1
 VIAddVersionKey ProductName "GleecBTC Core"
-VIAddVersionKey ProductVersion "${VERSION}"
+VIAddVersionKey ProductVersion "0.19.0.1"
 VIAddVersionKey CompanyName "${COMPANY}"
 VIAddVersionKey CompanyWebsite "${URL}"
-VIAddVersionKey FileVersion "${VERSION}"
+VIAddVersionKey FileVersion "0.19.0.1"
 VIAddVersionKey FileDescription ""
 VIAddVersionKey LegalCopyright ""
 InstallDirRegKey HKCU "${REGKEY}" Path
@@ -73,14 +73,16 @@ ShowUninstDetails show
 Section -Main SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
-    File /home/GleecBTC-1.5/release/gleecbtc-qt
-    File /oname=COPYING.txt /home/GleecBTC-1.5/COPYING
-    File /oname=readme.txt /home/GleecBTC-1.5/doc/README_windows.txt
+    File /home/GLEEC/release/gleecbtc-qt
+    File /oname=COPYING.txt /home/GLEEC/COPYING
+    File /oname=readme.txt /home/GLEEC/doc/README_windows.txt
     SetOutPath $INSTDIR\daemon
-    File /home/GleecBTC-1.5/release/gleecbtcd
-    File /home/GleecBTC-1.5/release/gleecbtc-cli
+    File /home/GLEEC/release/gleecbtcd
+    File /home/GLEEC/release/gleecbtc-cli
+    File /home/GLEEC/release/gleecbtc-tx
+    File /home/GLEEC/release/gleecbtc-wallet
     SetOutPath $INSTDIR\doc
-    File /r /home/GleecBTC-1.5/doc\*.*
+    File /r /x Makefile* /home/GLEEC/doc\*.*
     SetOutPath $INSTDIR
     WriteRegStr HKCU "${REGKEY}\Components" Main 1
 SectionEnd
@@ -96,10 +98,10 @@ Section -post SEC0001
     CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Uninstall $(^Name).lnk" $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_END
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayName "$(^Name)"
-    WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayVersion "${VERSION}"
+    WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayVersion "0.19.0.1"
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" Publisher "${COMPANY}"
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" URLInfoAbout "${URL}"
-    WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayIcon $INSTDIR\uninstall.exe
+    WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayIcon $INSTDIR\gleecbtc-qt.exe
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" UninstallString $INSTDIR\uninstall.exe
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoModify 1
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoRepair 1

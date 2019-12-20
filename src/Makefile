@@ -14,27 +14,27 @@
 
 
 
-# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Copyright (c) 2013-2016 The GleecBTC Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-# Copyright (c) 2016 The Bitcoin Core developers
+# Copyright (c) 2016 The GleecBTC Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Copyright (c) 2013-2016 The GleecBTC Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-# Copyright (c) 2015-2016 The Bitcoin Core developers
+# Copyright (c) 2015-2016 The GleecBTC Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Copyright (c) 2013-2016 The GleecBTC Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Copyright (c) 2013-2016 The GleecBTC Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -114,80 +114,112 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = x86_64-pc-linux-gnu
 host_triplet = x86_64-pc-linux-gnu
+am__append_1 = $(LIBGLEECBTC_CRYPTO_SSE41)
+am__append_2 = $(LIBGLEECBTC_CRYPTO_AVX2)
+am__append_3 = $(LIBGLEECBTC_CRYPTO_SHANI)
 bin_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_2) $(am__EXEEXT_3) \
-	$(am__EXEEXT_4) $(am__EXEEXT_5) $(am__EXEEXT_6)
-noinst_PROGRAMS = $(am__EXEEXT_7)
-TESTS = $(am__EXEEXT_3) $(am__EXEEXT_6)
-am__append_1 = gleecbtcd
-am__append_2 = gleecbtc-cli gleecbtc-tx
-#am__append_3 = crypto/sha256_sse4.cpp
-#am__append_4 = compat/glibc_compat.cpp
-#am__append_5 = gleecbtcd-res.rc
-#am__append_6 = gleecbtc-cli-res.rc
-#am__append_7 = gleecbtc-tx-res.rc
-#am__append_8 = compat/glibc_compat.cpp
-am__append_9 = $(LIBLEVELDB_INT) \
+	$(am__EXEEXT_4) $(am__EXEEXT_5) $(am__EXEEXT_6) \
+	$(am__EXEEXT_7) $(am__EXEEXT_8)
+noinst_PROGRAMS = $(am__EXEEXT_10)
+TESTS = $(am__EXEEXT_8)
+am__append_4 = gleecbtcd
+am__append_5 = gleecbtc-cli
+am__append_6 = gleecbtc-tx
+am__append_7 = gleecbtc-wallet
+am__append_8 = wallet/init.cpp
+#am__append_9 = dummywallet.cpp
+am__append_10 = crypto/sha256_sse4.cpp
+#am__append_11 = compat/glibc_compat.cpp
+#am__append_12 = $(COMPAT_LDFLAGS)
+#am__append_13 = gleecbtcd-res.rc
+#am__append_14 = gleecbtc-cli-res.rc
+#am__append_15 = gleecbtc-tx-res.rc
+#am__append_16 = gleecbtc-wallet-res.rc
+#am__append_17 = compat/glibc_compat.cpp
+am__append_18 = $(LIBLEVELDB_INT) \
 	$(LIBMEMENV_INT) \
 	$(LIBLEVELDB_SSE42_INT)
-am__append_10 = $(LIBLEVELDB_INT)
-am__append_11 = $(LIBMEMENV_INT)
-am__append_12 = -I$(srcdir)/leveldb/include \
+am__append_19 = $(LIBLEVELDB_INT)
+am__append_20 = $(LIBMEMENV_INT)
+am__append_21 = -I$(srcdir)/leveldb/include \
 	-I$(srcdir)/leveldb/helpers/memenv
-#am__append_13 = -DLEVELDB_PLATFORM_WINDOWS -DWINVER=0x0500 -D__USE_MINGW_ANSI_STDIO=1
-am__append_14 = -DLEVELDB_PLATFORM_POSIX
-#am__append_15 = leveldb/util/env_win.cc \
+#am__append_22 = -DLEVELDB_PLATFORM_WINDOWS -D__USE_MINGW_ANSI_STDIO=1
+am__append_23 = -DLEVELDB_PLATFORM_POSIX
+#am__append_24 = leveldb/util/env_win.cc \
 #	leveldb/port/port_win.cc
-am__append_16 = leveldb/port/port_posix.cc
-am__append_17 = -DLEVELDB_PLATFORM_POSIX_SSE
-am__append_18 = $(SSE42_CXXFLAGS)
-#am__append_19 = test/test_gleecbtc
-#am__append_20 = test/test_gleecbtc
-#am__append_21 = test/test_gleecbtc_fuzzy
-#am__append_22 = \
+am__append_25 = leveldb/port/port_posix.cc
+am__append_26 = -DLEVELDB_PLATFORM_POSIX_SSE
+am__append_27 = $(SSE42_CXXFLAGS)
+##am__append_28 = $(FUZZ_TARGETS:=)
+#am__append_29 = test/test_gleecbtc
+##am__append_30 = \
+##  test/key_properties.cpp
+
+##am__append_31 = \
+##  test/gen/crypto_gen.cpp \
+##  test/gen/crypto_gen.h
+
+#am__append_32 = \
+#  wallet/test/db_tests.cpp \
+#  wallet/test/psbt_wallet_tests.cpp \
+#  wallet/test/wallet_tests.cpp \
+#  wallet/test/wallet_crypto_tests.cpp \
+#  wallet/test/coinselector_tests.cpp \
+#  wallet/test/init_tests.cpp \
+#  wallet/test/ismine_tests.cpp
+
+#am__append_33 = \
 #  wallet/test/wallet_test_fixture.cpp \
 #  wallet/test/wallet_test_fixture.h \
-#  wallet/test/accounting_tests.cpp \
-#  wallet/test/wallet_tests.cpp \
-#  wallet/test/crypto_tests.cpp
+#  wallet/test/init_test_fixture.cpp \
+#  wallet/test/init_test_fixture.h
 
-#am__append_23 = $(LIBGLEECGBC_WALLET)
-##am__append_24 = $(ZMQ_LIBS)
-#am__append_25 = $(CLEAN_GLEECGBC_TEST)
-am__append_26 = bench/bench_gleecbtc
-#am__append_27 = $(LIBGLEECGBC_ZMQ) $(ZMQ_LIBS)
-am__append_28 = bench/coin_selection.cpp
-am__append_29 = $(LIBGLEECGBC_WALLET) $(LIBGLEECGBC_CRYPTO)
-am__append_30 = $(CLEAN_GLEECGBC_BENCH)
-#am__append_31 = qt/gleecbtc-qt
-#am__append_32 = qt/libgleecbtcqt.a
-##am__append_33 = $(GLEECGBC_QT_WINDOWS_CPP)
-#am__append_34 = $(GLEECGBC_QT_WALLET_CPP)
-##am__append_35 = $(GLEECGBC_MM)
-##am__append_36 = $(GLEECGBC_RC)
-#am__append_37 = $(LIBGLEECGBC_WALLET)
-##am__append_38 = $(LIBGLEECGBC_ZMQ) $(ZMQ_LIBS)
-#am__append_39 = $(CLEAN_QT)
-#am__append_40 = qt/test/test_gleecbtc-qt
-#am__append_41 = qt/test/test_gleecbtc-qt
-#am__append_42 = \
-#  qt/test/moc_paymentservertests.cpp \
+#am__append_34 = $(LIBGLEECBTC_WALLET)
+##am__append_35 = $(LIBGLEECBTC_ZMQ) $(ZMQ_LIBS)
+#am__append_36 = $(CLEAN_GLEECBTC_TEST)
+am__append_37 = bench/bench_gleecbtc
+#am__append_38 = $(LIBGLEECBTC_ZMQ) $(ZMQ_LIBS)
+am__append_39 = bench/coin_selection.cpp \
+	bench/wallet_balance.cpp
+am__append_40 = $(CLEAN_GLEECBTC_BENCH)
+#am__append_41 = qt/gleecbtc-qt
+#am__append_42 = qt/libgleecbtcqt.a
+##am__append_43 = $(GLEECBTC_QT_WINDOWS_CPP)
+#am__append_44 = $(GLEECBTC_QT_WALLET_CPP)
+##am__append_45 = $(GLEECBTC_QT_WALLET_BIP70_CPP)
+##am__append_46 = $(GLEECBTC_MM)
+##am__append_47 = $(GLEECBTC_RC)
+#am__append_48 = $(LIBGLEECBTC_UTIL) $(LIBGLEECBTC_WALLET)
+##am__append_49 = $(LIBGLEECBTC_ZMQ) $(ZMQ_LIBS)
+##am__append_50 = $(SSL_LIBS)
+##am__append_51 = $(SSL_LIBS)
+#am__append_52 = $(CLEAN_QT)
+#am__append_53 = qt/test/test_gleecbtc-qt
+#am__append_54 = qt/test/test_gleecbtc-qt
+#am__append_55 = \
+#  qt/test/moc_addressbooktests.cpp \
 #  qt/test/moc_wallettests.cpp
 
-#am__append_43 = \
-#  qt/test/paymentservertests.cpp \
+##am__append_56 = \
+##  qt/test/moc_paymentservertests.cpp
+
+#am__append_57 = \
+#  qt/test/addressbooktests.cpp \
 #  qt/test/wallettests.cpp \
 #  wallet/test/wallet_test_fixture.cpp
 
-#am__append_44 = $(LIBGLEECGBC_WALLET)
-##am__append_45 = $(LIBGLEECGBC_ZMQ) $(ZMQ_LIBS)
-#am__append_46 = $(CLEAN_GLEECGBC_QT_TEST)
+##am__append_58 = \
+##  qt/test/paymentservertests.cpp
+
+#am__append_59 = $(LIBGLEECBTC_UTIL) $(LIBGLEECBTC_WALLET)
+##am__append_60 = $(LIBGLEECBTC_ZMQ) $(ZMQ_LIBS)
+#am__append_61 = $(CLEAN_GLEECBTC_QT_TEST)
 subdir = src
 SUBDIRS =
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/build-aux/m4/ax_boost_base.m4 \
 	$(top_srcdir)/build-aux/m4/ax_boost_chrono.m4 \
 	$(top_srcdir)/build-aux/m4/ax_boost_filesystem.m4 \
-	$(top_srcdir)/build-aux/m4/ax_boost_program_options.m4 \
 	$(top_srcdir)/build-aux/m4/ax_boost_system.m4 \
 	$(top_srcdir)/build-aux/m4/ax_boost_thread.m4 \
 	$(top_srcdir)/build-aux/m4/ax_boost_unit_test_framework.m4 \
@@ -219,29 +251,53 @@ AM_V_AR = $(am__v_AR_$(V))
 am__v_AR_ = $(am__v_AR_$(AM_DEFAULT_VERBOSITY))
 am__v_AR_0 = @echo "  AR      " $@;
 am__v_AR_1 = 
-crypto_libgleecbtc_crypto_a_AR = $(AR) $(ARFLAGS)
-crypto_libgleecbtc_crypto_a_LIBADD =
-am__crypto_libgleecbtc_crypto_a_SOURCES_DIST = crypto/aes.cpp \
-	crypto/aes.h crypto/chacha20.h crypto/chacha20.cpp \
-	crypto/common.h crypto/hmac_sha256.cpp crypto/hmac_sha256.h \
-	crypto/hmac_sha512.cpp crypto/hmac_sha512.h \
+crypto_libgleecbtc_crypto_avx2_a_AR = $(AR) $(ARFLAGS)
+crypto_libgleecbtc_crypto_avx2_a_LIBADD =
+am__dirstamp = $(am__leading_dot)dirstamp
+am_crypto_libgleecbtc_crypto_avx2_a_OBJECTS =  \
+	crypto/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.$(OBJEXT)
+crypto_libgleecbtc_crypto_avx2_a_OBJECTS =  \
+	$(am_crypto_libgleecbtc_crypto_avx2_a_OBJECTS)
+crypto_libgleecbtc_crypto_base_a_AR = $(AR) $(ARFLAGS)
+crypto_libgleecbtc_crypto_base_a_LIBADD =
+am__crypto_libgleecbtc_crypto_base_a_SOURCES_DIST = crypto/aes.cpp \
+	crypto/aes.h crypto/chacha_poly_aead.h \
+	crypto/chacha_poly_aead.cpp crypto/chacha20.h \
+	crypto/chacha20.cpp crypto/common.h crypto/hkdf_sha256_32.cpp \
+	crypto/hkdf_sha256_32.h crypto/hmac_sha256.cpp \
+	crypto/hmac_sha256.h crypto/hmac_sha512.cpp \
+	crypto/hmac_sha512.h crypto/poly1305.h crypto/poly1305.cpp \
 	crypto/ripemd160.cpp crypto/ripemd160.h crypto/sha1.cpp \
 	crypto/sha1.h crypto/sha256.cpp crypto/sha256.h \
-	crypto/sha512.cpp crypto/sha512.h crypto/sha256_sse4.cpp
-am__dirstamp = $(am__leading_dot)dirstamp
-#am__objects_1 = crypto/crypto_libgleecbtc_crypto_a-sha256_sse4.$(OBJEXT)
-am_crypto_libgleecbtc_crypto_a_OBJECTS =  \
-	crypto/crypto_libgleecbtc_crypto_a-aes.$(OBJEXT) \
-	crypto/crypto_libgleecbtc_crypto_a-chacha20.$(OBJEXT) \
-	crypto/crypto_libgleecbtc_crypto_a-hmac_sha256.$(OBJEXT) \
-	crypto/crypto_libgleecbtc_crypto_a-hmac_sha512.$(OBJEXT) \
-	crypto/crypto_libgleecbtc_crypto_a-ripemd160.$(OBJEXT) \
-	crypto/crypto_libgleecbtc_crypto_a-sha1.$(OBJEXT) \
-	crypto/crypto_libgleecbtc_crypto_a-sha256.$(OBJEXT) \
-	crypto/crypto_libgleecbtc_crypto_a-sha512.$(OBJEXT) \
+	crypto/sha512.cpp crypto/sha512.h crypto/siphash.cpp \
+	crypto/siphash.h crypto/sha256_sse4.cpp
+am__objects_1 = crypto/crypto_libgleecbtc_crypto_base_a-sha256_sse4.$(OBJEXT)
+am_crypto_libgleecbtc_crypto_base_a_OBJECTS =  \
+	crypto/crypto_libgleecbtc_crypto_base_a-aes.$(OBJEXT) \
+	crypto/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.$(OBJEXT) \
+	crypto/crypto_libgleecbtc_crypto_base_a-chacha20.$(OBJEXT) \
+	crypto/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.$(OBJEXT) \
+	crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha256.$(OBJEXT) \
+	crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha512.$(OBJEXT) \
+	crypto/crypto_libgleecbtc_crypto_base_a-poly1305.$(OBJEXT) \
+	crypto/crypto_libgleecbtc_crypto_base_a-ripemd160.$(OBJEXT) \
+	crypto/crypto_libgleecbtc_crypto_base_a-sha1.$(OBJEXT) \
+	crypto/crypto_libgleecbtc_crypto_base_a-sha256.$(OBJEXT) \
+	crypto/crypto_libgleecbtc_crypto_base_a-sha512.$(OBJEXT) \
+	crypto/crypto_libgleecbtc_crypto_base_a-siphash.$(OBJEXT) \
 	$(am__objects_1)
-crypto_libgleecbtc_crypto_a_OBJECTS =  \
-	$(am_crypto_libgleecbtc_crypto_a_OBJECTS)
+crypto_libgleecbtc_crypto_base_a_OBJECTS =  \
+	$(am_crypto_libgleecbtc_crypto_base_a_OBJECTS)
+crypto_libgleecbtc_crypto_shani_a_AR = $(AR) $(ARFLAGS)
+crypto_libgleecbtc_crypto_shani_a_LIBADD =
+am_crypto_libgleecbtc_crypto_shani_a_OBJECTS = crypto/crypto_libgleecbtc_crypto_shani_a-sha256_shani.$(OBJEXT)
+crypto_libgleecbtc_crypto_shani_a_OBJECTS =  \
+	$(am_crypto_libgleecbtc_crypto_shani_a_OBJECTS)
+crypto_libgleecbtc_crypto_sse41_a_AR = $(AR) $(ARFLAGS)
+crypto_libgleecbtc_crypto_sse41_a_LIBADD =
+am_crypto_libgleecbtc_crypto_sse41_a_OBJECTS = crypto/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.$(OBJEXT)
+crypto_libgleecbtc_crypto_sse41_a_OBJECTS =  \
+	$(am_crypto_libgleecbtc_crypto_sse41_a_OBJECTS)
 leveldb_libleveldb_a_AR = $(AR) $(ARFLAGS)
 leveldb_libleveldb_a_LIBADD =
 am__leveldb_libleveldb_a_SOURCES_DIST = leveldb/port/atomic_pointer.h \
@@ -364,28 +420,40 @@ libgleecbtc_common_a_AR = $(AR) $(ARFLAGS)
 libgleecbtc_common_a_LIBADD =
 am_libgleecbtc_common_a_OBJECTS =  \
 	libgleecbtc_common_a-base58.$(OBJEXT) \
+	libgleecbtc_common_a-bech32.$(OBJEXT) \
+	libgleecbtc_common_a-bloom.$(OBJEXT) \
 	libgleecbtc_common_a-chainparams.$(OBJEXT) \
 	libgleecbtc_common_a-coins.$(OBJEXT) \
 	libgleecbtc_common_a-compressor.$(OBJEXT) \
 	libgleecbtc_common_a-core_read.$(OBJEXT) \
 	libgleecbtc_common_a-core_write.$(OBJEXT) \
 	libgleecbtc_common_a-key.$(OBJEXT) \
-	libgleecbtc_common_a-keystore.$(OBJEXT) \
+	libgleecbtc_common_a-key_io.$(OBJEXT) \
+	libgleecbtc_common_a-merkleblock.$(OBJEXT) \
 	libgleecbtc_common_a-netaddress.$(OBJEXT) \
 	libgleecbtc_common_a-netbase.$(OBJEXT) \
+	libgleecbtc_common_a-net_permissions.$(OBJEXT) \
+	libgleecbtc_common_a-outputtype.$(OBJEXT) \
 	policy/libgleecbtc_common_a-feerate.$(OBJEXT) \
+	policy/libgleecbtc_common_a-policy.$(OBJEXT) \
 	libgleecbtc_common_a-protocol.$(OBJEXT) \
+	libgleecbtc_common_a-psbt.$(OBJEXT) \
+	rpc/libgleecbtc_common_a-rawtransaction_util.$(OBJEXT) \
+	rpc/libgleecbtc_common_a-util.$(OBJEXT) \
 	libgleecbtc_common_a-scheduler.$(OBJEXT) \
+	script/libgleecbtc_common_a-descriptor.$(OBJEXT) \
 	script/libgleecbtc_common_a-sign.$(OBJEXT) \
+	script/libgleecbtc_common_a-signingprovider.$(OBJEXT) \
 	script/libgleecbtc_common_a-standard.$(OBJEXT) \
+	libgleecbtc_common_a-versionbitsinfo.$(OBJEXT) \
 	libgleecbtc_common_a-warnings.$(OBJEXT) $(am__objects_4)
 libgleecbtc_common_a_OBJECTS = $(am_libgleecbtc_common_a_OBJECTS)
 libgleecbtc_consensus_a_AR = $(AR) $(ARFLAGS)
 libgleecbtc_consensus_a_LIBADD =
 am_libgleecbtc_consensus_a_OBJECTS =  \
 	libgleecbtc_consensus_a-arith_uint256.$(OBJEXT) \
-	consensus/libgleecbtc_consensus_a-consensus.$(OBJEXT) \
 	consensus/libgleecbtc_consensus_a-merkle.$(OBJEXT) \
+	consensus/libgleecbtc_consensus_a-tx_check.$(OBJEXT) \
 	libgleecbtc_consensus_a-hash.$(OBJEXT) \
 	primitives/libgleecbtc_consensus_a-block.$(OBJEXT) \
 	primitives/libgleecbtc_consensus_a-transaction.$(OBJEXT) \
@@ -395,31 +463,94 @@ am_libgleecbtc_consensus_a_OBJECTS =  \
 	script/libgleecbtc_consensus_a-script.$(OBJEXT) \
 	script/libgleecbtc_consensus_a-script_error.$(OBJEXT) \
 	libgleecbtc_consensus_a-uint256.$(OBJEXT) \
-	libgleecbtc_consensus_a-utilstrencodings.$(OBJEXT)
+	util/libgleecbtc_consensus_a-strencodings.$(OBJEXT)
 libgleecbtc_consensus_a_OBJECTS =  \
 	$(am_libgleecbtc_consensus_a_OBJECTS)
 libgleecbtc_server_a_AR = $(AR) $(ARFLAGS)
 libgleecbtc_server_a_LIBADD =
+am__libgleecbtc_server_a_SOURCES_DIST = addrdb.cpp addrman.cpp \
+	banman.cpp blockencodings.cpp blockfilter.cpp chain.cpp \
+	consensus/tx_verify.cpp flatfile.cpp httprpc.cpp \
+	httpserver.cpp index/base.cpp index/blockfilterindex.cpp \
+	index/txindex.cpp interfaces/chain.cpp interfaces/node.cpp \
+	init.cpp dbwrapper.cpp miner.cpp net.cpp net_processing.cpp \
+	node/coin.cpp node/coinstats.cpp node/psbt.cpp \
+	node/transaction.cpp noui.cpp policy/fees.cpp policy/rbf.cpp \
+	policy/settings.cpp pow.cpp rest.cpp rpc/blockchain.cpp \
+	rpc/mining.cpp rpc/misc.cpp rpc/net.cpp rpc/rawtransaction.cpp \
+	rpc/server.cpp script/sigcache.cpp shutdown.cpp timedata.cpp \
+	torcontrol.cpp txdb.cpp txmempool.cpp ui_interface.cpp \
+	validation.cpp validationinterface.cpp versionbits.cpp \
+	addrdb.h addrman.h attributes.h banman.h base58.h bech32.h \
+	bloom.h blockencodings.h blockfilter.h chain.h chainparams.h \
+	chainparamsbase.h chainparamsseeds.h checkqueue.h \
+	clientversion.h coins.h compat.h compat/assumptions.h \
+	compat/byteswap.h compat/endian.h compat/sanity.h compressor.h \
+	consensus/consensus.h consensus/tx_check.h \
+	consensus/tx_verify.h core_io.h core_memusage.h cuckoocache.h \
+	flatfile.h fs.h httprpc.h httpserver.h index/base.h \
+	index/blockfilterindex.h index/txindex.h indirectmap.h init.h \
+	interfaces/chain.h interfaces/handler.h interfaces/node.h \
+	interfaces/wallet.h key.h key_io.h dbwrapper.h limitedmap.h \
+	logging.h memusage.h merkleblock.h miner.h net.h \
+	net_permissions.h net_processing.h netaddress.h netbase.h \
+	netmessagemaker.h node/coin.h node/coinstats.h node/psbt.h \
+	node/transaction.h noui.h optional.h outputtype.h \
+	policy/feerate.h policy/fees.h policy/policy.h policy/rbf.h \
+	policy/settings.h pow.h protocol.h psbt.h random.h \
+	reverse_iterator.h reverselock.h rpc/blockchain.h rpc/client.h \
+	rpc/protocol.h rpc/rawtransaction_util.h rpc/register.h \
+	rpc/request.h rpc/server.h rpc/util.h scheduler.h \
+	script/descriptor.h script/keyorigin.h script/sigcache.h \
+	script/sign.h script/signingprovider.h script/standard.h \
+	shutdown.h streams.h support/allocators/secure.h \
+	support/allocators/zeroafterfree.h support/cleanse.h \
+	support/events.h support/lockedpool.h sync.h threadsafety.h \
+	threadinterrupt.h timedata.h torcontrol.h txdb.h txmempool.h \
+	ui_interface.h undo.h util/bip32.h util/bytevectorhash.h \
+	util/error.h util/fees.h util/system.h util/memory.h \
+	util/moneystr.h util/rbf.h util/string.h util/threadnames.h \
+	util/time.h util/translation.h util/url.h util/validation.h \
+	validation.h validationinterface.h versionbits.h \
+	versionbitsinfo.h walletinitinterface.h wallet/coincontrol.h \
+	wallet/crypter.h wallet/db.h wallet/feebumper.h wallet/fees.h \
+	wallet/ismine.h wallet/load.h wallet/psbtwallet.h \
+	wallet/rpcwallet.h wallet/wallet.h wallet/walletdb.h \
+	wallet/wallettool.h wallet/walletutil.h wallet/coinselection.h \
+	warnings.h zmq/zmqabstractnotifier.h zmq/zmqconfig.h \
+	zmq/zmqnotificationinterface.h zmq/zmqpublishnotifier.h \
+	zmq/zmqrpc.h wallet/init.cpp dummywallet.cpp
+am__objects_5 = wallet/libgleecbtc_server_a-init.$(OBJEXT)
+#am__objects_6 = libgleecbtc_server_a-dummywallet.$(OBJEXT)
 am_libgleecbtc_server_a_OBJECTS =  \
 	libgleecbtc_server_a-addrdb.$(OBJEXT) \
 	libgleecbtc_server_a-addrman.$(OBJEXT) \
-	libgleecbtc_server_a-bloom.$(OBJEXT) \
+	libgleecbtc_server_a-banman.$(OBJEXT) \
 	libgleecbtc_server_a-blockencodings.$(OBJEXT) \
+	libgleecbtc_server_a-blockfilter.$(OBJEXT) \
 	libgleecbtc_server_a-chain.$(OBJEXT) \
-	libgleecbtc_server_a-checkpoints.$(OBJEXT) \
 	consensus/libgleecbtc_server_a-tx_verify.$(OBJEXT) \
+	libgleecbtc_server_a-flatfile.$(OBJEXT) \
 	libgleecbtc_server_a-httprpc.$(OBJEXT) \
 	libgleecbtc_server_a-httpserver.$(OBJEXT) \
+	index/libgleecbtc_server_a-base.$(OBJEXT) \
+	index/libgleecbtc_server_a-blockfilterindex.$(OBJEXT) \
+	index/libgleecbtc_server_a-txindex.$(OBJEXT) \
+	interfaces/libgleecbtc_server_a-chain.$(OBJEXT) \
+	interfaces/libgleecbtc_server_a-node.$(OBJEXT) \
 	libgleecbtc_server_a-init.$(OBJEXT) \
 	libgleecbtc_server_a-dbwrapper.$(OBJEXT) \
-	libgleecbtc_server_a-merkleblock.$(OBJEXT) \
 	libgleecbtc_server_a-miner.$(OBJEXT) \
 	libgleecbtc_server_a-net.$(OBJEXT) \
 	libgleecbtc_server_a-net_processing.$(OBJEXT) \
+	node/libgleecbtc_server_a-coin.$(OBJEXT) \
+	node/libgleecbtc_server_a-coinstats.$(OBJEXT) \
+	node/libgleecbtc_server_a-psbt.$(OBJEXT) \
+	node/libgleecbtc_server_a-transaction.$(OBJEXT) \
 	libgleecbtc_server_a-noui.$(OBJEXT) \
 	policy/libgleecbtc_server_a-fees.$(OBJEXT) \
-	policy/libgleecbtc_server_a-policy.$(OBJEXT) \
 	policy/libgleecbtc_server_a-rbf.$(OBJEXT) \
+	policy/libgleecbtc_server_a-settings.$(OBJEXT) \
 	libgleecbtc_server_a-pow.$(OBJEXT) \
 	libgleecbtc_server_a-rest.$(OBJEXT) \
 	rpc/libgleecbtc_server_a-blockchain.$(OBJEXT) \
@@ -429,7 +560,7 @@ am_libgleecbtc_server_a_OBJECTS =  \
 	rpc/libgleecbtc_server_a-rawtransaction.$(OBJEXT) \
 	rpc/libgleecbtc_server_a-server.$(OBJEXT) \
 	script/libgleecbtc_server_a-sigcache.$(OBJEXT) \
-	script/libgleecbtc_server_a-ismine.$(OBJEXT) \
+	libgleecbtc_server_a-shutdown.$(OBJEXT) \
 	libgleecbtc_server_a-timedata.$(OBJEXT) \
 	libgleecbtc_server_a-torcontrol.$(OBJEXT) \
 	libgleecbtc_server_a-txdb.$(OBJEXT) \
@@ -437,129 +568,183 @@ am_libgleecbtc_server_a_OBJECTS =  \
 	libgleecbtc_server_a-ui_interface.$(OBJEXT) \
 	libgleecbtc_server_a-validation.$(OBJEXT) \
 	libgleecbtc_server_a-validationinterface.$(OBJEXT) \
-	libgleecbtc_server_a-versionbits.$(OBJEXT) $(am__objects_4)
+	libgleecbtc_server_a-versionbits.$(OBJEXT) $(am__objects_4) \
+	$(am__objects_5) $(am__objects_6)
 libgleecbtc_server_a_OBJECTS = $(am_libgleecbtc_server_a_OBJECTS)
 libgleecbtc_util_a_AR = $(AR) $(ARFLAGS)
 libgleecbtc_util_a_LIBADD =
 am__libgleecbtc_util_a_SOURCES_DIST = support/lockedpool.cpp \
-	chainparamsbase.cpp clientversion.cpp compat/glibc_sanity.cpp \
-	compat/glibcxx_sanity.cpp compat/strnlen.cpp fs.cpp random.cpp \
-	rpc/protocol.cpp support/cleanse.cpp sync.cpp \
-	threadinterrupt.cpp util.cpp utilmoneystr.cpp \
-	utilstrencodings.cpp utiltime.cpp addrdb.h addrman.h base58.h \
-	bloom.h blockencodings.h chain.h chainparams.h \
-	chainparamsbase.h chainparamsseeds.h checkpoints.h \
-	checkqueue.h clientversion.h coins.h compat.h \
+	chainparamsbase.cpp clientversion.cpp \
+	compat/glibc_sanity_fdelt.cpp compat/glibc_sanity.cpp \
+	compat/glibcxx_sanity.cpp compat/strnlen.cpp fs.cpp \
+	interfaces/handler.cpp logging.cpp random.cpp rpc/request.cpp \
+	support/cleanse.cpp sync.cpp threadinterrupt.cpp \
+	util/bip32.cpp util/bytevectorhash.cpp util/error.cpp \
+	util/fees.cpp util/system.cpp util/moneystr.cpp util/rbf.cpp \
+	util/threadnames.cpp util/strencodings.cpp util/string.cpp \
+	util/time.cpp util/url.cpp util/validation.cpp addrdb.h \
+	addrman.h attributes.h banman.h base58.h bech32.h bloom.h \
+	blockencodings.h blockfilter.h chain.h chainparams.h \
+	chainparamsbase.h chainparamsseeds.h checkqueue.h \
+	clientversion.h coins.h compat.h compat/assumptions.h \
 	compat/byteswap.h compat/endian.h compat/sanity.h compressor.h \
-	consensus/consensus.h consensus/tx_verify.h core_io.h \
-	core_memusage.h cuckoocache.h fs.h httprpc.h httpserver.h \
-	indirectmap.h init.h key.h keystore.h dbwrapper.h limitedmap.h \
-	memusage.h merkleblock.h miner.h net.h net_processing.h \
-	netaddress.h netbase.h netmessagemaker.h noui.h \
+	consensus/consensus.h consensus/tx_check.h \
+	consensus/tx_verify.h core_io.h core_memusage.h cuckoocache.h \
+	flatfile.h fs.h httprpc.h httpserver.h index/base.h \
+	index/blockfilterindex.h index/txindex.h indirectmap.h init.h \
+	interfaces/chain.h interfaces/handler.h interfaces/node.h \
+	interfaces/wallet.h key.h key_io.h dbwrapper.h limitedmap.h \
+	logging.h memusage.h merkleblock.h miner.h net.h \
+	net_permissions.h net_processing.h netaddress.h netbase.h \
+	netmessagemaker.h node/coin.h node/coinstats.h node/psbt.h \
+	node/transaction.h noui.h optional.h outputtype.h \
 	policy/feerate.h policy/fees.h policy/policy.h policy/rbf.h \
-	pow.h protocol.h random.h reverse_iterator.h reverselock.h \
-	rpc/blockchain.h rpc/client.h rpc/mining.h rpc/protocol.h \
-	rpc/server.h rpc/register.h scheduler.h script/sigcache.h \
-	script/sign.h script/standard.h script/ismine.h streams.h \
-	support/allocators/secure.h support/allocators/zeroafterfree.h \
-	support/cleanse.h support/events.h support/lockedpool.h sync.h \
-	threadsafety.h threadinterrupt.h timedata.h torcontrol.h \
-	txdb.h txmempool.h ui_interface.h undo.h util.h utilmoneystr.h \
-	utiltime.h validation.h validationinterface.h versionbits.h \
-	wallet/coincontrol.h wallet/crypter.h wallet/db.h \
-	wallet/feebumper.h wallet/rpcwallet.h wallet/wallet.h \
-	wallet/walletdb.h warnings.h zmq/zmqabstractnotifier.h \
-	zmq/zmqconfig.h zmq/zmqnotificationinterface.h \
-	zmq/zmqpublishnotifier.h compat/glibc_compat.cpp
-#am__objects_5 = compat/libgleecbtc_util_a-glibc_compat.$(OBJEXT)
+	policy/settings.h pow.h protocol.h psbt.h random.h \
+	reverse_iterator.h reverselock.h rpc/blockchain.h rpc/client.h \
+	rpc/protocol.h rpc/rawtransaction_util.h rpc/register.h \
+	rpc/request.h rpc/server.h rpc/util.h scheduler.h \
+	script/descriptor.h script/keyorigin.h script/sigcache.h \
+	script/sign.h script/signingprovider.h script/standard.h \
+	shutdown.h streams.h support/allocators/secure.h \
+	support/allocators/zeroafterfree.h support/cleanse.h \
+	support/events.h support/lockedpool.h sync.h threadsafety.h \
+	threadinterrupt.h timedata.h torcontrol.h txdb.h txmempool.h \
+	ui_interface.h undo.h util/bip32.h util/bytevectorhash.h \
+	util/error.h util/fees.h util/system.h util/memory.h \
+	util/moneystr.h util/rbf.h util/string.h util/threadnames.h \
+	util/time.h util/translation.h util/url.h util/validation.h \
+	validation.h validationinterface.h versionbits.h \
+	versionbitsinfo.h walletinitinterface.h wallet/coincontrol.h \
+	wallet/crypter.h wallet/db.h wallet/feebumper.h wallet/fees.h \
+	wallet/ismine.h wallet/load.h wallet/psbtwallet.h \
+	wallet/rpcwallet.h wallet/wallet.h wallet/walletdb.h \
+	wallet/wallettool.h wallet/walletutil.h wallet/coinselection.h \
+	warnings.h zmq/zmqabstractnotifier.h zmq/zmqconfig.h \
+	zmq/zmqnotificationinterface.h zmq/zmqpublishnotifier.h \
+	zmq/zmqrpc.h compat/glibc_compat.cpp
+#am__objects_7 = compat/libgleecbtc_util_a-glibc_compat.$(OBJEXT)
 am_libgleecbtc_util_a_OBJECTS =  \
 	support/libgleecbtc_util_a-lockedpool.$(OBJEXT) \
 	libgleecbtc_util_a-chainparamsbase.$(OBJEXT) \
 	libgleecbtc_util_a-clientversion.$(OBJEXT) \
+	compat/libgleecbtc_util_a-glibc_sanity_fdelt.$(OBJEXT) \
 	compat/libgleecbtc_util_a-glibc_sanity.$(OBJEXT) \
 	compat/libgleecbtc_util_a-glibcxx_sanity.$(OBJEXT) \
 	compat/libgleecbtc_util_a-strnlen.$(OBJEXT) \
 	libgleecbtc_util_a-fs.$(OBJEXT) \
+	interfaces/libgleecbtc_util_a-handler.$(OBJEXT) \
+	libgleecbtc_util_a-logging.$(OBJEXT) \
 	libgleecbtc_util_a-random.$(OBJEXT) \
-	rpc/libgleecbtc_util_a-protocol.$(OBJEXT) \
+	rpc/libgleecbtc_util_a-request.$(OBJEXT) \
 	support/libgleecbtc_util_a-cleanse.$(OBJEXT) \
 	libgleecbtc_util_a-sync.$(OBJEXT) \
 	libgleecbtc_util_a-threadinterrupt.$(OBJEXT) \
-	libgleecbtc_util_a-util.$(OBJEXT) \
-	libgleecbtc_util_a-utilmoneystr.$(OBJEXT) \
-	libgleecbtc_util_a-utilstrencodings.$(OBJEXT) \
-	libgleecbtc_util_a-utiltime.$(OBJEXT) $(am__objects_4) \
-	$(am__objects_5)
+	util/libgleecbtc_util_a-bip32.$(OBJEXT) \
+	util/libgleecbtc_util_a-bytevectorhash.$(OBJEXT) \
+	util/libgleecbtc_util_a-error.$(OBJEXT) \
+	util/libgleecbtc_util_a-fees.$(OBJEXT) \
+	util/libgleecbtc_util_a-system.$(OBJEXT) \
+	util/libgleecbtc_util_a-moneystr.$(OBJEXT) \
+	util/libgleecbtc_util_a-rbf.$(OBJEXT) \
+	util/libgleecbtc_util_a-threadnames.$(OBJEXT) \
+	util/libgleecbtc_util_a-strencodings.$(OBJEXT) \
+	util/libgleecbtc_util_a-string.$(OBJEXT) \
+	util/libgleecbtc_util_a-time.$(OBJEXT) \
+	util/libgleecbtc_util_a-url.$(OBJEXT) \
+	util/libgleecbtc_util_a-validation.$(OBJEXT) $(am__objects_4) \
+	$(am__objects_7)
 nodist_libgleecbtc_util_a_OBJECTS =
 libgleecbtc_util_a_OBJECTS = $(am_libgleecbtc_util_a_OBJECTS) \
 	$(nodist_libgleecbtc_util_a_OBJECTS)
 libgleecbtc_wallet_a_AR = $(AR) $(ARFLAGS)
 libgleecbtc_wallet_a_LIBADD =
 am_libgleecbtc_wallet_a_OBJECTS =  \
+	interfaces/libgleecbtc_wallet_a-wallet.$(OBJEXT) \
+	wallet/libgleecbtc_wallet_a-coincontrol.$(OBJEXT) \
 	wallet/libgleecbtc_wallet_a-crypter.$(OBJEXT) \
 	wallet/libgleecbtc_wallet_a-db.$(OBJEXT) \
 	wallet/libgleecbtc_wallet_a-feebumper.$(OBJEXT) \
+	wallet/libgleecbtc_wallet_a-fees.$(OBJEXT) \
+	wallet/libgleecbtc_wallet_a-ismine.$(OBJEXT) \
+	wallet/libgleecbtc_wallet_a-load.$(OBJEXT) \
+	wallet/libgleecbtc_wallet_a-psbtwallet.$(OBJEXT) \
 	wallet/libgleecbtc_wallet_a-rpcdump.$(OBJEXT) \
 	wallet/libgleecbtc_wallet_a-rpcwallet.$(OBJEXT) \
 	wallet/libgleecbtc_wallet_a-wallet.$(OBJEXT) \
 	wallet/libgleecbtc_wallet_a-walletdb.$(OBJEXT) \
+	wallet/libgleecbtc_wallet_a-walletutil.$(OBJEXT) \
+	wallet/libgleecbtc_wallet_a-coinselection.$(OBJEXT) \
 	$(am__objects_4)
 libgleecbtc_wallet_a_OBJECTS = $(am_libgleecbtc_wallet_a_OBJECTS)
+libgleecbtc_wallet_tool_a_AR = $(AR) $(ARFLAGS)
+libgleecbtc_wallet_tool_a_LIBADD =
+am_libgleecbtc_wallet_tool_a_OBJECTS =  \
+	wallet/libgleecbtc_wallet_tool_a-wallettool.$(OBJEXT) \
+	$(am__objects_4)
+libgleecbtc_wallet_tool_a_OBJECTS =  \
+	$(am_libgleecbtc_wallet_tool_a_OBJECTS)
 libgleecbtc_zmq_a_AR = $(AR) $(ARFLAGS)
 libgleecbtc_zmq_a_LIBADD =
 am__libgleecbtc_zmq_a_SOURCES_DIST = zmq/zmqabstractnotifier.cpp \
-	zmq/zmqnotificationinterface.cpp zmq/zmqpublishnotifier.cpp
+	zmq/zmqnotificationinterface.cpp zmq/zmqpublishnotifier.cpp \
+	zmq/zmqrpc.cpp
 #am_libgleecbtc_zmq_a_OBJECTS = zmq/libgleecbtc_zmq_a-zmqabstractnotifier.$(OBJEXT) \
 #	zmq/libgleecbtc_zmq_a-zmqnotificationinterface.$(OBJEXT) \
-#	zmq/libgleecbtc_zmq_a-zmqpublishnotifier.$(OBJEXT)
+#	zmq/libgleecbtc_zmq_a-zmqpublishnotifier.$(OBJEXT) \
+#	zmq/libgleecbtc_zmq_a-zmqrpc.$(OBJEXT)
 libgleecbtc_zmq_a_OBJECTS = $(am_libgleecbtc_zmq_a_OBJECTS)
 qt_libgleecbtcqt_a_AR = $(AR) $(ARFLAGS)
 qt_libgleecbtcqt_a_LIBADD =
 am__qt_libgleecbtcqt_a_SOURCES_DIST = qt/bantablemodel.cpp \
-	qt/gleecbtcaddressvalidator.cpp qt/gleecbtcamountfield.cpp \
-	qt/gleecbtcgui.cpp qt/gleecbtcunits.cpp qt/clientmodel.cpp \
-	qt/csvmodelwriter.cpp qt/guiutil.cpp qt/intro.cpp \
-	qt/modaloverlay.cpp qt/networkstyle.cpp qt/notificator.cpp \
-	qt/optionsdialog.cpp qt/optionsmodel.cpp qt/peertablemodel.cpp \
-	qt/platformstyle.cpp qt/qvalidatedlineedit.cpp \
-	qt/qvaluecombobox.cpp qt/rpcconsole.cpp qt/splashscreen.cpp \
+	qt/gleecbtc.cpp qt/gleecbtcaddressvalidator.cpp \
+	qt/gleecbtcamountfield.cpp qt/gleecbtcgui.cpp \
+	qt/gleecbtcunits.cpp qt/clientmodel.cpp qt/csvmodelwriter.cpp \
+	qt/guiutil.cpp qt/intro.cpp qt/modaloverlay.cpp \
+	qt/networkstyle.cpp qt/notificator.cpp qt/optionsdialog.cpp \
+	qt/optionsmodel.cpp qt/peertablemodel.cpp qt/platformstyle.cpp \
+	qt/qvalidatedlineedit.cpp qt/qvaluecombobox.cpp \
+	qt/rpcconsole.cpp qt/splashscreen.cpp \
 	qt/trafficgraphwidget.cpp qt/utilitydialog.cpp \
 	qt/winshutdownmonitor.cpp qt/addressbookpage.cpp \
 	qt/addresstablemodel.cpp qt/askpassphrasedialog.cpp \
 	qt/coincontroldialog.cpp qt/coincontroltreewidget.cpp \
-	qt/editaddressdialog.cpp qt/openuridialog.cpp \
-	qt/overviewpage.cpp qt/paymentrequestplus.cpp \
-	qt/paymentserver.cpp qt/receivecoinsdialog.cpp \
+	qt/createwalletdialog.cpp qt/editaddressdialog.cpp \
+	qt/openuridialog.cpp qt/overviewpage.cpp qt/paymentserver.cpp \
+	qt/qrimagewidget.cpp qt/receivecoinsdialog.cpp \
 	qt/receiverequestdialog.cpp qt/recentrequeststablemodel.cpp \
 	qt/sendcoinsdialog.cpp qt/sendcoinsentry.cpp \
 	qt/signverifymessagedialog.cpp qt/transactiondesc.cpp \
 	qt/transactiondescdialog.cpp qt/transactionfilterproxy.cpp \
 	qt/transactionrecord.cpp qt/transactiontablemodel.cpp \
-	qt/transactionview.cpp qt/walletframe.cpp qt/walletmodel.cpp \
+	qt/transactionview.cpp qt/walletcontroller.cpp \
+	qt/walletframe.cpp qt/walletmodel.cpp \
 	qt/walletmodeltransaction.cpp qt/walletview.cpp \
-	qt/addressbookpage.h qt/addresstablemodel.h \
-	qt/askpassphrasedialog.h qt/bantablemodel.h \
-	qt/gleecbtcaddressvalidator.h qt/gleecbtcamountfield.h \
-	qt/gleecbtcgui.h qt/gleecbtcunits.h qt/callback.h \
-	qt/clientmodel.h qt/coincontroldialog.h \
-	qt/coincontroltreewidget.h qt/csvmodelwriter.h \
-	qt/editaddressdialog.h qt/guiconstants.h qt/guiutil.h \
-	qt/intro.h qt/macdockiconhandler.h qt/macnotificationhandler.h \
+	qt/paymentrequestplus.cpp qt/addressbookpage.h \
+	qt/addresstablemodel.h qt/askpassphrasedialog.h \
+	qt/bantablemodel.h qt/gleecbtcaddressvalidator.h \
+	qt/gleecbtcamountfield.h qt/gleecbtc.h qt/gleecbtcgui.h \
+	qt/gleecbtcunits.h qt/clientmodel.h qt/coincontroldialog.h \
+	qt/coincontroltreewidget.h qt/createwalletdialog.h \
+	qt/csvmodelwriter.h qt/editaddressdialog.h qt/guiconstants.h \
+	qt/guiutil.h qt/intro.h qt/macdockiconhandler.h \
+	qt/macnotificationhandler.h qt/macos_appnap.h \
 	qt/modaloverlay.h qt/networkstyle.h qt/notificator.h \
 	qt/openuridialog.h qt/optionsdialog.h qt/optionsmodel.h \
 	qt/overviewpage.h qt/paymentrequestplus.h qt/paymentserver.h \
-	qt/peertablemodel.h qt/platformstyle.h qt/qvalidatedlineedit.h \
-	qt/qvaluecombobox.h qt/receivecoinsdialog.h \
-	qt/receiverequestdialog.h qt/recentrequeststablemodel.h \
-	qt/rpcconsole.h qt/sendcoinsdialog.h qt/sendcoinsentry.h \
+	qt/peertablemodel.h qt/platformstyle.h qt/qrimagewidget.h \
+	qt/qvalidatedlineedit.h qt/qvaluecombobox.h \
+	qt/receivecoinsdialog.h qt/receiverequestdialog.h \
+	qt/recentrequeststablemodel.h qt/rpcconsole.h \
+	qt/sendcoinsdialog.h qt/sendcoinsentry.h \
 	qt/signverifymessagedialog.h qt/splashscreen.h \
 	qt/trafficgraphwidget.h qt/transactiondesc.h \
 	qt/transactiondescdialog.h qt/transactionfilterproxy.h \
 	qt/transactionrecord.h qt/transactiontablemodel.h \
-	qt/transactionview.h qt/utilitydialog.h qt/walletframe.h \
-	qt/walletmodel.h qt/walletmodeltransaction.h qt/walletview.h \
-	qt/winshutdownmonitor.h qt/forms/addressbookpage.ui \
-	qt/forms/askpassphrasedialog.ui qt/forms/coincontroldialog.ui \
+	qt/transactionview.h qt/utilitydialog.h qt/walletcontroller.h \
+	qt/walletframe.h qt/walletmodel.h qt/walletmodeltransaction.h \
+	qt/walletview.h qt/winshutdownmonitor.h \
+	qt/forms/addressbookpage.ui qt/forms/askpassphrasedialog.ui \
+	qt/forms/coincontroldialog.ui qt/forms/createwalletdialog.ui \
 	qt/forms/editaddressdialog.ui qt/forms/helpmessagedialog.ui \
 	qt/forms/intro.ui qt/forms/modaloverlay.ui \
 	qt/forms/openuridialog.ui qt/forms/optionsdialog.ui \
@@ -568,78 +753,61 @@ am__qt_libgleecbtcqt_a_SOURCES_DIST = qt/bantablemodel.cpp \
 	qt/forms/sendcoinsdialog.ui qt/forms/sendcoinsentry.ui \
 	qt/forms/signverifymessagedialog.ui \
 	qt/forms/transactiondescdialog.ui qt/gleecbtc.qrc \
-	qt/gleecbtc_locale.qrc qt/locale/gleecbtc_af.ts \
-	qt/locale/gleecbtc_af_ZA.ts qt/locale/gleecbtc_ar.ts \
-	qt/locale/gleecbtc_be_BY.ts qt/locale/gleecbtc_bg_BG.ts \
-	qt/locale/gleecbtc_bg.ts qt/locale/gleecbtc_bn.ts \
-	qt/locale/gleecbtc_bs.ts qt/locale/gleecbtc_ca_ES.ts \
-	qt/locale/gleecbtc_ca.ts qt/locale/gleecbtc_ca@valencia.ts \
-	qt/locale/gleecbtc_cs.ts qt/locale/gleecbtc_cy.ts \
-	qt/locale/gleecbtc_da.ts qt/locale/gleecbtc_de_DE.ts \
-	qt/locale/gleecbtc_de.ts qt/locale/gleecbtc_el_GR.ts \
-	qt/locale/gleecbtc_el.ts qt/locale/gleecbtc_en_AU.ts \
-	qt/locale/gleecbtc_en_GB.ts qt/locale/gleecbtc_en.ts \
-	qt/locale/gleecbtc_en_US.ts qt/locale/gleecbtc_eo.ts \
-	qt/locale/gleecbtc_es_419.ts qt/locale/gleecbtc_es_AR.ts \
-	qt/locale/gleecbtc_es_CL.ts qt/locale/gleecbtc_es_CO.ts \
-	qt/locale/gleecbtc_es_DO.ts qt/locale/gleecbtc_es_ES.ts \
-	qt/locale/gleecbtc_es_MX.ts qt/locale/gleecbtc_es.ts \
-	qt/locale/gleecbtc_es_UY.ts qt/locale/gleecbtc_es_VE.ts \
-	qt/locale/gleecbtc_et_EE.ts qt/locale/gleecbtc_et.ts \
-	qt/locale/gleecbtc_eu_ES.ts qt/locale/gleecbtc_fa_IR.ts \
-	qt/locale/gleecbtc_fa.ts qt/locale/gleecbtc_fi.ts \
-	qt/locale/gleecbtc_fr_CA.ts qt/locale/gleecbtc_fr_FR.ts \
+	qt/gleecbtc_locale.qrc qt/locale/gleecbtc_ar.ts \
+	qt/locale/gleecbtc_ca.ts qt/locale/gleecbtc_cs.ts \
+	qt/locale/gleecbtc_cy.ts qt/locale/gleecbtc_da.ts \
+	qt/locale/gleecbtc_de.ts qt/locale/gleecbtc_el.ts \
+	qt/locale/gleecbtc_en_GB.ts qt/locale/gleecbtc_eo.ts \
+	qt/locale/gleecbtc_es.ts qt/locale/gleecbtc_es_CL.ts \
+	qt/locale/gleecbtc_es_CO.ts qt/locale/gleecbtc_es_DO.ts \
+	qt/locale/gleecbtc_es_MX.ts qt/locale/gleecbtc_es_VE.ts \
+	qt/locale/gleecbtc_et.ts qt/locale/gleecbtc_eu.ts \
+	qt/locale/gleecbtc_fa.ts qt/locale/gleecbtc_fa_IR.ts \
+	qt/locale/gleecbtc_fi.ts qt/locale/gleecbtc_fil.ts \
 	qt/locale/gleecbtc_fr.ts qt/locale/gleecbtc_gl.ts \
-	qt/locale/gleecbtc_he_IL.ts qt/locale/gleecbtc_he.ts \
-	qt/locale/gleecbtc_hi_IN.ts qt/locale/gleecbtc_hr.ts \
-	qt/locale/gleecbtc_hu.ts qt/locale/gleecbtc_id_ID.ts \
-	qt/locale/gleecbtc_id.ts qt/locale/gleecbtc_it_IT.ts \
-	qt/locale/gleecbtc_it.ts qt/locale/gleecbtc_ja_JP.ts \
-	qt/locale/gleecbtc_ja.ts qt/locale/gleecbtc_ka.ts \
-	qt/locale/gleecbtc_kk_KZ.ts qt/locale/gleecbtc_ko_KR.ts \
+	qt/locale/gleecbtc_he.ts qt/locale/gleecbtc_hi.ts \
+	qt/locale/gleecbtc_hr.ts qt/locale/gleecbtc_hu.ts \
+	qt/locale/gleecbtc_id.ts qt/locale/gleecbtc_is.ts \
+	qt/locale/gleecbtc_it.ts qt/locale/gleecbtc_ja.ts \
+	qt/locale/gleecbtc_ka.ts qt/locale/gleecbtc_kk.ts \
+	qt/locale/gleecbtc_km.ts qt/locale/gleecbtc_ko.ts \
 	qt/locale/gleecbtc_ku_IQ.ts qt/locale/gleecbtc_ky.ts \
 	qt/locale/gleecbtc_la.ts qt/locale/gleecbtc_lt.ts \
-	qt/locale/gleecbtc_lv_LV.ts qt/locale/gleecbtc_mk_MK.ts \
-	qt/locale/gleecbtc_mn.ts qt/locale/gleecbtc_ms_MY.ts \
-	qt/locale/gleecbtc_my.ts qt/locale/gleecbtc_nb_NO.ts \
+	qt/locale/gleecbtc_lv.ts qt/locale/gleecbtc_mk.ts \
+	qt/locale/gleecbtc_ml.ts qt/locale/gleecbtc_mn.ts \
+	qt/locale/gleecbtc_mr_IN.ts qt/locale/gleecbtc_ms.ts \
 	qt/locale/gleecbtc_nb.ts qt/locale/gleecbtc_ne.ts \
-	qt/locale/gleecbtc_nl_NL.ts qt/locale/gleecbtc_nl.ts \
-	qt/locale/gleecbtc_pam.ts qt/locale/gleecbtc_pl.ts \
-	qt/locale/gleecbtc_pt_BR.ts qt/locale/gleecbtc_pt_PT.ts \
-	qt/locale/gleecbtc_ro_RO.ts qt/locale/gleecbtc_ro.ts \
-	qt/locale/gleecbtc_ru_RU.ts qt/locale/gleecbtc_ru.ts \
-	qt/locale/gleecbtc_si.ts qt/locale/gleecbtc_sk.ts \
-	qt/locale/gleecbtc_sl_SI.ts qt/locale/gleecbtc_sq.ts \
-	qt/locale/gleecbtc_sr@latin.ts qt/locale/gleecbtc_sr.ts \
-	qt/locale/gleecbtc_sv.ts qt/locale/gleecbtc_ta.ts \
-	qt/locale/gleecbtc_te.ts qt/locale/gleecbtc_th_TH.ts \
-	qt/locale/gleecbtc_th.ts qt/locale/gleecbtc_tr_TR.ts \
+	qt/locale/gleecbtc_nl.ts qt/locale/gleecbtc_pam.ts \
+	qt/locale/gleecbtc_pl.ts qt/locale/gleecbtc_pt.ts \
+	qt/locale/gleecbtc_pt_BR.ts qt/locale/gleecbtc_ro.ts \
+	qt/locale/gleecbtc_ru.ts qt/locale/gleecbtc_si.ts \
+	qt/locale/gleecbtc_sk.ts qt/locale/gleecbtc_sl.ts \
+	qt/locale/gleecbtc_sn.ts qt/locale/gleecbtc_sr.ts \
+	qt/locale/gleecbtc_sr@latin.ts qt/locale/gleecbtc_sv.ts \
+	qt/locale/gleecbtc_szl.ts qt/locale/gleecbtc_ta.ts \
+	qt/locale/gleecbtc_te.ts qt/locale/gleecbtc_th.ts \
 	qt/locale/gleecbtc_tr.ts qt/locale/gleecbtc_uk.ts \
-	qt/locale/gleecbtc_ur_PK.ts qt/locale/gleecbtc_uz@Cyrl.ts \
-	qt/locale/gleecbtc_vi.ts qt/locale/gleecbtc_vi_VN.ts \
-	qt/locale/gleecbtc_zh_CN.ts qt/locale/gleecbtc_zh_HK.ts \
-	qt/locale/gleecbtc_zh.ts qt/locale/gleecbtc_zh_TW.ts \
+	qt/locale/gleecbtc_ur.ts qt/locale/gleecbtc_uz@Cyrl.ts \
+	qt/locale/gleecbtc_vi.ts qt/locale/gleecbtc_yo.ts \
+	qt/locale/gleecbtc_zh-Hans.ts qt/locale/gleecbtc_zh_CN.ts \
+	qt/locale/gleecbtc_zh_HK.ts qt/locale/gleecbtc_zh_TW.ts \
 	qt/paymentrequest.proto qt/res/icons/add.png \
-	qt/res/icons/address-book.png qt/res/icons/about.png \
-	qt/res/icons/about_qt.png qt/res/icons/gleecbtc.ico \
+	qt/res/icons/address-book.png qt/res/icons/gleecbtc.ico \
 	qt/res/icons/gleecbtc_testnet.ico qt/res/icons/gleecbtc.png \
 	qt/res/icons/chevron.png qt/res/icons/clock1.png \
 	qt/res/icons/clock2.png qt/res/icons/clock3.png \
 	qt/res/icons/clock4.png qt/res/icons/clock5.png \
-	qt/res/icons/configure.png qt/res/icons/connect0.png \
-	qt/res/icons/connect1.png qt/res/icons/connect2.png \
-	qt/res/icons/connect3.png qt/res/icons/connect4.png \
-	qt/res/icons/debugwindow.png qt/res/icons/edit.png \
+	qt/res/icons/connect0.png qt/res/icons/connect1.png \
+	qt/res/icons/connect2.png qt/res/icons/connect3.png \
+	qt/res/icons/connect4.png qt/res/icons/edit.png \
 	qt/res/icons/editcopy.png qt/res/icons/editpaste.png \
 	qt/res/icons/export.png qt/res/icons/eye.png \
 	qt/res/icons/eye_minus.png qt/res/icons/eye_plus.png \
-	qt/res/icons/filesave.png qt/res/icons/fontbigger.png \
-	qt/res/icons/fontsmaller.png qt/res/icons/hd_disabled.png \
-	qt/res/icons/hd_enabled.png qt/res/icons/history.png \
-	qt/res/icons/info.png qt/res/icons/key.png \
-	qt/res/icons/lock_closed.png qt/res/icons/lock_open.png \
-	qt/res/icons/network_disabled.png qt/res/icons/open.png \
-	qt/res/icons/overview.png qt/res/icons/quit.png \
+	qt/res/icons/fontbigger.png qt/res/icons/fontsmaller.png \
+	qt/res/icons/hd_disabled.png qt/res/icons/hd_enabled.png \
+	qt/res/icons/history.png qt/res/icons/lock_closed.png \
+	qt/res/icons/lock_open.png qt/res/icons/network_disabled.png \
+	qt/res/icons/overview.png qt/res/icons/proxy.png \
 	qt/res/icons/receive.png qt/res/icons/remove.png \
 	qt/res/icons/send.png qt/res/icons/synced.png \
 	qt/res/icons/transaction0.png qt/res/icons/transaction2.png \
@@ -647,10 +815,13 @@ am__qt_libgleecbtcqt_a_SOURCES_DIST = qt/bantablemodel.cpp \
 	qt/res/icons/transaction_conflicted.png \
 	qt/res/icons/tx_inout.png qt/res/icons/tx_input.png \
 	qt/res/icons/tx_output.png qt/res/icons/tx_mined.png \
-	qt/res/icons/warning.png qt/res/icons/verify.png $(wildcard \
-	$(srcdir)/qt/res/movies/spinner-*.png)
-#am__objects_6 =  \
+	qt/res/icons/warning.png $(wildcard \
+	$(srcdir)/qt/res/movies/spinner-*.png) \
+	qt/macdockiconhandler.mm qt/macnotificationhandler.mm \
+	qt/macos_appnap.mm
+#am__objects_8 =  \
 #	qt/qt_libgleecbtcqt_a-bantablemodel.$(OBJEXT) \
+#	qt/qt_libgleecbtcqt_a-gleecbtc.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-gleecbtcaddressvalidator.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-gleecbtcamountfield.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-gleecbtcgui.$(OBJEXT) \
@@ -672,18 +843,20 @@ am__qt_libgleecbtcqt_a_SOURCES_DIST = qt/bantablemodel.cpp \
 #	qt/qt_libgleecbtcqt_a-splashscreen.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-trafficgraphwidget.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-utilitydialog.$(OBJEXT)
-#am__objects_7 = qt/qt_libgleecbtcqt_a-winshutdownmonitor.$(OBJEXT)
-##am__objects_8 = $(am__objects_7)
-#am__objects_9 = qt/qt_libgleecbtcqt_a-addressbookpage.$(OBJEXT) \
+#am__objects_9 = qt/qt_libgleecbtcqt_a-winshutdownmonitor.$(OBJEXT)
+##am__objects_10 =  \
+##	$(am__objects_9)
+#am__objects_11 = qt/qt_libgleecbtcqt_a-addressbookpage.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-addresstablemodel.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-askpassphrasedialog.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-coincontroldialog.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-coincontroltreewidget.$(OBJEXT) \
+#	qt/qt_libgleecbtcqt_a-createwalletdialog.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-editaddressdialog.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-openuridialog.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-overviewpage.$(OBJEXT) \
-#	qt/qt_libgleecbtcqt_a-paymentrequestplus.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-paymentserver.$(OBJEXT) \
+#	qt/qt_libgleecbtcqt_a-qrimagewidget.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-receivecoinsdialog.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-receiverequestdialog.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-recentrequeststablemodel.$(OBJEXT) \
@@ -696,28 +869,38 @@ am__qt_libgleecbtcqt_a_SOURCES_DIST = qt/bantablemodel.cpp \
 #	qt/qt_libgleecbtcqt_a-transactionrecord.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-transactiontablemodel.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-transactionview.$(OBJEXT) \
+#	qt/qt_libgleecbtcqt_a-walletcontroller.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-walletframe.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-walletmodel.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-walletmodeltransaction.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-walletview.$(OBJEXT)
-#am__objects_10 = $(am__objects_9)
-#am__objects_11 = $(am__objects_6) $(am__objects_8) \
-#	$(am__objects_10)
-#am_qt_libgleecbtcqt_a_OBJECTS = $(am__objects_11) \
+#am__objects_12 =  \
+#	$(am__objects_11)
+#am__objects_13 = qt/qt_libgleecbtcqt_a-paymentrequestplus.$(OBJEXT)
+##am__objects_14 = $(am__objects_13)
+#am__objects_15 = $(am__objects_8) $(am__objects_10) \
+#	$(am__objects_12) $(am__objects_14)
+#am__objects_16 = qt/qt_libgleecbtcqt_a-macdockiconhandler.$(OBJEXT) \
+#	qt/qt_libgleecbtcqt_a-macnotificationhandler.$(OBJEXT) \
+#	qt/qt_libgleecbtcqt_a-macos_appnap.$(OBJEXT)
+##am__objects_17 =  \
+##	$(am__objects_16)
+#am_qt_libgleecbtcqt_a_OBJECTS = $(am__objects_15) \
 #	$(am__objects_4) $(am__objects_4) \
 #	$(am__objects_4) $(am__objects_4) \
 #	$(am__objects_4) $(am__objects_4) \
 #	$(am__objects_4) $(am__objects_4) \
-#	$(am__objects_4)
-#am__objects_12 = qt/qt_libgleecbtcqt_a-moc_addressbookpage.$(OBJEXT) \
+#	$(am__objects_4) $(am__objects_17)
+#am__objects_18 = qt/qt_libgleecbtcqt_a-moc_addressbookpage.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_addresstablemodel.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_askpassphrasedialog.$(OBJEXT) \
+#	qt/qt_libgleecbtcqt_a-moc_createwalletdialog.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_bantablemodel.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_gleecbtcaddressvalidator.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_gleecbtcamountfield.$(OBJEXT) \
+#	qt/qt_libgleecbtcqt_a-moc_gleecbtc.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_gleecbtcgui.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_gleecbtcunits.$(OBJEXT) \
-#	qt/qt_libgleecbtcqt_a-moc_callback.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_clientmodel.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_coincontroldialog.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_coincontroltreewidget.$(OBJEXT) \
@@ -735,6 +918,7 @@ am__qt_libgleecbtcqt_a_SOURCES_DIST = qt/bantablemodel.cpp \
 #	qt/qt_libgleecbtcqt_a-moc_overviewpage.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_peertablemodel.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_paymentserver.$(OBJEXT) \
+#	qt/qt_libgleecbtcqt_a-moc_qrimagewidget.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_qvalidatedlineedit.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_qvaluecombobox.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_receivecoinsdialog.$(OBJEXT) \
@@ -752,17 +936,18 @@ am__qt_libgleecbtcqt_a_SOURCES_DIST = qt/bantablemodel.cpp \
 #	qt/qt_libgleecbtcqt_a-moc_transactiontablemodel.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_transactionview.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_utilitydialog.$(OBJEXT) \
+#	qt/qt_libgleecbtcqt_a-moc_walletcontroller.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_walletframe.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_walletmodel.$(OBJEXT) \
 #	qt/qt_libgleecbtcqt_a-moc_walletview.$(OBJEXT)
-#am__objects_13 = qt/qt_libgleecbtcqt_a-paymentrequest.pb.$(OBJEXT)
-#am__objects_14 =  \
+##am__objects_19 = qt/qt_libgleecbtcqt_a-paymentrequest.pb.$(OBJEXT)
+#am__objects_20 =  \
 #	qt/qt_libgleecbtcqt_a-qrc_gleecbtc.$(OBJEXT)
-#am__objects_15 = qt/qt_libgleecbtcqt_a-qrc_gleecbtc_locale.$(OBJEXT)
-#nodist_qt_libgleecbtcqt_a_OBJECTS = $(am__objects_12) \
-#	$(am__objects_4) $(am__objects_13) \
-#	$(am__objects_4) $(am__objects_14) \
-#	$(am__objects_15)
+#am__objects_21 = qt/qt_libgleecbtcqt_a-qrc_gleecbtc_locale.$(OBJEXT)
+#nodist_qt_libgleecbtcqt_a_OBJECTS = $(am__objects_18) \
+#	$(am__objects_4) $(am__objects_19) \
+#	$(am__objects_4) $(am__objects_20) \
+#	$(am__objects_21)
 qt_libgleecbtcqt_a_OBJECTS = $(am_qt_libgleecbtcqt_a_OBJECTS) \
 	$(nodist_qt_libgleecbtcqt_a_OBJECTS)
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
@@ -797,36 +982,45 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)" \
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libgleecbtcconsensus_la_DEPENDENCIES =  \
 	$(LIBSECP256K1)
-am__libgleecbtcconsensus_la_SOURCES_DIST = crypto/aes.cpp crypto/aes.h \
-	crypto/chacha20.h crypto/chacha20.cpp crypto/common.h \
-	crypto/hmac_sha256.cpp crypto/hmac_sha256.h \
-	crypto/hmac_sha512.cpp crypto/hmac_sha512.h \
+am__libgleecbtcconsensus_la_SOURCES_DIST = support/cleanse.cpp \
+	crypto/aes.cpp crypto/aes.h crypto/chacha_poly_aead.h \
+	crypto/chacha_poly_aead.cpp crypto/chacha20.h \
+	crypto/chacha20.cpp crypto/common.h crypto/hkdf_sha256_32.cpp \
+	crypto/hkdf_sha256_32.h crypto/hmac_sha256.cpp \
+	crypto/hmac_sha256.h crypto/hmac_sha512.cpp \
+	crypto/hmac_sha512.h crypto/poly1305.h crypto/poly1305.cpp \
 	crypto/ripemd160.cpp crypto/ripemd160.h crypto/sha1.cpp \
 	crypto/sha1.h crypto/sha256.cpp crypto/sha256.h \
-	crypto/sha512.cpp crypto/sha512.h crypto/sha256_sse4.cpp \
-	amount.h arith_uint256.cpp arith_uint256.h \
-	consensus/consensus.cpp consensus/merkle.cpp \
-	consensus/merkle.h consensus/params.h consensus/validation.h \
-	hash.cpp hash.h prevector.h primitives/block.cpp \
-	primitives/block.h primitives/transaction.cpp \
-	primitives/transaction.h pubkey.cpp pubkey.h \
-	script/gleecbtcconsensus.cpp script/interpreter.cpp \
+	crypto/sha512.cpp crypto/sha512.h crypto/siphash.cpp \
+	crypto/siphash.h crypto/sha256_sse4.cpp amount.h \
+	arith_uint256.cpp arith_uint256.h consensus/merkle.cpp \
+	consensus/merkle.h consensus/params.h consensus/tx_check.cpp \
+	consensus/validation.h hash.cpp hash.h prevector.h \
+	primitives/block.cpp primitives/block.h \
+	primitives/transaction.cpp primitives/transaction.h pubkey.cpp \
+	pubkey.h script/gleecbtcconsensus.cpp script/interpreter.cpp \
 	script/interpreter.h script/script.cpp script/script.h \
 	script/script_error.cpp script/script_error.h serialize.h \
-	tinyformat.h uint256.cpp uint256.h utilstrencodings.cpp \
-	utilstrencodings.h version.h compat/glibc_compat.cpp
-#am__objects_16 = crypto/libgleecbtcconsensus_la-sha256_sse4.lo
-am__objects_17 = crypto/libgleecbtcconsensus_la-aes.lo \
+	span.h tinyformat.h uint256.cpp uint256.h \
+	util/strencodings.cpp util/strencodings.h version.h \
+	compat/glibc_compat.cpp
+am__objects_22 =  \
+	crypto/libgleecbtcconsensus_la-sha256_sse4.lo
+am__objects_23 = crypto/libgleecbtcconsensus_la-aes.lo \
+	crypto/libgleecbtcconsensus_la-chacha_poly_aead.lo \
 	crypto/libgleecbtcconsensus_la-chacha20.lo \
+	crypto/libgleecbtcconsensus_la-hkdf_sha256_32.lo \
 	crypto/libgleecbtcconsensus_la-hmac_sha256.lo \
 	crypto/libgleecbtcconsensus_la-hmac_sha512.lo \
+	crypto/libgleecbtcconsensus_la-poly1305.lo \
 	crypto/libgleecbtcconsensus_la-ripemd160.lo \
 	crypto/libgleecbtcconsensus_la-sha1.lo \
 	crypto/libgleecbtcconsensus_la-sha256.lo \
-	crypto/libgleecbtcconsensus_la-sha512.lo $(am__objects_16)
-am__objects_18 = libgleecbtcconsensus_la-arith_uint256.lo \
-	consensus/libgleecbtcconsensus_la-consensus.lo \
+	crypto/libgleecbtcconsensus_la-sha512.lo \
+	crypto/libgleecbtcconsensus_la-siphash.lo $(am__objects_22)
+am__objects_24 = libgleecbtcconsensus_la-arith_uint256.lo \
 	consensus/libgleecbtcconsensus_la-merkle.lo \
+	consensus/libgleecbtcconsensus_la-tx_check.lo \
 	libgleecbtcconsensus_la-hash.lo \
 	primitives/libgleecbtcconsensus_la-block.lo \
 	primitives/libgleecbtcconsensus_la-transaction.lo \
@@ -836,11 +1030,11 @@ am__objects_18 = libgleecbtcconsensus_la-arith_uint256.lo \
 	script/libgleecbtcconsensus_la-script.lo \
 	script/libgleecbtcconsensus_la-script_error.lo \
 	libgleecbtcconsensus_la-uint256.lo \
-	libgleecbtcconsensus_la-utilstrencodings.lo
-#am__objects_19 = compat/libgleecbtcconsensus_la-glibc_compat.lo
-am_libgleecbtcconsensus_la_OBJECTS =  \
-	$(am__objects_17) $(am__objects_18) \
-	$(am__objects_19)
+	util/libgleecbtcconsensus_la-strencodings.lo
+#am__objects_25 = compat/libgleecbtcconsensus_la-glibc_compat.lo
+am_libgleecbtcconsensus_la_OBJECTS = support/libgleecbtcconsensus_la-cleanse.lo \
+	$(am__objects_23) $(am__objects_24) \
+	$(am__objects_25)
 libgleecbtcconsensus_la_OBJECTS =  \
 	$(am_libgleecbtcconsensus_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
@@ -854,64 +1048,107 @@ libgleecbtcconsensus_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 am_libgleecbtcconsensus_la_rpath = -rpath \
 	$(libdir)
 am__EXEEXT_1 = gleecbtcd$(EXEEXT)
-am__EXEEXT_2 = gleecbtc-cli$(EXEEXT) \
-	gleecbtc-tx$(EXEEXT)
-#am__EXEEXT_3 = test/test_gleecbtc$(EXEEXT)
-am__EXEEXT_4 = bench/bench_gleecbtc$(EXEEXT)
-#am__EXEEXT_5 = qt/gleecbtc-qt$(EXEEXT)
-#am__EXEEXT_6 =  \
+am__EXEEXT_2 = gleecbtc-cli$(EXEEXT)
+am__EXEEXT_3 = gleecbtc-tx$(EXEEXT)
+am__EXEEXT_4 = gleecbtc-wallet$(EXEEXT)
+#am__EXEEXT_5 = test/test_gleecbtc$(EXEEXT)
+am__EXEEXT_6 = bench/bench_gleecbtc$(EXEEXT)
+#am__EXEEXT_7 = qt/gleecbtc-qt$(EXEEXT)
+#am__EXEEXT_8 =  \
 #	qt/test/test_gleecbtc-qt$(EXEEXT)
-#am__EXEEXT_7 = test/test_gleecbtc_fuzzy$(EXEEXT)
+#am__EXEEXT_9 =  \
+#	test/fuzz/address_deserialize$(EXEEXT) \
+#	test/fuzz/addrman_deserialize$(EXEEXT) \
+#	test/fuzz/banentry_deserialize$(EXEEXT) \
+#	test/fuzz/block_deserialize$(EXEEXT) \
+#	test/fuzz/blockheader_deserialize$(EXEEXT) \
+#	test/fuzz/blocklocator_deserialize$(EXEEXT) \
+#	test/fuzz/blockmerkleroot$(EXEEXT) \
+#	test/fuzz/blocktransactions_deserialize$(EXEEXT) \
+#	test/fuzz/blocktransactionsrequest_deserialize$(EXEEXT) \
+#	test/fuzz/blockundo_deserialize$(EXEEXT) \
+#	test/fuzz/bloomfilter_deserialize$(EXEEXT) \
+#	test/fuzz/coins_deserialize$(EXEEXT) \
+#	test/fuzz/diskblockindex_deserialize$(EXEEXT) \
+#	test/fuzz/inv_deserialize$(EXEEXT) \
+#	test/fuzz/messageheader_deserialize$(EXEEXT) \
+#	test/fuzz/netaddr_deserialize$(EXEEXT) \
+#	test/fuzz/script_flags$(EXEEXT) \
+#	test/fuzz/service_deserialize$(EXEEXT) \
+#	test/fuzz/transaction_deserialize$(EXEEXT) \
+#	test/fuzz/txoutcompressor_deserialize$(EXEEXT) \
+#	test/fuzz/txundo_deserialize$(EXEEXT)
+##am__EXEEXT_10 = $(am__EXEEXT_9)
 PROGRAMS = $(bin_PROGRAMS) $(noinst_PROGRAMS)
-am__bench_bench_gleecbtc_SOURCES_DIST = bench/bench_gleecbtc.cpp \
-	bench/bench.cpp bench/bench.h bench/checkblock.cpp \
-	bench/checkqueue.cpp bench/Examples.cpp bench/rollingbloom.cpp \
-	bench/crypto_hash.cpp bench/ccoins_caching.cpp \
-	bench/mempool_eviction.cpp bench/verify_script.cpp \
-	bench/base58.cpp bench/lockedpool.cpp bench/perf.cpp \
-	bench/perf.h bench/prevector_destructor.cpp \
-	bench/coin_selection.cpp
-am__objects_20 = bench/bench_bench_gleecbtc-coin_selection.$(OBJEXT)
-am_bench_bench_gleecbtc_OBJECTS = bench/bench_bench_gleecbtc-bench_gleecbtc.$(OBJEXT) \
+am__bench_bench_gleecbtc_SOURCES_DIST = bench/data/block413567.raw \
+	bench/bench_gleecbtc.cpp bench/bench.cpp bench/bench.h \
+	bench/block_assemble.cpp bench/checkblock.cpp \
+	bench/checkqueue.cpp bench/data.h bench/data.cpp \
+	bench/duplicate_inputs.cpp bench/examples.cpp \
+	bench/rollingbloom.cpp bench/chacha20.cpp \
+	bench/chacha_poly_aead.cpp bench/crypto_hash.cpp \
+	bench/ccoins_caching.cpp bench/gcs_filter.cpp \
+	bench/merkle_root.cpp bench/mempool_eviction.cpp \
+	bench/rpc_blockchain.cpp bench/rpc_mempool.cpp \
+	bench/util_time.cpp bench/verify_script.cpp bench/base58.cpp \
+	bench/bech32.cpp bench/lockedpool.cpp bench/poly1305.cpp \
+	bench/prevector.cpp test/setup_common.h test/setup_common.cpp \
+	test/util.h test/util.cpp bench/coin_selection.cpp \
+	bench/wallet_balance.cpp
+am__objects_26 = bench/bench_bench_gleecbtc-coin_selection.$(OBJEXT) \
+	bench/bench_bench_gleecbtc-wallet_balance.$(OBJEXT)
+am_bench_bench_gleecbtc_OBJECTS = $(am__objects_4) \
+	bench/bench_bench_gleecbtc-bench_gleecbtc.$(OBJEXT) \
 	bench/bench_bench_gleecbtc-bench.$(OBJEXT) \
+	bench/bench_bench_gleecbtc-block_assemble.$(OBJEXT) \
 	bench/bench_bench_gleecbtc-checkblock.$(OBJEXT) \
 	bench/bench_bench_gleecbtc-checkqueue.$(OBJEXT) \
-	bench/bench_bench_gleecbtc-Examples.$(OBJEXT) \
+	bench/bench_bench_gleecbtc-data.$(OBJEXT) \
+	bench/bench_bench_gleecbtc-duplicate_inputs.$(OBJEXT) \
+	bench/bench_bench_gleecbtc-examples.$(OBJEXT) \
 	bench/bench_bench_gleecbtc-rollingbloom.$(OBJEXT) \
+	bench/bench_bench_gleecbtc-chacha20.$(OBJEXT) \
+	bench/bench_bench_gleecbtc-chacha_poly_aead.$(OBJEXT) \
 	bench/bench_bench_gleecbtc-crypto_hash.$(OBJEXT) \
 	bench/bench_bench_gleecbtc-ccoins_caching.$(OBJEXT) \
+	bench/bench_bench_gleecbtc-gcs_filter.$(OBJEXT) \
+	bench/bench_bench_gleecbtc-merkle_root.$(OBJEXT) \
 	bench/bench_bench_gleecbtc-mempool_eviction.$(OBJEXT) \
+	bench/bench_bench_gleecbtc-rpc_blockchain.$(OBJEXT) \
+	bench/bench_bench_gleecbtc-rpc_mempool.$(OBJEXT) \
+	bench/bench_bench_gleecbtc-util_time.$(OBJEXT) \
 	bench/bench_bench_gleecbtc-verify_script.$(OBJEXT) \
 	bench/bench_bench_gleecbtc-base58.$(OBJEXT) \
+	bench/bench_bench_gleecbtc-bech32.$(OBJEXT) \
 	bench/bench_bench_gleecbtc-lockedpool.$(OBJEXT) \
-	bench/bench_bench_gleecbtc-perf.$(OBJEXT) \
-	bench/bench_bench_gleecbtc-prevector_destructor.$(OBJEXT) \
-	$(am__objects_20)
-##am__objects_21 =  \
-##	$(am__objects_4) \
-##	$(am__objects_4)
-am__objects_21 = $(am__objects_4)
+	bench/bench_bench_gleecbtc-poly1305.$(OBJEXT) \
+	bench/bench_bench_gleecbtc-prevector.$(OBJEXT) \
+	test/bench_bench_gleecbtc-setup_common.$(OBJEXT) \
+	test/bench_bench_gleecbtc-util.$(OBJEXT) \
+	$(am__objects_26)
+am__objects_27 = $(am__objects_4)
 nodist_bench_bench_gleecbtc_OBJECTS =  \
-	$(am__objects_21)
+	$(am__objects_27)
 bench_bench_gleecbtc_OBJECTS = $(am_bench_bench_gleecbtc_OBJECTS) \
 	$(nodist_bench_bench_gleecbtc_OBJECTS)
-am__DEPENDENCIES_1 = $(am__append_10)
-am__DEPENDENCIES_2 = $(am__append_11)
+am__DEPENDENCIES_1 = $(am__append_19)
+am__DEPENDENCIES_2 = $(am__append_20)
 am__DEPENDENCIES_3 =
 #am__DEPENDENCIES_4 = $(am__DEPENDENCIES_3)
 am__DEPENDENCIES_4 = univalue/libunivalue.la
 #am__DEPENDENCIES_5 =  \
-#	$(LIBGLEECGBC_ZMQ) \
+#	$(LIBGLEECBTC_ZMQ) \
 #	$(am__DEPENDENCIES_3)
 bench_bench_gleecbtc_DEPENDENCIES =  \
-	$(LIBGLEECGBC_SERVER) $(LIBGLEECGBC_COMMON) \
-	$(LIBGLEECGBC_UTIL) \
-	$(LIBGLEECGBC_CONSENSUS) \
-	$(LIBGLEECGBC_CRYPTO) $(am__DEPENDENCIES_1) \
+	$(LIBGLEECBTC_SERVER) $(LIBGLEECBTC_WALLET) \
+	$(LIBGLEECBTC_SERVER) $(LIBGLEECBTC_COMMON) \
+	$(LIBGLEECBTC_UTIL) \
+	$(LIBGLEECBTC_CONSENSUS) \
+	$(LIBGLEECBTC_CRYPTO) $(am__DEPENDENCIES_1) \
 	$(LIBLEVELDB_SSE42) $(am__DEPENDENCIES_2) \
 	$(LIBSECP256K1) $(am__DEPENDENCIES_4) \
-	$(am__DEPENDENCIES_5) $(am__append_29) \
 	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3) \
+	$(am__DEPENDENCIES_5) $(am__DEPENDENCIES_3) \
 	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3) \
 	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3) \
 	$(am__DEPENDENCIES_3)
@@ -920,119 +1157,145 @@ bench_bench_gleecbtc_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) \
 	$(bench_bench_gleecbtc_LDFLAGS) $(LDFLAGS) -o $@
 am__gleecbtc_cli_SOURCES_DIST = gleecbtc-cli.cpp gleecbtc-cli-res.rc
-#am__objects_22 = gleecbtc-cli-res.$(OBJEXT)
+#am__objects_28 = gleecbtc-cli-res.$(OBJEXT)
 am_gleecbtc_cli_OBJECTS = gleecbtc_cli-gleecbtc-cli.$(OBJEXT) \
-	$(am__objects_22)
+	$(am__objects_28)
 gleecbtc_cli_OBJECTS = $(am_gleecbtc_cli_OBJECTS)
-gleecbtc_cli_DEPENDENCIES = $(LIBGLEECGBC_CLI) $(am__DEPENDENCIES_4) \
-	$(LIBGLEECGBC_UTIL) $(LIBGLEECGBC_CRYPTO) \
+gleecbtc_cli_DEPENDENCIES = $(LIBGLEECBTC_CLI) $(am__DEPENDENCIES_4) \
+	$(LIBGLEECBTC_UTIL) $(LIBGLEECBTC_CRYPTO) \
 	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3) \
-	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3)
+	$(am__DEPENDENCIES_3)
 gleecbtc_cli_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(gleecbtc_cli_CXXFLAGS) \
 	$(CXXFLAGS) $(gleecbtc_cli_LDFLAGS) $(LDFLAGS) -o $@
 am__gleecbtc_tx_SOURCES_DIST = gleecbtc-tx.cpp gleecbtc-tx-res.rc
-#am__objects_23 = gleecbtc-tx-res.$(OBJEXT)
+#am__objects_29 = gleecbtc-tx-res.$(OBJEXT)
 am_gleecbtc_tx_OBJECTS = gleecbtc_tx-gleecbtc-tx.$(OBJEXT) \
-	$(am__objects_23)
+	$(am__objects_29)
 gleecbtc_tx_OBJECTS = $(am_gleecbtc_tx_OBJECTS)
-gleecbtc_tx_DEPENDENCIES = $(am__DEPENDENCIES_4) $(LIBGLEECGBC_COMMON) \
-	$(LIBGLEECGBC_UTIL) $(LIBGLEECGBC_CONSENSUS) \
-	$(LIBGLEECGBC_CRYPTO) $(LIBSECP256K1) $(am__DEPENDENCIES_3) \
+gleecbtc_tx_DEPENDENCIES = $(am__DEPENDENCIES_4) $(LIBGLEECBTC_COMMON) \
+	$(LIBGLEECBTC_UTIL) $(LIBGLEECBTC_CONSENSUS) \
+	$(LIBGLEECBTC_CRYPTO) $(LIBSECP256K1) $(am__DEPENDENCIES_3) \
 	$(am__DEPENDENCIES_3)
 gleecbtc_tx_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(gleecbtc_tx_CXXFLAGS) \
 	$(CXXFLAGS) $(gleecbtc_tx_LDFLAGS) $(LDFLAGS) -o $@
+am__gleecbtc_wallet_SOURCES_DIST = gleecbtc-wallet.cpp \
+	gleecbtc-wallet-res.rc
+#am__objects_30 = gleecbtc-wallet-res.$(OBJEXT)
+am_gleecbtc_wallet_OBJECTS =  \
+	gleecbtc_wallet-gleecbtc-wallet.$(OBJEXT) $(am__objects_30)
+gleecbtc_wallet_OBJECTS = $(am_gleecbtc_wallet_OBJECTS)
+gleecbtc_wallet_DEPENDENCIES = $(LIBGLEECBTC_WALLET_TOOL) \
+	$(LIBGLEECBTC_WALLET) $(LIBGLEECBTC_COMMON) \
+	$(LIBGLEECBTC_CONSENSUS) $(LIBGLEECBTC_UTIL) \
+	$(LIBGLEECBTC_CRYPTO) $(LIBGLEECBTC_ZMQ) $(am__DEPENDENCIES_1) \
+	$(LIBLEVELDB_SSE42) $(am__DEPENDENCIES_2) $(LIBSECP256K1) \
+	$(am__DEPENDENCIES_4) $(am__DEPENDENCIES_3) \
+	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3) \
+	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3) \
+	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3)
+gleecbtc_wallet_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(gleecbtc_wallet_CXXFLAGS) $(CXXFLAGS) \
+	$(gleecbtc_wallet_LDFLAGS) $(LDFLAGS) -o $@
 am__gleecbtcd_SOURCES_DIST = gleecbtcd.cpp gleecbtcd-res.rc
-#am__objects_24 = gleecbtcd-res.$(OBJEXT)
-am_gleecbtcd_OBJECTS = gleecbtcd-gleecbtcd.$(OBJEXT) $(am__objects_24)
+#am__objects_31 = gleecbtcd-res.$(OBJEXT)
+am_gleecbtcd_OBJECTS = gleecbtcd-gleecbtcd.$(OBJEXT) $(am__objects_31)
 gleecbtcd_OBJECTS = $(am_gleecbtcd_OBJECTS)
-gleecbtcd_DEPENDENCIES = $(LIBGLEECGBC_SERVER) $(LIBGLEECGBC_COMMON) \
-	$(am__DEPENDENCIES_4) $(LIBGLEECGBC_UTIL) \
-	$(LIBGLEECGBC_WALLET) $(LIBGLEECGBC_ZMQ) \
-	$(LIBGLEECGBC_CONSENSUS) $(LIBGLEECGBC_CRYPTO) \
+gleecbtcd_DEPENDENCIES = $(LIBGLEECBTC_SERVER) $(LIBGLEECBTC_WALLET) \
+	$(LIBGLEECBTC_SERVER) $(LIBGLEECBTC_COMMON) \
+	$(am__DEPENDENCIES_4) $(LIBGLEECBTC_UTIL) $(LIBGLEECBTC_ZMQ) \
+	$(LIBGLEECBTC_CONSENSUS) $(LIBGLEECBTC_CRYPTO) \
 	$(am__DEPENDENCIES_1) $(LIBLEVELDB_SSE42) \
 	$(am__DEPENDENCIES_2) $(LIBSECP256K1) $(am__DEPENDENCIES_3) \
 	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3) \
 	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3) \
-	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3) \
-	$(am__DEPENDENCIES_3)
+	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3)
 gleecbtcd_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(gleecbtcd_CXXFLAGS) \
 	$(CXXFLAGS) $(gleecbtcd_LDFLAGS) $(LDFLAGS) -o $@
-am__qt_gleecbtc_qt_SOURCES_DIST = qt/gleecbtc.cpp \
-	qt/macdockiconhandler.mm qt/macnotificationhandler.mm \
+am__qt_gleecbtc_qt_SOURCES_DIST = qt/main.cpp \
 	qt/res/gleecbtc-qt-res.rc
-#am__objects_25 = qt/qt_gleecbtc_qt-macdockiconhandler.$(OBJEXT) \
-#	qt/qt_gleecbtc_qt-macnotificationhandler.$(OBJEXT)
-##am__objects_26 =  \
-##	$(am__objects_25)
-#am__objects_27 = qt/res/gleecbtc-qt-res.$(OBJEXT)
-##am__objects_28 =  \
-##	$(am__objects_27)
+#am__objects_32 = qt/res/gleecbtc-qt-res.$(OBJEXT)
+##am__objects_33 =  \
+##	$(am__objects_32)
 #am_qt_gleecbtc_qt_OBJECTS =  \
-#	qt/qt_gleecbtc_qt-gleecbtc.$(OBJEXT) \
-#	$(am__objects_26) $(am__objects_28)
+#	qt/qt_gleecbtc_qt-main.$(OBJEXT) \
+#	$(am__objects_33)
 qt_gleecbtc_qt_OBJECTS = $(am_qt_gleecbtc_qt_OBJECTS)
 ##am__DEPENDENCIES_6 =  \
-##	$(LIBGLEECGBC_ZMQ) \
+##	$(LIBGLEECBTC_ZMQ) \
 ##	$(am__DEPENDENCIES_3)
+##am__DEPENDENCIES_7 =  \
+##	$(am__DEPENDENCIES_3)
+##am__DEPENDENCIES_8 = $(am__DEPENDENCIES_3)
 #qt_gleecbtc_qt_DEPENDENCIES = qt/libgleecbtcqt.a \
-#	$(LIBGLEECGBC_SERVER) $(am__append_37) \
-#	$(am__DEPENDENCIES_6) $(LIBGLEECGBC_CLI) \
-#	$(LIBGLEECGBC_COMMON) $(LIBGLEECGBC_UTIL) \
-#	$(LIBGLEECGBC_CONSENSUS) $(LIBGLEECGBC_CRYPTO) \
+#	$(LIBGLEECBTC_SERVER) $(am__append_48) \
+#	$(am__DEPENDENCIES_6) $(LIBGLEECBTC_CLI) \
+#	$(LIBGLEECBTC_COMMON) $(LIBGLEECBTC_UTIL) \
+#	$(LIBGLEECBTC_CONSENSUS) $(LIBGLEECBTC_CRYPTO) \
 #	$(am__DEPENDENCIES_4) $(am__DEPENDENCIES_1) \
 #	$(LIBLEVELDB_SSE42) $(am__DEPENDENCIES_2) \
 #	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3) \
 #	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3) \
 #	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3) \
-#	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3) \
 #	$(am__DEPENDENCIES_3) $(LIBSECP256K1) \
-#	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3)
-qt_gleecbtc_qt_LINK = $(LIBTOOL) $(AM_V_lt) \
+#	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3) \
+#	$(am__DEPENDENCIES_7) $(am__DEPENDENCIES_8) \
+#	$(am__DEPENDENCIES_3)
+qt_gleecbtc_qt_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(qt_gleecbtc_qt_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link \
-	$(OBJCXXLD) $(AM_OBJCXXFLAGS) $(OBJCXXFLAGS) \
+	$(CXXLD) $(qt_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) \
 	$(qt_gleecbtc_qt_LDFLAGS) $(LDFLAGS) -o $@
-am__qt_test_test_gleecbtc_qt_SOURCES_DIST = qt/test/compattests.cpp \
-	qt/test/rpcnestedtests.cpp qt/test/test_main.cpp \
-	qt/test/uritests.cpp qt/test/compattests.h \
-	qt/test/rpcnestedtests.h qt/test/uritests.h \
-	qt/test/paymentrequestdata.h qt/test/paymentservertests.h \
-	qt/test/wallettests.h test/test_gleecbtc.cpp \
-	test/test_gleecbtc.h qt/test/paymentservertests.cpp \
-	qt/test/wallettests.cpp wallet/test/wallet_test_fixture.cpp
-#am__objects_29 = test/qt_test_test_gleecbtc_qt-test_gleecbtc.$(OBJEXT)
-#am__objects_30 = qt/test/qt_test_test_gleecbtc_qt-paymentservertests.$(OBJEXT) \
+am__qt_test_test_gleecbtc_qt_SOURCES_DIST = qt/test/apptests.cpp \
+	qt/test/compattests.cpp qt/test/rpcnestedtests.cpp \
+	qt/test/test_main.cpp qt/test/uritests.cpp qt/test/util.cpp \
+	qt/test/addressbooktests.h qt/test/apptests.h \
+	qt/test/compattests.h qt/test/rpcnestedtests.h \
+	qt/test/uritests.h qt/test/util.h qt/test/paymentrequestdata.h \
+	qt/test/paymentservertests.h qt/test/wallettests.h \
+	test/setup_common.cpp test/setup_common.h \
+	qt/test/addressbooktests.cpp qt/test/wallettests.cpp \
+	wallet/test/wallet_test_fixture.cpp \
+	qt/test/paymentservertests.cpp
+#am__objects_34 = test/qt_test_test_gleecbtc_qt-setup_common.$(OBJEXT)
+#am__objects_35 = qt/test/qt_test_test_gleecbtc_qt-addressbooktests.$(OBJEXT) \
 #	qt/test/qt_test_test_gleecbtc_qt-wallettests.$(OBJEXT) \
 #	wallet/test/qt_test_test_gleecbtc_qt-wallet_test_fixture.$(OBJEXT)
-#am_qt_test_test_gleecbtc_qt_OBJECTS = qt/test/qt_test_test_gleecbtc_qt-compattests.$(OBJEXT) \
+##am__objects_36 = qt/test/qt_test_test_gleecbtc_qt-paymentservertests.$(OBJEXT)
+#am_qt_test_test_gleecbtc_qt_OBJECTS = qt/test/qt_test_test_gleecbtc_qt-apptests.$(OBJEXT) \
+#	qt/test/qt_test_test_gleecbtc_qt-compattests.$(OBJEXT) \
 #	qt/test/qt_test_test_gleecbtc_qt-rpcnestedtests.$(OBJEXT) \
 #	qt/test/qt_test_test_gleecbtc_qt-test_main.$(OBJEXT) \
 #	qt/test/qt_test_test_gleecbtc_qt-uritests.$(OBJEXT) \
-#	$(am__objects_4) $(am__objects_29) \
-#	$(am__objects_4) $(am__objects_30)
-#am__objects_31 = qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.$(OBJEXT) \
+#	qt/test/qt_test_test_gleecbtc_qt-util.$(OBJEXT) \
+#	$(am__objects_4) $(am__objects_34) \
+#	$(am__objects_4) $(am__objects_35) \
+#	$(am__objects_36)
+#am__objects_37 = qt/test/qt_test_test_gleecbtc_qt-moc_addressbooktests.$(OBJEXT) \
 #	qt/test/qt_test_test_gleecbtc_qt-moc_wallettests.$(OBJEXT)
-#am__objects_32 = qt/test/qt_test_test_gleecbtc_qt-moc_compattests.$(OBJEXT) \
+##am__objects_38 = qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.$(OBJEXT)
+#am__objects_39 = qt/test/qt_test_test_gleecbtc_qt-moc_apptests.$(OBJEXT) \
+#	qt/test/qt_test_test_gleecbtc_qt-moc_compattests.$(OBJEXT) \
 #	qt/test/qt_test_test_gleecbtc_qt-moc_rpcnestedtests.$(OBJEXT) \
 #	qt/test/qt_test_test_gleecbtc_qt-moc_uritests.$(OBJEXT) \
-#	$(am__objects_31)
+#	$(am__objects_37) $(am__objects_38)
 #nodist_qt_test_test_gleecbtc_qt_OBJECTS =  \
-#	$(am__objects_32)
+#	$(am__objects_39)
 qt_test_test_gleecbtc_qt_OBJECTS =  \
 	$(am_qt_test_test_gleecbtc_qt_OBJECTS) \
 	$(nodist_qt_test_test_gleecbtc_qt_OBJECTS)
-##am__DEPENDENCIES_7 =  \
-##	$(LIBGLEECGBC_ZMQ) \
+##am__DEPENDENCIES_9 =  \
+##	$(LIBGLEECBTC_ZMQ) \
 ##	$(am__DEPENDENCIES_3)
 #qt_test_test_gleecbtc_qt_DEPENDENCIES =  \
-#	$(LIBGLEECGBCQT) $(LIBGLEECGBC_SERVER) \
-#	$(am__append_44) $(am__DEPENDENCIES_7) \
-#	$(LIBGLEECGBC_CLI) $(LIBGLEECGBC_COMMON) \
-#	$(LIBGLEECGBC_UTIL) \
-#	$(LIBGLEECGBC_CONSENSUS) \
-#	$(LIBGLEECGBC_CRYPTO) \
+#	$(LIBGLEECBTCQT) $(LIBGLEECBTC_SERVER) \
+#	$(am__append_59) $(am__DEPENDENCIES_9) \
+#	$(LIBGLEECBTC_CLI) $(LIBGLEECBTC_COMMON) \
+#	$(LIBGLEECBTC_UTIL) \
+#	$(LIBGLEECBTC_CONSENSUS) \
+#	$(LIBGLEECBTC_CRYPTO) \
 #	$(am__DEPENDENCIES_4) \
 #	$(am__DEPENDENCIES_1) \
 #	$(LIBLEVELDB_SSE42) \
@@ -1053,73 +1316,460 @@ qt_test_test_gleecbtc_qt_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) \
 	$(qt_test_test_gleecbtc_qt_LDFLAGS) $(LDFLAGS) -o $@
-am__test_test_gleecbtc_SOURCES_DIST = test/arith_uint256_tests.cpp \
+am__test_fuzz_address_deserialize_SOURCES_DIST = test/setup_common.h \
+	test/setup_common.cpp test/fuzz/fuzz.cpp test/fuzz/fuzz.h \
+	test/fuzz/deserialize.cpp
+#am__objects_40 = test/test_fuzz_address_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_address_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_address_deserialize_OBJECTS =  \
+##	$(am__objects_40) \
+##	test/fuzz/test_fuzz_address_deserialize-deserialize.$(OBJEXT)
+test_fuzz_address_deserialize_OBJECTS =  \
+	$(am_test_fuzz_address_deserialize_OBJECTS)
+#am__DEPENDENCIES_10 = $(LIBGLEECBTC_SERVER) \
+#	$(LIBGLEECBTC_COMMON) $(LIBGLEECBTC_UTIL) \
+#	$(LIBGLEECBTC_CONSENSUS) \
+#	$(LIBGLEECBTC_CRYPTO) $(am__DEPENDENCIES_4) \
+#	$(am__DEPENDENCIES_1) $(LIBLEVELDB_SSE42) \
+#	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_2) \
+#	$(LIBSECP256K1) $(am__DEPENDENCIES_3) \
+#	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3)
+##test_fuzz_address_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_address_deserialize_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(test_fuzz_address_deserialize_CXXFLAGS) $(CXXFLAGS) \
+	$(test_fuzz_address_deserialize_LDFLAGS) $(LDFLAGS) -o $@
+am__test_fuzz_addrman_deserialize_SOURCES_DIST = test/setup_common.h \
+	test/setup_common.cpp test/fuzz/fuzz.cpp test/fuzz/fuzz.h \
+	test/fuzz/deserialize.cpp
+#am__objects_41 = test/test_fuzz_addrman_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_addrman_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_addrman_deserialize_OBJECTS =  \
+##	$(am__objects_41) \
+##	test/fuzz/test_fuzz_addrman_deserialize-deserialize.$(OBJEXT)
+test_fuzz_addrman_deserialize_OBJECTS =  \
+	$(am_test_fuzz_addrman_deserialize_OBJECTS)
+##test_fuzz_addrman_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_addrman_deserialize_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(test_fuzz_addrman_deserialize_CXXFLAGS) $(CXXFLAGS) \
+	$(test_fuzz_addrman_deserialize_LDFLAGS) $(LDFLAGS) -o $@
+am__test_fuzz_banentry_deserialize_SOURCES_DIST = test/setup_common.h \
+	test/setup_common.cpp test/fuzz/fuzz.cpp test/fuzz/fuzz.h \
+	test/fuzz/deserialize.cpp
+#am__objects_42 = test/test_fuzz_banentry_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_banentry_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_banentry_deserialize_OBJECTS =  \
+##	$(am__objects_42) \
+##	test/fuzz/test_fuzz_banentry_deserialize-deserialize.$(OBJEXT)
+test_fuzz_banentry_deserialize_OBJECTS =  \
+	$(am_test_fuzz_banentry_deserialize_OBJECTS)
+##test_fuzz_banentry_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_banentry_deserialize_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(test_fuzz_banentry_deserialize_CXXFLAGS) $(CXXFLAGS) \
+	$(test_fuzz_banentry_deserialize_LDFLAGS) $(LDFLAGS) -o $@
+am__test_fuzz_block_deserialize_SOURCES_DIST = test/setup_common.h \
+	test/setup_common.cpp test/fuzz/fuzz.cpp test/fuzz/fuzz.h \
+	test/fuzz/deserialize.cpp
+#am__objects_43 = test/test_fuzz_block_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_block_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_block_deserialize_OBJECTS =  \
+##	$(am__objects_43) \
+##	test/fuzz/test_fuzz_block_deserialize-deserialize.$(OBJEXT)
+test_fuzz_block_deserialize_OBJECTS =  \
+	$(am_test_fuzz_block_deserialize_OBJECTS)
+##test_fuzz_block_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_block_deserialize_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(test_fuzz_block_deserialize_CXXFLAGS) $(CXXFLAGS) \
+	$(test_fuzz_block_deserialize_LDFLAGS) $(LDFLAGS) -o $@
+am__test_fuzz_blockheader_deserialize_SOURCES_DIST =  \
+	test/setup_common.h test/setup_common.cpp test/fuzz/fuzz.cpp \
+	test/fuzz/fuzz.h test/fuzz/deserialize.cpp
+#am__objects_44 = test/test_fuzz_blockheader_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_blockheader_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_blockheader_deserialize_OBJECTS =  \
+##	$(am__objects_44) \
+##	test/fuzz/test_fuzz_blockheader_deserialize-deserialize.$(OBJEXT)
+test_fuzz_blockheader_deserialize_OBJECTS =  \
+	$(am_test_fuzz_blockheader_deserialize_OBJECTS)
+##test_fuzz_blockheader_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_blockheader_deserialize_LINK = $(LIBTOOL) $(AM_V_lt) \
+	--tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link \
+	$(CXXLD) $(test_fuzz_blockheader_deserialize_CXXFLAGS) \
+	$(CXXFLAGS) $(test_fuzz_blockheader_deserialize_LDFLAGS) \
+	$(LDFLAGS) -o $@
+am__test_fuzz_blocklocator_deserialize_SOURCES_DIST =  \
+	test/setup_common.h test/setup_common.cpp test/fuzz/fuzz.cpp \
+	test/fuzz/fuzz.h test/fuzz/deserialize.cpp
+#am__objects_45 = test/test_fuzz_blocklocator_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_blocklocator_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_blocklocator_deserialize_OBJECTS =  \
+##	$(am__objects_45) \
+##	test/fuzz/test_fuzz_blocklocator_deserialize-deserialize.$(OBJEXT)
+test_fuzz_blocklocator_deserialize_OBJECTS =  \
+	$(am_test_fuzz_blocklocator_deserialize_OBJECTS)
+##test_fuzz_blocklocator_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_blocklocator_deserialize_LINK = $(LIBTOOL) $(AM_V_lt) \
+	--tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link \
+	$(CXXLD) $(test_fuzz_blocklocator_deserialize_CXXFLAGS) \
+	$(CXXFLAGS) $(test_fuzz_blocklocator_deserialize_LDFLAGS) \
+	$(LDFLAGS) -o $@
+am__test_fuzz_blockmerkleroot_SOURCES_DIST = test/setup_common.h \
+	test/setup_common.cpp test/fuzz/fuzz.cpp test/fuzz/fuzz.h \
+	test/fuzz/deserialize.cpp
+#am__objects_46 = test/test_fuzz_blockmerkleroot-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_blockmerkleroot-fuzz.$(OBJEXT)
+##am_test_fuzz_blockmerkleroot_OBJECTS =  \
+##	$(am__objects_46) \
+##	test/fuzz/test_fuzz_blockmerkleroot-deserialize.$(OBJEXT)
+test_fuzz_blockmerkleroot_OBJECTS =  \
+	$(am_test_fuzz_blockmerkleroot_OBJECTS)
+##test_fuzz_blockmerkleroot_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_blockmerkleroot_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(test_fuzz_blockmerkleroot_CXXFLAGS) $(CXXFLAGS) \
+	$(test_fuzz_blockmerkleroot_LDFLAGS) $(LDFLAGS) -o $@
+am__test_fuzz_blocktransactions_deserialize_SOURCES_DIST =  \
+	test/setup_common.h test/setup_common.cpp test/fuzz/fuzz.cpp \
+	test/fuzz/fuzz.h test/fuzz/deserialize.cpp
+#am__objects_47 = test/test_fuzz_blocktransactions_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_blocktransactions_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_blocktransactions_deserialize_OBJECTS =  \
+##	$(am__objects_47) \
+##	test/fuzz/test_fuzz_blocktransactions_deserialize-deserialize.$(OBJEXT)
+test_fuzz_blocktransactions_deserialize_OBJECTS =  \
+	$(am_test_fuzz_blocktransactions_deserialize_OBJECTS)
+##test_fuzz_blocktransactions_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_blocktransactions_deserialize_LINK = $(LIBTOOL) $(AM_V_lt) \
+	--tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link \
+	$(CXXLD) $(test_fuzz_blocktransactions_deserialize_CXXFLAGS) \
+	$(CXXFLAGS) $(test_fuzz_blocktransactions_deserialize_LDFLAGS) \
+	$(LDFLAGS) -o $@
+am__test_fuzz_blocktransactionsrequest_deserialize_SOURCES_DIST =  \
+	test/setup_common.h test/setup_common.cpp test/fuzz/fuzz.cpp \
+	test/fuzz/fuzz.h test/fuzz/deserialize.cpp
+#am__objects_48 = test/test_fuzz_blocktransactionsrequest_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_blocktransactionsrequest_deserialize_OBJECTS =  \
+##	$(am__objects_48) \
+##	test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-deserialize.$(OBJEXT)
+test_fuzz_blocktransactionsrequest_deserialize_OBJECTS =  \
+	$(am_test_fuzz_blocktransactionsrequest_deserialize_OBJECTS)
+##test_fuzz_blocktransactionsrequest_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_blocktransactionsrequest_deserialize_LINK = $(LIBTOOL) \
+	$(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CXXLD) \
+	$(test_fuzz_blocktransactionsrequest_deserialize_CXXFLAGS) \
+	$(CXXFLAGS) \
+	$(test_fuzz_blocktransactionsrequest_deserialize_LDFLAGS) \
+	$(LDFLAGS) -o $@
+am__test_fuzz_blockundo_deserialize_SOURCES_DIST =  \
+	test/setup_common.h test/setup_common.cpp test/fuzz/fuzz.cpp \
+	test/fuzz/fuzz.h test/fuzz/deserialize.cpp
+#am__objects_49 = test/test_fuzz_blockundo_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_blockundo_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_blockundo_deserialize_OBJECTS =  \
+##	$(am__objects_49) \
+##	test/fuzz/test_fuzz_blockundo_deserialize-deserialize.$(OBJEXT)
+test_fuzz_blockundo_deserialize_OBJECTS =  \
+	$(am_test_fuzz_blockundo_deserialize_OBJECTS)
+##test_fuzz_blockundo_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_blockundo_deserialize_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(test_fuzz_blockundo_deserialize_CXXFLAGS) $(CXXFLAGS) \
+	$(test_fuzz_blockundo_deserialize_LDFLAGS) $(LDFLAGS) -o $@
+am__test_fuzz_bloomfilter_deserialize_SOURCES_DIST =  \
+	test/setup_common.h test/setup_common.cpp test/fuzz/fuzz.cpp \
+	test/fuzz/fuzz.h test/fuzz/deserialize.cpp
+#am__objects_50 = test/test_fuzz_bloomfilter_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_bloomfilter_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_bloomfilter_deserialize_OBJECTS =  \
+##	$(am__objects_50) \
+##	test/fuzz/test_fuzz_bloomfilter_deserialize-deserialize.$(OBJEXT)
+test_fuzz_bloomfilter_deserialize_OBJECTS =  \
+	$(am_test_fuzz_bloomfilter_deserialize_OBJECTS)
+##test_fuzz_bloomfilter_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_bloomfilter_deserialize_LINK = $(LIBTOOL) $(AM_V_lt) \
+	--tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link \
+	$(CXXLD) $(test_fuzz_bloomfilter_deserialize_CXXFLAGS) \
+	$(CXXFLAGS) $(test_fuzz_bloomfilter_deserialize_LDFLAGS) \
+	$(LDFLAGS) -o $@
+am__test_fuzz_coins_deserialize_SOURCES_DIST = test/setup_common.h \
+	test/setup_common.cpp test/fuzz/fuzz.cpp test/fuzz/fuzz.h \
+	test/fuzz/deserialize.cpp
+#am__objects_51 = test/test_fuzz_coins_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_coins_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_coins_deserialize_OBJECTS =  \
+##	$(am__objects_51) \
+##	test/fuzz/test_fuzz_coins_deserialize-deserialize.$(OBJEXT)
+test_fuzz_coins_deserialize_OBJECTS =  \
+	$(am_test_fuzz_coins_deserialize_OBJECTS)
+##test_fuzz_coins_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_coins_deserialize_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(test_fuzz_coins_deserialize_CXXFLAGS) $(CXXFLAGS) \
+	$(test_fuzz_coins_deserialize_LDFLAGS) $(LDFLAGS) -o $@
+am__test_fuzz_diskblockindex_deserialize_SOURCES_DIST =  \
+	test/setup_common.h test/setup_common.cpp test/fuzz/fuzz.cpp \
+	test/fuzz/fuzz.h test/fuzz/deserialize.cpp
+#am__objects_52 = test/test_fuzz_diskblockindex_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_diskblockindex_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_diskblockindex_deserialize_OBJECTS =  \
+##	$(am__objects_52) \
+##	test/fuzz/test_fuzz_diskblockindex_deserialize-deserialize.$(OBJEXT)
+test_fuzz_diskblockindex_deserialize_OBJECTS =  \
+	$(am_test_fuzz_diskblockindex_deserialize_OBJECTS)
+##test_fuzz_diskblockindex_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_diskblockindex_deserialize_LINK = $(LIBTOOL) $(AM_V_lt) \
+	--tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link \
+	$(CXXLD) $(test_fuzz_diskblockindex_deserialize_CXXFLAGS) \
+	$(CXXFLAGS) $(test_fuzz_diskblockindex_deserialize_LDFLAGS) \
+	$(LDFLAGS) -o $@
+am__test_fuzz_inv_deserialize_SOURCES_DIST = test/setup_common.h \
+	test/setup_common.cpp test/fuzz/fuzz.cpp test/fuzz/fuzz.h \
+	test/fuzz/deserialize.cpp
+#am__objects_53 = test/test_fuzz_inv_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_inv_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_inv_deserialize_OBJECTS =  \
+##	$(am__objects_53) \
+##	test/fuzz/test_fuzz_inv_deserialize-deserialize.$(OBJEXT)
+test_fuzz_inv_deserialize_OBJECTS =  \
+	$(am_test_fuzz_inv_deserialize_OBJECTS)
+##test_fuzz_inv_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_inv_deserialize_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(test_fuzz_inv_deserialize_CXXFLAGS) $(CXXFLAGS) \
+	$(test_fuzz_inv_deserialize_LDFLAGS) $(LDFLAGS) -o $@
+am__test_fuzz_messageheader_deserialize_SOURCES_DIST =  \
+	test/setup_common.h test/setup_common.cpp test/fuzz/fuzz.cpp \
+	test/fuzz/fuzz.h test/fuzz/deserialize.cpp
+#am__objects_54 = test/test_fuzz_messageheader_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_messageheader_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_messageheader_deserialize_OBJECTS =  \
+##	$(am__objects_54) \
+##	test/fuzz/test_fuzz_messageheader_deserialize-deserialize.$(OBJEXT)
+test_fuzz_messageheader_deserialize_OBJECTS =  \
+	$(am_test_fuzz_messageheader_deserialize_OBJECTS)
+##test_fuzz_messageheader_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_messageheader_deserialize_LINK = $(LIBTOOL) $(AM_V_lt) \
+	--tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link \
+	$(CXXLD) $(test_fuzz_messageheader_deserialize_CXXFLAGS) \
+	$(CXXFLAGS) $(test_fuzz_messageheader_deserialize_LDFLAGS) \
+	$(LDFLAGS) -o $@
+am__test_fuzz_netaddr_deserialize_SOURCES_DIST = test/setup_common.h \
+	test/setup_common.cpp test/fuzz/fuzz.cpp test/fuzz/fuzz.h \
+	test/fuzz/deserialize.cpp
+#am__objects_55 = test/test_fuzz_netaddr_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_netaddr_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_netaddr_deserialize_OBJECTS =  \
+##	$(am__objects_55) \
+##	test/fuzz/test_fuzz_netaddr_deserialize-deserialize.$(OBJEXT)
+test_fuzz_netaddr_deserialize_OBJECTS =  \
+	$(am_test_fuzz_netaddr_deserialize_OBJECTS)
+##test_fuzz_netaddr_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_netaddr_deserialize_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(test_fuzz_netaddr_deserialize_CXXFLAGS) $(CXXFLAGS) \
+	$(test_fuzz_netaddr_deserialize_LDFLAGS) $(LDFLAGS) -o $@
+am__test_fuzz_script_flags_SOURCES_DIST = test/setup_common.h \
+	test/setup_common.cpp test/fuzz/fuzz.cpp test/fuzz/fuzz.h \
+	test/fuzz/script_flags.cpp
+#am__objects_56 = test/test_fuzz_script_flags-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_script_flags-fuzz.$(OBJEXT)
+##am_test_fuzz_script_flags_OBJECTS =  \
+##	$(am__objects_56) \
+##	test/fuzz/test_fuzz_script_flags-script_flags.$(OBJEXT)
+test_fuzz_script_flags_OBJECTS = $(am_test_fuzz_script_flags_OBJECTS)
+##test_fuzz_script_flags_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_script_flags_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(test_fuzz_script_flags_CXXFLAGS) $(CXXFLAGS) \
+	$(test_fuzz_script_flags_LDFLAGS) $(LDFLAGS) -o $@
+am__test_fuzz_service_deserialize_SOURCES_DIST = test/setup_common.h \
+	test/setup_common.cpp test/fuzz/fuzz.cpp test/fuzz/fuzz.h \
+	test/fuzz/deserialize.cpp
+#am__objects_57 = test/test_fuzz_service_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_service_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_service_deserialize_OBJECTS =  \
+##	$(am__objects_57) \
+##	test/fuzz/test_fuzz_service_deserialize-deserialize.$(OBJEXT)
+test_fuzz_service_deserialize_OBJECTS =  \
+	$(am_test_fuzz_service_deserialize_OBJECTS)
+##test_fuzz_service_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_service_deserialize_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(test_fuzz_service_deserialize_CXXFLAGS) $(CXXFLAGS) \
+	$(test_fuzz_service_deserialize_LDFLAGS) $(LDFLAGS) -o $@
+am__test_fuzz_transaction_deserialize_SOURCES_DIST =  \
+	test/setup_common.h test/setup_common.cpp test/fuzz/fuzz.cpp \
+	test/fuzz/fuzz.h test/fuzz/deserialize.cpp
+#am__objects_58 = test/test_fuzz_transaction_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_transaction_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_transaction_deserialize_OBJECTS =  \
+##	$(am__objects_58) \
+##	test/fuzz/test_fuzz_transaction_deserialize-deserialize.$(OBJEXT)
+test_fuzz_transaction_deserialize_OBJECTS =  \
+	$(am_test_fuzz_transaction_deserialize_OBJECTS)
+##test_fuzz_transaction_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_transaction_deserialize_LINK = $(LIBTOOL) $(AM_V_lt) \
+	--tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link \
+	$(CXXLD) $(test_fuzz_transaction_deserialize_CXXFLAGS) \
+	$(CXXFLAGS) $(test_fuzz_transaction_deserialize_LDFLAGS) \
+	$(LDFLAGS) -o $@
+am__test_fuzz_txoutcompressor_deserialize_SOURCES_DIST =  \
+	test/setup_common.h test/setup_common.cpp test/fuzz/fuzz.cpp \
+	test/fuzz/fuzz.h test/fuzz/deserialize.cpp
+#am__objects_59 = test/test_fuzz_txoutcompressor_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_txoutcompressor_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_txoutcompressor_deserialize_OBJECTS =  \
+##	$(am__objects_59) \
+##	test/fuzz/test_fuzz_txoutcompressor_deserialize-deserialize.$(OBJEXT)
+test_fuzz_txoutcompressor_deserialize_OBJECTS =  \
+	$(am_test_fuzz_txoutcompressor_deserialize_OBJECTS)
+##test_fuzz_txoutcompressor_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_txoutcompressor_deserialize_LINK = $(LIBTOOL) $(AM_V_lt) \
+	--tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link \
+	$(CXXLD) $(test_fuzz_txoutcompressor_deserialize_CXXFLAGS) \
+	$(CXXFLAGS) $(test_fuzz_txoutcompressor_deserialize_LDFLAGS) \
+	$(LDFLAGS) -o $@
+am__test_fuzz_txundo_deserialize_SOURCES_DIST = test/setup_common.h \
+	test/setup_common.cpp test/fuzz/fuzz.cpp test/fuzz/fuzz.h \
+	test/fuzz/deserialize.cpp
+#am__objects_60 = test/test_fuzz_txundo_deserialize-setup_common.$(OBJEXT) \
+#	test/fuzz/test_fuzz_txundo_deserialize-fuzz.$(OBJEXT)
+##am_test_fuzz_txundo_deserialize_OBJECTS =  \
+##	$(am__objects_60) \
+##	test/fuzz/test_fuzz_txundo_deserialize-deserialize.$(OBJEXT)
+test_fuzz_txundo_deserialize_OBJECTS =  \
+	$(am_test_fuzz_txundo_deserialize_OBJECTS)
+##test_fuzz_txundo_deserialize_DEPENDENCIES =  \
+##	$(am__DEPENDENCIES_10)
+test_fuzz_txundo_deserialize_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(test_fuzz_txundo_deserialize_CXXFLAGS) $(CXXFLAGS) \
+	$(test_fuzz_txundo_deserialize_LDFLAGS) $(LDFLAGS) -o $@
+am__test_test_gleecbtc_SOURCES_DIST = test/main.cpp \
+	test/setup_common.h test/setup_common.cpp \
+	test/gen/crypto_gen.cpp test/gen/crypto_gen.h \
+	wallet/test/wallet_test_fixture.cpp \
+	wallet/test/wallet_test_fixture.h \
+	wallet/test/init_test_fixture.cpp \
+	wallet/test/init_test_fixture.h test/arith_uint256_tests.cpp \
 	test/scriptnum10.h test/addrman_tests.cpp \
 	test/amount_tests.cpp test/allocator_tests.cpp \
 	test/base32_tests.cpp test/base58_tests.cpp \
-	test/base64_tests.cpp test/bip32_tests.cpp \
-	test/blockencodings_tests.cpp test/bloom_tests.cpp \
+	test/base64_tests.cpp test/bech32_tests.cpp \
+	test/bip32_tests.cpp test/blockchain_tests.cpp \
+	test/blockencodings_tests.cpp test/blockfilter_tests.cpp \
+	test/blockfilter_index_tests.cpp test/bloom_tests.cpp \
 	test/bswap_tests.cpp test/checkqueue_tests.cpp \
-	test/coins_tests.cpp test/compress_tests.cpp \
-	test/crypto_tests.cpp test/cuckoocache_tests.cpp \
-	test/DoS_tests.cpp test/getarg_tests.cpp test/hash_tests.cpp \
-	test/key_tests.cpp test/limitedmap_tests.cpp \
-	test/dbwrapper_tests.cpp test/main_tests.cpp \
-	test/mempool_tests.cpp test/merkle_tests.cpp \
+	test/coins_tests.cpp test/compilerbug_tests.cpp \
+	test/compress_tests.cpp test/crypto_tests.cpp \
+	test/cuckoocache_tests.cpp test/denialofservice_tests.cpp \
+	test/descriptor_tests.cpp test/flatfile_tests.cpp \
+	test/fs_tests.cpp test/getarg_tests.cpp test/hash_tests.cpp \
+	test/key_io_tests.cpp test/key_tests.cpp \
+	test/limitedmap_tests.cpp test/dbwrapper_tests.cpp \
+	test/validation_tests.cpp test/mempool_tests.cpp \
+	test/merkle_tests.cpp test/merkleblock_tests.cpp \
 	test/miner_tests.cpp test/multisig_tests.cpp \
 	test/net_tests.cpp test/netbase_tests.cpp test/pmt_tests.cpp \
 	test/policyestimator_tests.cpp test/pow_tests.cpp \
 	test/prevector_tests.cpp test/raii_event_tests.cpp \
 	test/random_tests.cpp test/reverselock_tests.cpp \
 	test/rpc_tests.cpp test/sanity_tests.cpp \
-	test/scheduler_tests.cpp test/script_P2SH_tests.cpp \
+	test/scheduler_tests.cpp test/script_p2sh_tests.cpp \
 	test/script_tests.cpp test/script_standard_tests.cpp \
 	test/scriptnum_tests.cpp test/serialize_tests.cpp \
 	test/sighash_tests.cpp test/sigopcount_tests.cpp \
 	test/skiplist_tests.cpp test/streams_tests.cpp \
-	test/test_gleecbtc.cpp test/test_gleecbtc.h \
-	test/test_gleecbtc_main.cpp test/timedata_tests.cpp \
-	test/torcontrol_tests.cpp test/transaction_tests.cpp \
-	test/txvalidationcache_tests.cpp test/versionbits_tests.cpp \
-	test/uint256_tests.cpp test/univalue_tests.cpp \
-	test/util_tests.cpp wallet/test/wallet_test_fixture.cpp \
-	wallet/test/wallet_test_fixture.h \
-	wallet/test/accounting_tests.cpp wallet/test/wallet_tests.cpp \
-	wallet/test/crypto_tests.cpp test/data/script_tests.json \
-	test/data/base58_keys_valid.json \
+	test/sync_tests.cpp test/util_threadnames_tests.cpp \
+	test/timedata_tests.cpp test/torcontrol_tests.cpp \
+	test/transaction_tests.cpp test/txindex_tests.cpp \
+	test/txvalidation_tests.cpp test/txvalidationcache_tests.cpp \
+	test/uint256_tests.cpp test/util_tests.cpp \
+	test/validation_block_tests.cpp test/versionbits_tests.cpp \
+	test/key_properties.cpp wallet/test/db_tests.cpp \
+	wallet/test/psbt_wallet_tests.cpp wallet/test/wallet_tests.cpp \
+	wallet/test/wallet_crypto_tests.cpp \
+	wallet/test/coinselector_tests.cpp wallet/test/init_tests.cpp \
+	wallet/test/ismine_tests.cpp test/data/script_tests.json \
 	test/data/base58_encode_decode.json \
-	test/data/base58_keys_invalid.json test/data/tx_invalid.json \
-	test/data/tx_valid.json test/data/sighash.json \
-	bench/data/block413567.raw
-#am__objects_33 = wallet/test/test_test_gleecbtc-wallet_test_fixture.$(OBJEXT) \
-#	wallet/test/test_test_gleecbtc-accounting_tests.$(OBJEXT) \
+	test/data/blockfilters.json test/data/key_io_valid.json \
+	test/data/key_io_invalid.json test/data/sighash.json \
+	test/data/tx_invalid.json test/data/tx_valid.json
+##am__objects_61 = test/gen/test_test_gleecbtc-crypto_gen.$(OBJEXT)
+#am__objects_62 = wallet/test/test_test_gleecbtc-wallet_test_fixture.$(OBJEXT) \
+#	wallet/test/test_test_gleecbtc-init_test_fixture.$(OBJEXT)
+#am__objects_63 =  \
+#	test/test_test_gleecbtc-main.$(OBJEXT) \
+#	test/test_test_gleecbtc-setup_common.$(OBJEXT) \
+#	$(am__objects_61) $(am__objects_62)
+##am__objects_64 = test/test_test_gleecbtc-key_properties.$(OBJEXT)
+#am__objects_65 = wallet/test/test_test_gleecbtc-db_tests.$(OBJEXT) \
+#	wallet/test/test_test_gleecbtc-psbt_wallet_tests.$(OBJEXT) \
 #	wallet/test/test_test_gleecbtc-wallet_tests.$(OBJEXT) \
-#	wallet/test/test_test_gleecbtc-crypto_tests.$(OBJEXT)
-#am__objects_34 = test/test_test_gleecbtc-arith_uint256_tests.$(OBJEXT) \
+#	wallet/test/test_test_gleecbtc-wallet_crypto_tests.$(OBJEXT) \
+#	wallet/test/test_test_gleecbtc-coinselector_tests.$(OBJEXT) \
+#	wallet/test/test_test_gleecbtc-init_tests.$(OBJEXT) \
+#	wallet/test/test_test_gleecbtc-ismine_tests.$(OBJEXT)
+#am__objects_66 = test/test_test_gleecbtc-arith_uint256_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-addrman_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-amount_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-allocator_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-base32_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-base58_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-base64_tests.$(OBJEXT) \
+#	test/test_test_gleecbtc-bech32_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-bip32_tests.$(OBJEXT) \
+#	test/test_test_gleecbtc-blockchain_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-blockencodings_tests.$(OBJEXT) \
+#	test/test_test_gleecbtc-blockfilter_tests.$(OBJEXT) \
+#	test/test_test_gleecbtc-blockfilter_index_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-bloom_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-bswap_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-checkqueue_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-coins_tests.$(OBJEXT) \
+#	test/test_test_gleecbtc-compilerbug_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-compress_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-crypto_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-cuckoocache_tests.$(OBJEXT) \
-#	test/test_test_gleecbtc-DoS_tests.$(OBJEXT) \
+#	test/test_test_gleecbtc-denialofservice_tests.$(OBJEXT) \
+#	test/test_test_gleecbtc-descriptor_tests.$(OBJEXT) \
+#	test/test_test_gleecbtc-flatfile_tests.$(OBJEXT) \
+#	test/test_test_gleecbtc-fs_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-getarg_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-hash_tests.$(OBJEXT) \
+#	test/test_test_gleecbtc-key_io_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-key_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-limitedmap_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-dbwrapper_tests.$(OBJEXT) \
-#	test/test_test_gleecbtc-main_tests.$(OBJEXT) \
+#	test/test_test_gleecbtc-validation_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-mempool_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-merkle_tests.$(OBJEXT) \
+#	test/test_test_gleecbtc-merkleblock_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-miner_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-multisig_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-net_tests.$(OBJEXT) \
@@ -1134,7 +1784,7 @@ am__test_test_gleecbtc_SOURCES_DIST = test/arith_uint256_tests.cpp \
 #	test/test_test_gleecbtc-rpc_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-sanity_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-scheduler_tests.$(OBJEXT) \
-#	test/test_test_gleecbtc-script_P2SH_tests.$(OBJEXT) \
+#	test/test_test_gleecbtc-script_p2sh_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-script_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-script_standard_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-scriptnum_tests.$(OBJEXT) \
@@ -1143,57 +1793,46 @@ am__test_test_gleecbtc_SOURCES_DIST = test/arith_uint256_tests.cpp \
 #	test/test_test_gleecbtc-sigopcount_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-skiplist_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-streams_tests.$(OBJEXT) \
-#	test/test_test_gleecbtc-test_gleecbtc.$(OBJEXT) \
-#	test/test_test_gleecbtc-test_gleecbtc_main.$(OBJEXT) \
+#	test/test_test_gleecbtc-sync_tests.$(OBJEXT) \
+#	test/test_test_gleecbtc-util_threadnames_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-timedata_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-torcontrol_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-transaction_tests.$(OBJEXT) \
+#	test/test_test_gleecbtc-txindex_tests.$(OBJEXT) \
+#	test/test_test_gleecbtc-txvalidation_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-txvalidationcache_tests.$(OBJEXT) \
-#	test/test_test_gleecbtc-versionbits_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-uint256_tests.$(OBJEXT) \
-#	test/test_test_gleecbtc-univalue_tests.$(OBJEXT) \
 #	test/test_test_gleecbtc-util_tests.$(OBJEXT) \
-#	$(am__objects_33)
-#am_test_test_gleecbtc_OBJECTS = $(am__objects_34) \
-#	$(am__objects_4) $(am__objects_4)
+#	test/test_test_gleecbtc-validation_block_tests.$(OBJEXT) \
+#	test/test_test_gleecbtc-versionbits_tests.$(OBJEXT) \
+#	$(am__objects_64) $(am__objects_65)
+#am_test_test_gleecbtc_OBJECTS = $(am__objects_63) \
+#	$(am__objects_66) $(am__objects_4) \
+#	$(am__objects_4)
+#am__objects_67 = $(am__objects_4) $(am__objects_4)
 #nodist_test_test_gleecbtc_OBJECTS =  \
-#	$(am__objects_21)
+#	$(am__objects_67)
 test_test_gleecbtc_OBJECTS = $(am_test_test_gleecbtc_OBJECTS) \
 	$(nodist_test_test_gleecbtc_OBJECTS)
-##am__DEPENDENCIES_8 =  \
+##am__DEPENDENCIES_11 =  \
+##	$(LIBGLEECBTC_ZMQ) \
 ##	$(am__DEPENDENCIES_3)
-#test_test_gleecbtc_DEPENDENCIES = $(am__append_23) \
-#	$(LIBGLEECGBC_SERVER) $(LIBGLEECGBC_CLI) \
-#	$(LIBGLEECGBC_COMMON) $(LIBGLEECGBC_UTIL) \
-#	$(LIBGLEECGBC_CONSENSUS) \
-#	$(LIBGLEECGBC_CRYPTO) $(am__DEPENDENCIES_4) \
+#test_test_gleecbtc_DEPENDENCIES = $(am__append_34) \
+#	$(LIBGLEECBTC_SERVER) $(LIBGLEECBTC_CLI) \
+#	$(LIBGLEECBTC_COMMON) $(LIBGLEECBTC_UTIL) \
+#	$(LIBGLEECBTC_CONSENSUS) \
+#	$(LIBGLEECBTC_CRYPTO) $(am__DEPENDENCIES_4) \
 #	$(am__DEPENDENCIES_1) $(LIBLEVELDB_SSE42) \
 #	$(am__DEPENDENCIES_2) $(am__DEPENDENCIES_3) \
 #	$(am__DEPENDENCIES_3) $(LIBSECP256K1) \
 #	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3) \
-#	$(LIBGLEECGBC_CONSENSUS) \
 #	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3) \
 #	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3) \
-#	$(am__DEPENDENCIES_8)
+#	$(am__DEPENDENCIES_11)
 test_test_gleecbtc_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) \
 	$(test_test_gleecbtc_LDFLAGS) $(LDFLAGS) -o $@
-am__test_test_gleecbtc_fuzzy_SOURCES_DIST =  \
-	test/test_gleecbtc_fuzzy.cpp
-#am_test_test_gleecbtc_fuzzy_OBJECTS = test/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.$(OBJEXT)
-test_test_gleecbtc_fuzzy_OBJECTS =  \
-	$(am_test_test_gleecbtc_fuzzy_OBJECTS)
-#test_test_gleecbtc_fuzzy_DEPENDENCIES =  \
-#	$(am__DEPENDENCIES_4) $(LIBGLEECGBC_SERVER) \
-#	$(LIBGLEECGBC_COMMON) $(LIBGLEECGBC_UTIL) \
-#	$(LIBGLEECGBC_CONSENSUS) \
-#	$(LIBGLEECGBC_CRYPTO) $(LIBSECP256K1) \
-#	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_3)
-test_test_gleecbtc_fuzzy_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
-	$(test_test_gleecbtc_fuzzy_CXXFLAGS) $(CXXFLAGS) \
-	$(test_test_gleecbtc_fuzzy_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
 am__v_P_0 = false
@@ -1264,7 +1903,10 @@ AM_V_CCLD = $(am__v_CCLD_$(V))
 am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(crypto_libgleecbtc_crypto_a_SOURCES) \
+SOURCES = $(crypto_libgleecbtc_crypto_avx2_a_SOURCES) \
+	$(crypto_libgleecbtc_crypto_base_a_SOURCES) \
+	$(crypto_libgleecbtc_crypto_shani_a_SOURCES) \
+	$(crypto_libgleecbtc_crypto_sse41_a_SOURCES) \
 	$(leveldb_libleveldb_a_SOURCES) \
 	$(leveldb_libleveldb_sse42_a_SOURCES) \
 	$(leveldb_libmemenv_a_SOURCES) $(libgleecbtc_cli_a_SOURCES) \
@@ -1272,37 +1914,85 @@ SOURCES = $(crypto_libgleecbtc_crypto_a_SOURCES) \
 	$(libgleecbtc_consensus_a_SOURCES) \
 	$(libgleecbtc_server_a_SOURCES) $(libgleecbtc_util_a_SOURCES) \
 	$(nodist_libgleecbtc_util_a_SOURCES) \
-	$(libgleecbtc_wallet_a_SOURCES) $(libgleecbtc_zmq_a_SOURCES) \
-	$(qt_libgleecbtcqt_a_SOURCES) \
+	$(libgleecbtc_wallet_a_SOURCES) \
+	$(libgleecbtc_wallet_tool_a_SOURCES) \
+	$(libgleecbtc_zmq_a_SOURCES) $(qt_libgleecbtcqt_a_SOURCES) \
 	$(nodist_qt_libgleecbtcqt_a_SOURCES) \
 	$(libgleecbtcconsensus_la_SOURCES) \
 	$(bench_bench_gleecbtc_SOURCES) \
 	$(nodist_bench_bench_gleecbtc_SOURCES) $(gleecbtc_cli_SOURCES) \
-	$(gleecbtc_tx_SOURCES) $(gleecbtcd_SOURCES) \
-	$(qt_gleecbtc_qt_SOURCES) $(qt_test_test_gleecbtc_qt_SOURCES) \
+	$(gleecbtc_tx_SOURCES) $(gleecbtc_wallet_SOURCES) \
+	$(gleecbtcd_SOURCES) $(qt_gleecbtc_qt_SOURCES) \
+	$(qt_test_test_gleecbtc_qt_SOURCES) \
 	$(nodist_qt_test_test_gleecbtc_qt_SOURCES) \
+	$(test_fuzz_address_deserialize_SOURCES) \
+	$(test_fuzz_addrman_deserialize_SOURCES) \
+	$(test_fuzz_banentry_deserialize_SOURCES) \
+	$(test_fuzz_block_deserialize_SOURCES) \
+	$(test_fuzz_blockheader_deserialize_SOURCES) \
+	$(test_fuzz_blocklocator_deserialize_SOURCES) \
+	$(test_fuzz_blockmerkleroot_SOURCES) \
+	$(test_fuzz_blocktransactions_deserialize_SOURCES) \
+	$(test_fuzz_blocktransactionsrequest_deserialize_SOURCES) \
+	$(test_fuzz_blockundo_deserialize_SOURCES) \
+	$(test_fuzz_bloomfilter_deserialize_SOURCES) \
+	$(test_fuzz_coins_deserialize_SOURCES) \
+	$(test_fuzz_diskblockindex_deserialize_SOURCES) \
+	$(test_fuzz_inv_deserialize_SOURCES) \
+	$(test_fuzz_messageheader_deserialize_SOURCES) \
+	$(test_fuzz_netaddr_deserialize_SOURCES) \
+	$(test_fuzz_script_flags_SOURCES) \
+	$(test_fuzz_service_deserialize_SOURCES) \
+	$(test_fuzz_transaction_deserialize_SOURCES) \
+	$(test_fuzz_txoutcompressor_deserialize_SOURCES) \
+	$(test_fuzz_txundo_deserialize_SOURCES) \
 	$(test_test_gleecbtc_SOURCES) \
-	$(nodist_test_test_gleecbtc_SOURCES) \
-	$(test_test_gleecbtc_fuzzy_SOURCES)
-DIST_SOURCES = $(am__crypto_libgleecbtc_crypto_a_SOURCES_DIST) \
+	$(nodist_test_test_gleecbtc_SOURCES)
+DIST_SOURCES = $(crypto_libgleecbtc_crypto_avx2_a_SOURCES) \
+	$(am__crypto_libgleecbtc_crypto_base_a_SOURCES_DIST) \
+	$(crypto_libgleecbtc_crypto_shani_a_SOURCES) \
+	$(crypto_libgleecbtc_crypto_sse41_a_SOURCES) \
 	$(am__leveldb_libleveldb_a_SOURCES_DIST) \
 	$(am__leveldb_libleveldb_sse42_a_SOURCES_DIST) \
 	$(am__leveldb_libmemenv_a_SOURCES_DIST) \
 	$(libgleecbtc_cli_a_SOURCES) $(libgleecbtc_common_a_SOURCES) \
 	$(libgleecbtc_consensus_a_SOURCES) \
-	$(libgleecbtc_server_a_SOURCES) \
+	$(am__libgleecbtc_server_a_SOURCES_DIST) \
 	$(am__libgleecbtc_util_a_SOURCES_DIST) \
 	$(libgleecbtc_wallet_a_SOURCES) \
+	$(libgleecbtc_wallet_tool_a_SOURCES) \
 	$(am__libgleecbtc_zmq_a_SOURCES_DIST) \
 	$(am__qt_libgleecbtcqt_a_SOURCES_DIST) \
 	$(am__libgleecbtcconsensus_la_SOURCES_DIST) \
 	$(am__bench_bench_gleecbtc_SOURCES_DIST) \
 	$(am__gleecbtc_cli_SOURCES_DIST) \
-	$(am__gleecbtc_tx_SOURCES_DIST) $(am__gleecbtcd_SOURCES_DIST) \
+	$(am__gleecbtc_tx_SOURCES_DIST) \
+	$(am__gleecbtc_wallet_SOURCES_DIST) \
+	$(am__gleecbtcd_SOURCES_DIST) \
 	$(am__qt_gleecbtc_qt_SOURCES_DIST) \
 	$(am__qt_test_test_gleecbtc_qt_SOURCES_DIST) \
-	$(am__test_test_gleecbtc_SOURCES_DIST) \
-	$(am__test_test_gleecbtc_fuzzy_SOURCES_DIST)
+	$(am__test_fuzz_address_deserialize_SOURCES_DIST) \
+	$(am__test_fuzz_addrman_deserialize_SOURCES_DIST) \
+	$(am__test_fuzz_banentry_deserialize_SOURCES_DIST) \
+	$(am__test_fuzz_block_deserialize_SOURCES_DIST) \
+	$(am__test_fuzz_blockheader_deserialize_SOURCES_DIST) \
+	$(am__test_fuzz_blocklocator_deserialize_SOURCES_DIST) \
+	$(am__test_fuzz_blockmerkleroot_SOURCES_DIST) \
+	$(am__test_fuzz_blocktransactions_deserialize_SOURCES_DIST) \
+	$(am__test_fuzz_blocktransactionsrequest_deserialize_SOURCES_DIST) \
+	$(am__test_fuzz_blockundo_deserialize_SOURCES_DIST) \
+	$(am__test_fuzz_bloomfilter_deserialize_SOURCES_DIST) \
+	$(am__test_fuzz_coins_deserialize_SOURCES_DIST) \
+	$(am__test_fuzz_diskblockindex_deserialize_SOURCES_DIST) \
+	$(am__test_fuzz_inv_deserialize_SOURCES_DIST) \
+	$(am__test_fuzz_messageheader_deserialize_SOURCES_DIST) \
+	$(am__test_fuzz_netaddr_deserialize_SOURCES_DIST) \
+	$(am__test_fuzz_script_flags_SOURCES_DIST) \
+	$(am__test_fuzz_service_deserialize_SOURCES_DIST) \
+	$(am__test_fuzz_transaction_deserialize_SOURCES_DIST) \
+	$(am__test_fuzz_txoutcompressor_deserialize_SOURCES_DIST) \
+	$(am__test_fuzz_txundo_deserialize_SOURCES_DIST) \
+	$(am__test_test_gleecbtc_SOURCES_DIST)
 RECURSIVE_TARGETS = all-recursive check-recursive cscopelist-recursive \
 	ctags-recursive dvi-recursive html-recursive info-recursive \
 	install-data-recursive install-dvi-recursive \
@@ -1524,6 +2214,7 @@ TEST_LOG_COMPILE = $(TEST_LOG_COMPILER) $(AM_TEST_LOG_FLAGS) \
 am__DIST_COMMON = $(srcdir)/Makefile.bench.include \
 	$(srcdir)/Makefile.in $(srcdir)/Makefile.leveldb.include \
 	$(srcdir)/Makefile.qt.include \
+	$(srcdir)/Makefile.qt_locale.include \
 	$(srcdir)/Makefile.qttest.include \
 	$(srcdir)/Makefile.test.include \
 	$(top_srcdir)/build-aux/depcomp \
@@ -1554,14 +2245,15 @@ am__relativize = \
     dir1=`echo "$$dir1" | sed -e "$$sed_rest"`; \
   done; \
   reldir="$$dir2"
-ACLOCAL = ${SHELL} /home/GleecBTC-1.5/build-aux/missing aclocal-1.15
+ACLOCAL = ${SHELL} /home/GLEEC/build-aux/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 0
 AR = /usr/bin/x86_64-linux-gnu-ar
 ARFLAGS = cr
-AUTOCONF = ${SHELL} /home/GleecBTC-1.5/build-aux/missing autoconf
-AUTOHEADER = ${SHELL} /home/GleecBTC-1.5/build-aux/missing autoheader
-AUTOMAKE = ${SHELL} /home/GleecBTC-1.5/build-aux/missing automake-1.15
+AUTOCONF = ${SHELL} /home/GLEEC/build-aux/missing autoconf
+AUTOHEADER = ${SHELL} /home/GLEEC/build-aux/missing autoheader
+AUTOMAKE = ${SHELL} /home/GLEEC/build-aux/missing automake-1.15
+AVX2_CXXFLAGS = -mavx -mavx2
 AWK = gawk
 BDB_CFLAGS = 
 BDB_CPPFLAGS = 
@@ -1570,10 +2262,9 @@ BOOST_CHRONO_LIB = -lboost_chrono-mt
 BOOST_CPPFLAGS = -DBOOST_SP_USE_STD_ATOMIC -DBOOST_AC_USE_STD_ATOMIC -pthread -I/home/depends/x86_64-linux-gnu/share/../include
 BOOST_FILESYSTEM_LIB = -lboost_filesystem-mt
 BOOST_LDFLAGS = -L/home/depends/x86_64-linux-gnu/share/../lib
-BOOST_LIBS = -L/home/depends/x86_64-linux-gnu/share/../lib -lboost_system-mt -lboost_filesystem-mt -lboost_program_options-mt -lboost_thread-mt -lboost_chrono-mt
-BOOST_PROGRAM_OPTIONS_LIB = -lboost_program_options-mt
+BOOST_LIBS = -L/home/depends/x86_64-linux-gnu/share/../lib -lboost_system-mt -lboost_filesystem-mt -lboost_thread-mt -lpthread -lboost_chrono-mt
 BOOST_SYSTEM_LIB = -lboost_system-mt
-BOOST_THREAD_LIB = -lboost_thread-mt
+BOOST_THREAD_LIB = -lboost_thread-mt -lpthread
 BOOST_UNIT_TEST_FRAMEWORK_LIB = 
 BREW = 
 CC = /home/depends/x86_64-linux-gnu/share/../native/bin/ccache gcc -m64
@@ -1583,12 +2274,13 @@ CFLAGS = -pipe -O2
 CLIENT_VERSION_BUILD = 1
 CLIENT_VERSION_IS_RELEASE = true
 CLIENT_VERSION_MAJOR = 0
-CLIENT_VERSION_MINOR = 15
+CLIENT_VERSION_MINOR = 19
 CLIENT_VERSION_REVISION = 0
+COMPAT_LDFLAGS = 
 COPYRIGHT_HOLDERS = The %s developers
 COPYRIGHT_HOLDERS_FINAL = The GleecBTC Core developers
 COPYRIGHT_HOLDERS_SUBSTITUTION = GleecBTC Core
-COPYRIGHT_YEAR = 2017
+COPYRIGHT_YEAR = 2019
 CPP = gcc -m64 -E
 CPPFILT = /usr/bin/x86_64-linux-gnu-c++filt
 CPPFLAGS = -I/home/depends/x86_64-linux-gnu/share/../include/  -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS
@@ -1599,9 +2291,12 @@ CXXCPP = g++ -m64 -std=c++11 -E
 CXXDEPMODE = depmode=gcc3
 CXXFLAGS = -pipe -O2 
 CYGPATH_W = echo
+DEBUG_CPPFLAGS = 
+DEBUG_CXXFLAGS = 
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
 DLLTOOL = false
+DOXYGEN = 
 DSYMUTIL = 
 DUMPBIN = 
 ECHO_C = 
@@ -1620,13 +2315,16 @@ GCOV = /usr/bin/x86_64-linux-gnu-gcov
 GENHTML = 
 GENISOIMAGE = 
 GIT = /usr/bin/git
-GLEECGBC_CLI_NAME = gleecbtc-cli
-GLEECGBC_DAEMON_NAME = gleecbtcd
-GLEECGBC_GUI_NAME = gleecbtc-qt
-GLEECGBC_TX_NAME = gleecbtc-tx
+GLEECBTC_CLI_NAME = gleecbtc-cli
+GLEECBTC_DAEMON_NAME = gleecbtcd
+GLEECBTC_GUI_NAME = gleecbtc-qt
+GLEECBTC_TX_NAME = gleecbtc-tx
+GLEECBTC_WALLET_TOOL_NAME = gleecbtc-wallet
+GPROF_CXXFLAGS = 
+GPROF_LDFLAGS = 
 GREP = /bin/grep
 HARDENED_CPPFLAGS =  -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2
-HARDENED_CXXFLAGS =  -Wstack-protector -fstack-protector-all
+HARDENED_CXXFLAGS =  -fstack-reuse=none -Wstack-protector -fstack-protector-all
 HARDENED_LDFLAGS =  -Wl,-z,relro -Wl,-z,now -pie
 HAVE_CXX11 = 1
 HEXDUMP = /usr/bin/hexdump
@@ -1641,10 +2339,10 @@ LCOV =
 LCOV_OPTS = 
 LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = -L/home/depends/x86_64-linux-gnu/share/../lib 
-LEVELDB_CPPFLAGS =  $(am__append_12)
+LEVELDB_CPPFLAGS =  $(am__append_21)
 LEVELDB_TARGET_FLAGS = -DOS_LINUX
-LIBLEVELDB =  $(am__append_10)
-LIBMEMENV =  $(am__append_11)
+LIBLEVELDB =  $(am__append_19)
+LIBMEMENV =  $(am__append_20)
 LIBOBJS = 
 LIBS = 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
@@ -1656,7 +2354,7 @@ LTLIBOBJS =
 LT_SYS_LIBRARY_PATH = 
 LUPDATE = 
 MAINT = 
-MAKEINFO = ${SHELL} /home/GleecBTC-1.5/build-aux/missing makeinfo
+MAKEINFO = ${SHELL} /home/GLEEC/build-aux/missing makeinfo
 MAKENSIS = 
 MANIFEST_TOOL = :
 MINIUPNPC_CPPFLAGS = 
@@ -1666,6 +2364,7 @@ MOC =
 MOC_DEFS = -DHAVE_CONFIG_H -I$(srcdir)
 NM = nm
 NMEDIT = 
+NOWARN_CXXFLAGS = 
 OBJCOPY = /usr/bin/x86_64-linux-gnu-objcopy
 OBJCXX = g++ -m64 -std=c++11
 OBJCXXDEPMODE = depmode=gcc3
@@ -1677,35 +2376,48 @@ OTOOL64 =
 PACKAGE = gleecbtc
 PACKAGE_BUGREPORT = https://github.com/gleecbtc/gleecbtc/issues
 PACKAGE_NAME = GleecBTC Core
-PACKAGE_STRING = GleecBTC Core 0.15.0
+PACKAGE_STRING = GleecBTC Core 0.19.0.1
 PACKAGE_TARNAME = gleecbtc
 PACKAGE_URL = https://gleecbtccore.org/
-PACKAGE_VERSION = 0.15.0
+PACKAGE_VERSION = 0.19.0.1
 PATH_SEPARATOR = :
 PIC_FLAGS = -fPIC
 PIE_FLAGS = -fPIE
 PKG_CONFIG = /usr/bin/pkg-config --static
 PKG_CONFIG_LIBDIR = 
 PKG_CONFIG_PATH = /home/depends/x86_64-linux-gnu/share/../share/pkgconfig:/home/depends/x86_64-linux-gnu/share/../lib/pkgconfig
-PORT = 
 PROTOBUF_CFLAGS = 
 PROTOBUF_LIBS = 
 PROTOC = 
 PTHREAD_CC = gcc -m64
 PTHREAD_CFLAGS = -pthread
 PTHREAD_LIBS = 
-PYTHON = /usr/bin/python3.6
+PYTHON = /usr/bin/python3.5
 PYTHONPATH = /home/depends/x86_64-linux-gnu/share/../native/lib/python/dist-packages:
 QR_CFLAGS = 
 QR_LIBS = 
-QT4_CFLAGS = 
-QT4_LIBS = 
 QT5_CFLAGS = 
 QT5_LIBS = 
+QTACCESSIBILITY_CFLAGS = 
+QTACCESSIBILITY_LIBS = 
+QTCGL_CFLAGS = 
+QTCGL_LIBS = 
+QTCLIPBOARD_CFLAGS = 
+QTCLIPBOARD_LIBS = 
+QTDEVICEDISCOVERY_CFLAGS = 
+QTDEVICEDISCOVERY_LIBS = 
+QTEVENTDISPATCHER_CFLAGS = 
+QTEVENTDISPATCHER_LIBS = 
+QTFB_CFLAGS = 
+QTFB_LIBS = 
+QTFONTDATABASE_CFLAGS = 
+QTFONTDATABASE_LIBS = 
+QTGRAPHICS_CFLAGS = 
+QTGRAPHICS_LIBS = 
 QTPLATFORM_CFLAGS = 
 QTPLATFORM_LIBS = 
-QTPRINT_CFLAGS = 
-QTPRINT_LIBS = 
+QTTHEME_CFLAGS = 
+QTTHEME_LIBS = 
 QTXCBQPA_CFLAGS = 
 QTXCBQPA_LIBS = 
 QT_DBUS_CFLAGS = 
@@ -1715,19 +2427,24 @@ QT_INCLUDES =
 QT_LDFLAGS = 
 QT_LIBS = 
 QT_PIE_FLAGS = 
-QT_SELECT = qt
+QT_SELECT = qt5
 QT_TEST_CFLAGS = 
 QT_TEST_INCLUDES = 
 QT_TEST_LIBS = 
 QT_TRANSLATION_DIR = /home/depends/x86_64-linux-gnu/share/../translations
 RANLIB = /usr/bin/x86_64-linux-gnu-ranlib
+RAPIDCHECK_LIBS = 
 RCC = 
 READELF = /usr/bin/x86_64-linux-gnu-readelf
 RELDFLAGS = 
 RSVG_CONVERT = 
+SANITIZER_CXXFLAGS = 
+SANITIZER_LDFLAGS = 
 SED = /bin/sed
 SET_MAKE = 
+SHANI_CXXFLAGS = -msse4 -msha
 SHELL = /bin/bash
+SSE41_CXXFLAGS = -msse4.1
 SSE42_CXXFLAGS = -msse4.2
 SSL_CFLAGS = -I/home/depends/x86_64-linux-gnu/include
 SSL_LIBS = -L/home/depends/x86_64-linux-gnu/lib -lssl -lcrypto -ldl
@@ -1739,18 +2456,17 @@ UNIVALUE_CFLAGS = -I$(srcdir)/univalue/include
 UNIVALUE_LIBS = univalue/libunivalue.la
 USE_QRCODE = 
 USE_UPNP = 
-VERSION = 0.15.0
+VERSION = 0.19.0.1
+WARN_CXXFLAGS = 
 WINDOWS_BITS = 
 WINDRES = 
-X11XCB_CFLAGS = 
-X11XCB_LIBS = 
 XGETTEXT = 
 ZMQ_CFLAGS = 
 ZMQ_LIBS = 
-abs_builddir = /home/GleecBTC-1.5/src
-abs_srcdir = /home/GleecBTC-1.5/src
-abs_top_builddir = /home/GleecBTC-1.5
-abs_top_srcdir = /home/GleecBTC-1.5
+abs_builddir = /home/GLEEC/src
+abs_srcdir = /home/GLEEC/src
+abs_top_builddir = /home/GLEEC
+abs_top_srcdir = /home/GLEEC
 ac_ct_AR = 
 ac_ct_CC = 
 ac_ct_CXX = 
@@ -1782,7 +2498,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/GleecBTC-1.5/build-aux/install-sh
+install_sh = ${SHELL} /home/GLEEC/build-aux/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -1805,98 +2521,134 @@ top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
 DIST_SUBDIRS = secp256k1 univalue
-AM_LDFLAGS = $(PTHREAD_CFLAGS) $(LIBTOOL_LDFLAGS) $(HARDENED_LDFLAGS)
-AM_CXXFLAGS = $(HARDENED_CXXFLAGS) $(ERROR_CXXFLAGS)
-AM_CPPFLAGS = $(HARDENED_CPPFLAGS)
+AM_LDFLAGS = $(PTHREAD_CFLAGS) $(LIBTOOL_LDFLAGS) $(HARDENED_LDFLAGS) \
+	$(GPROF_LDFLAGS) $(SANITIZER_LDFLAGS) $(am__append_12)
+AM_CXXFLAGS = $(DEBUG_CXXFLAGS) $(HARDENED_CXXFLAGS) $(WARN_CXXFLAGS) $(NOWARN_CXXFLAGS) $(ERROR_CXXFLAGS) $(GPROF_CXXFLAGS) $(SANITIZER_CXXFLAGS)
+AM_CPPFLAGS = $(DEBUG_CPPFLAGS) $(HARDENED_CPPFLAGS)
+AM_LIBTOOLFLAGS = --preserve-dup-deps
 
 # Make is not made aware of per-object dependencies to avoid limiting building parallelization
 # But to build the less dependent modules first, we manually select their order here:
-EXTRA_LIBRARIES = $(LIBGLEECGBC_CRYPTO) $(LIBGLEECGBC_UTIL) \
-	$(LIBGLEECGBC_COMMON) $(LIBGLEECGBC_CONSENSUS) \
-	$(LIBGLEECGBC_SERVER) $(LIBGLEECGBC_CLI) $(LIBGLEECGBC_WALLET) \
-	$(LIBGLEECGBC_ZMQ) $(am__append_9) $(am__append_32)
+EXTRA_LIBRARIES = $(LIBGLEECBTC_CRYPTO) $(LIBGLEECBTC_UTIL) \
+	$(LIBGLEECBTC_COMMON) $(LIBGLEECBTC_CONSENSUS) \
+	$(LIBGLEECBTC_SERVER) $(LIBGLEECBTC_CLI) $(LIBGLEECBTC_WALLET) \
+	$(LIBGLEECBTC_WALLET_TOOL) $(LIBGLEECBTC_ZMQ) $(am__append_18) \
+	$(am__append_42)
 #LIBUNIVALUE = $(UNIVALUE_LIBS)
 LIBUNIVALUE = univalue/libunivalue.la
-GLEECGBC_CONFIG_INCLUDES = -I$(builddir)/config
-GLEECGBC_INCLUDES = -I$(builddir) -I$(builddir)/obj $(BDB_CPPFLAGS) \
-	$(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) \
-	$(SSL_CFLAGS) -I$(srcdir)/secp256k1/include $(UNIVALUE_CFLAGS)
-LIBGLEECGBC_SERVER = libgleecbtc_server.a
-LIBGLEECGBC_COMMON = libgleecbtc_common.a
-LIBGLEECGBC_CONSENSUS = libgleecbtc_consensus.a
-LIBGLEECGBC_CLI = libgleecbtc_cli.a
-LIBGLEECGBC_UTIL = libgleecbtc_util.a
-LIBGLEECGBC_CRYPTO = crypto/libgleecbtc_crypto.a
-LIBGLEECGBCQT = qt/libgleecbtcqt.a
+GLEECBTC_INCLUDES = -I$(builddir) $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) \
+	$(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS) \
+	-I$(srcdir)/secp256k1/include $(UNIVALUE_CFLAGS)
+LIBGLEECBTC_SERVER = libgleecbtc_server.a
+LIBGLEECBTC_COMMON = libgleecbtc_common.a
+LIBGLEECBTC_CONSENSUS = libgleecbtc_consensus.a
+LIBGLEECBTC_CLI = libgleecbtc_cli.a
+LIBGLEECBTC_UTIL = libgleecbtc_util.a
+LIBGLEECBTC_CRYPTO_BASE = crypto/libgleecbtc_crypto_base.a
+LIBGLEECBTCQT = qt/libgleecbtcqt.a
 LIBSECP256K1 = secp256k1/libsecp256k1.la
-#LIBGLEECGBC_ZMQ = libgleecbtc_zmq.a
-LIBGLEECGBCCONSENSUS = libgleecbtcconsensus.la
-LIBGLEECGBC_WALLET = libgleecbtc_wallet.a
-lib_LTLIBRARIES = $(LIBGLEECGBCCONSENSUS)
+#LIBGLEECBTC_ZMQ = libgleecbtc_zmq.a
+LIBGLEECBTCCONSENSUS = libgleecbtcconsensus.la
+LIBGLEECBTC_WALLET = libgleecbtc_wallet.a
+LIBGLEECBTC_WALLET_TOOL = libgleecbtc_wallet_tool.a
+LIBGLEECBTC_CRYPTO = $(LIBGLEECBTC_CRYPTO_BASE) $(am__append_1) \
+	$(am__append_2) $(am__append_3)
+LIBGLEECBTC_CRYPTO_SSE41 = crypto/libgleecbtc_crypto_sse41.a
+LIBGLEECBTC_CRYPTO_AVX2 = crypto/libgleecbtc_crypto_avx2.a
+LIBGLEECBTC_CRYPTO_SHANI = crypto/libgleecbtc_crypto_shani.a
+lib_LTLIBRARIES = $(LIBGLEECBTCCONSENSUS)
 BENCHMARKS = 
 # gleecbtc core #
-GLEECGBC_CORE_H = \
+GLEECBTC_CORE_H = \
   addrdb.h \
   addrman.h \
+  attributes.h \
+  banman.h \
   base58.h \
+  bech32.h \
   bloom.h \
   blockencodings.h \
+  blockfilter.h \
   chain.h \
   chainparams.h \
   chainparamsbase.h \
   chainparamsseeds.h \
-  checkpoints.h \
   checkqueue.h \
   clientversion.h \
   coins.h \
   compat.h \
+  compat/assumptions.h \
   compat/byteswap.h \
   compat/endian.h \
   compat/sanity.h \
   compressor.h \
   consensus/consensus.h \
+  consensus/tx_check.h \
   consensus/tx_verify.h \
   core_io.h \
   core_memusage.h \
   cuckoocache.h \
+  flatfile.h \
   fs.h \
   httprpc.h \
   httpserver.h \
+  index/base.h \
+  index/blockfilterindex.h \
+  index/txindex.h \
   indirectmap.h \
   init.h \
+  interfaces/chain.h \
+  interfaces/handler.h \
+  interfaces/node.h \
+  interfaces/wallet.h \
   key.h \
-  keystore.h \
+  key_io.h \
   dbwrapper.h \
   limitedmap.h \
+  logging.h \
   memusage.h \
   merkleblock.h \
   miner.h \
   net.h \
+  net_permissions.h \
   net_processing.h \
   netaddress.h \
   netbase.h \
   netmessagemaker.h \
+  node/coin.h \
+  node/coinstats.h \
+  node/psbt.h \
+  node/transaction.h \
   noui.h \
+  optional.h \
+  outputtype.h \
   policy/feerate.h \
   policy/fees.h \
   policy/policy.h \
   policy/rbf.h \
+  policy/settings.h \
   pow.h \
   protocol.h \
+  psbt.h \
   random.h \
   reverse_iterator.h \
   reverselock.h \
   rpc/blockchain.h \
   rpc/client.h \
-  rpc/mining.h \
   rpc/protocol.h \
-  rpc/server.h \
+  rpc/rawtransaction_util.h \
   rpc/register.h \
+  rpc/request.h \
+  rpc/server.h \
+  rpc/util.h \
   scheduler.h \
+  script/descriptor.h \
+  script/keyorigin.h \
   script/sigcache.h \
   script/sign.h \
+  script/signingprovider.h \
   script/standard.h \
-  script/ismine.h \
+  shutdown.h \
   streams.h \
   support/allocators/secure.h \
   support/allocators/zeroafterfree.h \
@@ -1912,114 +2664,145 @@ GLEECGBC_CORE_H = \
   txmempool.h \
   ui_interface.h \
   undo.h \
-  util.h \
-  utilmoneystr.h \
-  utiltime.h \
+  util/bip32.h \
+  util/bytevectorhash.h \
+  util/error.h \
+  util/fees.h \
+  util/system.h \
+  util/memory.h \
+  util/moneystr.h \
+  util/rbf.h \
+  util/string.h \
+  util/threadnames.h \
+  util/time.h \
+  util/translation.h \
+  util/url.h \
+  util/validation.h \
   validation.h \
   validationinterface.h \
   versionbits.h \
+  versionbitsinfo.h \
+  walletinitinterface.h \
   wallet/coincontrol.h \
   wallet/crypter.h \
   wallet/db.h \
   wallet/feebumper.h \
+  wallet/fees.h \
+  wallet/ismine.h \
+  wallet/load.h \
+  wallet/psbtwallet.h \
   wallet/rpcwallet.h \
   wallet/wallet.h \
   wallet/walletdb.h \
+  wallet/wallettool.h \
+  wallet/walletutil.h \
+  wallet/coinselection.h \
   warnings.h \
   zmq/zmqabstractnotifier.h \
   zmq/zmqconfig.h\
   zmq/zmqnotificationinterface.h \
-  zmq/zmqpublishnotifier.h
+  zmq/zmqpublishnotifier.h \
+  zmq/zmqrpc.h
 
 
 # server: shared between gleecbtcd and gleecbtc-qt
-libgleecbtc_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECGBC_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+# Contains code accessing mempool and chain state that is meant to be separated
+# from wallet and gui code (see node/README.md). Shared code should go in
+# libgleecbtc_common or libgleecbtc_util libraries, instead.
+libgleecbtc_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libgleecbtc_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libgleecbtc_server_a_SOURCES = \
-  addrdb.cpp \
-  addrman.cpp \
-  bloom.cpp \
-  blockencodings.cpp \
-  chain.cpp \
-  checkpoints.cpp \
-  consensus/tx_verify.cpp \
-  httprpc.cpp \
-  httpserver.cpp \
-  init.cpp \
-  dbwrapper.cpp \
-  merkleblock.cpp \
-  miner.cpp \
-  net.cpp \
-  net_processing.cpp \
-  noui.cpp \
-  policy/fees.cpp \
-  policy/policy.cpp \
-  policy/rbf.cpp \
-  pow.cpp \
-  rest.cpp \
-  rpc/blockchain.cpp \
-  rpc/mining.cpp \
-  rpc/misc.cpp \
-  rpc/net.cpp \
-  rpc/rawtransaction.cpp \
-  rpc/server.cpp \
-  script/sigcache.cpp \
-  script/ismine.cpp \
-  timedata.cpp \
-  torcontrol.cpp \
-  txdb.cpp \
-  txmempool.cpp \
-  ui_interface.cpp \
-  validation.cpp \
-  validationinterface.cpp \
-  versionbits.cpp \
-  $(GLEECGBC_CORE_H)
-
-#libgleecbtc_zmq_a_CPPFLAGS = $(GLEECGBC_INCLUDES) $(ZMQ_CFLAGS)
+libgleecbtc_server_a_SOURCES = addrdb.cpp addrman.cpp banman.cpp \
+	blockencodings.cpp blockfilter.cpp chain.cpp \
+	consensus/tx_verify.cpp flatfile.cpp httprpc.cpp \
+	httpserver.cpp index/base.cpp index/blockfilterindex.cpp \
+	index/txindex.cpp interfaces/chain.cpp interfaces/node.cpp \
+	init.cpp dbwrapper.cpp miner.cpp net.cpp net_processing.cpp \
+	node/coin.cpp node/coinstats.cpp node/psbt.cpp \
+	node/transaction.cpp noui.cpp policy/fees.cpp policy/rbf.cpp \
+	policy/settings.cpp pow.cpp rest.cpp rpc/blockchain.cpp \
+	rpc/mining.cpp rpc/misc.cpp rpc/net.cpp rpc/rawtransaction.cpp \
+	rpc/server.cpp script/sigcache.cpp shutdown.cpp timedata.cpp \
+	torcontrol.cpp txdb.cpp txmempool.cpp ui_interface.cpp \
+	validation.cpp validationinterface.cpp versionbits.cpp \
+	$(GLEECBTC_CORE_H) $(am__append_8) $(am__append_9)
+#libgleecbtc_zmq_a_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) $(ZMQ_CFLAGS)
 #libgleecbtc_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 #libgleecbtc_zmq_a_SOURCES = \
 #  zmq/zmqabstractnotifier.cpp \
 #  zmq/zmqnotificationinterface.cpp \
-#  zmq/zmqpublishnotifier.cpp
+#  zmq/zmqpublishnotifier.cpp \
+#  zmq/zmqrpc.cpp
 
 
 # wallet: shared between gleecbtcd and gleecbtc-qt, but only linked
 # when wallet enabled
-libgleecbtc_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECGBC_INCLUDES)
+libgleecbtc_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES)
 libgleecbtc_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libgleecbtc_wallet_a_SOURCES = \
+  interfaces/wallet.cpp \
+  wallet/coincontrol.cpp \
   wallet/crypter.cpp \
   wallet/db.cpp \
   wallet/feebumper.cpp \
+  wallet/fees.cpp \
+  wallet/ismine.cpp \
+  wallet/load.cpp \
+  wallet/psbtwallet.cpp \
   wallet/rpcdump.cpp \
   wallet/rpcwallet.cpp \
   wallet/wallet.cpp \
   wallet/walletdb.cpp \
-  $(GLEECGBC_CORE_H)
+  wallet/walletutil.cpp \
+  wallet/coinselection.cpp \
+  $(GLEECBTC_CORE_H)
+
+libgleecbtc_wallet_tool_a_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES)
+libgleecbtc_wallet_tool_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libgleecbtc_wallet_tool_a_SOURCES = \
+  wallet/wallettool.cpp \
+  $(GLEECBTC_CORE_H)
 
 
 # crypto primitives library
-crypto_libgleecbtc_crypto_a_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECGBC_CONFIG_INCLUDES)
-crypto_libgleecbtc_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libgleecbtc_crypto_a_SOURCES = crypto/aes.cpp crypto/aes.h \
+crypto_libgleecbtc_crypto_base_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libgleecbtc_crypto_base_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libgleecbtc_crypto_base_a_SOURCES = crypto/aes.cpp crypto/aes.h \
+	crypto/chacha_poly_aead.h crypto/chacha_poly_aead.cpp \
 	crypto/chacha20.h crypto/chacha20.cpp crypto/common.h \
+	crypto/hkdf_sha256_32.cpp crypto/hkdf_sha256_32.h \
 	crypto/hmac_sha256.cpp crypto/hmac_sha256.h \
-	crypto/hmac_sha512.cpp crypto/hmac_sha512.h \
-	crypto/ripemd160.cpp crypto/ripemd160.h crypto/sha1.cpp \
-	crypto/sha1.h crypto/sha256.cpp crypto/sha256.h \
-	crypto/sha512.cpp crypto/sha512.h $(am__append_3)
+	crypto/hmac_sha512.cpp crypto/hmac_sha512.h crypto/poly1305.h \
+	crypto/poly1305.cpp crypto/ripemd160.cpp crypto/ripemd160.h \
+	crypto/sha1.cpp crypto/sha1.h crypto/sha256.cpp \
+	crypto/sha256.h crypto/sha512.cpp crypto/sha512.h \
+	crypto/siphash.cpp crypto/siphash.h $(am__append_10)
+crypto_libgleecbtc_crypto_sse41_a_CXXFLAGS = $(AM_CXXFLAGS) \
+	$(PIE_FLAGS) $(SSE41_CXXFLAGS)
+crypto_libgleecbtc_crypto_sse41_a_CPPFLAGS = $(AM_CPPFLAGS) \
+	-DENABLE_SSE41
+crypto_libgleecbtc_crypto_sse41_a_SOURCES = crypto/sha256_sse41.cpp
+crypto_libgleecbtc_crypto_avx2_a_CXXFLAGS = $(AM_CXXFLAGS) \
+	$(PIE_FLAGS) $(AVX2_CXXFLAGS)
+crypto_libgleecbtc_crypto_avx2_a_CPPFLAGS = $(AM_CPPFLAGS) \
+	-DENABLE_AVX2
+crypto_libgleecbtc_crypto_avx2_a_SOURCES = crypto/sha256_avx2.cpp
+crypto_libgleecbtc_crypto_shani_a_CXXFLAGS = $(AM_CXXFLAGS) \
+	$(PIE_FLAGS) $(SHANI_CXXFLAGS)
+crypto_libgleecbtc_crypto_shani_a_CPPFLAGS = $(AM_CPPFLAGS) \
+	-DENABLE_SHANI
+crypto_libgleecbtc_crypto_shani_a_SOURCES = crypto/sha256_shani.cpp
 
 # consensus: shared between all executables that validate any consensus rules.
-libgleecbtc_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECGBC_INCLUDES)
+libgleecbtc_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES)
 libgleecbtc_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libgleecbtc_consensus_a_SOURCES = \
   amount.h \
   arith_uint256.cpp \
   arith_uint256.h \
-  consensus/consensus.cpp \
   consensus/merkle.cpp \
   consensus/merkle.h \
   consensus/params.h \
+  consensus/tx_check.cpp \
   consensus/validation.h \
   hash.cpp \
   hash.h \
@@ -2038,102 +2821,139 @@ libgleecbtc_consensus_a_SOURCES = \
   script/script_error.cpp \
   script/script_error.h \
   serialize.h \
+  span.h \
   tinyformat.h \
   uint256.cpp \
   uint256.h \
-  utilstrencodings.cpp \
-  utilstrencodings.h \
+  util/strencodings.cpp \
+  util/strencodings.h \
   version.h
 
 
 # common: shared between gleecbtcd, and gleecbtc-qt and non-server tools
-libgleecbtc_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECGBC_INCLUDES)
+libgleecbtc_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES)
 libgleecbtc_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libgleecbtc_common_a_SOURCES = \
   base58.cpp \
+  bech32.cpp \
+  bloom.cpp \
   chainparams.cpp \
   coins.cpp \
   compressor.cpp \
   core_read.cpp \
   core_write.cpp \
   key.cpp \
-  keystore.cpp \
+  key_io.cpp \
+  merkleblock.cpp \
   netaddress.cpp \
   netbase.cpp \
+  net_permissions.cpp \
+  outputtype.cpp \
   policy/feerate.cpp \
+  policy/policy.cpp \
   protocol.cpp \
+  psbt.cpp \
+  rpc/rawtransaction_util.cpp \
+  rpc/util.cpp \
   scheduler.cpp \
+  script/descriptor.cpp \
   script/sign.cpp \
+  script/signingprovider.cpp \
   script/standard.cpp \
+  versionbitsinfo.cpp \
   warnings.cpp \
-  $(GLEECGBC_CORE_H)
+  $(GLEECBTC_CORE_H)
 
 
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
 # backward-compatibility objects and their sanity checks are linked.
-libgleecbtc_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECGBC_INCLUDES)
+libgleecbtc_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES)
 libgleecbtc_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libgleecbtc_util_a_SOURCES = support/lockedpool.cpp \
-	chainparamsbase.cpp clientversion.cpp compat/glibc_sanity.cpp \
-	compat/glibcxx_sanity.cpp compat/strnlen.cpp fs.cpp random.cpp \
-	rpc/protocol.cpp support/cleanse.cpp sync.cpp \
-	threadinterrupt.cpp util.cpp utilmoneystr.cpp \
-	utilstrencodings.cpp utiltime.cpp $(GLEECGBC_CORE_H) \
-	$(am__append_4)
+	chainparamsbase.cpp clientversion.cpp \
+	compat/glibc_sanity_fdelt.cpp compat/glibc_sanity.cpp \
+	compat/glibcxx_sanity.cpp compat/strnlen.cpp fs.cpp \
+	interfaces/handler.cpp logging.cpp random.cpp rpc/request.cpp \
+	support/cleanse.cpp sync.cpp threadinterrupt.cpp \
+	util/bip32.cpp util/bytevectorhash.cpp util/error.cpp \
+	util/fees.cpp util/system.cpp util/moneystr.cpp util/rbf.cpp \
+	util/threadnames.cpp util/strencodings.cpp util/string.cpp \
+	util/time.cpp util/url.cpp util/validation.cpp \
+	$(GLEECBTC_CORE_H) $(am__append_11)
 
 # cli: shared between gleecbtc-cli and gleecbtc-qt
-libgleecbtc_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECGBC_INCLUDES)
+libgleecbtc_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES)
 libgleecbtc_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libgleecbtc_cli_a_SOURCES = \
   rpc/client.cpp \
-  $(GLEECGBC_CORE_H)
+  $(GLEECBTC_CORE_H)
 
 nodist_libgleecbtc_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # gleecbtcd binary #
-gleecbtcd_SOURCES = gleecbtcd.cpp $(am__append_5)
-gleecbtcd_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECGBC_INCLUDES)
+gleecbtcd_SOURCES = gleecbtcd.cpp $(am__append_13)
+gleecbtcd_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES)
 gleecbtcd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 gleecbtcd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-gleecbtcd_LDADD = $(LIBGLEECGBC_SERVER) $(LIBGLEECGBC_COMMON) \
-	$(LIBUNIVALUE) $(LIBGLEECGBC_UTIL) $(LIBGLEECGBC_WALLET) \
-	$(LIBGLEECGBC_ZMQ) $(LIBGLEECGBC_CONSENSUS) \
-	$(LIBGLEECGBC_CRYPTO) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) \
-	$(LIBMEMENV) $(LIBSECP256K1) $(BOOST_LIBS) $(BDB_LIBS) \
-	$(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) \
+
+# Libraries below may be listed more than once to resolve circular dependencies (see
+# https://eli.thegreenplace.net/2013/07/09/library-order-in-static-linking#circular-dependency)
+gleecbtcd_LDADD = $(LIBGLEECBTC_SERVER) $(LIBGLEECBTC_WALLET) \
+	$(LIBGLEECBTC_SERVER) $(LIBGLEECBTC_COMMON) $(LIBUNIVALUE) \
+	$(LIBGLEECBTC_UTIL) $(LIBGLEECBTC_ZMQ) \
+	$(LIBGLEECBTC_CONSENSUS) $(LIBGLEECBTC_CRYPTO) $(LIBLEVELDB) \
+	$(LIBLEVELDB_SSE42) $(LIBMEMENV) $(LIBSECP256K1) $(BOOST_LIBS) \
+	$(BDB_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) \
 	$(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
 # gleecbtc-cli binary #
-gleecbtc_cli_SOURCES = gleecbtc-cli.cpp $(am__append_6)
-gleecbtc_cli_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECGBC_INCLUDES) $(EVENT_CFLAGS)
+gleecbtc_cli_SOURCES = gleecbtc-cli.cpp $(am__append_14)
+gleecbtc_cli_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) $(EVENT_CFLAGS)
 gleecbtc_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 gleecbtc_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-gleecbtc_cli_LDADD = $(LIBGLEECGBC_CLI) $(LIBUNIVALUE) \
-	$(LIBGLEECGBC_UTIL) $(LIBGLEECGBC_CRYPTO) $(BOOST_LIBS) \
-	$(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+gleecbtc_cli_LDADD = $(LIBGLEECBTC_CLI) $(LIBUNIVALUE) \
+	$(LIBGLEECBTC_UTIL) $(LIBGLEECBTC_CRYPTO) $(BOOST_LIBS) \
+	$(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
 # gleecbtc-tx binary #
-gleecbtc_tx_SOURCES = gleecbtc-tx.cpp $(am__append_7)
-gleecbtc_tx_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECGBC_INCLUDES)
+gleecbtc_tx_SOURCES = gleecbtc-tx.cpp $(am__append_15)
+gleecbtc_tx_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES)
 gleecbtc_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 gleecbtc_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-gleecbtc_tx_LDADD = $(LIBUNIVALUE) $(LIBGLEECGBC_COMMON) \
-	$(LIBGLEECGBC_UTIL) $(LIBGLEECGBC_CONSENSUS) \
-	$(LIBGLEECGBC_CRYPTO) $(LIBSECP256K1) $(BOOST_LIBS) \
+gleecbtc_tx_LDADD = $(LIBUNIVALUE) $(LIBGLEECBTC_COMMON) \
+	$(LIBGLEECBTC_UTIL) $(LIBGLEECBTC_CONSENSUS) \
+	$(LIBGLEECBTC_CRYPTO) $(LIBSECP256K1) $(BOOST_LIBS) \
 	$(CRYPTO_LIBS)
+#
+
+# gleecbtc-wallet binary #
+gleecbtc_wallet_SOURCES = gleecbtc-wallet.cpp $(am__append_16)
+gleecbtc_wallet_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES)
+gleecbtc_wallet_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+gleecbtc_wallet_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+gleecbtc_wallet_LDADD = $(LIBGLEECBTC_WALLET_TOOL) \
+	$(LIBGLEECBTC_WALLET) $(LIBGLEECBTC_COMMON) \
+	$(LIBGLEECBTC_CONSENSUS) $(LIBGLEECBTC_UTIL) \
+	$(LIBGLEECBTC_CRYPTO) $(LIBGLEECBTC_ZMQ) $(LIBLEVELDB) \
+	$(LIBLEVELDB_SSE42) $(LIBMEMENV) $(LIBSECP256K1) \
+	$(LIBUNIVALUE) $(BOOST_LIBS) $(BDB_LIBS) $(CRYPTO_LIBS) \
+	$(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(MINIUPNPC_LIBS) \
+	$(ZMQ_LIBS)
 #
 
 # gleecbtcconsensus library #
 include_HEADERS = script/gleecbtcconsensus.h
-libgleecbtcconsensus_la_SOURCES = $(crypto_libgleecbtc_crypto_a_SOURCES) \
+libgleecbtcconsensus_la_SOURCES =  \
+	support/cleanse.cpp \
+	$(crypto_libgleecbtc_crypto_base_a_SOURCES) \
 	$(libgleecbtc_consensus_a_SOURCES) \
-	$(am__append_8)
+	$(am__append_17)
 libgleecbtcconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
 libgleecbtcconsensus_la_LIBADD = $(LIBSECP256K1)
-libgleecbtcconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_GLEECGBC_INTERNAL
+libgleecbtcconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_GLEECBTC_INTERNAL
 libgleecbtcconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 #
@@ -2146,9 +2966,8 @@ CLEANFILES = $(EXTRA_LIBRARIES) *.gcda *.gcno compat/*.gcda \
 	primitives/*.gcno script/*.gcda script/*.gcno support/*.gcda \
 	support/*.gcno univalue/*.gcda univalue/*.gcno wallet/*.gcda \
 	wallet/*.gcno wallet/test/*.gcda wallet/test/*.gcno zmq/*.gcda \
-	zmq/*.gcno $(am__append_25) $(am__append_30) $(am__append_39) \
-	$(am__append_46)
-DISTCLEANFILES = obj/build.h
+	zmq/*.gcno obj/build.h $(am__append_36) $(am__append_40) \
+	$(am__append_52) $(am__append_61)
 EXTRA_DIST = $(CTAES_DIST)
 LIBLEVELDB_INT = leveldb/libleveldb.a
 LIBMEMENV_INT = leveldb/libmemenv.a
@@ -2157,8 +2976,8 @@ LIBLEVELDB_SSE42 = $(LIBLEVELDB_SSE42_INT)
 LEVELDB_CPPFLAGS_INT = -I$(srcdir)/leveldb \
 	$(LEVELDB_TARGET_FLAGS) \
 	-DLEVELDB_ATOMIC_PRESENT \
-	-D__STDC_LIMIT_MACROS $(am__append_13) \
-	$(am__append_14)
+	-D__STDC_LIMIT_MACROS $(am__append_22) \
+	$(am__append_23)
 leveldb_libleveldb_a_CPPFLAGS = $(AM_CPPFLAGS) $(LEVELDB_CPPFLAGS_INT) $(LEVELDB_CPPFLAGS)
 leveldb_libleveldb_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 leveldb_libleveldb_a_SOURCES =  \
@@ -2253,8 +3072,8 @@ leveldb_libleveldb_a_SOURCES =  \
 	leveldb/util/histogram.cc \
 	leveldb/util/logging.cc \
 	leveldb/util/options.cc \
-	leveldb/util/status.cc $(am__append_15) \
-	$(am__append_16)
+	leveldb/util/status.cc $(am__append_24) \
+	$(am__append_25)
 leveldb_libmemenv_a_CPPFLAGS = $(leveldb_libleveldb_a_CPPFLAGS)
 leveldb_libmemenv_a_CXXFLAGS = $(leveldb_libleveldb_a_CXXFLAGS)
 leveldb_libmemenv_a_SOURCES =  \
@@ -2262,49 +3081,106 @@ leveldb_libmemenv_a_SOURCES =  \
 	leveldb/helpers/memenv/memenv.h
 leveldb_libleveldb_sse42_a_CPPFLAGS =  \
 	$(leveldb_libleveldb_a_CPPFLAGS) \
-	$(am__append_17)
+	$(am__append_26)
 leveldb_libleveldb_sse42_a_CXXFLAGS =  \
 	$(leveldb_libleveldb_a_CXXFLAGS) \
-	$(am__append_18)
+	$(am__append_27)
 leveldb_libleveldb_sse42_a_SOURCES = leveldb/port/port_posix_sse.cc
+#FUZZ_TARGETS = \
+#  test/fuzz/address_deserialize \
+#  test/fuzz/addrman_deserialize \
+#  test/fuzz/banentry_deserialize \
+#  test/fuzz/block_deserialize \
+#  test/fuzz/blockheader_deserialize \
+#  test/fuzz/blocklocator_deserialize \
+#  test/fuzz/blockmerkleroot \
+#  test/fuzz/blocktransactions_deserialize \
+#  test/fuzz/blocktransactionsrequest_deserialize \
+#  test/fuzz/blockundo_deserialize \
+#  test/fuzz/bloomfilter_deserialize \
+#  test/fuzz/coins_deserialize \
+#  test/fuzz/diskblockindex_deserialize \
+#  test/fuzz/inv_deserialize \
+#  test/fuzz/messageheader_deserialize \
+#  test/fuzz/netaddr_deserialize \
+#  test/fuzz/script_flags \
+#  test/fuzz/service_deserialize \
+#  test/fuzz/transaction_deserialize \
+#  test/fuzz/txoutcompressor_deserialize \
+#  test/fuzz/txundo_deserialize
+
 #TEST_SRCDIR = test
 #TEST_BINARY = test/test_gleecbtc$(EXEEXT)
 #JSON_TEST_FILES = \
 #  test/data/script_tests.json \
-#  test/data/base58_keys_valid.json \
 #  test/data/base58_encode_decode.json \
-#  test/data/base58_keys_invalid.json \
+#  test/data/blockfilters.json \
+#  test/data/key_io_valid.json \
+#  test/data/key_io_invalid.json \
+#  test/data/script_tests.json \
+#  test/data/sighash.json \
 #  test/data/tx_invalid.json \
-#  test/data/tx_valid.json \
-#  test/data/sighash.json
-
-RAW_TEST_FILES = \
-  bench/data/block413567.raw
+#  test/data/tx_valid.json
 
 #RAW_TEST_FILES = 
-GENERATED_TEST_FILES = $(RAW_TEST_FILES:.raw=.raw.h)
 #GENERATED_TEST_FILES = $(JSON_TEST_FILES:.json=.json.h) $(RAW_TEST_FILES:.raw=.raw.h)
+#GLEECBTC_TEST_SUITE = test/main.cpp \
+#	test/setup_common.h test/setup_common.cpp \
+#	$(am__append_31) $(am__append_33)
+#FUZZ_SUITE = \
+#  test/setup_common.h \
+#  test/setup_common.cpp \
+#  test/fuzz/fuzz.cpp \
+#  test/fuzz/fuzz.h
+
+#FUZZ_SUITE_LD_COMMON = \
+# $(LIBGLEECBTC_SERVER) \
+# $(LIBGLEECBTC_COMMON) \
+# $(LIBGLEECBTC_UTIL) \
+# $(LIBGLEECBTC_CONSENSUS) \
+# $(LIBGLEECBTC_CRYPTO) \
+# $(LIBUNIVALUE) \
+# $(LIBLEVELDB) \
+# $(LIBLEVELDB_SSE42) \
+# $(BOOST_LIBS) \
+# $(LIBMEMENV) \
+# $(LIBSECP256K1) \
+# $(EVENT_LIBS) \
+# $(CRYPTO_LIBS) \
+# $(EVENT_PTHREADS_LIBS)
+
 
 # test_gleecbtc binary #
-#GLEECGBC_TESTS = test/arith_uint256_tests.cpp \
+#GLEECBTC_TESTS = test/arith_uint256_tests.cpp \
 #	test/scriptnum10.h test/addrman_tests.cpp \
 #	test/amount_tests.cpp \
 #	test/allocator_tests.cpp \
 #	test/base32_tests.cpp test/base58_tests.cpp \
-#	test/base64_tests.cpp test/bip32_tests.cpp \
+#	test/base64_tests.cpp test/bech32_tests.cpp \
+#	test/bip32_tests.cpp \
+#	test/blockchain_tests.cpp \
 #	test/blockencodings_tests.cpp \
+#	test/blockfilter_tests.cpp \
+#	test/blockfilter_index_tests.cpp \
 #	test/bloom_tests.cpp test/bswap_tests.cpp \
 #	test/checkqueue_tests.cpp \
 #	test/coins_tests.cpp \
+#	test/compilerbug_tests.cpp \
 #	test/compress_tests.cpp \
 #	test/crypto_tests.cpp \
 #	test/cuckoocache_tests.cpp \
-#	test/DoS_tests.cpp test/getarg_tests.cpp \
-#	test/hash_tests.cpp test/key_tests.cpp \
+#	test/denialofservice_tests.cpp \
+#	test/descriptor_tests.cpp \
+#	test/flatfile_tests.cpp test/fs_tests.cpp \
+#	test/getarg_tests.cpp test/hash_tests.cpp \
+#	test/key_io_tests.cpp test/key_tests.cpp \
 #	test/limitedmap_tests.cpp \
 #	test/dbwrapper_tests.cpp \
-#	test/main_tests.cpp test/mempool_tests.cpp \
-#	test/merkle_tests.cpp test/miner_tests.cpp \
+#	test/validation_tests.cpp \
+#	test/mempool_tests.cpp \
+#	test/merkle_tests.cpp \
+#	test/merkleblock_tests.cpp \
+#	test/miner_tests.cpp \
 #	test/multisig_tests.cpp test/net_tests.cpp \
 #	test/netbase_tests.cpp test/pmt_tests.cpp \
 #	test/policyestimator_tests.cpp \
@@ -2314,7 +3190,7 @@ GENERATED_TEST_FILES = $(RAW_TEST_FILES:.raw=.raw.h)
 #	test/reverselock_tests.cpp \
 #	test/rpc_tests.cpp test/sanity_tests.cpp \
 #	test/scheduler_tests.cpp \
-#	test/script_P2SH_tests.cpp \
+#	test/script_p2sh_tests.cpp \
 #	test/script_tests.cpp \
 #	test/script_standard_tests.cpp \
 #	test/scriptnum_tests.cpp \
@@ -2322,188 +3198,267 @@ GENERATED_TEST_FILES = $(RAW_TEST_FILES:.raw=.raw.h)
 #	test/sighash_tests.cpp \
 #	test/sigopcount_tests.cpp \
 #	test/skiplist_tests.cpp \
-#	test/streams_tests.cpp \
-#	test/test_gleecbtc.cpp test/test_gleecbtc.h \
-#	test/test_gleecbtc_main.cpp \
+#	test/streams_tests.cpp test/sync_tests.cpp \
+#	test/util_threadnames_tests.cpp \
 #	test/timedata_tests.cpp \
 #	test/torcontrol_tests.cpp \
 #	test/transaction_tests.cpp \
+#	test/txindex_tests.cpp \
+#	test/txvalidation_tests.cpp \
 #	test/txvalidationcache_tests.cpp \
-#	test/versionbits_tests.cpp \
-#	test/uint256_tests.cpp \
-#	test/univalue_tests.cpp test/util_tests.cpp \
-#	$(am__append_22)
-#test_test_gleecbtc_SOURCES = $(GLEECGBC_TESTS) $(JSON_TEST_FILES) $(RAW_TEST_FILES)
-#test_test_gleecbtc_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECGBC_INCLUDES) -I$(builddir)/test/ $(TESTDEFS) $(EVENT_CFLAGS)
-#test_test_gleecbtc_LDADD = $(am__append_23) \
-#	$(LIBGLEECGBC_SERVER) $(LIBGLEECGBC_CLI) \
-#	$(LIBGLEECGBC_COMMON) $(LIBGLEECGBC_UTIL) \
-#	$(LIBGLEECGBC_CONSENSUS) \
-#	$(LIBGLEECGBC_CRYPTO) $(LIBUNIVALUE) \
+#	test/uint256_tests.cpp test/util_tests.cpp \
+#	test/validation_block_tests.cpp \
+#	test/versionbits_tests.cpp $(am__append_30) \
+#	$(am__append_32)
+#test_test_gleecbtc_SOURCES = $(GLEECBTC_TEST_SUITE) $(GLEECBTC_TESTS) $(JSON_TEST_FILES) $(RAW_TEST_FILES)
+#test_test_gleecbtc_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) $(TESTDEFS) $(EVENT_CFLAGS)
+#test_test_gleecbtc_LDADD = $(am__append_34) \
+#	$(LIBGLEECBTC_SERVER) $(LIBGLEECBTC_CLI) \
+#	$(LIBGLEECBTC_COMMON) $(LIBGLEECBTC_UTIL) \
+#	$(LIBGLEECBTC_CONSENSUS) \
+#	$(LIBGLEECBTC_CRYPTO) $(LIBUNIVALUE) \
 #	$(LIBLEVELDB) $(LIBLEVELDB_SSE42) \
 #	$(LIBMEMENV) $(BOOST_LIBS) \
 #	$(BOOST_UNIT_TEST_FRAMEWORK_LIB) \
 #	$(LIBSECP256K1) $(EVENT_LIBS) \
-#	$(EVENT_PTHREADS_LIBS) \
-#	$(LIBGLEECGBC_CONSENSUS) $(BDB_LIBS) \
-#	$(SSL_LIBS) $(CRYPTO_LIBS) \
-#	$(MINIUPNPC_LIBS) $(am__append_24)
+#	$(EVENT_PTHREADS_LIBS) $(BDB_LIBS) \
+#	$(CRYPTO_LIBS) $(MINIUPNPC_LIBS) \
+#	$(RAPIDCHECK_LIBS) $(am__append_35)
 #test_test_gleecbtc_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 #test_test_gleecbtc_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) -static
-#
-
-# test_gleecbtc_fuzzy binary #
-#test_test_gleecbtc_fuzzy_SOURCES = test/test_gleecbtc_fuzzy.cpp
-#test_test_gleecbtc_fuzzy_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECGBC_INCLUDES)
-#test_test_gleecbtc_fuzzy_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-#test_test_gleecbtc_fuzzy_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-#test_test_gleecbtc_fuzzy_LDADD = $(LIBUNIVALUE) \
-#	$(LIBGLEECGBC_SERVER) $(LIBGLEECGBC_COMMON) \
-#	$(LIBGLEECGBC_UTIL) \
-#	$(LIBGLEECGBC_CONSENSUS) \
-#	$(LIBGLEECGBC_CRYPTO) $(LIBSECP256K1) \
-#	$(BOOST_LIBS) $(CRYPTO_LIBS)
-#
+##test_fuzz_block_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_block_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DBLOCK_DESERIALIZE=1
+##test_fuzz_block_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_block_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_block_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_transaction_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_transaction_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DTRANSACTION_DESERIALIZE=1
+##test_fuzz_transaction_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_transaction_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_transaction_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_blocklocator_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_blocklocator_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DBLOCKLOCATOR_DESERIALIZE=1
+##test_fuzz_blocklocator_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_blocklocator_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_blocklocator_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_blockmerkleroot_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_blockmerkleroot_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DBLOCKMERKLEROOT=1
+##test_fuzz_blockmerkleroot_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_blockmerkleroot_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_blockmerkleroot_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_addrman_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_addrman_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DADDRMAN_DESERIALIZE=1
+##test_fuzz_addrman_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_addrman_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_addrman_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_blockheader_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_blockheader_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DBLOCKHEADER_DESERIALIZE=1
+##test_fuzz_blockheader_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_blockheader_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_blockheader_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_banentry_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_banentry_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DBANENTRY_DESERIALIZE=1
+##test_fuzz_banentry_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_banentry_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_banentry_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_txundo_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_txundo_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DTXUNDO_DESERIALIZE=1
+##test_fuzz_txundo_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_txundo_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_txundo_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_blockundo_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_blockundo_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DBLOCKUNDO_DESERIALIZE=1
+##test_fuzz_blockundo_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_blockundo_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_blockundo_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_coins_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_coins_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DCOINS_DESERIALIZE=1
+##test_fuzz_coins_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_coins_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_coins_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_netaddr_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_netaddr_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DNETADDR_DESERIALIZE=1
+##test_fuzz_netaddr_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_netaddr_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_netaddr_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_script_flags_SOURCES = $(FUZZ_SUITE) test/fuzz/script_flags.cpp
+##test_fuzz_script_flags_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES)
+##test_fuzz_script_flags_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_script_flags_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_script_flags_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_service_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_service_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DSERVICE_DESERIALIZE=1
+##test_fuzz_service_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_service_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_service_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_messageheader_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_messageheader_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DMESSAGEHEADER_DESERIALIZE=1
+##test_fuzz_messageheader_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_messageheader_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_messageheader_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_address_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_address_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DADDRESS_DESERIALIZE=1
+##test_fuzz_address_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_address_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_address_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_inv_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_inv_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DINV_DESERIALIZE=1
+##test_fuzz_inv_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_inv_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_inv_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_bloomfilter_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_bloomfilter_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DBLOOMFILTER_DESERIALIZE=1
+##test_fuzz_bloomfilter_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_bloomfilter_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_bloomfilter_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_diskblockindex_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_diskblockindex_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DDISKBLOCKINDEX_DESERIALIZE=1
+##test_fuzz_diskblockindex_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_diskblockindex_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_diskblockindex_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_txoutcompressor_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_txoutcompressor_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DTXOUTCOMPRESSOR_DESERIALIZE=1
+##test_fuzz_txoutcompressor_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_txoutcompressor_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_txoutcompressor_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_blocktransactions_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_blocktransactions_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DBLOCKTRANSACTIONS_DESERIALIZE=1
+##test_fuzz_blocktransactions_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_blocktransactions_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_blocktransactions_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
+##test_fuzz_blocktransactionsrequest_deserialize_SOURCES = $(FUZZ_SUITE) test/fuzz/deserialize.cpp
+##test_fuzz_blocktransactionsrequest_deserialize_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) -DBLOCKTRANSACTIONSREQUEST_DESERIALIZE=1
+##test_fuzz_blocktransactionsrequest_deserialize_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+##test_fuzz_blocktransactionsrequest_deserialize_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+##test_fuzz_blocktransactionsrequest_deserialize_LDADD = $(FUZZ_SUITE_LD_COMMON)
 #nodist_test_test_gleecbtc_SOURCES = $(GENERATED_TEST_FILES)
-#CLEAN_GLEECGBC_TEST = test/*.gcda test/*.gcno $(GENERATED_TEST_FILES)
+#CLEAN_GLEECBTC_TEST = test/*.gcda test/*.gcno $(GENERATED_TEST_FILES) $(GLEECBTC_TESTS:=.log)
 BENCH_SRCDIR = bench
 BENCH_BINARY = bench/bench_gleecbtc$(EXEEXT)
-bench_bench_gleecbtc_SOURCES =  \
+RAW_BENCH_FILES = \
+  bench/data/block413567.raw
+
+GENERATED_BENCH_FILES = $(RAW_BENCH_FILES:.raw=.raw.h)
+bench_bench_gleecbtc_SOURCES = $(RAW_BENCH_FILES) \
 	bench/bench_gleecbtc.cpp bench/bench.cpp \
-	bench/bench.h bench/checkblock.cpp \
-	bench/checkqueue.cpp bench/Examples.cpp \
-	bench/rollingbloom.cpp \
+	bench/bench.h bench/block_assemble.cpp \
+	bench/checkblock.cpp bench/checkqueue.cpp \
+	bench/data.h bench/data.cpp \
+	bench/duplicate_inputs.cpp \
+	bench/examples.cpp bench/rollingbloom.cpp \
+	bench/chacha20.cpp \
+	bench/chacha_poly_aead.cpp \
 	bench/crypto_hash.cpp \
 	bench/ccoins_caching.cpp \
+	bench/gcs_filter.cpp bench/merkle_root.cpp \
 	bench/mempool_eviction.cpp \
+	bench/rpc_blockchain.cpp \
+	bench/rpc_mempool.cpp bench/util_time.cpp \
 	bench/verify_script.cpp bench/base58.cpp \
-	bench/lockedpool.cpp bench/perf.cpp \
-	bench/perf.h bench/prevector_destructor.cpp \
-	$(am__append_28)
-nodist_bench_bench_gleecbtc_SOURCES = $(GENERATED_TEST_FILES)
-bench_bench_gleecbtc_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECGBC_INCLUDES) $(EVENT_CLFAGS) $(EVENT_PTHREADS_CFLAGS) -I$(builddir)/bench/
+	bench/bech32.cpp bench/lockedpool.cpp \
+	bench/poly1305.cpp bench/prevector.cpp \
+	test/setup_common.h test/setup_common.cpp \
+	test/util.h test/util.cpp $(am__append_39)
+nodist_bench_bench_gleecbtc_SOURCES = $(GENERATED_BENCH_FILES)
+bench_bench_gleecbtc_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) $(EVENT_CLFAGS) $(EVENT_PTHREADS_CFLAGS) -I$(builddir)/bench/
 bench_bench_gleecbtc_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-bench_bench_gleecbtc_LDADD = $(LIBGLEECGBC_SERVER) \
-	$(LIBGLEECGBC_COMMON) $(LIBGLEECGBC_UTIL) \
-	$(LIBGLEECGBC_CONSENSUS) \
-	$(LIBGLEECGBC_CRYPTO) $(LIBLEVELDB) \
+bench_bench_gleecbtc_LDADD = $(LIBGLEECBTC_SERVER) \
+	$(LIBGLEECBTC_WALLET) $(LIBGLEECBTC_SERVER) \
+	$(LIBGLEECBTC_COMMON) $(LIBGLEECBTC_UTIL) \
+	$(LIBGLEECBTC_CONSENSUS) \
+	$(LIBGLEECBTC_CRYPTO) $(LIBLEVELDB) \
 	$(LIBLEVELDB_SSE42) $(LIBMEMENV) \
 	$(LIBSECP256K1) $(LIBUNIVALUE) \
-	$(am__append_27) $(am__append_29) \
-	$(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) \
-	$(CRYPTO_LIBS) $(MINIUPNPC_LIBS) \
-	$(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+	$(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) \
+	$(am__append_38) $(BOOST_LIBS) $(BDB_LIBS) \
+	$(CRYPTO_LIBS) $(EVENT_PTHREADS_LIBS) \
+	$(EVENT_LIBS) $(MINIUPNPC_LIBS)
 bench_bench_gleecbtc_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-CLEAN_GLEECGBC_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_TEST_FILES)
-
-# gleecbtc qt core #
+CLEAN_GLEECBTC_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_BENCH_FILES)
 #QT_TS = \
-#  qt/locale/gleecbtc_af.ts \
-#  qt/locale/gleecbtc_af_ZA.ts \
 #  qt/locale/gleecbtc_ar.ts \
-#  qt/locale/gleecbtc_be_BY.ts \
-#  qt/locale/gleecbtc_bg_BG.ts \
-#  qt/locale/gleecbtc_bg.ts \
-#  qt/locale/gleecbtc_bn.ts \
-#  qt/locale/gleecbtc_bs.ts \
-#  qt/locale/gleecbtc_ca_ES.ts \
 #  qt/locale/gleecbtc_ca.ts \
-#  qt/locale/gleecbtc_ca@valencia.ts \
 #  qt/locale/gleecbtc_cs.ts \
 #  qt/locale/gleecbtc_cy.ts \
 #  qt/locale/gleecbtc_da.ts \
-#  qt/locale/gleecbtc_de_DE.ts \
 #  qt/locale/gleecbtc_de.ts \
-#  qt/locale/gleecbtc_el_GR.ts \
 #  qt/locale/gleecbtc_el.ts \
-#  qt/locale/gleecbtc_en_AU.ts \
 #  qt/locale/gleecbtc_en_GB.ts \
-#  qt/locale/gleecbtc_en.ts \
-#  qt/locale/gleecbtc_en_US.ts \
 #  qt/locale/gleecbtc_eo.ts \
-#  qt/locale/gleecbtc_es_419.ts \
-#  qt/locale/gleecbtc_es_AR.ts \
+#  qt/locale/gleecbtc_es.ts \
 #  qt/locale/gleecbtc_es_CL.ts \
 #  qt/locale/gleecbtc_es_CO.ts \
 #  qt/locale/gleecbtc_es_DO.ts \
-#  qt/locale/gleecbtc_es_ES.ts \
 #  qt/locale/gleecbtc_es_MX.ts \
-#  qt/locale/gleecbtc_es.ts \
-#  qt/locale/gleecbtc_es_UY.ts \
 #  qt/locale/gleecbtc_es_VE.ts \
-#  qt/locale/gleecbtc_et_EE.ts \
 #  qt/locale/gleecbtc_et.ts \
-#  qt/locale/gleecbtc_eu_ES.ts \
-#  qt/locale/gleecbtc_fa_IR.ts \
+#  qt/locale/gleecbtc_eu.ts \
 #  qt/locale/gleecbtc_fa.ts \
+#  qt/locale/gleecbtc_fa_IR.ts \
 #  qt/locale/gleecbtc_fi.ts \
-#  qt/locale/gleecbtc_fr_CA.ts \
-#  qt/locale/gleecbtc_fr_FR.ts \
+#  qt/locale/gleecbtc_fil.ts \
 #  qt/locale/gleecbtc_fr.ts \
 #  qt/locale/gleecbtc_gl.ts \
-#  qt/locale/gleecbtc_he_IL.ts \
 #  qt/locale/gleecbtc_he.ts \
-#  qt/locale/gleecbtc_hi_IN.ts \
+#  qt/locale/gleecbtc_hi.ts \
 #  qt/locale/gleecbtc_hr.ts \
 #  qt/locale/gleecbtc_hu.ts \
-#  qt/locale/gleecbtc_id_ID.ts \
 #  qt/locale/gleecbtc_id.ts \
-#  qt/locale/gleecbtc_it_IT.ts \
+#  qt/locale/gleecbtc_is.ts \
 #  qt/locale/gleecbtc_it.ts \
-#  qt/locale/gleecbtc_ja_JP.ts \
 #  qt/locale/gleecbtc_ja.ts \
 #  qt/locale/gleecbtc_ka.ts \
-#  qt/locale/gleecbtc_kk_KZ.ts \
-#  qt/locale/gleecbtc_ko_KR.ts \
+#  qt/locale/gleecbtc_kk.ts \
+#  qt/locale/gleecbtc_km.ts \
+#  qt/locale/gleecbtc_ko.ts \
 #  qt/locale/gleecbtc_ku_IQ.ts \
 #  qt/locale/gleecbtc_ky.ts \
 #  qt/locale/gleecbtc_la.ts \
 #  qt/locale/gleecbtc_lt.ts \
-#  qt/locale/gleecbtc_lv_LV.ts \
-#  qt/locale/gleecbtc_mk_MK.ts \
+#  qt/locale/gleecbtc_lv.ts \
+#  qt/locale/gleecbtc_mk.ts \
+#  qt/locale/gleecbtc_ml.ts \
 #  qt/locale/gleecbtc_mn.ts \
-#  qt/locale/gleecbtc_ms_MY.ts \
-#  qt/locale/gleecbtc_my.ts \
-#  qt/locale/gleecbtc_nb_NO.ts \
+#  qt/locale/gleecbtc_mr_IN.ts \
+#  qt/locale/gleecbtc_ms.ts \
 #  qt/locale/gleecbtc_nb.ts \
 #  qt/locale/gleecbtc_ne.ts \
-#  qt/locale/gleecbtc_nl_NL.ts \
 #  qt/locale/gleecbtc_nl.ts \
 #  qt/locale/gleecbtc_pam.ts \
 #  qt/locale/gleecbtc_pl.ts \
+#  qt/locale/gleecbtc_pt.ts \
 #  qt/locale/gleecbtc_pt_BR.ts \
-#  qt/locale/gleecbtc_pt_PT.ts \
-#  qt/locale/gleecbtc_ro_RO.ts \
 #  qt/locale/gleecbtc_ro.ts \
-#  qt/locale/gleecbtc_ru_RU.ts \
 #  qt/locale/gleecbtc_ru.ts \
 #  qt/locale/gleecbtc_si.ts \
 #  qt/locale/gleecbtc_sk.ts \
-#  qt/locale/gleecbtc_sl_SI.ts \
-#  qt/locale/gleecbtc_sq.ts \
-#  qt/locale/gleecbtc_sr@latin.ts \
+#  qt/locale/gleecbtc_sl.ts \
+#  qt/locale/gleecbtc_sn.ts \
 #  qt/locale/gleecbtc_sr.ts \
+#  qt/locale/gleecbtc_sr@latin.ts \
 #  qt/locale/gleecbtc_sv.ts \
+#  qt/locale/gleecbtc_szl.ts \
 #  qt/locale/gleecbtc_ta.ts \
 #  qt/locale/gleecbtc_te.ts \
-#  qt/locale/gleecbtc_th_TH.ts \
 #  qt/locale/gleecbtc_th.ts \
-#  qt/locale/gleecbtc_tr_TR.ts \
 #  qt/locale/gleecbtc_tr.ts \
 #  qt/locale/gleecbtc_uk.ts \
-#  qt/locale/gleecbtc_ur_PK.ts \
+#  qt/locale/gleecbtc_ur.ts \
 #  qt/locale/gleecbtc_uz@Cyrl.ts \
 #  qt/locale/gleecbtc_vi.ts \
-#  qt/locale/gleecbtc_vi_VN.ts \
+#  qt/locale/gleecbtc_yo.ts \
+#  qt/locale/gleecbtc_zh-Hans.ts \
 #  qt/locale/gleecbtc_zh_CN.ts \
 #  qt/locale/gleecbtc_zh_HK.ts \
-#  qt/locale/gleecbtc_zh.ts \
 #  qt/locale/gleecbtc_zh_TW.ts
 
+
+# gleecbtc qt core #
 #QT_FORMS_UI = \
 #  qt/forms/addressbookpage.ui \
 #  qt/forms/askpassphrasedialog.ui \
 #  qt/forms/coincontroldialog.ui \
+#  qt/forms/createwalletdialog.ui \
 #  qt/forms/editaddressdialog.ui \
 #  qt/forms/helpmessagedialog.ui \
 #  qt/forms/intro.ui \
@@ -2523,12 +3478,13 @@ CLEAN_GLEECGBC_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_TEST_FILES)
 #  qt/moc_addressbookpage.cpp \
 #  qt/moc_addresstablemodel.cpp \
 #  qt/moc_askpassphrasedialog.cpp \
+#  qt/moc_createwalletdialog.cpp \
 #  qt/moc_bantablemodel.cpp \
 #  qt/moc_gleecbtcaddressvalidator.cpp \
 #  qt/moc_gleecbtcamountfield.cpp \
+#  qt/moc_gleecbtc.cpp \
 #  qt/moc_gleecbtcgui.cpp \
 #  qt/moc_gleecbtcunits.cpp \
-#  qt/moc_callback.cpp \
 #  qt/moc_clientmodel.cpp \
 #  qt/moc_coincontroldialog.cpp \
 #  qt/moc_coincontroltreewidget.cpp \
@@ -2546,6 +3502,7 @@ CLEAN_GLEECGBC_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_TEST_FILES)
 #  qt/moc_overviewpage.cpp \
 #  qt/moc_peertablemodel.cpp \
 #  qt/moc_paymentserver.cpp \
+#  qt/moc_qrimagewidget.cpp \
 #  qt/moc_qvalidatedlineedit.cpp \
 #  qt/moc_qvaluecombobox.cpp \
 #  qt/moc_receivecoinsdialog.cpp \
@@ -2563,18 +3520,18 @@ CLEAN_GLEECGBC_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_TEST_FILES)
 #  qt/moc_transactiontablemodel.cpp \
 #  qt/moc_transactionview.cpp \
 #  qt/moc_utilitydialog.cpp \
+#  qt/moc_walletcontroller.cpp \
 #  qt/moc_walletframe.cpp \
 #  qt/moc_walletmodel.cpp \
 #  qt/moc_walletview.cpp
 
-#GLEECGBC_MM = \
+#GLEECBTC_MM = \
 #  qt/macdockiconhandler.mm \
-#  qt/macnotificationhandler.mm
+#  qt/macnotificationhandler.mm \
+#  qt/macos_appnap.mm
 
 #QT_MOC = \
-#  qt/gleecbtc.moc \
 #  qt/gleecbtcamountfield.moc \
-#  qt/callback.moc \
 #  qt/intro.moc \
 #  qt/overviewpage.moc \
 #  qt/rpcconsole.moc
@@ -2583,22 +3540,26 @@ CLEAN_GLEECGBC_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_TEST_FILES)
 #QT_QRC = qt/gleecbtc.qrc
 #QT_QRC_LOCALE_CPP = qt/qrc_gleecbtc_locale.cpp
 #QT_QRC_LOCALE = qt/gleecbtc_locale.qrc
-#PROTOBUF_CC = qt/paymentrequest.pb.cc
-#PROTOBUF_H = qt/paymentrequest.pb.h
-#PROTOBUF_PROTO = qt/paymentrequest.proto
-#GLEECGBC_QT_H = \
+#PROTOBUF_CC = 
+##PROTOBUF_CC = qt/paymentrequest.pb.cc
+#PROTOBUF_H = 
+##PROTOBUF_H = qt/paymentrequest.pb.h
+#PROTOBUF_PROTO = 
+##PROTOBUF_PROTO = qt/paymentrequest.proto
+#GLEECBTC_QT_H = \
 #  qt/addressbookpage.h \
 #  qt/addresstablemodel.h \
 #  qt/askpassphrasedialog.h \
 #  qt/bantablemodel.h \
 #  qt/gleecbtcaddressvalidator.h \
 #  qt/gleecbtcamountfield.h \
+#  qt/gleecbtc.h \
 #  qt/gleecbtcgui.h \
 #  qt/gleecbtcunits.h \
-#  qt/callback.h \
 #  qt/clientmodel.h \
 #  qt/coincontroldialog.h \
 #  qt/coincontroltreewidget.h \
+#  qt/createwalletdialog.h \
 #  qt/csvmodelwriter.h \
 #  qt/editaddressdialog.h \
 #  qt/guiconstants.h \
@@ -2606,6 +3567,7 @@ CLEAN_GLEECGBC_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_TEST_FILES)
 #  qt/intro.h \
 #  qt/macdockiconhandler.h \
 #  qt/macnotificationhandler.h \
+#  qt/macos_appnap.h \
 #  qt/modaloverlay.h \
 #  qt/networkstyle.h \
 #  qt/notificator.h \
@@ -2617,6 +3579,7 @@ CLEAN_GLEECGBC_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_TEST_FILES)
 #  qt/paymentserver.h \
 #  qt/peertablemodel.h \
 #  qt/platformstyle.h \
+#  qt/qrimagewidget.h \
 #  qt/qvalidatedlineedit.h \
 #  qt/qvaluecombobox.h \
 #  qt/receivecoinsdialog.h \
@@ -2635,6 +3598,7 @@ CLEAN_GLEECGBC_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_TEST_FILES)
 #  qt/transactiontablemodel.h \
 #  qt/transactionview.h \
 #  qt/utilitydialog.h \
+#  qt/walletcontroller.h \
 #  qt/walletframe.h \
 #  qt/walletmodel.h \
 #  qt/walletmodeltransaction.h \
@@ -2644,8 +3608,6 @@ CLEAN_GLEECGBC_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_TEST_FILES)
 #RES_ICONS = \
 #  qt/res/icons/add.png \
 #  qt/res/icons/address-book.png \
-#  qt/res/icons/about.png \
-#  qt/res/icons/about_qt.png \
 #  qt/res/icons/gleecbtc.ico \
 #  qt/res/icons/gleecbtc_testnet.ico \
 #  qt/res/icons/gleecbtc.png \
@@ -2655,13 +3617,11 @@ CLEAN_GLEECGBC_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_TEST_FILES)
 #  qt/res/icons/clock3.png \
 #  qt/res/icons/clock4.png \
 #  qt/res/icons/clock5.png \
-#  qt/res/icons/configure.png \
 #  qt/res/icons/connect0.png \
 #  qt/res/icons/connect1.png \
 #  qt/res/icons/connect2.png \
 #  qt/res/icons/connect3.png \
 #  qt/res/icons/connect4.png \
-#  qt/res/icons/debugwindow.png \
 #  qt/res/icons/edit.png \
 #  qt/res/icons/editcopy.png \
 #  qt/res/icons/editpaste.png \
@@ -2669,20 +3629,16 @@ CLEAN_GLEECGBC_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_TEST_FILES)
 #  qt/res/icons/eye.png \
 #  qt/res/icons/eye_minus.png \
 #  qt/res/icons/eye_plus.png \
-#  qt/res/icons/filesave.png \
 #  qt/res/icons/fontbigger.png \
 #  qt/res/icons/fontsmaller.png \
 #  qt/res/icons/hd_disabled.png \
 #  qt/res/icons/hd_enabled.png \
 #  qt/res/icons/history.png \
-#  qt/res/icons/info.png \
-#  qt/res/icons/key.png \
 #  qt/res/icons/lock_closed.png \
 #  qt/res/icons/lock_open.png \
 #  qt/res/icons/network_disabled.png \
-#  qt/res/icons/open.png \
 #  qt/res/icons/overview.png \
-#  qt/res/icons/quit.png \
+#  qt/res/icons/proxy.png \
 #  qt/res/icons/receive.png \
 #  qt/res/icons/remove.png \
 #  qt/res/icons/send.png \
@@ -2695,11 +3651,11 @@ CLEAN_GLEECGBC_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_TEST_FILES)
 #  qt/res/icons/tx_input.png \
 #  qt/res/icons/tx_output.png \
 #  qt/res/icons/tx_mined.png \
-#  qt/res/icons/warning.png \
-#  qt/res/icons/verify.png
+#  qt/res/icons/warning.png
 
-#GLEECGBC_QT_BASE_CPP = \
+#GLEECBTC_QT_BASE_CPP = \
 #  qt/bantablemodel.cpp \
+#  qt/gleecbtc.cpp \
 #  qt/gleecbtcaddressvalidator.cpp \
 #  qt/gleecbtcamountfield.cpp \
 #  qt/gleecbtcgui.cpp \
@@ -2722,18 +3678,19 @@ CLEAN_GLEECGBC_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_TEST_FILES)
 #  qt/trafficgraphwidget.cpp \
 #  qt/utilitydialog.cpp
 
-#GLEECGBC_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
-#GLEECGBC_QT_WALLET_CPP = \
+#GLEECBTC_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
+#GLEECBTC_QT_WALLET_CPP = \
 #  qt/addressbookpage.cpp \
 #  qt/addresstablemodel.cpp \
 #  qt/askpassphrasedialog.cpp \
 #  qt/coincontroldialog.cpp \
 #  qt/coincontroltreewidget.cpp \
+#  qt/createwalletdialog.cpp \
 #  qt/editaddressdialog.cpp \
 #  qt/openuridialog.cpp \
 #  qt/overviewpage.cpp \
-#  qt/paymentrequestplus.cpp \
 #  qt/paymentserver.cpp \
+#  qt/qrimagewidget.cpp \
 #  qt/receivecoinsdialog.cpp \
 #  qt/receiverequestdialog.cpp \
 #  qt/recentrequeststablemodel.cpp \
@@ -2746,26 +3703,32 @@ CLEAN_GLEECGBC_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_TEST_FILES)
 #  qt/transactionrecord.cpp \
 #  qt/transactiontablemodel.cpp \
 #  qt/transactionview.cpp \
+#  qt/walletcontroller.cpp \
 #  qt/walletframe.cpp \
 #  qt/walletmodel.cpp \
 #  qt/walletmodeltransaction.cpp \
 #  qt/walletview.cpp
 
-#GLEECGBC_QT_CPP = $(GLEECGBC_QT_BASE_CPP) \
-#	$(am__append_33) $(am__append_34)
+#GLEECBTC_QT_WALLET_BIP70_CPP = \
+#  qt/paymentrequestplus.cpp
+
+#GLEECBTC_QT_CPP = $(GLEECBTC_QT_BASE_CPP) \
+#	$(am__append_43) $(am__append_44) \
+#	$(am__append_45)
 #RES_IMAGES = 
 #RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
-#GLEECGBC_RC = qt/res/gleecbtc-qt-res.rc
-#GLEECGBC_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
-#  -I$(builddir)/qt/forms -DQT_NO_KEYWORDS
-
-#qt_libgleecbtcqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECGBC_INCLUDES) $(GLEECGBC_QT_INCLUDES) \
+#GLEECBTC_RC = qt/res/gleecbtc-qt-res.rc
+#GLEECBTC_QT_INCLUDES = -DQT_NO_KEYWORDS
+#qt_libgleecbtcqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) $(GLEECBTC_QT_INCLUDES) \
 #  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
 
 #qt_libgleecbtcqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
-#qt_libgleecbtcqt_a_SOURCES = $(GLEECGBC_QT_CPP) $(GLEECGBC_QT_H) $(QT_FORMS_UI) \
-#  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_MOVIES)
-
+#qt_libgleecbtcqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
+#qt_libgleecbtcqt_a_SOURCES = $(GLEECBTC_QT_CPP) \
+#	$(GLEECBTC_QT_H) $(QT_FORMS_UI) $(QT_QRC) \
+#	$(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) \
+#	$(RES_ICONS) $(RES_IMAGES) $(RES_MOVIES) \
+#	$(am__append_46)
 #nodist_qt_libgleecbtcqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
 #  $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
 
@@ -2774,66 +3737,71 @@ CLEAN_GLEECGBC_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_TEST_FILES)
 #QT_FORMS_H = $(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
 
 # gleecbtc-qt binary #
-#qt_gleecbtc_qt_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECGBC_INCLUDES) $(GLEECGBC_QT_INCLUDES) \
+#qt_gleecbtc_qt_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) $(GLEECBTC_QT_INCLUDES) \
 #  $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
 
 #qt_gleecbtc_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
-#qt_gleecbtc_qt_SOURCES = qt/gleecbtc.cpp \
-#	$(am__append_35) $(am__append_36)
+#qt_gleecbtc_qt_SOURCES = qt/main.cpp $(am__append_47)
 #qt_gleecbtc_qt_LDADD = qt/libgleecbtcqt.a \
-#	$(LIBGLEECGBC_SERVER) $(am__append_37) \
-#	$(am__append_38) $(LIBGLEECGBC_CLI) \
-#	$(LIBGLEECGBC_COMMON) $(LIBGLEECGBC_UTIL) \
-#	$(LIBGLEECGBC_CONSENSUS) $(LIBGLEECGBC_CRYPTO) \
+#	$(LIBGLEECBTC_SERVER) $(am__append_48) \
+#	$(am__append_49) $(LIBGLEECBTC_CLI) \
+#	$(LIBGLEECBTC_COMMON) $(LIBGLEECBTC_UTIL) \
+#	$(LIBGLEECBTC_CONSENSUS) $(LIBGLEECBTC_CRYPTO) \
 #	$(LIBUNIVALUE) $(LIBLEVELDB) \
 #	$(LIBLEVELDB_SSE42) $(LIBMEMENV) $(BOOST_LIBS) \
 #	$(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) \
-#	$(PROTOBUF_LIBS) $(BDB_LIBS) $(SSL_LIBS) \
-#	$(CRYPTO_LIBS) $(MINIUPNPC_LIBS) \
+#	$(PROTOBUF_LIBS) $(BDB_LIBS) $(MINIUPNPC_LIBS) \
 #	$(LIBSECP256K1) $(EVENT_PTHREADS_LIBS) \
-#	$(EVENT_LIBS)
+#	$(EVENT_LIBS) $(am__append_50) \
+#	$(am__append_51) $(CRYPTO_LIBS)
 #qt_gleecbtc_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-#qt_gleecbtc_qt_LIBTOOLFLAGS = --tag CXX
+#qt_gleecbtc_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
 
 #locale/foo.ts -> locale/foo.qm
 #QT_QM = $(QT_TS:.ts=.qm)
-#CLEAN_QT = $(nodist_qt_libgleecbtcqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno
-#TEST_QT_MOC_CPP = qt/test/moc_compattests.cpp \
+#CLEAN_QT = $(nodist_qt_libgleecbtcqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_gleecbtc_locale.qrc
+#TEST_QT_MOC_CPP = qt/test/moc_apptests.cpp \
+#	qt/test/moc_compattests.cpp \
 #	qt/test/moc_rpcnestedtests.cpp \
 #	qt/test/moc_uritests.cpp \
-#	$(am__append_42)
+#	$(am__append_55) $(am__append_56)
 #TEST_QT_H = \
+#  qt/test/addressbooktests.h \
+#  qt/test/apptests.h \
 #  qt/test/compattests.h \
 #  qt/test/rpcnestedtests.h \
 #  qt/test/uritests.h \
+#  qt/test/util.h \
 #  qt/test/paymentrequestdata.h \
 #  qt/test/paymentservertests.h \
 #  qt/test/wallettests.h
 
-#TEST_GLEECGBC_CPP = \
-#  test/test_gleecbtc.cpp
+#TEST_GLEECBTC_CPP = \
+#  test/setup_common.cpp
 
-#TEST_GLEECGBC_H = \
-#  test/test_gleecbtc.h
+#TEST_GLEECBTC_H = \
+#  test/setup_common.h
 
-#qt_test_test_gleecbtc_qt_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECGBC_INCLUDES) $(GLEECGBC_QT_INCLUDES) \
+#qt_test_test_gleecbtc_qt_CPPFLAGS = $(AM_CPPFLAGS) $(GLEECBTC_INCLUDES) $(GLEECBTC_QT_INCLUDES) \
 #  $(QT_INCLUDES) $(QT_TEST_INCLUDES) $(PROTOBUF_CFLAGS)
 
 #qt_test_test_gleecbtc_qt_SOURCES =  \
+#	qt/test/apptests.cpp \
 #	qt/test/compattests.cpp \
 #	qt/test/rpcnestedtests.cpp \
 #	qt/test/test_main.cpp \
-#	qt/test/uritests.cpp $(TEST_QT_H) \
-#	$(TEST_GLEECGBC_CPP) $(TEST_GLEECGBC_H) \
-#	$(am__append_43)
+#	qt/test/uritests.cpp qt/test/util.cpp \
+#	$(TEST_QT_H) $(TEST_GLEECBTC_CPP) \
+#	$(TEST_GLEECBTC_H) $(am__append_57) \
+#	$(am__append_58)
 #nodist_qt_test_test_gleecbtc_qt_SOURCES = $(TEST_QT_MOC_CPP)
 #qt_test_test_gleecbtc_qt_LDADD =  \
-#	$(LIBGLEECGBCQT) $(LIBGLEECGBC_SERVER) \
-#	$(am__append_44) $(am__append_45) \
-#	$(LIBGLEECGBC_CLI) $(LIBGLEECGBC_COMMON) \
-#	$(LIBGLEECGBC_UTIL) \
-#	$(LIBGLEECGBC_CONSENSUS) \
-#	$(LIBGLEECGBC_CRYPTO) $(LIBUNIVALUE) \
+#	$(LIBGLEECBTCQT) $(LIBGLEECBTC_SERVER) \
+#	$(am__append_59) $(am__append_60) \
+#	$(LIBGLEECBTC_CLI) $(LIBGLEECBTC_COMMON) \
+#	$(LIBGLEECBTC_UTIL) \
+#	$(LIBGLEECBTC_CONSENSUS) \
+#	$(LIBGLEECBTC_CRYPTO) $(LIBUNIVALUE) \
 #	$(LIBLEVELDB) $(LIBLEVELDB_SSE42) \
 #	$(LIBMEMENV) $(BOOST_LIBS) \
 #	$(QT_DBUS_LIBS) $(QT_TEST_LIBS) \
@@ -2843,12 +3811,12 @@ CLEAN_GLEECGBC_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_TEST_FILES)
 #	$(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
 #qt_test_test_gleecbtc_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 #qt_test_test_gleecbtc_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
-#CLEAN_GLEECGBC_QT_TEST = $(TEST_QT_MOC_CPP) qt/test/*.gcda qt/test/*.gcno
+#CLEAN_GLEECBTC_QT_TEST = $(TEST_QT_MOC_CPP) qt/test/*.gcda qt/test/*.gcno
 all: all-recursive
 
 .SUFFIXES:
 .SUFFIXES: .cc .cpp .lo .log .mm .o .obj .rc .test .test$(EXEEXT) .trs
-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(srcdir)/Makefile.leveldb.include $(srcdir)/Makefile.test.include $(srcdir)/Makefile.bench.include $(srcdir)/Makefile.qt.include $(srcdir)/Makefile.qttest.include $(am__configure_deps)
+$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(srcdir)/Makefile.leveldb.include $(srcdir)/Makefile.test.include $(srcdir)/Makefile.bench.include $(srcdir)/Makefile.qt.include $(srcdir)/Makefile.qt_locale.include $(srcdir)/Makefile.qttest.include $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -2868,7 +3836,7 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe)'; \
 	    cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe);; \
 	esac;
-$(srcdir)/Makefile.leveldb.include $(srcdir)/Makefile.test.include $(srcdir)/Makefile.bench.include $(srcdir)/Makefile.qt.include $(srcdir)/Makefile.qttest.include $(am__empty):
+$(srcdir)/Makefile.leveldb.include $(srcdir)/Makefile.test.include $(srcdir)/Makefile.bench.include $(srcdir)/Makefile.qt.include $(srcdir)/Makefile.qt_locale.include $(srcdir)/Makefile.qttest.include $(am__empty):
 
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
@@ -2884,29 +3852,58 @@ crypto/$(am__dirstamp):
 crypto/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) crypto/$(DEPDIR)
 	@: > crypto/$(DEPDIR)/$(am__dirstamp)
-crypto/crypto_libgleecbtc_crypto_a-aes.$(OBJEXT):  \
-	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
-crypto/crypto_libgleecbtc_crypto_a-chacha20.$(OBJEXT):  \
-	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
-crypto/crypto_libgleecbtc_crypto_a-hmac_sha256.$(OBJEXT):  \
-	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
-crypto/crypto_libgleecbtc_crypto_a-hmac_sha512.$(OBJEXT):  \
-	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
-crypto/crypto_libgleecbtc_crypto_a-ripemd160.$(OBJEXT):  \
-	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
-crypto/crypto_libgleecbtc_crypto_a-sha1.$(OBJEXT):  \
-	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
-crypto/crypto_libgleecbtc_crypto_a-sha256.$(OBJEXT):  \
-	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
-crypto/crypto_libgleecbtc_crypto_a-sha512.$(OBJEXT):  \
-	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
-crypto/crypto_libgleecbtc_crypto_a-sha256_sse4.$(OBJEXT):  \
+crypto/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.$(OBJEXT):  \
 	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
 
-crypto/libgleecbtc_crypto.a: $(crypto_libgleecbtc_crypto_a_OBJECTS) $(crypto_libgleecbtc_crypto_a_DEPENDENCIES) $(EXTRA_crypto_libgleecbtc_crypto_a_DEPENDENCIES) crypto/$(am__dirstamp)
-	$(AM_V_at)-rm -f crypto/libgleecbtc_crypto.a
-	$(AM_V_AR)$(crypto_libgleecbtc_crypto_a_AR) crypto/libgleecbtc_crypto.a $(crypto_libgleecbtc_crypto_a_OBJECTS) $(crypto_libgleecbtc_crypto_a_LIBADD)
-	$(AM_V_at)$(RANLIB) crypto/libgleecbtc_crypto.a
+crypto/libgleecbtc_crypto_avx2.a: $(crypto_libgleecbtc_crypto_avx2_a_OBJECTS) $(crypto_libgleecbtc_crypto_avx2_a_DEPENDENCIES) $(EXTRA_crypto_libgleecbtc_crypto_avx2_a_DEPENDENCIES) crypto/$(am__dirstamp)
+	$(AM_V_at)-rm -f crypto/libgleecbtc_crypto_avx2.a
+	$(AM_V_AR)$(crypto_libgleecbtc_crypto_avx2_a_AR) crypto/libgleecbtc_crypto_avx2.a $(crypto_libgleecbtc_crypto_avx2_a_OBJECTS) $(crypto_libgleecbtc_crypto_avx2_a_LIBADD)
+	$(AM_V_at)$(RANLIB) crypto/libgleecbtc_crypto_avx2.a
+crypto/crypto_libgleecbtc_crypto_base_a-aes.$(OBJEXT):  \
+	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
+crypto/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.$(OBJEXT):  \
+	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
+crypto/crypto_libgleecbtc_crypto_base_a-chacha20.$(OBJEXT):  \
+	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
+crypto/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.$(OBJEXT):  \
+	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
+crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha256.$(OBJEXT):  \
+	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
+crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha512.$(OBJEXT):  \
+	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
+crypto/crypto_libgleecbtc_crypto_base_a-poly1305.$(OBJEXT):  \
+	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
+crypto/crypto_libgleecbtc_crypto_base_a-ripemd160.$(OBJEXT):  \
+	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
+crypto/crypto_libgleecbtc_crypto_base_a-sha1.$(OBJEXT):  \
+	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
+crypto/crypto_libgleecbtc_crypto_base_a-sha256.$(OBJEXT):  \
+	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
+crypto/crypto_libgleecbtc_crypto_base_a-sha512.$(OBJEXT):  \
+	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
+crypto/crypto_libgleecbtc_crypto_base_a-siphash.$(OBJEXT):  \
+	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
+crypto/crypto_libgleecbtc_crypto_base_a-sha256_sse4.$(OBJEXT):  \
+	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
+
+crypto/libgleecbtc_crypto_base.a: $(crypto_libgleecbtc_crypto_base_a_OBJECTS) $(crypto_libgleecbtc_crypto_base_a_DEPENDENCIES) $(EXTRA_crypto_libgleecbtc_crypto_base_a_DEPENDENCIES) crypto/$(am__dirstamp)
+	$(AM_V_at)-rm -f crypto/libgleecbtc_crypto_base.a
+	$(AM_V_AR)$(crypto_libgleecbtc_crypto_base_a_AR) crypto/libgleecbtc_crypto_base.a $(crypto_libgleecbtc_crypto_base_a_OBJECTS) $(crypto_libgleecbtc_crypto_base_a_LIBADD)
+	$(AM_V_at)$(RANLIB) crypto/libgleecbtc_crypto_base.a
+crypto/crypto_libgleecbtc_crypto_shani_a-sha256_shani.$(OBJEXT):  \
+	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
+
+crypto/libgleecbtc_crypto_shani.a: $(crypto_libgleecbtc_crypto_shani_a_OBJECTS) $(crypto_libgleecbtc_crypto_shani_a_DEPENDENCIES) $(EXTRA_crypto_libgleecbtc_crypto_shani_a_DEPENDENCIES) crypto/$(am__dirstamp)
+	$(AM_V_at)-rm -f crypto/libgleecbtc_crypto_shani.a
+	$(AM_V_AR)$(crypto_libgleecbtc_crypto_shani_a_AR) crypto/libgleecbtc_crypto_shani.a $(crypto_libgleecbtc_crypto_shani_a_OBJECTS) $(crypto_libgleecbtc_crypto_shani_a_LIBADD)
+	$(AM_V_at)$(RANLIB) crypto/libgleecbtc_crypto_shani.a
+crypto/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.$(OBJEXT):  \
+	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
+
+crypto/libgleecbtc_crypto_sse41.a: $(crypto_libgleecbtc_crypto_sse41_a_OBJECTS) $(crypto_libgleecbtc_crypto_sse41_a_DEPENDENCIES) $(EXTRA_crypto_libgleecbtc_crypto_sse41_a_DEPENDENCIES) crypto/$(am__dirstamp)
+	$(AM_V_at)-rm -f crypto/libgleecbtc_crypto_sse41.a
+	$(AM_V_AR)$(crypto_libgleecbtc_crypto_sse41_a_AR) crypto/libgleecbtc_crypto_sse41.a $(crypto_libgleecbtc_crypto_sse41_a_OBJECTS) $(crypto_libgleecbtc_crypto_sse41_a_LIBADD)
+	$(AM_V_at)$(RANLIB) crypto/libgleecbtc_crypto_sse41.a
 leveldb/db/$(am__dirstamp):
 	@$(MKDIR_P) leveldb/db
 	@: > leveldb/db/$(am__dirstamp)
@@ -3105,14 +4102,24 @@ policy/$(DEPDIR)/$(am__dirstamp):
 	@: > policy/$(DEPDIR)/$(am__dirstamp)
 policy/libgleecbtc_common_a-feerate.$(OBJEXT): policy/$(am__dirstamp) \
 	policy/$(DEPDIR)/$(am__dirstamp)
+policy/libgleecbtc_common_a-policy.$(OBJEXT): policy/$(am__dirstamp) \
+	policy/$(DEPDIR)/$(am__dirstamp)
+rpc/libgleecbtc_common_a-rawtransaction_util.$(OBJEXT):  \
+	rpc/$(am__dirstamp) rpc/$(DEPDIR)/$(am__dirstamp)
+rpc/libgleecbtc_common_a-util.$(OBJEXT): rpc/$(am__dirstamp) \
+	rpc/$(DEPDIR)/$(am__dirstamp)
 script/$(am__dirstamp):
 	@$(MKDIR_P) script
 	@: > script/$(am__dirstamp)
 script/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) script/$(DEPDIR)
 	@: > script/$(DEPDIR)/$(am__dirstamp)
+script/libgleecbtc_common_a-descriptor.$(OBJEXT):  \
+	script/$(am__dirstamp) script/$(DEPDIR)/$(am__dirstamp)
 script/libgleecbtc_common_a-sign.$(OBJEXT): script/$(am__dirstamp) \
 	script/$(DEPDIR)/$(am__dirstamp)
+script/libgleecbtc_common_a-signingprovider.$(OBJEXT):  \
+	script/$(am__dirstamp) script/$(DEPDIR)/$(am__dirstamp)
 script/libgleecbtc_common_a-standard.$(OBJEXT):  \
 	script/$(am__dirstamp) script/$(DEPDIR)/$(am__dirstamp)
 
@@ -3126,9 +4133,9 @@ consensus/$(am__dirstamp):
 consensus/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) consensus/$(DEPDIR)
 	@: > consensus/$(DEPDIR)/$(am__dirstamp)
-consensus/libgleecbtc_consensus_a-consensus.$(OBJEXT):  \
-	consensus/$(am__dirstamp) consensus/$(DEPDIR)/$(am__dirstamp)
 consensus/libgleecbtc_consensus_a-merkle.$(OBJEXT):  \
+	consensus/$(am__dirstamp) consensus/$(DEPDIR)/$(am__dirstamp)
+consensus/libgleecbtc_consensus_a-tx_check.$(OBJEXT):  \
 	consensus/$(am__dirstamp) consensus/$(DEPDIR)/$(am__dirstamp)
 primitives/$(am__dirstamp):
 	@$(MKDIR_P) primitives
@@ -3150,6 +4157,14 @@ script/libgleecbtc_consensus_a-script.$(OBJEXT):  \
 	script/$(am__dirstamp) script/$(DEPDIR)/$(am__dirstamp)
 script/libgleecbtc_consensus_a-script_error.$(OBJEXT):  \
 	script/$(am__dirstamp) script/$(DEPDIR)/$(am__dirstamp)
+util/$(am__dirstamp):
+	@$(MKDIR_P) util
+	@: > util/$(am__dirstamp)
+util/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) util/$(DEPDIR)
+	@: > util/$(DEPDIR)/$(am__dirstamp)
+util/libgleecbtc_consensus_a-strencodings.$(OBJEXT):  \
+	util/$(am__dirstamp) util/$(DEPDIR)/$(am__dirstamp)
 
 libgleecbtc_consensus.a: $(libgleecbtc_consensus_a_OBJECTS) $(libgleecbtc_consensus_a_DEPENDENCIES) $(EXTRA_libgleecbtc_consensus_a_DEPENDENCIES) 
 	$(AM_V_at)-rm -f libgleecbtc_consensus.a
@@ -3157,12 +4172,50 @@ libgleecbtc_consensus.a: $(libgleecbtc_consensus_a_OBJECTS) $(libgleecbtc_consen
 	$(AM_V_at)$(RANLIB) libgleecbtc_consensus.a
 consensus/libgleecbtc_server_a-tx_verify.$(OBJEXT):  \
 	consensus/$(am__dirstamp) consensus/$(DEPDIR)/$(am__dirstamp)
+index/$(am__dirstamp):
+	@$(MKDIR_P) index
+	@: > index/$(am__dirstamp)
+index/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) index/$(DEPDIR)
+	@: > index/$(DEPDIR)/$(am__dirstamp)
+index/libgleecbtc_server_a-base.$(OBJEXT): index/$(am__dirstamp) \
+	index/$(DEPDIR)/$(am__dirstamp)
+index/libgleecbtc_server_a-blockfilterindex.$(OBJEXT):  \
+	index/$(am__dirstamp) index/$(DEPDIR)/$(am__dirstamp)
+index/libgleecbtc_server_a-txindex.$(OBJEXT): index/$(am__dirstamp) \
+	index/$(DEPDIR)/$(am__dirstamp)
+interfaces/$(am__dirstamp):
+	@$(MKDIR_P) interfaces
+	@: > interfaces/$(am__dirstamp)
+interfaces/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) interfaces/$(DEPDIR)
+	@: > interfaces/$(DEPDIR)/$(am__dirstamp)
+interfaces/libgleecbtc_server_a-chain.$(OBJEXT):  \
+	interfaces/$(am__dirstamp) \
+	interfaces/$(DEPDIR)/$(am__dirstamp)
+interfaces/libgleecbtc_server_a-node.$(OBJEXT):  \
+	interfaces/$(am__dirstamp) \
+	interfaces/$(DEPDIR)/$(am__dirstamp)
+node/$(am__dirstamp):
+	@$(MKDIR_P) node
+	@: > node/$(am__dirstamp)
+node/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) node/$(DEPDIR)
+	@: > node/$(DEPDIR)/$(am__dirstamp)
+node/libgleecbtc_server_a-coin.$(OBJEXT): node/$(am__dirstamp) \
+	node/$(DEPDIR)/$(am__dirstamp)
+node/libgleecbtc_server_a-coinstats.$(OBJEXT): node/$(am__dirstamp) \
+	node/$(DEPDIR)/$(am__dirstamp)
+node/libgleecbtc_server_a-psbt.$(OBJEXT): node/$(am__dirstamp) \
+	node/$(DEPDIR)/$(am__dirstamp)
+node/libgleecbtc_server_a-transaction.$(OBJEXT): node/$(am__dirstamp) \
+	node/$(DEPDIR)/$(am__dirstamp)
 policy/libgleecbtc_server_a-fees.$(OBJEXT): policy/$(am__dirstamp) \
-	policy/$(DEPDIR)/$(am__dirstamp)
-policy/libgleecbtc_server_a-policy.$(OBJEXT): policy/$(am__dirstamp) \
 	policy/$(DEPDIR)/$(am__dirstamp)
 policy/libgleecbtc_server_a-rbf.$(OBJEXT): policy/$(am__dirstamp) \
 	policy/$(DEPDIR)/$(am__dirstamp)
+policy/libgleecbtc_server_a-settings.$(OBJEXT):  \
+	policy/$(am__dirstamp) policy/$(DEPDIR)/$(am__dirstamp)
 rpc/libgleecbtc_server_a-blockchain.$(OBJEXT): rpc/$(am__dirstamp) \
 	rpc/$(DEPDIR)/$(am__dirstamp)
 rpc/libgleecbtc_server_a-mining.$(OBJEXT): rpc/$(am__dirstamp) \
@@ -3177,8 +4230,14 @@ rpc/libgleecbtc_server_a-server.$(OBJEXT): rpc/$(am__dirstamp) \
 	rpc/$(DEPDIR)/$(am__dirstamp)
 script/libgleecbtc_server_a-sigcache.$(OBJEXT):  \
 	script/$(am__dirstamp) script/$(DEPDIR)/$(am__dirstamp)
-script/libgleecbtc_server_a-ismine.$(OBJEXT): script/$(am__dirstamp) \
-	script/$(DEPDIR)/$(am__dirstamp)
+wallet/$(am__dirstamp):
+	@$(MKDIR_P) wallet
+	@: > wallet/$(am__dirstamp)
+wallet/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) wallet/$(DEPDIR)
+	@: > wallet/$(DEPDIR)/$(am__dirstamp)
+wallet/libgleecbtc_server_a-init.$(OBJEXT): wallet/$(am__dirstamp) \
+	wallet/$(DEPDIR)/$(am__dirstamp)
 
 libgleecbtc_server.a: $(libgleecbtc_server_a_OBJECTS) $(libgleecbtc_server_a_DEPENDENCIES) $(EXTRA_libgleecbtc_server_a_DEPENDENCIES) 
 	$(AM_V_at)-rm -f libgleecbtc_server.a
@@ -3198,16 +4257,47 @@ compat/$(am__dirstamp):
 compat/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) compat/$(DEPDIR)
 	@: > compat/$(DEPDIR)/$(am__dirstamp)
+compat/libgleecbtc_util_a-glibc_sanity_fdelt.$(OBJEXT):  \
+	compat/$(am__dirstamp) compat/$(DEPDIR)/$(am__dirstamp)
 compat/libgleecbtc_util_a-glibc_sanity.$(OBJEXT):  \
 	compat/$(am__dirstamp) compat/$(DEPDIR)/$(am__dirstamp)
 compat/libgleecbtc_util_a-glibcxx_sanity.$(OBJEXT):  \
 	compat/$(am__dirstamp) compat/$(DEPDIR)/$(am__dirstamp)
 compat/libgleecbtc_util_a-strnlen.$(OBJEXT): compat/$(am__dirstamp) \
 	compat/$(DEPDIR)/$(am__dirstamp)
-rpc/libgleecbtc_util_a-protocol.$(OBJEXT): rpc/$(am__dirstamp) \
+interfaces/libgleecbtc_util_a-handler.$(OBJEXT):  \
+	interfaces/$(am__dirstamp) \
+	interfaces/$(DEPDIR)/$(am__dirstamp)
+rpc/libgleecbtc_util_a-request.$(OBJEXT): rpc/$(am__dirstamp) \
 	rpc/$(DEPDIR)/$(am__dirstamp)
 support/libgleecbtc_util_a-cleanse.$(OBJEXT): support/$(am__dirstamp) \
 	support/$(DEPDIR)/$(am__dirstamp)
+util/libgleecbtc_util_a-bip32.$(OBJEXT): util/$(am__dirstamp) \
+	util/$(DEPDIR)/$(am__dirstamp)
+util/libgleecbtc_util_a-bytevectorhash.$(OBJEXT):  \
+	util/$(am__dirstamp) util/$(DEPDIR)/$(am__dirstamp)
+util/libgleecbtc_util_a-error.$(OBJEXT): util/$(am__dirstamp) \
+	util/$(DEPDIR)/$(am__dirstamp)
+util/libgleecbtc_util_a-fees.$(OBJEXT): util/$(am__dirstamp) \
+	util/$(DEPDIR)/$(am__dirstamp)
+util/libgleecbtc_util_a-system.$(OBJEXT): util/$(am__dirstamp) \
+	util/$(DEPDIR)/$(am__dirstamp)
+util/libgleecbtc_util_a-moneystr.$(OBJEXT): util/$(am__dirstamp) \
+	util/$(DEPDIR)/$(am__dirstamp)
+util/libgleecbtc_util_a-rbf.$(OBJEXT): util/$(am__dirstamp) \
+	util/$(DEPDIR)/$(am__dirstamp)
+util/libgleecbtc_util_a-threadnames.$(OBJEXT): util/$(am__dirstamp) \
+	util/$(DEPDIR)/$(am__dirstamp)
+util/libgleecbtc_util_a-strencodings.$(OBJEXT): util/$(am__dirstamp) \
+	util/$(DEPDIR)/$(am__dirstamp)
+util/libgleecbtc_util_a-string.$(OBJEXT): util/$(am__dirstamp) \
+	util/$(DEPDIR)/$(am__dirstamp)
+util/libgleecbtc_util_a-time.$(OBJEXT): util/$(am__dirstamp) \
+	util/$(DEPDIR)/$(am__dirstamp)
+util/libgleecbtc_util_a-url.$(OBJEXT): util/$(am__dirstamp) \
+	util/$(DEPDIR)/$(am__dirstamp)
+util/libgleecbtc_util_a-validation.$(OBJEXT): util/$(am__dirstamp) \
+	util/$(DEPDIR)/$(am__dirstamp)
 compat/libgleecbtc_util_a-glibc_compat.$(OBJEXT):  \
 	compat/$(am__dirstamp) compat/$(DEPDIR)/$(am__dirstamp)
 
@@ -3215,17 +4305,24 @@ libgleecbtc_util.a: $(libgleecbtc_util_a_OBJECTS) $(libgleecbtc_util_a_DEPENDENC
 	$(AM_V_at)-rm -f libgleecbtc_util.a
 	$(AM_V_AR)$(libgleecbtc_util_a_AR) libgleecbtc_util.a $(libgleecbtc_util_a_OBJECTS) $(libgleecbtc_util_a_LIBADD)
 	$(AM_V_at)$(RANLIB) libgleecbtc_util.a
-wallet/$(am__dirstamp):
-	@$(MKDIR_P) wallet
-	@: > wallet/$(am__dirstamp)
-wallet/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) wallet/$(DEPDIR)
-	@: > wallet/$(DEPDIR)/$(am__dirstamp)
+interfaces/libgleecbtc_wallet_a-wallet.$(OBJEXT):  \
+	interfaces/$(am__dirstamp) \
+	interfaces/$(DEPDIR)/$(am__dirstamp)
+wallet/libgleecbtc_wallet_a-coincontrol.$(OBJEXT):  \
+	wallet/$(am__dirstamp) wallet/$(DEPDIR)/$(am__dirstamp)
 wallet/libgleecbtc_wallet_a-crypter.$(OBJEXT): wallet/$(am__dirstamp) \
 	wallet/$(DEPDIR)/$(am__dirstamp)
 wallet/libgleecbtc_wallet_a-db.$(OBJEXT): wallet/$(am__dirstamp) \
 	wallet/$(DEPDIR)/$(am__dirstamp)
 wallet/libgleecbtc_wallet_a-feebumper.$(OBJEXT):  \
+	wallet/$(am__dirstamp) wallet/$(DEPDIR)/$(am__dirstamp)
+wallet/libgleecbtc_wallet_a-fees.$(OBJEXT): wallet/$(am__dirstamp) \
+	wallet/$(DEPDIR)/$(am__dirstamp)
+wallet/libgleecbtc_wallet_a-ismine.$(OBJEXT): wallet/$(am__dirstamp) \
+	wallet/$(DEPDIR)/$(am__dirstamp)
+wallet/libgleecbtc_wallet_a-load.$(OBJEXT): wallet/$(am__dirstamp) \
+	wallet/$(DEPDIR)/$(am__dirstamp)
+wallet/libgleecbtc_wallet_a-psbtwallet.$(OBJEXT):  \
 	wallet/$(am__dirstamp) wallet/$(DEPDIR)/$(am__dirstamp)
 wallet/libgleecbtc_wallet_a-rpcdump.$(OBJEXT): wallet/$(am__dirstamp) \
 	wallet/$(DEPDIR)/$(am__dirstamp)
@@ -3235,11 +4332,22 @@ wallet/libgleecbtc_wallet_a-wallet.$(OBJEXT): wallet/$(am__dirstamp) \
 	wallet/$(DEPDIR)/$(am__dirstamp)
 wallet/libgleecbtc_wallet_a-walletdb.$(OBJEXT):  \
 	wallet/$(am__dirstamp) wallet/$(DEPDIR)/$(am__dirstamp)
+wallet/libgleecbtc_wallet_a-walletutil.$(OBJEXT):  \
+	wallet/$(am__dirstamp) wallet/$(DEPDIR)/$(am__dirstamp)
+wallet/libgleecbtc_wallet_a-coinselection.$(OBJEXT):  \
+	wallet/$(am__dirstamp) wallet/$(DEPDIR)/$(am__dirstamp)
 
 libgleecbtc_wallet.a: $(libgleecbtc_wallet_a_OBJECTS) $(libgleecbtc_wallet_a_DEPENDENCIES) $(EXTRA_libgleecbtc_wallet_a_DEPENDENCIES) 
 	$(AM_V_at)-rm -f libgleecbtc_wallet.a
 	$(AM_V_AR)$(libgleecbtc_wallet_a_AR) libgleecbtc_wallet.a $(libgleecbtc_wallet_a_OBJECTS) $(libgleecbtc_wallet_a_LIBADD)
 	$(AM_V_at)$(RANLIB) libgleecbtc_wallet.a
+wallet/libgleecbtc_wallet_tool_a-wallettool.$(OBJEXT):  \
+	wallet/$(am__dirstamp) wallet/$(DEPDIR)/$(am__dirstamp)
+
+libgleecbtc_wallet_tool.a: $(libgleecbtc_wallet_tool_a_OBJECTS) $(libgleecbtc_wallet_tool_a_DEPENDENCIES) $(EXTRA_libgleecbtc_wallet_tool_a_DEPENDENCIES) 
+	$(AM_V_at)-rm -f libgleecbtc_wallet_tool.a
+	$(AM_V_AR)$(libgleecbtc_wallet_tool_a_AR) libgleecbtc_wallet_tool.a $(libgleecbtc_wallet_tool_a_OBJECTS) $(libgleecbtc_wallet_tool_a_LIBADD)
+	$(AM_V_at)$(RANLIB) libgleecbtc_wallet_tool.a
 zmq/$(am__dirstamp):
 	@$(MKDIR_P) zmq
 	@: > zmq/$(am__dirstamp)
@@ -3252,6 +4360,8 @@ zmq/libgleecbtc_zmq_a-zmqnotificationinterface.$(OBJEXT):  \
 	zmq/$(am__dirstamp) zmq/$(DEPDIR)/$(am__dirstamp)
 zmq/libgleecbtc_zmq_a-zmqpublishnotifier.$(OBJEXT):  \
 	zmq/$(am__dirstamp) zmq/$(DEPDIR)/$(am__dirstamp)
+zmq/libgleecbtc_zmq_a-zmqrpc.$(OBJEXT): zmq/$(am__dirstamp) \
+	zmq/$(DEPDIR)/$(am__dirstamp)
 
 libgleecbtc_zmq.a: $(libgleecbtc_zmq_a_OBJECTS) $(libgleecbtc_zmq_a_DEPENDENCIES) $(EXTRA_libgleecbtc_zmq_a_DEPENDENCIES) 
 	$(AM_V_at)-rm -f libgleecbtc_zmq.a
@@ -3264,6 +4374,8 @@ qt/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) qt/$(DEPDIR)
 	@: > qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-bantablemodel.$(OBJEXT): qt/$(am__dirstamp) \
+	qt/$(DEPDIR)/$(am__dirstamp)
+qt/qt_libgleecbtcqt_a-gleecbtc.$(OBJEXT): qt/$(am__dirstamp) \
 	qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-gleecbtcaddressvalidator.$(OBJEXT):  \
 	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
@@ -3319,15 +4431,17 @@ qt/qt_libgleecbtcqt_a-coincontroldialog.$(OBJEXT): qt/$(am__dirstamp) \
 	qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-coincontroltreewidget.$(OBJEXT):  \
 	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
+qt/qt_libgleecbtcqt_a-createwalletdialog.$(OBJEXT):  \
+	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-editaddressdialog.$(OBJEXT): qt/$(am__dirstamp) \
 	qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-openuridialog.$(OBJEXT): qt/$(am__dirstamp) \
 	qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-overviewpage.$(OBJEXT): qt/$(am__dirstamp) \
 	qt/$(DEPDIR)/$(am__dirstamp)
-qt/qt_libgleecbtcqt_a-paymentrequestplus.$(OBJEXT):  \
-	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-paymentserver.$(OBJEXT): qt/$(am__dirstamp) \
+	qt/$(DEPDIR)/$(am__dirstamp)
+qt/qt_libgleecbtcqt_a-qrimagewidget.$(OBJEXT): qt/$(am__dirstamp) \
 	qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-receivecoinsdialog.$(OBJEXT):  \
 	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
@@ -3353,6 +4467,8 @@ qt/qt_libgleecbtcqt_a-transactiontablemodel.$(OBJEXT):  \
 	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-transactionview.$(OBJEXT): qt/$(am__dirstamp) \
 	qt/$(DEPDIR)/$(am__dirstamp)
+qt/qt_libgleecbtcqt_a-walletcontroller.$(OBJEXT): qt/$(am__dirstamp) \
+	qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-walletframe.$(OBJEXT): qt/$(am__dirstamp) \
 	qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-walletmodel.$(OBJEXT): qt/$(am__dirstamp) \
@@ -3361,11 +4477,21 @@ qt/qt_libgleecbtcqt_a-walletmodeltransaction.$(OBJEXT):  \
 	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-walletview.$(OBJEXT): qt/$(am__dirstamp) \
 	qt/$(DEPDIR)/$(am__dirstamp)
+qt/qt_libgleecbtcqt_a-paymentrequestplus.$(OBJEXT):  \
+	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
+qt/qt_libgleecbtcqt_a-macdockiconhandler.$(OBJEXT):  \
+	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
+qt/qt_libgleecbtcqt_a-macnotificationhandler.$(OBJEXT):  \
+	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
+qt/qt_libgleecbtcqt_a-macos_appnap.$(OBJEXT): qt/$(am__dirstamp) \
+	qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-moc_addressbookpage.$(OBJEXT):  \
 	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-moc_addresstablemodel.$(OBJEXT):  \
 	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-moc_askpassphrasedialog.$(OBJEXT):  \
+	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
+qt/qt_libgleecbtcqt_a-moc_createwalletdialog.$(OBJEXT):  \
 	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-moc_bantablemodel.$(OBJEXT): qt/$(am__dirstamp) \
 	qt/$(DEPDIR)/$(am__dirstamp)
@@ -3373,11 +4499,11 @@ qt/qt_libgleecbtcqt_a-moc_gleecbtcaddressvalidator.$(OBJEXT):  \
 	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-moc_gleecbtcamountfield.$(OBJEXT):  \
 	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
+qt/qt_libgleecbtcqt_a-moc_gleecbtc.$(OBJEXT): qt/$(am__dirstamp) \
+	qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-moc_gleecbtcgui.$(OBJEXT): qt/$(am__dirstamp) \
 	qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-moc_gleecbtcunits.$(OBJEXT): qt/$(am__dirstamp) \
-	qt/$(DEPDIR)/$(am__dirstamp)
-qt/qt_libgleecbtcqt_a-moc_callback.$(OBJEXT): qt/$(am__dirstamp) \
 	qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-moc_clientmodel.$(OBJEXT): qt/$(am__dirstamp) \
 	qt/$(DEPDIR)/$(am__dirstamp)
@@ -3413,6 +4539,8 @@ qt/qt_libgleecbtcqt_a-moc_peertablemodel.$(OBJEXT):  \
 	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-moc_paymentserver.$(OBJEXT): qt/$(am__dirstamp) \
 	qt/$(DEPDIR)/$(am__dirstamp)
+qt/qt_libgleecbtcqt_a-moc_qrimagewidget.$(OBJEXT): qt/$(am__dirstamp) \
+	qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-moc_qvalidatedlineedit.$(OBJEXT):  \
 	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-moc_qvaluecombobox.$(OBJEXT):  \
@@ -3447,6 +4575,8 @@ qt/qt_libgleecbtcqt_a-moc_transactionview.$(OBJEXT):  \
 	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-moc_utilitydialog.$(OBJEXT): qt/$(am__dirstamp) \
 	qt/$(DEPDIR)/$(am__dirstamp)
+qt/qt_libgleecbtcqt_a-moc_walletcontroller.$(OBJEXT):  \
+	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-moc_walletframe.$(OBJEXT): qt/$(am__dirstamp) \
 	qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_libgleecbtcqt_a-moc_walletmodel.$(OBJEXT): qt/$(am__dirstamp) \
@@ -3499,13 +4629,21 @@ clean-libLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+support/libgleecbtcconsensus_la-cleanse.lo: support/$(am__dirstamp) \
+	support/$(DEPDIR)/$(am__dirstamp)
 crypto/libgleecbtcconsensus_la-aes.lo: crypto/$(am__dirstamp) \
 	crypto/$(DEPDIR)/$(am__dirstamp)
+crypto/libgleecbtcconsensus_la-chacha_poly_aead.lo:  \
+	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
 crypto/libgleecbtcconsensus_la-chacha20.lo: crypto/$(am__dirstamp) \
 	crypto/$(DEPDIR)/$(am__dirstamp)
+crypto/libgleecbtcconsensus_la-hkdf_sha256_32.lo:  \
+	crypto/$(am__dirstamp) crypto/$(DEPDIR)/$(am__dirstamp)
 crypto/libgleecbtcconsensus_la-hmac_sha256.lo: crypto/$(am__dirstamp) \
 	crypto/$(DEPDIR)/$(am__dirstamp)
 crypto/libgleecbtcconsensus_la-hmac_sha512.lo: crypto/$(am__dirstamp) \
+	crypto/$(DEPDIR)/$(am__dirstamp)
+crypto/libgleecbtcconsensus_la-poly1305.lo: crypto/$(am__dirstamp) \
 	crypto/$(DEPDIR)/$(am__dirstamp)
 crypto/libgleecbtcconsensus_la-ripemd160.lo: crypto/$(am__dirstamp) \
 	crypto/$(DEPDIR)/$(am__dirstamp)
@@ -3515,11 +4653,13 @@ crypto/libgleecbtcconsensus_la-sha256.lo: crypto/$(am__dirstamp) \
 	crypto/$(DEPDIR)/$(am__dirstamp)
 crypto/libgleecbtcconsensus_la-sha512.lo: crypto/$(am__dirstamp) \
 	crypto/$(DEPDIR)/$(am__dirstamp)
+crypto/libgleecbtcconsensus_la-siphash.lo: crypto/$(am__dirstamp) \
+	crypto/$(DEPDIR)/$(am__dirstamp)
 crypto/libgleecbtcconsensus_la-sha256_sse4.lo: crypto/$(am__dirstamp) \
 	crypto/$(DEPDIR)/$(am__dirstamp)
-consensus/libgleecbtcconsensus_la-consensus.lo:  \
-	consensus/$(am__dirstamp) consensus/$(DEPDIR)/$(am__dirstamp)
 consensus/libgleecbtcconsensus_la-merkle.lo:  \
+	consensus/$(am__dirstamp) consensus/$(DEPDIR)/$(am__dirstamp)
+consensus/libgleecbtcconsensus_la-tx_check.lo:  \
 	consensus/$(am__dirstamp) consensus/$(DEPDIR)/$(am__dirstamp)
 primitives/libgleecbtcconsensus_la-block.lo:  \
 	primitives/$(am__dirstamp) \
@@ -3535,6 +4675,8 @@ script/libgleecbtcconsensus_la-script.lo: script/$(am__dirstamp) \
 	script/$(DEPDIR)/$(am__dirstamp)
 script/libgleecbtcconsensus_la-script_error.lo:  \
 	script/$(am__dirstamp) script/$(DEPDIR)/$(am__dirstamp)
+util/libgleecbtcconsensus_la-strencodings.lo: util/$(am__dirstamp) \
+	util/$(DEPDIR)/$(am__dirstamp)
 compat/libgleecbtcconsensus_la-glibc_compat.lo:  \
 	compat/$(am__dirstamp) compat/$(DEPDIR)/$(am__dirstamp)
 
@@ -3608,31 +4750,65 @@ bench/bench_bench_gleecbtc-bench_gleecbtc.$(OBJEXT):  \
 	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
 bench/bench_bench_gleecbtc-bench.$(OBJEXT): bench/$(am__dirstamp) \
 	bench/$(DEPDIR)/$(am__dirstamp)
+bench/bench_bench_gleecbtc-block_assemble.$(OBJEXT):  \
+	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
 bench/bench_bench_gleecbtc-checkblock.$(OBJEXT):  \
 	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
 bench/bench_bench_gleecbtc-checkqueue.$(OBJEXT):  \
 	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
-bench/bench_bench_gleecbtc-Examples.$(OBJEXT): bench/$(am__dirstamp) \
+bench/bench_bench_gleecbtc-data.$(OBJEXT): bench/$(am__dirstamp) \
+	bench/$(DEPDIR)/$(am__dirstamp)
+bench/bench_bench_gleecbtc-duplicate_inputs.$(OBJEXT):  \
+	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
+bench/bench_bench_gleecbtc-examples.$(OBJEXT): bench/$(am__dirstamp) \
 	bench/$(DEPDIR)/$(am__dirstamp)
 bench/bench_bench_gleecbtc-rollingbloom.$(OBJEXT):  \
+	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
+bench/bench_bench_gleecbtc-chacha20.$(OBJEXT): bench/$(am__dirstamp) \
+	bench/$(DEPDIR)/$(am__dirstamp)
+bench/bench_bench_gleecbtc-chacha_poly_aead.$(OBJEXT):  \
 	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
 bench/bench_bench_gleecbtc-crypto_hash.$(OBJEXT):  \
 	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
 bench/bench_bench_gleecbtc-ccoins_caching.$(OBJEXT):  \
 	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
+bench/bench_bench_gleecbtc-gcs_filter.$(OBJEXT):  \
+	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
+bench/bench_bench_gleecbtc-merkle_root.$(OBJEXT):  \
+	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
 bench/bench_bench_gleecbtc-mempool_eviction.$(OBJEXT):  \
 	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
+bench/bench_bench_gleecbtc-rpc_blockchain.$(OBJEXT):  \
+	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
+bench/bench_bench_gleecbtc-rpc_mempool.$(OBJEXT):  \
+	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
+bench/bench_bench_gleecbtc-util_time.$(OBJEXT): bench/$(am__dirstamp) \
+	bench/$(DEPDIR)/$(am__dirstamp)
 bench/bench_bench_gleecbtc-verify_script.$(OBJEXT):  \
 	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
 bench/bench_bench_gleecbtc-base58.$(OBJEXT): bench/$(am__dirstamp) \
 	bench/$(DEPDIR)/$(am__dirstamp)
+bench/bench_bench_gleecbtc-bech32.$(OBJEXT): bench/$(am__dirstamp) \
+	bench/$(DEPDIR)/$(am__dirstamp)
 bench/bench_bench_gleecbtc-lockedpool.$(OBJEXT):  \
 	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
-bench/bench_bench_gleecbtc-perf.$(OBJEXT): bench/$(am__dirstamp) \
+bench/bench_bench_gleecbtc-poly1305.$(OBJEXT): bench/$(am__dirstamp) \
 	bench/$(DEPDIR)/$(am__dirstamp)
-bench/bench_bench_gleecbtc-prevector_destructor.$(OBJEXT):  \
-	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
+bench/bench_bench_gleecbtc-prevector.$(OBJEXT): bench/$(am__dirstamp) \
+	bench/$(DEPDIR)/$(am__dirstamp)
+test/$(am__dirstamp):
+	@$(MKDIR_P) test
+	@: > test/$(am__dirstamp)
+test/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) test/$(DEPDIR)
+	@: > test/$(DEPDIR)/$(am__dirstamp)
+test/bench_bench_gleecbtc-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/bench_bench_gleecbtc-util.$(OBJEXT): test/$(am__dirstamp) \
+	test/$(DEPDIR)/$(am__dirstamp)
 bench/bench_bench_gleecbtc-coin_selection.$(OBJEXT):  \
+	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
+bench/bench_bench_gleecbtc-wallet_balance.$(OBJEXT):  \
 	bench/$(am__dirstamp) bench/$(DEPDIR)/$(am__dirstamp)
 
 bench/bench_gleecbtc$(EXEEXT): $(bench_bench_gleecbtc_OBJECTS) $(bench_bench_gleecbtc_DEPENDENCIES) $(EXTRA_bench_bench_gleecbtc_DEPENDENCIES) bench/$(am__dirstamp)
@@ -3647,15 +4823,15 @@ gleecbtc-tx$(EXEEXT): $(gleecbtc_tx_OBJECTS) $(gleecbtc_tx_DEPENDENCIES) $(EXTRA
 	@rm -f gleecbtc-tx$(EXEEXT)
 	$(AM_V_CXXLD)$(gleecbtc_tx_LINK) $(gleecbtc_tx_OBJECTS) $(gleecbtc_tx_LDADD) $(LIBS)
 
+gleecbtc-wallet$(EXEEXT): $(gleecbtc_wallet_OBJECTS) $(gleecbtc_wallet_DEPENDENCIES) $(EXTRA_gleecbtc_wallet_DEPENDENCIES) 
+	@rm -f gleecbtc-wallet$(EXEEXT)
+	$(AM_V_CXXLD)$(gleecbtc_wallet_LINK) $(gleecbtc_wallet_OBJECTS) $(gleecbtc_wallet_LDADD) $(LIBS)
+
 gleecbtcd$(EXEEXT): $(gleecbtcd_OBJECTS) $(gleecbtcd_DEPENDENCIES) $(EXTRA_gleecbtcd_DEPENDENCIES) 
 	@rm -f gleecbtcd$(EXEEXT)
 	$(AM_V_CXXLD)$(gleecbtcd_LINK) $(gleecbtcd_OBJECTS) $(gleecbtcd_LDADD) $(LIBS)
-qt/qt_gleecbtc_qt-gleecbtc.$(OBJEXT): qt/$(am__dirstamp) \
+qt/qt_gleecbtc_qt-main.$(OBJEXT): qt/$(am__dirstamp) \
 	qt/$(DEPDIR)/$(am__dirstamp)
-qt/qt_gleecbtc_qt-macdockiconhandler.$(OBJEXT): qt/$(am__dirstamp) \
-	qt/$(DEPDIR)/$(am__dirstamp)
-qt/qt_gleecbtc_qt-macnotificationhandler.$(OBJEXT):  \
-	qt/$(am__dirstamp) qt/$(DEPDIR)/$(am__dirstamp)
 qt/res/$(am__dirstamp):
 	@$(MKDIR_P) qt/res
 	@: > qt/res/$(am__dirstamp)
@@ -3667,13 +4843,15 @@ qt/res/gleecbtc-qt-res.$(OBJEXT): qt/res/$(am__dirstamp) \
 
 qt/gleecbtc-qt$(EXEEXT): $(qt_gleecbtc_qt_OBJECTS) $(qt_gleecbtc_qt_DEPENDENCIES) $(EXTRA_qt_gleecbtc_qt_DEPENDENCIES) qt/$(am__dirstamp)
 	@rm -f qt/gleecbtc-qt$(EXEEXT)
-	$(AM_V_OBJCXXLD)$(qt_gleecbtc_qt_LINK) $(qt_gleecbtc_qt_OBJECTS) $(qt_gleecbtc_qt_LDADD) $(LIBS)
+	$(AM_V_CXXLD)$(qt_gleecbtc_qt_LINK) $(qt_gleecbtc_qt_OBJECTS) $(qt_gleecbtc_qt_LDADD) $(LIBS)
 qt/test/$(am__dirstamp):
 	@$(MKDIR_P) qt/test
 	@: > qt/test/$(am__dirstamp)
 qt/test/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) qt/test/$(DEPDIR)
 	@: > qt/test/$(DEPDIR)/$(am__dirstamp)
+qt/test/qt_test_test_gleecbtc_qt-apptests.$(OBJEXT):  \
+	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
 qt/test/qt_test_test_gleecbtc_qt-compattests.$(OBJEXT):  \
 	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
 qt/test/qt_test_test_gleecbtc_qt-rpcnestedtests.$(OBJEXT):  \
@@ -3682,15 +4860,11 @@ qt/test/qt_test_test_gleecbtc_qt-test_main.$(OBJEXT):  \
 	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
 qt/test/qt_test_test_gleecbtc_qt-uritests.$(OBJEXT):  \
 	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
-test/$(am__dirstamp):
-	@$(MKDIR_P) test
-	@: > test/$(am__dirstamp)
-test/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) test/$(DEPDIR)
-	@: > test/$(DEPDIR)/$(am__dirstamp)
-test/qt_test_test_gleecbtc_qt-test_gleecbtc.$(OBJEXT):  \
+qt/test/qt_test_test_gleecbtc_qt-util.$(OBJEXT):  \
+	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
+test/qt_test_test_gleecbtc_qt-setup_common.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
-qt/test/qt_test_test_gleecbtc_qt-paymentservertests.$(OBJEXT):  \
+qt/test/qt_test_test_gleecbtc_qt-addressbooktests.$(OBJEXT):  \
 	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
 qt/test/qt_test_test_gleecbtc_qt-wallettests.$(OBJEXT):  \
 	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
@@ -3703,20 +4877,260 @@ wallet/test/$(DEPDIR)/$(am__dirstamp):
 wallet/test/qt_test_test_gleecbtc_qt-wallet_test_fixture.$(OBJEXT):  \
 	wallet/test/$(am__dirstamp) \
 	wallet/test/$(DEPDIR)/$(am__dirstamp)
+qt/test/qt_test_test_gleecbtc_qt-paymentservertests.$(OBJEXT):  \
+	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
+qt/test/qt_test_test_gleecbtc_qt-moc_apptests.$(OBJEXT):  \
+	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
 qt/test/qt_test_test_gleecbtc_qt-moc_compattests.$(OBJEXT):  \
 	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
 qt/test/qt_test_test_gleecbtc_qt-moc_rpcnestedtests.$(OBJEXT):  \
 	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
 qt/test/qt_test_test_gleecbtc_qt-moc_uritests.$(OBJEXT):  \
 	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
-qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.$(OBJEXT):  \
+qt/test/qt_test_test_gleecbtc_qt-moc_addressbooktests.$(OBJEXT):  \
 	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
 qt/test/qt_test_test_gleecbtc_qt-moc_wallettests.$(OBJEXT):  \
+	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
+qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.$(OBJEXT):  \
 	qt/test/$(am__dirstamp) qt/test/$(DEPDIR)/$(am__dirstamp)
 
 qt/test/test_gleecbtc-qt$(EXEEXT): $(qt_test_test_gleecbtc_qt_OBJECTS) $(qt_test_test_gleecbtc_qt_DEPENDENCIES) $(EXTRA_qt_test_test_gleecbtc_qt_DEPENDENCIES) qt/test/$(am__dirstamp)
 	@rm -f qt/test/test_gleecbtc-qt$(EXEEXT)
 	$(AM_V_CXXLD)$(qt_test_test_gleecbtc_qt_LINK) $(qt_test_test_gleecbtc_qt_OBJECTS) $(qt_test_test_gleecbtc_qt_LDADD) $(LIBS)
+test/test_fuzz_address_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/$(am__dirstamp):
+	@$(MKDIR_P) test/fuzz
+	@: > test/fuzz/$(am__dirstamp)
+test/fuzz/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) test/fuzz/$(DEPDIR)
+	@: > test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_address_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_address_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/address_deserialize$(EXEEXT): $(test_fuzz_address_deserialize_OBJECTS) $(test_fuzz_address_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_address_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/address_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_address_deserialize_LINK) $(test_fuzz_address_deserialize_OBJECTS) $(test_fuzz_address_deserialize_LDADD) $(LIBS)
+test/test_fuzz_addrman_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_addrman_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_addrman_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/addrman_deserialize$(EXEEXT): $(test_fuzz_addrman_deserialize_OBJECTS) $(test_fuzz_addrman_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_addrman_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/addrman_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_addrman_deserialize_LINK) $(test_fuzz_addrman_deserialize_OBJECTS) $(test_fuzz_addrman_deserialize_LDADD) $(LIBS)
+test/test_fuzz_banentry_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_banentry_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_banentry_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/banentry_deserialize$(EXEEXT): $(test_fuzz_banentry_deserialize_OBJECTS) $(test_fuzz_banentry_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_banentry_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/banentry_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_banentry_deserialize_LINK) $(test_fuzz_banentry_deserialize_OBJECTS) $(test_fuzz_banentry_deserialize_LDADD) $(LIBS)
+test/test_fuzz_block_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_block_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_block_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/block_deserialize$(EXEEXT): $(test_fuzz_block_deserialize_OBJECTS) $(test_fuzz_block_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_block_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/block_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_block_deserialize_LINK) $(test_fuzz_block_deserialize_OBJECTS) $(test_fuzz_block_deserialize_LDADD) $(LIBS)
+test/test_fuzz_blockheader_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_blockheader_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_blockheader_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/blockheader_deserialize$(EXEEXT): $(test_fuzz_blockheader_deserialize_OBJECTS) $(test_fuzz_blockheader_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_blockheader_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/blockheader_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_blockheader_deserialize_LINK) $(test_fuzz_blockheader_deserialize_OBJECTS) $(test_fuzz_blockheader_deserialize_LDADD) $(LIBS)
+test/test_fuzz_blocklocator_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_blocklocator_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_blocklocator_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/blocklocator_deserialize$(EXEEXT): $(test_fuzz_blocklocator_deserialize_OBJECTS) $(test_fuzz_blocklocator_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_blocklocator_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/blocklocator_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_blocklocator_deserialize_LINK) $(test_fuzz_blocklocator_deserialize_OBJECTS) $(test_fuzz_blocklocator_deserialize_LDADD) $(LIBS)
+test/test_fuzz_blockmerkleroot-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_blockmerkleroot-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_blockmerkleroot-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/blockmerkleroot$(EXEEXT): $(test_fuzz_blockmerkleroot_OBJECTS) $(test_fuzz_blockmerkleroot_DEPENDENCIES) $(EXTRA_test_fuzz_blockmerkleroot_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/blockmerkleroot$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_blockmerkleroot_LINK) $(test_fuzz_blockmerkleroot_OBJECTS) $(test_fuzz_blockmerkleroot_LDADD) $(LIBS)
+test/test_fuzz_blocktransactions_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_blocktransactions_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_blocktransactions_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/blocktransactions_deserialize$(EXEEXT): $(test_fuzz_blocktransactions_deserialize_OBJECTS) $(test_fuzz_blocktransactions_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_blocktransactions_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/blocktransactions_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_blocktransactions_deserialize_LINK) $(test_fuzz_blocktransactions_deserialize_OBJECTS) $(test_fuzz_blocktransactions_deserialize_LDADD) $(LIBS)
+test/test_fuzz_blocktransactionsrequest_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/blocktransactionsrequest_deserialize$(EXEEXT): $(test_fuzz_blocktransactionsrequest_deserialize_OBJECTS) $(test_fuzz_blocktransactionsrequest_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_blocktransactionsrequest_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/blocktransactionsrequest_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_blocktransactionsrequest_deserialize_LINK) $(test_fuzz_blocktransactionsrequest_deserialize_OBJECTS) $(test_fuzz_blocktransactionsrequest_deserialize_LDADD) $(LIBS)
+test/test_fuzz_blockundo_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_blockundo_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_blockundo_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/blockundo_deserialize$(EXEEXT): $(test_fuzz_blockundo_deserialize_OBJECTS) $(test_fuzz_blockundo_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_blockundo_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/blockundo_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_blockundo_deserialize_LINK) $(test_fuzz_blockundo_deserialize_OBJECTS) $(test_fuzz_blockundo_deserialize_LDADD) $(LIBS)
+test/test_fuzz_bloomfilter_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_bloomfilter_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_bloomfilter_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/bloomfilter_deserialize$(EXEEXT): $(test_fuzz_bloomfilter_deserialize_OBJECTS) $(test_fuzz_bloomfilter_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_bloomfilter_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/bloomfilter_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_bloomfilter_deserialize_LINK) $(test_fuzz_bloomfilter_deserialize_OBJECTS) $(test_fuzz_bloomfilter_deserialize_LDADD) $(LIBS)
+test/test_fuzz_coins_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_coins_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_coins_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/coins_deserialize$(EXEEXT): $(test_fuzz_coins_deserialize_OBJECTS) $(test_fuzz_coins_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_coins_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/coins_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_coins_deserialize_LINK) $(test_fuzz_coins_deserialize_OBJECTS) $(test_fuzz_coins_deserialize_LDADD) $(LIBS)
+test/test_fuzz_diskblockindex_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_diskblockindex_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_diskblockindex_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/diskblockindex_deserialize$(EXEEXT): $(test_fuzz_diskblockindex_deserialize_OBJECTS) $(test_fuzz_diskblockindex_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_diskblockindex_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/diskblockindex_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_diskblockindex_deserialize_LINK) $(test_fuzz_diskblockindex_deserialize_OBJECTS) $(test_fuzz_diskblockindex_deserialize_LDADD) $(LIBS)
+test/test_fuzz_inv_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_inv_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_inv_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/inv_deserialize$(EXEEXT): $(test_fuzz_inv_deserialize_OBJECTS) $(test_fuzz_inv_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_inv_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/inv_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_inv_deserialize_LINK) $(test_fuzz_inv_deserialize_OBJECTS) $(test_fuzz_inv_deserialize_LDADD) $(LIBS)
+test/test_fuzz_messageheader_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_messageheader_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_messageheader_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/messageheader_deserialize$(EXEEXT): $(test_fuzz_messageheader_deserialize_OBJECTS) $(test_fuzz_messageheader_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_messageheader_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/messageheader_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_messageheader_deserialize_LINK) $(test_fuzz_messageheader_deserialize_OBJECTS) $(test_fuzz_messageheader_deserialize_LDADD) $(LIBS)
+test/test_fuzz_netaddr_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_netaddr_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_netaddr_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/netaddr_deserialize$(EXEEXT): $(test_fuzz_netaddr_deserialize_OBJECTS) $(test_fuzz_netaddr_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_netaddr_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/netaddr_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_netaddr_deserialize_LINK) $(test_fuzz_netaddr_deserialize_OBJECTS) $(test_fuzz_netaddr_deserialize_LDADD) $(LIBS)
+test/test_fuzz_script_flags-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_script_flags-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_script_flags-script_flags.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/script_flags$(EXEEXT): $(test_fuzz_script_flags_OBJECTS) $(test_fuzz_script_flags_DEPENDENCIES) $(EXTRA_test_fuzz_script_flags_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/script_flags$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_script_flags_LINK) $(test_fuzz_script_flags_OBJECTS) $(test_fuzz_script_flags_LDADD) $(LIBS)
+test/test_fuzz_service_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_service_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_service_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/service_deserialize$(EXEEXT): $(test_fuzz_service_deserialize_OBJECTS) $(test_fuzz_service_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_service_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/service_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_service_deserialize_LINK) $(test_fuzz_service_deserialize_OBJECTS) $(test_fuzz_service_deserialize_LDADD) $(LIBS)
+test/test_fuzz_transaction_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_transaction_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_transaction_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/transaction_deserialize$(EXEEXT): $(test_fuzz_transaction_deserialize_OBJECTS) $(test_fuzz_transaction_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_transaction_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/transaction_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_transaction_deserialize_LINK) $(test_fuzz_transaction_deserialize_OBJECTS) $(test_fuzz_transaction_deserialize_LDADD) $(LIBS)
+test/test_fuzz_txoutcompressor_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_txoutcompressor_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_txoutcompressor_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/txoutcompressor_deserialize$(EXEEXT): $(test_fuzz_txoutcompressor_deserialize_OBJECTS) $(test_fuzz_txoutcompressor_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_txoutcompressor_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/txoutcompressor_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_txoutcompressor_deserialize_LINK) $(test_fuzz_txoutcompressor_deserialize_OBJECTS) $(test_fuzz_txoutcompressor_deserialize_LDADD) $(LIBS)
+test/test_fuzz_txundo_deserialize-setup_common.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_txundo_deserialize-fuzz.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+test/fuzz/test_fuzz_txundo_deserialize-deserialize.$(OBJEXT):  \
+	test/fuzz/$(am__dirstamp) test/fuzz/$(DEPDIR)/$(am__dirstamp)
+
+test/fuzz/txundo_deserialize$(EXEEXT): $(test_fuzz_txundo_deserialize_OBJECTS) $(test_fuzz_txundo_deserialize_DEPENDENCIES) $(EXTRA_test_fuzz_txundo_deserialize_DEPENDENCIES) test/fuzz/$(am__dirstamp)
+	@rm -f test/fuzz/txundo_deserialize$(EXEEXT)
+	$(AM_V_CXXLD)$(test_fuzz_txundo_deserialize_LINK) $(test_fuzz_txundo_deserialize_OBJECTS) $(test_fuzz_txundo_deserialize_LDADD) $(LIBS)
+test/test_test_gleecbtc-main.$(OBJEXT): test/$(am__dirstamp) \
+	test/$(DEPDIR)/$(am__dirstamp)
+test/test_test_gleecbtc-setup_common.$(OBJEXT): test/$(am__dirstamp) \
+	test/$(DEPDIR)/$(am__dirstamp)
+test/gen/$(am__dirstamp):
+	@$(MKDIR_P) test/gen
+	@: > test/gen/$(am__dirstamp)
+test/gen/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) test/gen/$(DEPDIR)
+	@: > test/gen/$(DEPDIR)/$(am__dirstamp)
+test/gen/test_test_gleecbtc-crypto_gen.$(OBJEXT):  \
+	test/gen/$(am__dirstamp) test/gen/$(DEPDIR)/$(am__dirstamp)
+wallet/test/test_test_gleecbtc-wallet_test_fixture.$(OBJEXT):  \
+	wallet/test/$(am__dirstamp) \
+	wallet/test/$(DEPDIR)/$(am__dirstamp)
+wallet/test/test_test_gleecbtc-init_test_fixture.$(OBJEXT):  \
+	wallet/test/$(am__dirstamp) \
+	wallet/test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-arith_uint256_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-addrman_tests.$(OBJEXT): test/$(am__dirstamp) \
@@ -3731,9 +5145,17 @@ test/test_test_gleecbtc-base58_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-base64_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
+test/test_test_gleecbtc-bech32_tests.$(OBJEXT): test/$(am__dirstamp) \
+	test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-bip32_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
+test/test_test_gleecbtc-blockchain_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-blockencodings_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/test_test_gleecbtc-blockfilter_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/test_test_gleecbtc-blockfilter_index_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-bloom_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
@@ -3743,17 +5165,27 @@ test/test_test_gleecbtc-checkqueue_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-coins_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
+test/test_test_gleecbtc-compilerbug_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-compress_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-crypto_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-cuckoocache_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
-test/test_test_gleecbtc-DoS_tests.$(OBJEXT): test/$(am__dirstamp) \
+test/test_test_gleecbtc-denialofservice_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/test_test_gleecbtc-descriptor_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/test_test_gleecbtc-flatfile_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/test_test_gleecbtc-fs_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-getarg_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-hash_tests.$(OBJEXT): test/$(am__dirstamp) \
+	test/$(DEPDIR)/$(am__dirstamp)
+test/test_test_gleecbtc-key_io_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-key_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
@@ -3761,12 +5193,14 @@ test/test_test_gleecbtc-limitedmap_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-dbwrapper_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
-test/test_test_gleecbtc-main_tests.$(OBJEXT): test/$(am__dirstamp) \
-	test/$(DEPDIR)/$(am__dirstamp)
+test/test_test_gleecbtc-validation_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-mempool_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-merkle_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
+test/test_test_gleecbtc-merkleblock_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-miner_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-multisig_tests.$(OBJEXT):  \
@@ -3795,7 +5229,7 @@ test/test_test_gleecbtc-sanity_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-scheduler_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
-test/test_test_gleecbtc-script_P2SH_tests.$(OBJEXT):  \
+test/test_test_gleecbtc-script_p2sh_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-script_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
@@ -3813,9 +5247,9 @@ test/test_test_gleecbtc-skiplist_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-streams_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/test_test_gleecbtc-test_gleecbtc.$(OBJEXT): test/$(am__dirstamp) \
+test/test_test_gleecbtc-sync_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/test_test_gleecbtc-test_gleecbtc_main.$(OBJEXT):  \
+test/test_test_gleecbtc-util_threadnames_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-timedata_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
@@ -3823,38 +5257,47 @@ test/test_test_gleecbtc-torcontrol_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-transaction_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
-test/test_test_gleecbtc-txvalidationcache_tests.$(OBJEXT):  \
+test/test_test_gleecbtc-txindex_tests.$(OBJEXT): test/$(am__dirstamp) \
+	test/$(DEPDIR)/$(am__dirstamp)
+test/test_test_gleecbtc-txvalidation_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
-test/test_test_gleecbtc-versionbits_tests.$(OBJEXT):  \
+test/test_test_gleecbtc-txvalidationcache_tests.$(OBJEXT):  \
 	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-uint256_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/test_test_gleecbtc-univalue_tests.$(OBJEXT):  \
-	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
 test/test_test_gleecbtc-util_tests.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-wallet/test/test_test_gleecbtc-wallet_test_fixture.$(OBJEXT):  \
+test/test_test_gleecbtc-validation_block_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/test_test_gleecbtc-versionbits_tests.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+test/test_test_gleecbtc-key_properties.$(OBJEXT):  \
+	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
+wallet/test/test_test_gleecbtc-db_tests.$(OBJEXT):  \
 	wallet/test/$(am__dirstamp) \
 	wallet/test/$(DEPDIR)/$(am__dirstamp)
-wallet/test/test_test_gleecbtc-accounting_tests.$(OBJEXT):  \
+wallet/test/test_test_gleecbtc-psbt_wallet_tests.$(OBJEXT):  \
 	wallet/test/$(am__dirstamp) \
 	wallet/test/$(DEPDIR)/$(am__dirstamp)
 wallet/test/test_test_gleecbtc-wallet_tests.$(OBJEXT):  \
 	wallet/test/$(am__dirstamp) \
 	wallet/test/$(DEPDIR)/$(am__dirstamp)
-wallet/test/test_test_gleecbtc-crypto_tests.$(OBJEXT):  \
+wallet/test/test_test_gleecbtc-wallet_crypto_tests.$(OBJEXT):  \
+	wallet/test/$(am__dirstamp) \
+	wallet/test/$(DEPDIR)/$(am__dirstamp)
+wallet/test/test_test_gleecbtc-coinselector_tests.$(OBJEXT):  \
+	wallet/test/$(am__dirstamp) \
+	wallet/test/$(DEPDIR)/$(am__dirstamp)
+wallet/test/test_test_gleecbtc-init_tests.$(OBJEXT):  \
+	wallet/test/$(am__dirstamp) \
+	wallet/test/$(DEPDIR)/$(am__dirstamp)
+wallet/test/test_test_gleecbtc-ismine_tests.$(OBJEXT):  \
 	wallet/test/$(am__dirstamp) \
 	wallet/test/$(DEPDIR)/$(am__dirstamp)
 
 test/test_gleecbtc$(EXEEXT): $(test_test_gleecbtc_OBJECTS) $(test_test_gleecbtc_DEPENDENCIES) $(EXTRA_test_test_gleecbtc_DEPENDENCIES) test/$(am__dirstamp)
 	@rm -f test/test_gleecbtc$(EXEEXT)
 	$(AM_V_CXXLD)$(test_test_gleecbtc_LINK) $(test_test_gleecbtc_OBJECTS) $(test_test_gleecbtc_LDADD) $(LIBS)
-test/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.$(OBJEXT):  \
-	test/$(am__dirstamp) test/$(DEPDIR)/$(am__dirstamp)
-
-test/test_gleecbtc_fuzzy$(EXEEXT): $(test_test_gleecbtc_fuzzy_OBJECTS) $(test_test_gleecbtc_fuzzy_DEPENDENCIES) $(EXTRA_test_test_gleecbtc_fuzzy_DEPENDENCIES) test/$(am__dirstamp)
-	@rm -f test/test_gleecbtc_fuzzy$(EXEEXT)
-	$(AM_V_CXXLD)$(test_test_gleecbtc_fuzzy_LINK) $(test_test_gleecbtc_fuzzy_OBJECTS) $(test_test_gleecbtc_fuzzy_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -3865,11 +5308,14 @@ mostlyclean-compile:
 	-rm -f consensus/*.lo
 	-rm -f crypto/*.$(OBJEXT)
 	-rm -f crypto/*.lo
+	-rm -f index/*.$(OBJEXT)
+	-rm -f interfaces/*.$(OBJEXT)
 	-rm -f leveldb/db/*.$(OBJEXT)
 	-rm -f leveldb/helpers/memenv/*.$(OBJEXT)
 	-rm -f leveldb/port/*.$(OBJEXT)
 	-rm -f leveldb/table/*.$(OBJEXT)
 	-rm -f leveldb/util/*.$(OBJEXT)
+	-rm -f node/*.$(OBJEXT)
 	-rm -f policy/*.$(OBJEXT)
 	-rm -f primitives/*.$(OBJEXT)
 	-rm -f primitives/*.lo
@@ -3880,7 +5326,12 @@ mostlyclean-compile:
 	-rm -f script/*.$(OBJEXT)
 	-rm -f script/*.lo
 	-rm -f support/*.$(OBJEXT)
+	-rm -f support/*.lo
 	-rm -f test/*.$(OBJEXT)
+	-rm -f test/fuzz/*.$(OBJEXT)
+	-rm -f test/gen/*.$(OBJEXT)
+	-rm -f util/*.$(OBJEXT)
+	-rm -f util/*.lo
 	-rm -f wallet/*.$(OBJEXT)
 	-rm -f wallet/test/*.$(OBJEXT)
 	-rm -f zmq/*.$(OBJEXT)
@@ -3890,42 +5341,51 @@ distclean-compile:
 
 include ./$(DEPDIR)/gleecbtc_cli-gleecbtc-cli.Po
 include ./$(DEPDIR)/gleecbtc_tx-gleecbtc-tx.Po
+include ./$(DEPDIR)/gleecbtc_wallet-gleecbtc-wallet.Po
 include ./$(DEPDIR)/gleecbtcd-gleecbtcd.Po
 include ./$(DEPDIR)/libgleecbtc_common_a-base58.Po
+include ./$(DEPDIR)/libgleecbtc_common_a-bech32.Po
+include ./$(DEPDIR)/libgleecbtc_common_a-bloom.Po
 include ./$(DEPDIR)/libgleecbtc_common_a-chainparams.Po
 include ./$(DEPDIR)/libgleecbtc_common_a-coins.Po
 include ./$(DEPDIR)/libgleecbtc_common_a-compressor.Po
 include ./$(DEPDIR)/libgleecbtc_common_a-core_read.Po
 include ./$(DEPDIR)/libgleecbtc_common_a-core_write.Po
 include ./$(DEPDIR)/libgleecbtc_common_a-key.Po
-include ./$(DEPDIR)/libgleecbtc_common_a-keystore.Po
+include ./$(DEPDIR)/libgleecbtc_common_a-key_io.Po
+include ./$(DEPDIR)/libgleecbtc_common_a-merkleblock.Po
+include ./$(DEPDIR)/libgleecbtc_common_a-net_permissions.Po
 include ./$(DEPDIR)/libgleecbtc_common_a-netaddress.Po
 include ./$(DEPDIR)/libgleecbtc_common_a-netbase.Po
+include ./$(DEPDIR)/libgleecbtc_common_a-outputtype.Po
 include ./$(DEPDIR)/libgleecbtc_common_a-protocol.Po
+include ./$(DEPDIR)/libgleecbtc_common_a-psbt.Po
 include ./$(DEPDIR)/libgleecbtc_common_a-scheduler.Po
+include ./$(DEPDIR)/libgleecbtc_common_a-versionbitsinfo.Po
 include ./$(DEPDIR)/libgleecbtc_common_a-warnings.Po
 include ./$(DEPDIR)/libgleecbtc_consensus_a-arith_uint256.Po
 include ./$(DEPDIR)/libgleecbtc_consensus_a-hash.Po
 include ./$(DEPDIR)/libgleecbtc_consensus_a-pubkey.Po
 include ./$(DEPDIR)/libgleecbtc_consensus_a-uint256.Po
-include ./$(DEPDIR)/libgleecbtc_consensus_a-utilstrencodings.Po
 include ./$(DEPDIR)/libgleecbtc_server_a-addrdb.Po
 include ./$(DEPDIR)/libgleecbtc_server_a-addrman.Po
+include ./$(DEPDIR)/libgleecbtc_server_a-banman.Po
 include ./$(DEPDIR)/libgleecbtc_server_a-blockencodings.Po
-include ./$(DEPDIR)/libgleecbtc_server_a-bloom.Po
+include ./$(DEPDIR)/libgleecbtc_server_a-blockfilter.Po
 include ./$(DEPDIR)/libgleecbtc_server_a-chain.Po
-include ./$(DEPDIR)/libgleecbtc_server_a-checkpoints.Po
 include ./$(DEPDIR)/libgleecbtc_server_a-dbwrapper.Po
+include ./$(DEPDIR)/libgleecbtc_server_a-dummywallet.Po
+include ./$(DEPDIR)/libgleecbtc_server_a-flatfile.Po
 include ./$(DEPDIR)/libgleecbtc_server_a-httprpc.Po
 include ./$(DEPDIR)/libgleecbtc_server_a-httpserver.Po
 include ./$(DEPDIR)/libgleecbtc_server_a-init.Po
-include ./$(DEPDIR)/libgleecbtc_server_a-merkleblock.Po
 include ./$(DEPDIR)/libgleecbtc_server_a-miner.Po
 include ./$(DEPDIR)/libgleecbtc_server_a-net.Po
 include ./$(DEPDIR)/libgleecbtc_server_a-net_processing.Po
 include ./$(DEPDIR)/libgleecbtc_server_a-noui.Po
 include ./$(DEPDIR)/libgleecbtc_server_a-pow.Po
 include ./$(DEPDIR)/libgleecbtc_server_a-rest.Po
+include ./$(DEPDIR)/libgleecbtc_server_a-shutdown.Po
 include ./$(DEPDIR)/libgleecbtc_server_a-timedata.Po
 include ./$(DEPDIR)/libgleecbtc_server_a-torcontrol.Po
 include ./$(DEPDIR)/libgleecbtc_server_a-txdb.Po
@@ -3937,61 +5397,88 @@ include ./$(DEPDIR)/libgleecbtc_server_a-versionbits.Po
 include ./$(DEPDIR)/libgleecbtc_util_a-chainparamsbase.Po
 include ./$(DEPDIR)/libgleecbtc_util_a-clientversion.Po
 include ./$(DEPDIR)/libgleecbtc_util_a-fs.Po
+include ./$(DEPDIR)/libgleecbtc_util_a-logging.Po
 include ./$(DEPDIR)/libgleecbtc_util_a-random.Po
 include ./$(DEPDIR)/libgleecbtc_util_a-sync.Po
 include ./$(DEPDIR)/libgleecbtc_util_a-threadinterrupt.Po
-include ./$(DEPDIR)/libgleecbtc_util_a-util.Po
-include ./$(DEPDIR)/libgleecbtc_util_a-utilmoneystr.Po
-include ./$(DEPDIR)/libgleecbtc_util_a-utilstrencodings.Po
-include ./$(DEPDIR)/libgleecbtc_util_a-utiltime.Po
 include ./$(DEPDIR)/libgleecbtcconsensus_la-arith_uint256.Plo
 include ./$(DEPDIR)/libgleecbtcconsensus_la-hash.Plo
 include ./$(DEPDIR)/libgleecbtcconsensus_la-pubkey.Plo
 include ./$(DEPDIR)/libgleecbtcconsensus_la-uint256.Plo
-include ./$(DEPDIR)/libgleecbtcconsensus_la-utilstrencodings.Plo
-include bench/$(DEPDIR)/bench_bench_gleecbtc-Examples.Po
 include bench/$(DEPDIR)/bench_bench_gleecbtc-base58.Po
+include bench/$(DEPDIR)/bench_bench_gleecbtc-bech32.Po
 include bench/$(DEPDIR)/bench_bench_gleecbtc-bench.Po
 include bench/$(DEPDIR)/bench_bench_gleecbtc-bench_gleecbtc.Po
+include bench/$(DEPDIR)/bench_bench_gleecbtc-block_assemble.Po
 include bench/$(DEPDIR)/bench_bench_gleecbtc-ccoins_caching.Po
+include bench/$(DEPDIR)/bench_bench_gleecbtc-chacha20.Po
+include bench/$(DEPDIR)/bench_bench_gleecbtc-chacha_poly_aead.Po
 include bench/$(DEPDIR)/bench_bench_gleecbtc-checkblock.Po
 include bench/$(DEPDIR)/bench_bench_gleecbtc-checkqueue.Po
 include bench/$(DEPDIR)/bench_bench_gleecbtc-coin_selection.Po
 include bench/$(DEPDIR)/bench_bench_gleecbtc-crypto_hash.Po
+include bench/$(DEPDIR)/bench_bench_gleecbtc-data.Po
+include bench/$(DEPDIR)/bench_bench_gleecbtc-duplicate_inputs.Po
+include bench/$(DEPDIR)/bench_bench_gleecbtc-examples.Po
+include bench/$(DEPDIR)/bench_bench_gleecbtc-gcs_filter.Po
 include bench/$(DEPDIR)/bench_bench_gleecbtc-lockedpool.Po
 include bench/$(DEPDIR)/bench_bench_gleecbtc-mempool_eviction.Po
-include bench/$(DEPDIR)/bench_bench_gleecbtc-perf.Po
-include bench/$(DEPDIR)/bench_bench_gleecbtc-prevector_destructor.Po
+include bench/$(DEPDIR)/bench_bench_gleecbtc-merkle_root.Po
+include bench/$(DEPDIR)/bench_bench_gleecbtc-poly1305.Po
+include bench/$(DEPDIR)/bench_bench_gleecbtc-prevector.Po
 include bench/$(DEPDIR)/bench_bench_gleecbtc-rollingbloom.Po
+include bench/$(DEPDIR)/bench_bench_gleecbtc-rpc_blockchain.Po
+include bench/$(DEPDIR)/bench_bench_gleecbtc-rpc_mempool.Po
+include bench/$(DEPDIR)/bench_bench_gleecbtc-util_time.Po
 include bench/$(DEPDIR)/bench_bench_gleecbtc-verify_script.Po
+include bench/$(DEPDIR)/bench_bench_gleecbtc-wallet_balance.Po
 include compat/$(DEPDIR)/libgleecbtc_util_a-glibc_compat.Po
 include compat/$(DEPDIR)/libgleecbtc_util_a-glibc_sanity.Po
+include compat/$(DEPDIR)/libgleecbtc_util_a-glibc_sanity_fdelt.Po
 include compat/$(DEPDIR)/libgleecbtc_util_a-glibcxx_sanity.Po
 include compat/$(DEPDIR)/libgleecbtc_util_a-strnlen.Po
 include compat/$(DEPDIR)/libgleecbtcconsensus_la-glibc_compat.Plo
-include consensus/$(DEPDIR)/libgleecbtc_consensus_a-consensus.Po
 include consensus/$(DEPDIR)/libgleecbtc_consensus_a-merkle.Po
+include consensus/$(DEPDIR)/libgleecbtc_consensus_a-tx_check.Po
 include consensus/$(DEPDIR)/libgleecbtc_server_a-tx_verify.Po
-include consensus/$(DEPDIR)/libgleecbtcconsensus_la-consensus.Plo
 include consensus/$(DEPDIR)/libgleecbtcconsensus_la-merkle.Plo
-include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-aes.Po
-include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-chacha20.Po
-include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-hmac_sha256.Po
-include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-hmac_sha512.Po
-include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-ripemd160.Po
-include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha1.Po
-include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha256.Po
-include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha256_sse4.Po
-include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha512.Po
+include consensus/$(DEPDIR)/libgleecbtcconsensus_la-tx_check.Plo
+include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.Po
+include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-aes.Po
+include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-chacha20.Po
+include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.Po
+include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.Po
+include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hmac_sha256.Po
+include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hmac_sha512.Po
+include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-poly1305.Po
+include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-ripemd160.Po
+include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha1.Po
+include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha256.Po
+include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha256_sse4.Po
+include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha512.Po
+include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-siphash.Po
+include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_shani_a-sha256_shani.Po
+include crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.Po
 include crypto/$(DEPDIR)/libgleecbtcconsensus_la-aes.Plo
 include crypto/$(DEPDIR)/libgleecbtcconsensus_la-chacha20.Plo
+include crypto/$(DEPDIR)/libgleecbtcconsensus_la-chacha_poly_aead.Plo
+include crypto/$(DEPDIR)/libgleecbtcconsensus_la-hkdf_sha256_32.Plo
 include crypto/$(DEPDIR)/libgleecbtcconsensus_la-hmac_sha256.Plo
 include crypto/$(DEPDIR)/libgleecbtcconsensus_la-hmac_sha512.Plo
+include crypto/$(DEPDIR)/libgleecbtcconsensus_la-poly1305.Plo
 include crypto/$(DEPDIR)/libgleecbtcconsensus_la-ripemd160.Plo
 include crypto/$(DEPDIR)/libgleecbtcconsensus_la-sha1.Plo
 include crypto/$(DEPDIR)/libgleecbtcconsensus_la-sha256.Plo
 include crypto/$(DEPDIR)/libgleecbtcconsensus_la-sha256_sse4.Plo
 include crypto/$(DEPDIR)/libgleecbtcconsensus_la-sha512.Plo
+include crypto/$(DEPDIR)/libgleecbtcconsensus_la-siphash.Plo
+include index/$(DEPDIR)/libgleecbtc_server_a-base.Po
+include index/$(DEPDIR)/libgleecbtc_server_a-blockfilterindex.Po
+include index/$(DEPDIR)/libgleecbtc_server_a-txindex.Po
+include interfaces/$(DEPDIR)/libgleecbtc_server_a-chain.Po
+include interfaces/$(DEPDIR)/libgleecbtc_server_a-node.Po
+include interfaces/$(DEPDIR)/libgleecbtc_util_a-handler.Po
+include interfaces/$(DEPDIR)/libgleecbtc_wallet_a-wallet.Po
 include leveldb/db/$(DEPDIR)/leveldb_libleveldb_a-builder.Po
 include leveldb/db/$(DEPDIR)/leveldb_libleveldb_a-c.Po
 include leveldb/db/$(DEPDIR)/leveldb_libleveldb_a-db_impl.Po
@@ -4035,17 +5522,20 @@ include leveldb/util/$(DEPDIR)/leveldb_libleveldb_a-histogram.Po
 include leveldb/util/$(DEPDIR)/leveldb_libleveldb_a-logging.Po
 include leveldb/util/$(DEPDIR)/leveldb_libleveldb_a-options.Po
 include leveldb/util/$(DEPDIR)/leveldb_libleveldb_a-status.Po
+include node/$(DEPDIR)/libgleecbtc_server_a-coin.Po
+include node/$(DEPDIR)/libgleecbtc_server_a-coinstats.Po
+include node/$(DEPDIR)/libgleecbtc_server_a-psbt.Po
+include node/$(DEPDIR)/libgleecbtc_server_a-transaction.Po
 include policy/$(DEPDIR)/libgleecbtc_common_a-feerate.Po
+include policy/$(DEPDIR)/libgleecbtc_common_a-policy.Po
 include policy/$(DEPDIR)/libgleecbtc_server_a-fees.Po
-include policy/$(DEPDIR)/libgleecbtc_server_a-policy.Po
 include policy/$(DEPDIR)/libgleecbtc_server_a-rbf.Po
+include policy/$(DEPDIR)/libgleecbtc_server_a-settings.Po
 include primitives/$(DEPDIR)/libgleecbtc_consensus_a-block.Po
 include primitives/$(DEPDIR)/libgleecbtc_consensus_a-transaction.Po
 include primitives/$(DEPDIR)/libgleecbtcconsensus_la-block.Plo
 include primitives/$(DEPDIR)/libgleecbtcconsensus_la-transaction.Plo
-include qt/$(DEPDIR)/qt_gleecbtc_qt-gleecbtc.Po
-include qt/$(DEPDIR)/qt_gleecbtc_qt-macdockiconhandler.Po
-include qt/$(DEPDIR)/qt_gleecbtc_qt-macnotificationhandler.Po
+include qt/$(DEPDIR)/qt_gleecbtc_qt-main.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-addressbookpage.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-addresstablemodel.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-askpassphrasedialog.Po
@@ -4053,24 +5543,30 @@ include qt/$(DEPDIR)/qt_libgleecbtcqt_a-bantablemodel.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-clientmodel.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-coincontroldialog.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-coincontroltreewidget.Po
+include qt/$(DEPDIR)/qt_libgleecbtcqt_a-createwalletdialog.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-csvmodelwriter.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-editaddressdialog.Po
+include qt/$(DEPDIR)/qt_libgleecbtcqt_a-gleecbtc.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-gleecbtcaddressvalidator.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-gleecbtcamountfield.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-gleecbtcgui.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-gleecbtcunits.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-guiutil.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-intro.Po
+include qt/$(DEPDIR)/qt_libgleecbtcqt_a-macdockiconhandler.Po
+include qt/$(DEPDIR)/qt_libgleecbtcqt_a-macnotificationhandler.Po
+include qt/$(DEPDIR)/qt_libgleecbtcqt_a-macos_appnap.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_addressbookpage.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_addresstablemodel.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_askpassphrasedialog.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_bantablemodel.Po
-include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_callback.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_clientmodel.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_coincontroldialog.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_coincontroltreewidget.Po
+include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_createwalletdialog.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_csvmodelwriter.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_editaddressdialog.Po
+include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_gleecbtc.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_gleecbtcaddressvalidator.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_gleecbtcamountfield.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_gleecbtcgui.Po
@@ -4087,6 +5583,7 @@ include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_optionsmodel.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_overviewpage.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_paymentserver.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_peertablemodel.Po
+include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_qrimagewidget.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_qvalidatedlineedit.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_qvaluecombobox.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_receivecoinsdialog.Po
@@ -4104,6 +5601,7 @@ include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_transactionfilterproxy.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_transactiontablemodel.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_transactionview.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_utilitydialog.Po
+include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_walletcontroller.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_walletframe.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_walletmodel.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_walletview.Po
@@ -4121,6 +5619,7 @@ include qt/$(DEPDIR)/qt_libgleecbtcqt_a-peertablemodel.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-platformstyle.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-qrc_gleecbtc.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-qrc_gleecbtc_locale.Po
+include qt/$(DEPDIR)/qt_libgleecbtcqt_a-qrimagewidget.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-qvalidatedlineedit.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-qvaluecombobox.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-receivecoinsdialog.Po
@@ -4139,12 +5638,17 @@ include qt/$(DEPDIR)/qt_libgleecbtcqt_a-transactionrecord.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-transactiontablemodel.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-transactionview.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-utilitydialog.Po
+include qt/$(DEPDIR)/qt_libgleecbtcqt_a-walletcontroller.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-walletframe.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-walletmodel.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-walletmodeltransaction.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-walletview.Po
 include qt/$(DEPDIR)/qt_libgleecbtcqt_a-winshutdownmonitor.Po
+include qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-addressbooktests.Po
+include qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-apptests.Po
 include qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-compattests.Po
+include qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_addressbooktests.Po
+include qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_apptests.Po
 include qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_compattests.Po
 include qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_paymentservertests.Po
 include qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_rpcnestedtests.Po
@@ -4154,22 +5658,26 @@ include qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-paymentservertests.Po
 include qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-rpcnestedtests.Po
 include qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-test_main.Po
 include qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-uritests.Po
+include qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-util.Po
 include qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-wallettests.Po
 include rpc/$(DEPDIR)/libgleecbtc_cli_a-client.Po
+include rpc/$(DEPDIR)/libgleecbtc_common_a-rawtransaction_util.Po
+include rpc/$(DEPDIR)/libgleecbtc_common_a-util.Po
 include rpc/$(DEPDIR)/libgleecbtc_server_a-blockchain.Po
 include rpc/$(DEPDIR)/libgleecbtc_server_a-mining.Po
 include rpc/$(DEPDIR)/libgleecbtc_server_a-misc.Po
 include rpc/$(DEPDIR)/libgleecbtc_server_a-net.Po
 include rpc/$(DEPDIR)/libgleecbtc_server_a-rawtransaction.Po
 include rpc/$(DEPDIR)/libgleecbtc_server_a-server.Po
-include rpc/$(DEPDIR)/libgleecbtc_util_a-protocol.Po
+include rpc/$(DEPDIR)/libgleecbtc_util_a-request.Po
+include script/$(DEPDIR)/libgleecbtc_common_a-descriptor.Po
 include script/$(DEPDIR)/libgleecbtc_common_a-sign.Po
+include script/$(DEPDIR)/libgleecbtc_common_a-signingprovider.Po
 include script/$(DEPDIR)/libgleecbtc_common_a-standard.Po
 include script/$(DEPDIR)/libgleecbtc_consensus_a-gleecbtcconsensus.Po
 include script/$(DEPDIR)/libgleecbtc_consensus_a-interpreter.Po
 include script/$(DEPDIR)/libgleecbtc_consensus_a-script.Po
 include script/$(DEPDIR)/libgleecbtc_consensus_a-script_error.Po
-include script/$(DEPDIR)/libgleecbtc_server_a-ismine.Po
 include script/$(DEPDIR)/libgleecbtc_server_a-sigcache.Po
 include script/$(DEPDIR)/libgleecbtcconsensus_la-gleecbtcconsensus.Plo
 include script/$(DEPDIR)/libgleecbtcconsensus_la-interpreter.Plo
@@ -4177,8 +5685,31 @@ include script/$(DEPDIR)/libgleecbtcconsensus_la-script.Plo
 include script/$(DEPDIR)/libgleecbtcconsensus_la-script_error.Plo
 include support/$(DEPDIR)/libgleecbtc_util_a-cleanse.Po
 include support/$(DEPDIR)/libgleecbtc_util_a-lockedpool.Po
-include test/$(DEPDIR)/qt_test_test_gleecbtc_qt-test_gleecbtc.Po
-include test/$(DEPDIR)/test_test_gleecbtc-DoS_tests.Po
+include support/$(DEPDIR)/libgleecbtcconsensus_la-cleanse.Plo
+include test/$(DEPDIR)/bench_bench_gleecbtc-setup_common.Po
+include test/$(DEPDIR)/bench_bench_gleecbtc-util.Po
+include test/$(DEPDIR)/qt_test_test_gleecbtc_qt-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_address_deserialize-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_addrman_deserialize-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_banentry_deserialize-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_block_deserialize-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_blockheader_deserialize-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_blocklocator_deserialize-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_blockmerkleroot-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_blockundo_deserialize-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_coins_deserialize-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_inv_deserialize-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_messageheader_deserialize-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_netaddr_deserialize-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_script_flags-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_service_deserialize-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_transaction_deserialize-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-setup_common.Po
+include test/$(DEPDIR)/test_fuzz_txundo_deserialize-setup_common.Po
 include test/$(DEPDIR)/test_test_gleecbtc-addrman_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-allocator_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-amount_tests.Po
@@ -4186,23 +5717,35 @@ include test/$(DEPDIR)/test_test_gleecbtc-arith_uint256_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-base32_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-base58_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-base64_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-bech32_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-bip32_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-blockchain_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-blockencodings_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-blockfilter_index_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-blockfilter_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-bloom_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-bswap_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-checkqueue_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-coins_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-compilerbug_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-compress_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-crypto_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-cuckoocache_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-dbwrapper_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-denialofservice_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-descriptor_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-flatfile_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-fs_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-getarg_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-hash_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-key_io_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-key_properties.Po
 include test/$(DEPDIR)/test_test_gleecbtc-key_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-limitedmap_tests.Po
-include test/$(DEPDIR)/test_test_gleecbtc-main_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-main.Po
 include test/$(DEPDIR)/test_test_gleecbtc-mempool_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-merkle_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-merkleblock_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-miner_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-multisig_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-net_tests.Po
@@ -4217,41 +5760,117 @@ include test/$(DEPDIR)/test_test_gleecbtc-reverselock_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-rpc_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-sanity_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-scheduler_tests.Po
-include test/$(DEPDIR)/test_test_gleecbtc-script_P2SH_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-script_p2sh_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-script_standard_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-script_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-scriptnum_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-serialize_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-setup_common.Po
 include test/$(DEPDIR)/test_test_gleecbtc-sighash_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-sigopcount_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-skiplist_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-streams_tests.Po
-include test/$(DEPDIR)/test_test_gleecbtc-test_gleecbtc.Po
-include test/$(DEPDIR)/test_test_gleecbtc-test_gleecbtc_main.Po
+include test/$(DEPDIR)/test_test_gleecbtc-sync_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-timedata_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-torcontrol_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-transaction_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-txindex_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-txvalidation_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-txvalidationcache_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-uint256_tests.Po
-include test/$(DEPDIR)/test_test_gleecbtc-univalue_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-util_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-util_threadnames_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-validation_block_tests.Po
+include test/$(DEPDIR)/test_test_gleecbtc-validation_tests.Po
 include test/$(DEPDIR)/test_test_gleecbtc-versionbits_tests.Po
-include test/$(DEPDIR)/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_address_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_address_deserialize-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_addrman_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_addrman_deserialize-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_banentry_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_banentry_deserialize-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_block_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_block_deserialize-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_blockheader_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_blockheader_deserialize-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_blocklocator_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_blocklocator_deserialize-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_blockmerkleroot-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_blockmerkleroot-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_blockundo_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_blockundo_deserialize-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_coins_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_coins_deserialize-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_inv_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_inv_deserialize-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_messageheader_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_messageheader_deserialize-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_netaddr_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_netaddr_deserialize-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_script_flags-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_script_flags-script_flags.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_service_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_service_deserialize-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_transaction_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_transaction_deserialize-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-fuzz.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_txundo_deserialize-deserialize.Po
+include test/fuzz/$(DEPDIR)/test_fuzz_txundo_deserialize-fuzz.Po
+include test/gen/$(DEPDIR)/test_test_gleecbtc-crypto_gen.Po
+include util/$(DEPDIR)/libgleecbtc_consensus_a-strencodings.Po
+include util/$(DEPDIR)/libgleecbtc_util_a-bip32.Po
+include util/$(DEPDIR)/libgleecbtc_util_a-bytevectorhash.Po
+include util/$(DEPDIR)/libgleecbtc_util_a-error.Po
+include util/$(DEPDIR)/libgleecbtc_util_a-fees.Po
+include util/$(DEPDIR)/libgleecbtc_util_a-moneystr.Po
+include util/$(DEPDIR)/libgleecbtc_util_a-rbf.Po
+include util/$(DEPDIR)/libgleecbtc_util_a-strencodings.Po
+include util/$(DEPDIR)/libgleecbtc_util_a-string.Po
+include util/$(DEPDIR)/libgleecbtc_util_a-system.Po
+include util/$(DEPDIR)/libgleecbtc_util_a-threadnames.Po
+include util/$(DEPDIR)/libgleecbtc_util_a-time.Po
+include util/$(DEPDIR)/libgleecbtc_util_a-url.Po
+include util/$(DEPDIR)/libgleecbtc_util_a-validation.Po
+include util/$(DEPDIR)/libgleecbtcconsensus_la-strencodings.Plo
+include wallet/$(DEPDIR)/libgleecbtc_server_a-init.Po
+include wallet/$(DEPDIR)/libgleecbtc_wallet_a-coincontrol.Po
+include wallet/$(DEPDIR)/libgleecbtc_wallet_a-coinselection.Po
 include wallet/$(DEPDIR)/libgleecbtc_wallet_a-crypter.Po
 include wallet/$(DEPDIR)/libgleecbtc_wallet_a-db.Po
 include wallet/$(DEPDIR)/libgleecbtc_wallet_a-feebumper.Po
+include wallet/$(DEPDIR)/libgleecbtc_wallet_a-fees.Po
+include wallet/$(DEPDIR)/libgleecbtc_wallet_a-ismine.Po
+include wallet/$(DEPDIR)/libgleecbtc_wallet_a-load.Po
+include wallet/$(DEPDIR)/libgleecbtc_wallet_a-psbtwallet.Po
 include wallet/$(DEPDIR)/libgleecbtc_wallet_a-rpcdump.Po
 include wallet/$(DEPDIR)/libgleecbtc_wallet_a-rpcwallet.Po
 include wallet/$(DEPDIR)/libgleecbtc_wallet_a-wallet.Po
 include wallet/$(DEPDIR)/libgleecbtc_wallet_a-walletdb.Po
+include wallet/$(DEPDIR)/libgleecbtc_wallet_a-walletutil.Po
+include wallet/$(DEPDIR)/libgleecbtc_wallet_tool_a-wallettool.Po
 include wallet/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-wallet_test_fixture.Po
-include wallet/test/$(DEPDIR)/test_test_gleecbtc-accounting_tests.Po
-include wallet/test/$(DEPDIR)/test_test_gleecbtc-crypto_tests.Po
+include wallet/test/$(DEPDIR)/test_test_gleecbtc-coinselector_tests.Po
+include wallet/test/$(DEPDIR)/test_test_gleecbtc-db_tests.Po
+include wallet/test/$(DEPDIR)/test_test_gleecbtc-init_test_fixture.Po
+include wallet/test/$(DEPDIR)/test_test_gleecbtc-init_tests.Po
+include wallet/test/$(DEPDIR)/test_test_gleecbtc-ismine_tests.Po
+include wallet/test/$(DEPDIR)/test_test_gleecbtc-psbt_wallet_tests.Po
+include wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_crypto_tests.Po
 include wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_test_fixture.Po
 include wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_tests.Po
 include zmq/$(DEPDIR)/libgleecbtc_zmq_a-zmqabstractnotifier.Po
 include zmq/$(DEPDIR)/libgleecbtc_zmq_a-zmqnotificationinterface.Po
 include zmq/$(DEPDIR)/libgleecbtc_zmq_a-zmqpublishnotifier.Po
+include zmq/$(DEPDIR)/libgleecbtc_zmq_a-zmqrpc.Po
 
 .cc.o:
 	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -4277,131 +5896,229 @@ include zmq/$(DEPDIR)/libgleecbtc_zmq_a-zmqpublishnotifier.Po
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(LTCXXCOMPILE) -c -o $@ $<
 
-crypto/crypto_libgleecbtc_crypto_a-aes.o: crypto/aes.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_a-aes.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-aes.Tpo -c -o crypto/crypto_libgleecbtc_crypto_a-aes.o `test -f 'crypto/aes.cpp' || echo '$(srcdir)/'`crypto/aes.cpp
-	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-aes.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-aes.Po
-#	$(AM_V_CXX)source='crypto/aes.cpp' object='crypto/crypto_libgleecbtc_crypto_a-aes.o' libtool=no \
+crypto/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.o: crypto/sha256_avx2.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_avx2_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_avx2_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.Tpo -c -o crypto/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.o `test -f 'crypto/sha256_avx2.cpp' || echo '$(srcdir)/'`crypto/sha256_avx2.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.Po
+#	$(AM_V_CXX)source='crypto/sha256_avx2.cpp' object='crypto/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_a-aes.o `test -f 'crypto/aes.cpp' || echo '$(srcdir)/'`crypto/aes.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_avx2_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_avx2_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.o `test -f 'crypto/sha256_avx2.cpp' || echo '$(srcdir)/'`crypto/sha256_avx2.cpp
 
-crypto/crypto_libgleecbtc_crypto_a-aes.obj: crypto/aes.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_a-aes.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-aes.Tpo -c -o crypto/crypto_libgleecbtc_crypto_a-aes.obj `if test -f 'crypto/aes.cpp'; then $(CYGPATH_W) 'crypto/aes.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/aes.cpp'; fi`
-	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-aes.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-aes.Po
-#	$(AM_V_CXX)source='crypto/aes.cpp' object='crypto/crypto_libgleecbtc_crypto_a-aes.obj' libtool=no \
+crypto/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.obj: crypto/sha256_avx2.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_avx2_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_avx2_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.Tpo -c -o crypto/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.obj `if test -f 'crypto/sha256_avx2.cpp'; then $(CYGPATH_W) 'crypto/sha256_avx2.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha256_avx2.cpp'; fi`
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.Po
+#	$(AM_V_CXX)source='crypto/sha256_avx2.cpp' object='crypto/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_a-aes.obj `if test -f 'crypto/aes.cpp'; then $(CYGPATH_W) 'crypto/aes.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/aes.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_avx2_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_avx2_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_avx2_a-sha256_avx2.obj `if test -f 'crypto/sha256_avx2.cpp'; then $(CYGPATH_W) 'crypto/sha256_avx2.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha256_avx2.cpp'; fi`
 
-crypto/crypto_libgleecbtc_crypto_a-chacha20.o: crypto/chacha20.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_a-chacha20.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-chacha20.Tpo -c -o crypto/crypto_libgleecbtc_crypto_a-chacha20.o `test -f 'crypto/chacha20.cpp' || echo '$(srcdir)/'`crypto/chacha20.cpp
-	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-chacha20.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-chacha20.Po
-#	$(AM_V_CXX)source='crypto/chacha20.cpp' object='crypto/crypto_libgleecbtc_crypto_a-chacha20.o' libtool=no \
+crypto/crypto_libgleecbtc_crypto_base_a-aes.o: crypto/aes.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-aes.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-aes.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-aes.o `test -f 'crypto/aes.cpp' || echo '$(srcdir)/'`crypto/aes.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-aes.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-aes.Po
+#	$(AM_V_CXX)source='crypto/aes.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-aes.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_a-chacha20.o `test -f 'crypto/chacha20.cpp' || echo '$(srcdir)/'`crypto/chacha20.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-aes.o `test -f 'crypto/aes.cpp' || echo '$(srcdir)/'`crypto/aes.cpp
 
-crypto/crypto_libgleecbtc_crypto_a-chacha20.obj: crypto/chacha20.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_a-chacha20.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-chacha20.Tpo -c -o crypto/crypto_libgleecbtc_crypto_a-chacha20.obj `if test -f 'crypto/chacha20.cpp'; then $(CYGPATH_W) 'crypto/chacha20.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/chacha20.cpp'; fi`
-	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-chacha20.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-chacha20.Po
-#	$(AM_V_CXX)source='crypto/chacha20.cpp' object='crypto/crypto_libgleecbtc_crypto_a-chacha20.obj' libtool=no \
+crypto/crypto_libgleecbtc_crypto_base_a-aes.obj: crypto/aes.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-aes.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-aes.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-aes.obj `if test -f 'crypto/aes.cpp'; then $(CYGPATH_W) 'crypto/aes.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/aes.cpp'; fi`
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-aes.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-aes.Po
+#	$(AM_V_CXX)source='crypto/aes.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-aes.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_a-chacha20.obj `if test -f 'crypto/chacha20.cpp'; then $(CYGPATH_W) 'crypto/chacha20.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/chacha20.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-aes.obj `if test -f 'crypto/aes.cpp'; then $(CYGPATH_W) 'crypto/aes.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/aes.cpp'; fi`
 
-crypto/crypto_libgleecbtc_crypto_a-hmac_sha256.o: crypto/hmac_sha256.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_a-hmac_sha256.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-hmac_sha256.Tpo -c -o crypto/crypto_libgleecbtc_crypto_a-hmac_sha256.o `test -f 'crypto/hmac_sha256.cpp' || echo '$(srcdir)/'`crypto/hmac_sha256.cpp
-	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-hmac_sha256.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-hmac_sha256.Po
-#	$(AM_V_CXX)source='crypto/hmac_sha256.cpp' object='crypto/crypto_libgleecbtc_crypto_a-hmac_sha256.o' libtool=no \
+crypto/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.o: crypto/chacha_poly_aead.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.o `test -f 'crypto/chacha_poly_aead.cpp' || echo '$(srcdir)/'`crypto/chacha_poly_aead.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.Po
+#	$(AM_V_CXX)source='crypto/chacha_poly_aead.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_a-hmac_sha256.o `test -f 'crypto/hmac_sha256.cpp' || echo '$(srcdir)/'`crypto/hmac_sha256.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.o `test -f 'crypto/chacha_poly_aead.cpp' || echo '$(srcdir)/'`crypto/chacha_poly_aead.cpp
 
-crypto/crypto_libgleecbtc_crypto_a-hmac_sha256.obj: crypto/hmac_sha256.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_a-hmac_sha256.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-hmac_sha256.Tpo -c -o crypto/crypto_libgleecbtc_crypto_a-hmac_sha256.obj `if test -f 'crypto/hmac_sha256.cpp'; then $(CYGPATH_W) 'crypto/hmac_sha256.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/hmac_sha256.cpp'; fi`
-	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-hmac_sha256.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-hmac_sha256.Po
-#	$(AM_V_CXX)source='crypto/hmac_sha256.cpp' object='crypto/crypto_libgleecbtc_crypto_a-hmac_sha256.obj' libtool=no \
+crypto/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.obj: crypto/chacha_poly_aead.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.obj `if test -f 'crypto/chacha_poly_aead.cpp'; then $(CYGPATH_W) 'crypto/chacha_poly_aead.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/chacha_poly_aead.cpp'; fi`
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.Po
+#	$(AM_V_CXX)source='crypto/chacha_poly_aead.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_a-hmac_sha256.obj `if test -f 'crypto/hmac_sha256.cpp'; then $(CYGPATH_W) 'crypto/hmac_sha256.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/hmac_sha256.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-chacha_poly_aead.obj `if test -f 'crypto/chacha_poly_aead.cpp'; then $(CYGPATH_W) 'crypto/chacha_poly_aead.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/chacha_poly_aead.cpp'; fi`
 
-crypto/crypto_libgleecbtc_crypto_a-hmac_sha512.o: crypto/hmac_sha512.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_a-hmac_sha512.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-hmac_sha512.Tpo -c -o crypto/crypto_libgleecbtc_crypto_a-hmac_sha512.o `test -f 'crypto/hmac_sha512.cpp' || echo '$(srcdir)/'`crypto/hmac_sha512.cpp
-	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-hmac_sha512.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-hmac_sha512.Po
-#	$(AM_V_CXX)source='crypto/hmac_sha512.cpp' object='crypto/crypto_libgleecbtc_crypto_a-hmac_sha512.o' libtool=no \
+crypto/crypto_libgleecbtc_crypto_base_a-chacha20.o: crypto/chacha20.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-chacha20.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-chacha20.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-chacha20.o `test -f 'crypto/chacha20.cpp' || echo '$(srcdir)/'`crypto/chacha20.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-chacha20.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-chacha20.Po
+#	$(AM_V_CXX)source='crypto/chacha20.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-chacha20.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_a-hmac_sha512.o `test -f 'crypto/hmac_sha512.cpp' || echo '$(srcdir)/'`crypto/hmac_sha512.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-chacha20.o `test -f 'crypto/chacha20.cpp' || echo '$(srcdir)/'`crypto/chacha20.cpp
 
-crypto/crypto_libgleecbtc_crypto_a-hmac_sha512.obj: crypto/hmac_sha512.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_a-hmac_sha512.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-hmac_sha512.Tpo -c -o crypto/crypto_libgleecbtc_crypto_a-hmac_sha512.obj `if test -f 'crypto/hmac_sha512.cpp'; then $(CYGPATH_W) 'crypto/hmac_sha512.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/hmac_sha512.cpp'; fi`
-	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-hmac_sha512.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-hmac_sha512.Po
-#	$(AM_V_CXX)source='crypto/hmac_sha512.cpp' object='crypto/crypto_libgleecbtc_crypto_a-hmac_sha512.obj' libtool=no \
+crypto/crypto_libgleecbtc_crypto_base_a-chacha20.obj: crypto/chacha20.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-chacha20.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-chacha20.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-chacha20.obj `if test -f 'crypto/chacha20.cpp'; then $(CYGPATH_W) 'crypto/chacha20.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/chacha20.cpp'; fi`
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-chacha20.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-chacha20.Po
+#	$(AM_V_CXX)source='crypto/chacha20.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-chacha20.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_a-hmac_sha512.obj `if test -f 'crypto/hmac_sha512.cpp'; then $(CYGPATH_W) 'crypto/hmac_sha512.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/hmac_sha512.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-chacha20.obj `if test -f 'crypto/chacha20.cpp'; then $(CYGPATH_W) 'crypto/chacha20.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/chacha20.cpp'; fi`
 
-crypto/crypto_libgleecbtc_crypto_a-ripemd160.o: crypto/ripemd160.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_a-ripemd160.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-ripemd160.Tpo -c -o crypto/crypto_libgleecbtc_crypto_a-ripemd160.o `test -f 'crypto/ripemd160.cpp' || echo '$(srcdir)/'`crypto/ripemd160.cpp
-	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-ripemd160.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-ripemd160.Po
-#	$(AM_V_CXX)source='crypto/ripemd160.cpp' object='crypto/crypto_libgleecbtc_crypto_a-ripemd160.o' libtool=no \
+crypto/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.o: crypto/hkdf_sha256_32.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.o `test -f 'crypto/hkdf_sha256_32.cpp' || echo '$(srcdir)/'`crypto/hkdf_sha256_32.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.Po
+#	$(AM_V_CXX)source='crypto/hkdf_sha256_32.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_a-ripemd160.o `test -f 'crypto/ripemd160.cpp' || echo '$(srcdir)/'`crypto/ripemd160.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.o `test -f 'crypto/hkdf_sha256_32.cpp' || echo '$(srcdir)/'`crypto/hkdf_sha256_32.cpp
 
-crypto/crypto_libgleecbtc_crypto_a-ripemd160.obj: crypto/ripemd160.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_a-ripemd160.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-ripemd160.Tpo -c -o crypto/crypto_libgleecbtc_crypto_a-ripemd160.obj `if test -f 'crypto/ripemd160.cpp'; then $(CYGPATH_W) 'crypto/ripemd160.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/ripemd160.cpp'; fi`
-	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-ripemd160.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-ripemd160.Po
-#	$(AM_V_CXX)source='crypto/ripemd160.cpp' object='crypto/crypto_libgleecbtc_crypto_a-ripemd160.obj' libtool=no \
+crypto/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.obj: crypto/hkdf_sha256_32.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.obj `if test -f 'crypto/hkdf_sha256_32.cpp'; then $(CYGPATH_W) 'crypto/hkdf_sha256_32.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/hkdf_sha256_32.cpp'; fi`
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.Po
+#	$(AM_V_CXX)source='crypto/hkdf_sha256_32.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_a-ripemd160.obj `if test -f 'crypto/ripemd160.cpp'; then $(CYGPATH_W) 'crypto/ripemd160.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/ripemd160.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-hkdf_sha256_32.obj `if test -f 'crypto/hkdf_sha256_32.cpp'; then $(CYGPATH_W) 'crypto/hkdf_sha256_32.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/hkdf_sha256_32.cpp'; fi`
 
-crypto/crypto_libgleecbtc_crypto_a-sha1.o: crypto/sha1.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_a-sha1.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha1.Tpo -c -o crypto/crypto_libgleecbtc_crypto_a-sha1.o `test -f 'crypto/sha1.cpp' || echo '$(srcdir)/'`crypto/sha1.cpp
-	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha1.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha1.Po
-#	$(AM_V_CXX)source='crypto/sha1.cpp' object='crypto/crypto_libgleecbtc_crypto_a-sha1.o' libtool=no \
+crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha256.o: crypto/hmac_sha256.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha256.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hmac_sha256.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha256.o `test -f 'crypto/hmac_sha256.cpp' || echo '$(srcdir)/'`crypto/hmac_sha256.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hmac_sha256.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hmac_sha256.Po
+#	$(AM_V_CXX)source='crypto/hmac_sha256.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha256.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_a-sha1.o `test -f 'crypto/sha1.cpp' || echo '$(srcdir)/'`crypto/sha1.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha256.o `test -f 'crypto/hmac_sha256.cpp' || echo '$(srcdir)/'`crypto/hmac_sha256.cpp
 
-crypto/crypto_libgleecbtc_crypto_a-sha1.obj: crypto/sha1.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_a-sha1.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha1.Tpo -c -o crypto/crypto_libgleecbtc_crypto_a-sha1.obj `if test -f 'crypto/sha1.cpp'; then $(CYGPATH_W) 'crypto/sha1.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha1.cpp'; fi`
-	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha1.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha1.Po
-#	$(AM_V_CXX)source='crypto/sha1.cpp' object='crypto/crypto_libgleecbtc_crypto_a-sha1.obj' libtool=no \
+crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha256.obj: crypto/hmac_sha256.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha256.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hmac_sha256.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha256.obj `if test -f 'crypto/hmac_sha256.cpp'; then $(CYGPATH_W) 'crypto/hmac_sha256.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/hmac_sha256.cpp'; fi`
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hmac_sha256.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hmac_sha256.Po
+#	$(AM_V_CXX)source='crypto/hmac_sha256.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha256.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_a-sha1.obj `if test -f 'crypto/sha1.cpp'; then $(CYGPATH_W) 'crypto/sha1.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha1.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha256.obj `if test -f 'crypto/hmac_sha256.cpp'; then $(CYGPATH_W) 'crypto/hmac_sha256.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/hmac_sha256.cpp'; fi`
 
-crypto/crypto_libgleecbtc_crypto_a-sha256.o: crypto/sha256.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_a-sha256.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha256.Tpo -c -o crypto/crypto_libgleecbtc_crypto_a-sha256.o `test -f 'crypto/sha256.cpp' || echo '$(srcdir)/'`crypto/sha256.cpp
-	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha256.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha256.Po
-#	$(AM_V_CXX)source='crypto/sha256.cpp' object='crypto/crypto_libgleecbtc_crypto_a-sha256.o' libtool=no \
+crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha512.o: crypto/hmac_sha512.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha512.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hmac_sha512.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha512.o `test -f 'crypto/hmac_sha512.cpp' || echo '$(srcdir)/'`crypto/hmac_sha512.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hmac_sha512.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hmac_sha512.Po
+#	$(AM_V_CXX)source='crypto/hmac_sha512.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha512.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_a-sha256.o `test -f 'crypto/sha256.cpp' || echo '$(srcdir)/'`crypto/sha256.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha512.o `test -f 'crypto/hmac_sha512.cpp' || echo '$(srcdir)/'`crypto/hmac_sha512.cpp
 
-crypto/crypto_libgleecbtc_crypto_a-sha256.obj: crypto/sha256.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_a-sha256.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha256.Tpo -c -o crypto/crypto_libgleecbtc_crypto_a-sha256.obj `if test -f 'crypto/sha256.cpp'; then $(CYGPATH_W) 'crypto/sha256.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha256.cpp'; fi`
-	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha256.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha256.Po
-#	$(AM_V_CXX)source='crypto/sha256.cpp' object='crypto/crypto_libgleecbtc_crypto_a-sha256.obj' libtool=no \
+crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha512.obj: crypto/hmac_sha512.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha512.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hmac_sha512.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha512.obj `if test -f 'crypto/hmac_sha512.cpp'; then $(CYGPATH_W) 'crypto/hmac_sha512.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/hmac_sha512.cpp'; fi`
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hmac_sha512.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-hmac_sha512.Po
+#	$(AM_V_CXX)source='crypto/hmac_sha512.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha512.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_a-sha256.obj `if test -f 'crypto/sha256.cpp'; then $(CYGPATH_W) 'crypto/sha256.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha256.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-hmac_sha512.obj `if test -f 'crypto/hmac_sha512.cpp'; then $(CYGPATH_W) 'crypto/hmac_sha512.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/hmac_sha512.cpp'; fi`
 
-crypto/crypto_libgleecbtc_crypto_a-sha512.o: crypto/sha512.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_a-sha512.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha512.Tpo -c -o crypto/crypto_libgleecbtc_crypto_a-sha512.o `test -f 'crypto/sha512.cpp' || echo '$(srcdir)/'`crypto/sha512.cpp
-	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha512.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha512.Po
-#	$(AM_V_CXX)source='crypto/sha512.cpp' object='crypto/crypto_libgleecbtc_crypto_a-sha512.o' libtool=no \
+crypto/crypto_libgleecbtc_crypto_base_a-poly1305.o: crypto/poly1305.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-poly1305.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-poly1305.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-poly1305.o `test -f 'crypto/poly1305.cpp' || echo '$(srcdir)/'`crypto/poly1305.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-poly1305.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-poly1305.Po
+#	$(AM_V_CXX)source='crypto/poly1305.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-poly1305.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_a-sha512.o `test -f 'crypto/sha512.cpp' || echo '$(srcdir)/'`crypto/sha512.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-poly1305.o `test -f 'crypto/poly1305.cpp' || echo '$(srcdir)/'`crypto/poly1305.cpp
 
-crypto/crypto_libgleecbtc_crypto_a-sha512.obj: crypto/sha512.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_a-sha512.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha512.Tpo -c -o crypto/crypto_libgleecbtc_crypto_a-sha512.obj `if test -f 'crypto/sha512.cpp'; then $(CYGPATH_W) 'crypto/sha512.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha512.cpp'; fi`
-	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha512.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha512.Po
-#	$(AM_V_CXX)source='crypto/sha512.cpp' object='crypto/crypto_libgleecbtc_crypto_a-sha512.obj' libtool=no \
+crypto/crypto_libgleecbtc_crypto_base_a-poly1305.obj: crypto/poly1305.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-poly1305.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-poly1305.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-poly1305.obj `if test -f 'crypto/poly1305.cpp'; then $(CYGPATH_W) 'crypto/poly1305.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/poly1305.cpp'; fi`
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-poly1305.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-poly1305.Po
+#	$(AM_V_CXX)source='crypto/poly1305.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-poly1305.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_a-sha512.obj `if test -f 'crypto/sha512.cpp'; then $(CYGPATH_W) 'crypto/sha512.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha512.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-poly1305.obj `if test -f 'crypto/poly1305.cpp'; then $(CYGPATH_W) 'crypto/poly1305.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/poly1305.cpp'; fi`
 
-crypto/crypto_libgleecbtc_crypto_a-sha256_sse4.o: crypto/sha256_sse4.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_a-sha256_sse4.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha256_sse4.Tpo -c -o crypto/crypto_libgleecbtc_crypto_a-sha256_sse4.o `test -f 'crypto/sha256_sse4.cpp' || echo '$(srcdir)/'`crypto/sha256_sse4.cpp
-	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha256_sse4.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha256_sse4.Po
-#	$(AM_V_CXX)source='crypto/sha256_sse4.cpp' object='crypto/crypto_libgleecbtc_crypto_a-sha256_sse4.o' libtool=no \
+crypto/crypto_libgleecbtc_crypto_base_a-ripemd160.o: crypto/ripemd160.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-ripemd160.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-ripemd160.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-ripemd160.o `test -f 'crypto/ripemd160.cpp' || echo '$(srcdir)/'`crypto/ripemd160.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-ripemd160.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-ripemd160.Po
+#	$(AM_V_CXX)source='crypto/ripemd160.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-ripemd160.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_a-sha256_sse4.o `test -f 'crypto/sha256_sse4.cpp' || echo '$(srcdir)/'`crypto/sha256_sse4.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-ripemd160.o `test -f 'crypto/ripemd160.cpp' || echo '$(srcdir)/'`crypto/ripemd160.cpp
 
-crypto/crypto_libgleecbtc_crypto_a-sha256_sse4.obj: crypto/sha256_sse4.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_a-sha256_sse4.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha256_sse4.Tpo -c -o crypto/crypto_libgleecbtc_crypto_a-sha256_sse4.obj `if test -f 'crypto/sha256_sse4.cpp'; then $(CYGPATH_W) 'crypto/sha256_sse4.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha256_sse4.cpp'; fi`
-	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha256_sse4.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_a-sha256_sse4.Po
-#	$(AM_V_CXX)source='crypto/sha256_sse4.cpp' object='crypto/crypto_libgleecbtc_crypto_a-sha256_sse4.obj' libtool=no \
+crypto/crypto_libgleecbtc_crypto_base_a-ripemd160.obj: crypto/ripemd160.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-ripemd160.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-ripemd160.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-ripemd160.obj `if test -f 'crypto/ripemd160.cpp'; then $(CYGPATH_W) 'crypto/ripemd160.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/ripemd160.cpp'; fi`
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-ripemd160.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-ripemd160.Po
+#	$(AM_V_CXX)source='crypto/ripemd160.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-ripemd160.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_a-sha256_sse4.obj `if test -f 'crypto/sha256_sse4.cpp'; then $(CYGPATH_W) 'crypto/sha256_sse4.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha256_sse4.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-ripemd160.obj `if test -f 'crypto/ripemd160.cpp'; then $(CYGPATH_W) 'crypto/ripemd160.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/ripemd160.cpp'; fi`
+
+crypto/crypto_libgleecbtc_crypto_base_a-sha1.o: crypto/sha1.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-sha1.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha1.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-sha1.o `test -f 'crypto/sha1.cpp' || echo '$(srcdir)/'`crypto/sha1.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha1.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha1.Po
+#	$(AM_V_CXX)source='crypto/sha1.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-sha1.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-sha1.o `test -f 'crypto/sha1.cpp' || echo '$(srcdir)/'`crypto/sha1.cpp
+
+crypto/crypto_libgleecbtc_crypto_base_a-sha1.obj: crypto/sha1.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-sha1.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha1.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-sha1.obj `if test -f 'crypto/sha1.cpp'; then $(CYGPATH_W) 'crypto/sha1.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha1.cpp'; fi`
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha1.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha1.Po
+#	$(AM_V_CXX)source='crypto/sha1.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-sha1.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-sha1.obj `if test -f 'crypto/sha1.cpp'; then $(CYGPATH_W) 'crypto/sha1.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha1.cpp'; fi`
+
+crypto/crypto_libgleecbtc_crypto_base_a-sha256.o: crypto/sha256.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-sha256.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha256.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-sha256.o `test -f 'crypto/sha256.cpp' || echo '$(srcdir)/'`crypto/sha256.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha256.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha256.Po
+#	$(AM_V_CXX)source='crypto/sha256.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-sha256.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-sha256.o `test -f 'crypto/sha256.cpp' || echo '$(srcdir)/'`crypto/sha256.cpp
+
+crypto/crypto_libgleecbtc_crypto_base_a-sha256.obj: crypto/sha256.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-sha256.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha256.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-sha256.obj `if test -f 'crypto/sha256.cpp'; then $(CYGPATH_W) 'crypto/sha256.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha256.cpp'; fi`
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha256.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha256.Po
+#	$(AM_V_CXX)source='crypto/sha256.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-sha256.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-sha256.obj `if test -f 'crypto/sha256.cpp'; then $(CYGPATH_W) 'crypto/sha256.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha256.cpp'; fi`
+
+crypto/crypto_libgleecbtc_crypto_base_a-sha512.o: crypto/sha512.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-sha512.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha512.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-sha512.o `test -f 'crypto/sha512.cpp' || echo '$(srcdir)/'`crypto/sha512.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha512.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha512.Po
+#	$(AM_V_CXX)source='crypto/sha512.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-sha512.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-sha512.o `test -f 'crypto/sha512.cpp' || echo '$(srcdir)/'`crypto/sha512.cpp
+
+crypto/crypto_libgleecbtc_crypto_base_a-sha512.obj: crypto/sha512.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-sha512.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha512.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-sha512.obj `if test -f 'crypto/sha512.cpp'; then $(CYGPATH_W) 'crypto/sha512.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha512.cpp'; fi`
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha512.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha512.Po
+#	$(AM_V_CXX)source='crypto/sha512.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-sha512.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-sha512.obj `if test -f 'crypto/sha512.cpp'; then $(CYGPATH_W) 'crypto/sha512.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha512.cpp'; fi`
+
+crypto/crypto_libgleecbtc_crypto_base_a-siphash.o: crypto/siphash.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-siphash.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-siphash.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-siphash.o `test -f 'crypto/siphash.cpp' || echo '$(srcdir)/'`crypto/siphash.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-siphash.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-siphash.Po
+#	$(AM_V_CXX)source='crypto/siphash.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-siphash.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-siphash.o `test -f 'crypto/siphash.cpp' || echo '$(srcdir)/'`crypto/siphash.cpp
+
+crypto/crypto_libgleecbtc_crypto_base_a-siphash.obj: crypto/siphash.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-siphash.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-siphash.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-siphash.obj `if test -f 'crypto/siphash.cpp'; then $(CYGPATH_W) 'crypto/siphash.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/siphash.cpp'; fi`
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-siphash.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-siphash.Po
+#	$(AM_V_CXX)source='crypto/siphash.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-siphash.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-siphash.obj `if test -f 'crypto/siphash.cpp'; then $(CYGPATH_W) 'crypto/siphash.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/siphash.cpp'; fi`
+
+crypto/crypto_libgleecbtc_crypto_base_a-sha256_sse4.o: crypto/sha256_sse4.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-sha256_sse4.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha256_sse4.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-sha256_sse4.o `test -f 'crypto/sha256_sse4.cpp' || echo '$(srcdir)/'`crypto/sha256_sse4.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha256_sse4.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha256_sse4.Po
+#	$(AM_V_CXX)source='crypto/sha256_sse4.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-sha256_sse4.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-sha256_sse4.o `test -f 'crypto/sha256_sse4.cpp' || echo '$(srcdir)/'`crypto/sha256_sse4.cpp
+
+crypto/crypto_libgleecbtc_crypto_base_a-sha256_sse4.obj: crypto/sha256_sse4.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_base_a-sha256_sse4.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha256_sse4.Tpo -c -o crypto/crypto_libgleecbtc_crypto_base_a-sha256_sse4.obj `if test -f 'crypto/sha256_sse4.cpp'; then $(CYGPATH_W) 'crypto/sha256_sse4.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha256_sse4.cpp'; fi`
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha256_sse4.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_base_a-sha256_sse4.Po
+#	$(AM_V_CXX)source='crypto/sha256_sse4.cpp' object='crypto/crypto_libgleecbtc_crypto_base_a-sha256_sse4.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_base_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_base_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_base_a-sha256_sse4.obj `if test -f 'crypto/sha256_sse4.cpp'; then $(CYGPATH_W) 'crypto/sha256_sse4.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha256_sse4.cpp'; fi`
+
+crypto/crypto_libgleecbtc_crypto_shani_a-sha256_shani.o: crypto/sha256_shani.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_shani_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_shani_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_shani_a-sha256_shani.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_shani_a-sha256_shani.Tpo -c -o crypto/crypto_libgleecbtc_crypto_shani_a-sha256_shani.o `test -f 'crypto/sha256_shani.cpp' || echo '$(srcdir)/'`crypto/sha256_shani.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_shani_a-sha256_shani.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_shani_a-sha256_shani.Po
+#	$(AM_V_CXX)source='crypto/sha256_shani.cpp' object='crypto/crypto_libgleecbtc_crypto_shani_a-sha256_shani.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_shani_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_shani_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_shani_a-sha256_shani.o `test -f 'crypto/sha256_shani.cpp' || echo '$(srcdir)/'`crypto/sha256_shani.cpp
+
+crypto/crypto_libgleecbtc_crypto_shani_a-sha256_shani.obj: crypto/sha256_shani.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_shani_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_shani_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_shani_a-sha256_shani.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_shani_a-sha256_shani.Tpo -c -o crypto/crypto_libgleecbtc_crypto_shani_a-sha256_shani.obj `if test -f 'crypto/sha256_shani.cpp'; then $(CYGPATH_W) 'crypto/sha256_shani.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha256_shani.cpp'; fi`
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_shani_a-sha256_shani.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_shani_a-sha256_shani.Po
+#	$(AM_V_CXX)source='crypto/sha256_shani.cpp' object='crypto/crypto_libgleecbtc_crypto_shani_a-sha256_shani.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_shani_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_shani_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_shani_a-sha256_shani.obj `if test -f 'crypto/sha256_shani.cpp'; then $(CYGPATH_W) 'crypto/sha256_shani.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha256_shani.cpp'; fi`
+
+crypto/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.o: crypto/sha256_sse41.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_sse41_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_sse41_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.o -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.Tpo -c -o crypto/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.o `test -f 'crypto/sha256_sse41.cpp' || echo '$(srcdir)/'`crypto/sha256_sse41.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.Po
+#	$(AM_V_CXX)source='crypto/sha256_sse41.cpp' object='crypto/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_sse41_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_sse41_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.o `test -f 'crypto/sha256_sse41.cpp' || echo '$(srcdir)/'`crypto/sha256_sse41.cpp
+
+crypto/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.obj: crypto/sha256_sse41.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_sse41_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_sse41_a_CXXFLAGS) $(CXXFLAGS) -MT crypto/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.obj -MD -MP -MF crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.Tpo -c -o crypto/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.obj `if test -f 'crypto/sha256_sse41.cpp'; then $(CYGPATH_W) 'crypto/sha256_sse41.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha256_sse41.cpp'; fi`
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.Tpo crypto/$(DEPDIR)/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.Po
+#	$(AM_V_CXX)source='crypto/sha256_sse41.cpp' object='crypto/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(crypto_libgleecbtc_crypto_sse41_a_CPPFLAGS) $(CPPFLAGS) $(crypto_libgleecbtc_crypto_sse41_a_CXXFLAGS) $(CXXFLAGS) -c -o crypto/crypto_libgleecbtc_crypto_sse41_a-sha256_sse41.obj `if test -f 'crypto/sha256_sse41.cpp'; then $(CYGPATH_W) 'crypto/sha256_sse41.cpp'; else $(CYGPATH_W) '$(srcdir)/crypto/sha256_sse41.cpp'; fi`
 
 leveldb/db/leveldb_libleveldb_a-builder.o: leveldb/db/builder.cc
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(leveldb_libleveldb_a_CPPFLAGS) $(CPPFLAGS) $(leveldb_libleveldb_a_CXXFLAGS) $(CXXFLAGS) -MT leveldb/db/leveldb_libleveldb_a-builder.o -MD -MP -MF leveldb/db/$(DEPDIR)/leveldb_libleveldb_a-builder.Tpo -c -o leveldb/db/leveldb_libleveldb_a-builder.o `test -f 'leveldb/db/builder.cc' || echo '$(srcdir)/'`leveldb/db/builder.cc
@@ -5033,6 +6750,34 @@ libgleecbtc_common_a-base58.obj: base58.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-base58.obj `if test -f 'base58.cpp'; then $(CYGPATH_W) 'base58.cpp'; else $(CYGPATH_W) '$(srcdir)/base58.cpp'; fi`
 
+libgleecbtc_common_a-bech32.o: bech32.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-bech32.o -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-bech32.Tpo -c -o libgleecbtc_common_a-bech32.o `test -f 'bech32.cpp' || echo '$(srcdir)/'`bech32.cpp
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-bech32.Tpo $(DEPDIR)/libgleecbtc_common_a-bech32.Po
+#	$(AM_V_CXX)source='bech32.cpp' object='libgleecbtc_common_a-bech32.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-bech32.o `test -f 'bech32.cpp' || echo '$(srcdir)/'`bech32.cpp
+
+libgleecbtc_common_a-bech32.obj: bech32.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-bech32.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-bech32.Tpo -c -o libgleecbtc_common_a-bech32.obj `if test -f 'bech32.cpp'; then $(CYGPATH_W) 'bech32.cpp'; else $(CYGPATH_W) '$(srcdir)/bech32.cpp'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-bech32.Tpo $(DEPDIR)/libgleecbtc_common_a-bech32.Po
+#	$(AM_V_CXX)source='bech32.cpp' object='libgleecbtc_common_a-bech32.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-bech32.obj `if test -f 'bech32.cpp'; then $(CYGPATH_W) 'bech32.cpp'; else $(CYGPATH_W) '$(srcdir)/bech32.cpp'; fi`
+
+libgleecbtc_common_a-bloom.o: bloom.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-bloom.o -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-bloom.Tpo -c -o libgleecbtc_common_a-bloom.o `test -f 'bloom.cpp' || echo '$(srcdir)/'`bloom.cpp
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-bloom.Tpo $(DEPDIR)/libgleecbtc_common_a-bloom.Po
+#	$(AM_V_CXX)source='bloom.cpp' object='libgleecbtc_common_a-bloom.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-bloom.o `test -f 'bloom.cpp' || echo '$(srcdir)/'`bloom.cpp
+
+libgleecbtc_common_a-bloom.obj: bloom.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-bloom.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-bloom.Tpo -c -o libgleecbtc_common_a-bloom.obj `if test -f 'bloom.cpp'; then $(CYGPATH_W) 'bloom.cpp'; else $(CYGPATH_W) '$(srcdir)/bloom.cpp'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-bloom.Tpo $(DEPDIR)/libgleecbtc_common_a-bloom.Po
+#	$(AM_V_CXX)source='bloom.cpp' object='libgleecbtc_common_a-bloom.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-bloom.obj `if test -f 'bloom.cpp'; then $(CYGPATH_W) 'bloom.cpp'; else $(CYGPATH_W) '$(srcdir)/bloom.cpp'; fi`
+
 libgleecbtc_common_a-chainparams.o: chainparams.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-chainparams.o -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-chainparams.Tpo -c -o libgleecbtc_common_a-chainparams.o `test -f 'chainparams.cpp' || echo '$(srcdir)/'`chainparams.cpp
 	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-chainparams.Tpo $(DEPDIR)/libgleecbtc_common_a-chainparams.Po
@@ -5117,19 +6862,33 @@ libgleecbtc_common_a-key.obj: key.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-key.obj `if test -f 'key.cpp'; then $(CYGPATH_W) 'key.cpp'; else $(CYGPATH_W) '$(srcdir)/key.cpp'; fi`
 
-libgleecbtc_common_a-keystore.o: keystore.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-keystore.o -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-keystore.Tpo -c -o libgleecbtc_common_a-keystore.o `test -f 'keystore.cpp' || echo '$(srcdir)/'`keystore.cpp
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-keystore.Tpo $(DEPDIR)/libgleecbtc_common_a-keystore.Po
-#	$(AM_V_CXX)source='keystore.cpp' object='libgleecbtc_common_a-keystore.o' libtool=no \
+libgleecbtc_common_a-key_io.o: key_io.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-key_io.o -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-key_io.Tpo -c -o libgleecbtc_common_a-key_io.o `test -f 'key_io.cpp' || echo '$(srcdir)/'`key_io.cpp
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-key_io.Tpo $(DEPDIR)/libgleecbtc_common_a-key_io.Po
+#	$(AM_V_CXX)source='key_io.cpp' object='libgleecbtc_common_a-key_io.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-keystore.o `test -f 'keystore.cpp' || echo '$(srcdir)/'`keystore.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-key_io.o `test -f 'key_io.cpp' || echo '$(srcdir)/'`key_io.cpp
 
-libgleecbtc_common_a-keystore.obj: keystore.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-keystore.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-keystore.Tpo -c -o libgleecbtc_common_a-keystore.obj `if test -f 'keystore.cpp'; then $(CYGPATH_W) 'keystore.cpp'; else $(CYGPATH_W) '$(srcdir)/keystore.cpp'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-keystore.Tpo $(DEPDIR)/libgleecbtc_common_a-keystore.Po
-#	$(AM_V_CXX)source='keystore.cpp' object='libgleecbtc_common_a-keystore.obj' libtool=no \
+libgleecbtc_common_a-key_io.obj: key_io.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-key_io.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-key_io.Tpo -c -o libgleecbtc_common_a-key_io.obj `if test -f 'key_io.cpp'; then $(CYGPATH_W) 'key_io.cpp'; else $(CYGPATH_W) '$(srcdir)/key_io.cpp'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-key_io.Tpo $(DEPDIR)/libgleecbtc_common_a-key_io.Po
+#	$(AM_V_CXX)source='key_io.cpp' object='libgleecbtc_common_a-key_io.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-keystore.obj `if test -f 'keystore.cpp'; then $(CYGPATH_W) 'keystore.cpp'; else $(CYGPATH_W) '$(srcdir)/keystore.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-key_io.obj `if test -f 'key_io.cpp'; then $(CYGPATH_W) 'key_io.cpp'; else $(CYGPATH_W) '$(srcdir)/key_io.cpp'; fi`
+
+libgleecbtc_common_a-merkleblock.o: merkleblock.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-merkleblock.o -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-merkleblock.Tpo -c -o libgleecbtc_common_a-merkleblock.o `test -f 'merkleblock.cpp' || echo '$(srcdir)/'`merkleblock.cpp
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-merkleblock.Tpo $(DEPDIR)/libgleecbtc_common_a-merkleblock.Po
+#	$(AM_V_CXX)source='merkleblock.cpp' object='libgleecbtc_common_a-merkleblock.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-merkleblock.o `test -f 'merkleblock.cpp' || echo '$(srcdir)/'`merkleblock.cpp
+
+libgleecbtc_common_a-merkleblock.obj: merkleblock.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-merkleblock.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-merkleblock.Tpo -c -o libgleecbtc_common_a-merkleblock.obj `if test -f 'merkleblock.cpp'; then $(CYGPATH_W) 'merkleblock.cpp'; else $(CYGPATH_W) '$(srcdir)/merkleblock.cpp'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-merkleblock.Tpo $(DEPDIR)/libgleecbtc_common_a-merkleblock.Po
+#	$(AM_V_CXX)source='merkleblock.cpp' object='libgleecbtc_common_a-merkleblock.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-merkleblock.obj `if test -f 'merkleblock.cpp'; then $(CYGPATH_W) 'merkleblock.cpp'; else $(CYGPATH_W) '$(srcdir)/merkleblock.cpp'; fi`
 
 libgleecbtc_common_a-netaddress.o: netaddress.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-netaddress.o -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-netaddress.Tpo -c -o libgleecbtc_common_a-netaddress.o `test -f 'netaddress.cpp' || echo '$(srcdir)/'`netaddress.cpp
@@ -5159,6 +6918,34 @@ libgleecbtc_common_a-netbase.obj: netbase.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-netbase.obj `if test -f 'netbase.cpp'; then $(CYGPATH_W) 'netbase.cpp'; else $(CYGPATH_W) '$(srcdir)/netbase.cpp'; fi`
 
+libgleecbtc_common_a-net_permissions.o: net_permissions.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-net_permissions.o -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-net_permissions.Tpo -c -o libgleecbtc_common_a-net_permissions.o `test -f 'net_permissions.cpp' || echo '$(srcdir)/'`net_permissions.cpp
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-net_permissions.Tpo $(DEPDIR)/libgleecbtc_common_a-net_permissions.Po
+#	$(AM_V_CXX)source='net_permissions.cpp' object='libgleecbtc_common_a-net_permissions.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-net_permissions.o `test -f 'net_permissions.cpp' || echo '$(srcdir)/'`net_permissions.cpp
+
+libgleecbtc_common_a-net_permissions.obj: net_permissions.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-net_permissions.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-net_permissions.Tpo -c -o libgleecbtc_common_a-net_permissions.obj `if test -f 'net_permissions.cpp'; then $(CYGPATH_W) 'net_permissions.cpp'; else $(CYGPATH_W) '$(srcdir)/net_permissions.cpp'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-net_permissions.Tpo $(DEPDIR)/libgleecbtc_common_a-net_permissions.Po
+#	$(AM_V_CXX)source='net_permissions.cpp' object='libgleecbtc_common_a-net_permissions.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-net_permissions.obj `if test -f 'net_permissions.cpp'; then $(CYGPATH_W) 'net_permissions.cpp'; else $(CYGPATH_W) '$(srcdir)/net_permissions.cpp'; fi`
+
+libgleecbtc_common_a-outputtype.o: outputtype.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-outputtype.o -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-outputtype.Tpo -c -o libgleecbtc_common_a-outputtype.o `test -f 'outputtype.cpp' || echo '$(srcdir)/'`outputtype.cpp
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-outputtype.Tpo $(DEPDIR)/libgleecbtc_common_a-outputtype.Po
+#	$(AM_V_CXX)source='outputtype.cpp' object='libgleecbtc_common_a-outputtype.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-outputtype.o `test -f 'outputtype.cpp' || echo '$(srcdir)/'`outputtype.cpp
+
+libgleecbtc_common_a-outputtype.obj: outputtype.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-outputtype.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-outputtype.Tpo -c -o libgleecbtc_common_a-outputtype.obj `if test -f 'outputtype.cpp'; then $(CYGPATH_W) 'outputtype.cpp'; else $(CYGPATH_W) '$(srcdir)/outputtype.cpp'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-outputtype.Tpo $(DEPDIR)/libgleecbtc_common_a-outputtype.Po
+#	$(AM_V_CXX)source='outputtype.cpp' object='libgleecbtc_common_a-outputtype.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-outputtype.obj `if test -f 'outputtype.cpp'; then $(CYGPATH_W) 'outputtype.cpp'; else $(CYGPATH_W) '$(srcdir)/outputtype.cpp'; fi`
+
 policy/libgleecbtc_common_a-feerate.o: policy/feerate.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT policy/libgleecbtc_common_a-feerate.o -MD -MP -MF policy/$(DEPDIR)/libgleecbtc_common_a-feerate.Tpo -c -o policy/libgleecbtc_common_a-feerate.o `test -f 'policy/feerate.cpp' || echo '$(srcdir)/'`policy/feerate.cpp
 	$(AM_V_at)$(am__mv) policy/$(DEPDIR)/libgleecbtc_common_a-feerate.Tpo policy/$(DEPDIR)/libgleecbtc_common_a-feerate.Po
@@ -5172,6 +6959,20 @@ policy/libgleecbtc_common_a-feerate.obj: policy/feerate.cpp
 #	$(AM_V_CXX)source='policy/feerate.cpp' object='policy/libgleecbtc_common_a-feerate.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o policy/libgleecbtc_common_a-feerate.obj `if test -f 'policy/feerate.cpp'; then $(CYGPATH_W) 'policy/feerate.cpp'; else $(CYGPATH_W) '$(srcdir)/policy/feerate.cpp'; fi`
+
+policy/libgleecbtc_common_a-policy.o: policy/policy.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT policy/libgleecbtc_common_a-policy.o -MD -MP -MF policy/$(DEPDIR)/libgleecbtc_common_a-policy.Tpo -c -o policy/libgleecbtc_common_a-policy.o `test -f 'policy/policy.cpp' || echo '$(srcdir)/'`policy/policy.cpp
+	$(AM_V_at)$(am__mv) policy/$(DEPDIR)/libgleecbtc_common_a-policy.Tpo policy/$(DEPDIR)/libgleecbtc_common_a-policy.Po
+#	$(AM_V_CXX)source='policy/policy.cpp' object='policy/libgleecbtc_common_a-policy.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o policy/libgleecbtc_common_a-policy.o `test -f 'policy/policy.cpp' || echo '$(srcdir)/'`policy/policy.cpp
+
+policy/libgleecbtc_common_a-policy.obj: policy/policy.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT policy/libgleecbtc_common_a-policy.obj -MD -MP -MF policy/$(DEPDIR)/libgleecbtc_common_a-policy.Tpo -c -o policy/libgleecbtc_common_a-policy.obj `if test -f 'policy/policy.cpp'; then $(CYGPATH_W) 'policy/policy.cpp'; else $(CYGPATH_W) '$(srcdir)/policy/policy.cpp'; fi`
+	$(AM_V_at)$(am__mv) policy/$(DEPDIR)/libgleecbtc_common_a-policy.Tpo policy/$(DEPDIR)/libgleecbtc_common_a-policy.Po
+#	$(AM_V_CXX)source='policy/policy.cpp' object='policy/libgleecbtc_common_a-policy.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o policy/libgleecbtc_common_a-policy.obj `if test -f 'policy/policy.cpp'; then $(CYGPATH_W) 'policy/policy.cpp'; else $(CYGPATH_W) '$(srcdir)/policy/policy.cpp'; fi`
 
 libgleecbtc_common_a-protocol.o: protocol.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-protocol.o -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-protocol.Tpo -c -o libgleecbtc_common_a-protocol.o `test -f 'protocol.cpp' || echo '$(srcdir)/'`protocol.cpp
@@ -5187,6 +6988,48 @@ libgleecbtc_common_a-protocol.obj: protocol.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-protocol.obj `if test -f 'protocol.cpp'; then $(CYGPATH_W) 'protocol.cpp'; else $(CYGPATH_W) '$(srcdir)/protocol.cpp'; fi`
 
+libgleecbtc_common_a-psbt.o: psbt.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-psbt.o -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-psbt.Tpo -c -o libgleecbtc_common_a-psbt.o `test -f 'psbt.cpp' || echo '$(srcdir)/'`psbt.cpp
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-psbt.Tpo $(DEPDIR)/libgleecbtc_common_a-psbt.Po
+#	$(AM_V_CXX)source='psbt.cpp' object='libgleecbtc_common_a-psbt.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-psbt.o `test -f 'psbt.cpp' || echo '$(srcdir)/'`psbt.cpp
+
+libgleecbtc_common_a-psbt.obj: psbt.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-psbt.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-psbt.Tpo -c -o libgleecbtc_common_a-psbt.obj `if test -f 'psbt.cpp'; then $(CYGPATH_W) 'psbt.cpp'; else $(CYGPATH_W) '$(srcdir)/psbt.cpp'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-psbt.Tpo $(DEPDIR)/libgleecbtc_common_a-psbt.Po
+#	$(AM_V_CXX)source='psbt.cpp' object='libgleecbtc_common_a-psbt.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-psbt.obj `if test -f 'psbt.cpp'; then $(CYGPATH_W) 'psbt.cpp'; else $(CYGPATH_W) '$(srcdir)/psbt.cpp'; fi`
+
+rpc/libgleecbtc_common_a-rawtransaction_util.o: rpc/rawtransaction_util.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT rpc/libgleecbtc_common_a-rawtransaction_util.o -MD -MP -MF rpc/$(DEPDIR)/libgleecbtc_common_a-rawtransaction_util.Tpo -c -o rpc/libgleecbtc_common_a-rawtransaction_util.o `test -f 'rpc/rawtransaction_util.cpp' || echo '$(srcdir)/'`rpc/rawtransaction_util.cpp
+	$(AM_V_at)$(am__mv) rpc/$(DEPDIR)/libgleecbtc_common_a-rawtransaction_util.Tpo rpc/$(DEPDIR)/libgleecbtc_common_a-rawtransaction_util.Po
+#	$(AM_V_CXX)source='rpc/rawtransaction_util.cpp' object='rpc/libgleecbtc_common_a-rawtransaction_util.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o rpc/libgleecbtc_common_a-rawtransaction_util.o `test -f 'rpc/rawtransaction_util.cpp' || echo '$(srcdir)/'`rpc/rawtransaction_util.cpp
+
+rpc/libgleecbtc_common_a-rawtransaction_util.obj: rpc/rawtransaction_util.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT rpc/libgleecbtc_common_a-rawtransaction_util.obj -MD -MP -MF rpc/$(DEPDIR)/libgleecbtc_common_a-rawtransaction_util.Tpo -c -o rpc/libgleecbtc_common_a-rawtransaction_util.obj `if test -f 'rpc/rawtransaction_util.cpp'; then $(CYGPATH_W) 'rpc/rawtransaction_util.cpp'; else $(CYGPATH_W) '$(srcdir)/rpc/rawtransaction_util.cpp'; fi`
+	$(AM_V_at)$(am__mv) rpc/$(DEPDIR)/libgleecbtc_common_a-rawtransaction_util.Tpo rpc/$(DEPDIR)/libgleecbtc_common_a-rawtransaction_util.Po
+#	$(AM_V_CXX)source='rpc/rawtransaction_util.cpp' object='rpc/libgleecbtc_common_a-rawtransaction_util.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o rpc/libgleecbtc_common_a-rawtransaction_util.obj `if test -f 'rpc/rawtransaction_util.cpp'; then $(CYGPATH_W) 'rpc/rawtransaction_util.cpp'; else $(CYGPATH_W) '$(srcdir)/rpc/rawtransaction_util.cpp'; fi`
+
+rpc/libgleecbtc_common_a-util.o: rpc/util.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT rpc/libgleecbtc_common_a-util.o -MD -MP -MF rpc/$(DEPDIR)/libgleecbtc_common_a-util.Tpo -c -o rpc/libgleecbtc_common_a-util.o `test -f 'rpc/util.cpp' || echo '$(srcdir)/'`rpc/util.cpp
+	$(AM_V_at)$(am__mv) rpc/$(DEPDIR)/libgleecbtc_common_a-util.Tpo rpc/$(DEPDIR)/libgleecbtc_common_a-util.Po
+#	$(AM_V_CXX)source='rpc/util.cpp' object='rpc/libgleecbtc_common_a-util.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o rpc/libgleecbtc_common_a-util.o `test -f 'rpc/util.cpp' || echo '$(srcdir)/'`rpc/util.cpp
+
+rpc/libgleecbtc_common_a-util.obj: rpc/util.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT rpc/libgleecbtc_common_a-util.obj -MD -MP -MF rpc/$(DEPDIR)/libgleecbtc_common_a-util.Tpo -c -o rpc/libgleecbtc_common_a-util.obj `if test -f 'rpc/util.cpp'; then $(CYGPATH_W) 'rpc/util.cpp'; else $(CYGPATH_W) '$(srcdir)/rpc/util.cpp'; fi`
+	$(AM_V_at)$(am__mv) rpc/$(DEPDIR)/libgleecbtc_common_a-util.Tpo rpc/$(DEPDIR)/libgleecbtc_common_a-util.Po
+#	$(AM_V_CXX)source='rpc/util.cpp' object='rpc/libgleecbtc_common_a-util.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o rpc/libgleecbtc_common_a-util.obj `if test -f 'rpc/util.cpp'; then $(CYGPATH_W) 'rpc/util.cpp'; else $(CYGPATH_W) '$(srcdir)/rpc/util.cpp'; fi`
+
 libgleecbtc_common_a-scheduler.o: scheduler.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-scheduler.o -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-scheduler.Tpo -c -o libgleecbtc_common_a-scheduler.o `test -f 'scheduler.cpp' || echo '$(srcdir)/'`scheduler.cpp
 	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-scheduler.Tpo $(DEPDIR)/libgleecbtc_common_a-scheduler.Po
@@ -5200,6 +7043,20 @@ libgleecbtc_common_a-scheduler.obj: scheduler.cpp
 #	$(AM_V_CXX)source='scheduler.cpp' object='libgleecbtc_common_a-scheduler.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-scheduler.obj `if test -f 'scheduler.cpp'; then $(CYGPATH_W) 'scheduler.cpp'; else $(CYGPATH_W) '$(srcdir)/scheduler.cpp'; fi`
+
+script/libgleecbtc_common_a-descriptor.o: script/descriptor.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT script/libgleecbtc_common_a-descriptor.o -MD -MP -MF script/$(DEPDIR)/libgleecbtc_common_a-descriptor.Tpo -c -o script/libgleecbtc_common_a-descriptor.o `test -f 'script/descriptor.cpp' || echo '$(srcdir)/'`script/descriptor.cpp
+	$(AM_V_at)$(am__mv) script/$(DEPDIR)/libgleecbtc_common_a-descriptor.Tpo script/$(DEPDIR)/libgleecbtc_common_a-descriptor.Po
+#	$(AM_V_CXX)source='script/descriptor.cpp' object='script/libgleecbtc_common_a-descriptor.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o script/libgleecbtc_common_a-descriptor.o `test -f 'script/descriptor.cpp' || echo '$(srcdir)/'`script/descriptor.cpp
+
+script/libgleecbtc_common_a-descriptor.obj: script/descriptor.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT script/libgleecbtc_common_a-descriptor.obj -MD -MP -MF script/$(DEPDIR)/libgleecbtc_common_a-descriptor.Tpo -c -o script/libgleecbtc_common_a-descriptor.obj `if test -f 'script/descriptor.cpp'; then $(CYGPATH_W) 'script/descriptor.cpp'; else $(CYGPATH_W) '$(srcdir)/script/descriptor.cpp'; fi`
+	$(AM_V_at)$(am__mv) script/$(DEPDIR)/libgleecbtc_common_a-descriptor.Tpo script/$(DEPDIR)/libgleecbtc_common_a-descriptor.Po
+#	$(AM_V_CXX)source='script/descriptor.cpp' object='script/libgleecbtc_common_a-descriptor.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o script/libgleecbtc_common_a-descriptor.obj `if test -f 'script/descriptor.cpp'; then $(CYGPATH_W) 'script/descriptor.cpp'; else $(CYGPATH_W) '$(srcdir)/script/descriptor.cpp'; fi`
 
 script/libgleecbtc_common_a-sign.o: script/sign.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT script/libgleecbtc_common_a-sign.o -MD -MP -MF script/$(DEPDIR)/libgleecbtc_common_a-sign.Tpo -c -o script/libgleecbtc_common_a-sign.o `test -f 'script/sign.cpp' || echo '$(srcdir)/'`script/sign.cpp
@@ -5215,6 +7072,20 @@ script/libgleecbtc_common_a-sign.obj: script/sign.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o script/libgleecbtc_common_a-sign.obj `if test -f 'script/sign.cpp'; then $(CYGPATH_W) 'script/sign.cpp'; else $(CYGPATH_W) '$(srcdir)/script/sign.cpp'; fi`
 
+script/libgleecbtc_common_a-signingprovider.o: script/signingprovider.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT script/libgleecbtc_common_a-signingprovider.o -MD -MP -MF script/$(DEPDIR)/libgleecbtc_common_a-signingprovider.Tpo -c -o script/libgleecbtc_common_a-signingprovider.o `test -f 'script/signingprovider.cpp' || echo '$(srcdir)/'`script/signingprovider.cpp
+	$(AM_V_at)$(am__mv) script/$(DEPDIR)/libgleecbtc_common_a-signingprovider.Tpo script/$(DEPDIR)/libgleecbtc_common_a-signingprovider.Po
+#	$(AM_V_CXX)source='script/signingprovider.cpp' object='script/libgleecbtc_common_a-signingprovider.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o script/libgleecbtc_common_a-signingprovider.o `test -f 'script/signingprovider.cpp' || echo '$(srcdir)/'`script/signingprovider.cpp
+
+script/libgleecbtc_common_a-signingprovider.obj: script/signingprovider.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT script/libgleecbtc_common_a-signingprovider.obj -MD -MP -MF script/$(DEPDIR)/libgleecbtc_common_a-signingprovider.Tpo -c -o script/libgleecbtc_common_a-signingprovider.obj `if test -f 'script/signingprovider.cpp'; then $(CYGPATH_W) 'script/signingprovider.cpp'; else $(CYGPATH_W) '$(srcdir)/script/signingprovider.cpp'; fi`
+	$(AM_V_at)$(am__mv) script/$(DEPDIR)/libgleecbtc_common_a-signingprovider.Tpo script/$(DEPDIR)/libgleecbtc_common_a-signingprovider.Po
+#	$(AM_V_CXX)source='script/signingprovider.cpp' object='script/libgleecbtc_common_a-signingprovider.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o script/libgleecbtc_common_a-signingprovider.obj `if test -f 'script/signingprovider.cpp'; then $(CYGPATH_W) 'script/signingprovider.cpp'; else $(CYGPATH_W) '$(srcdir)/script/signingprovider.cpp'; fi`
+
 script/libgleecbtc_common_a-standard.o: script/standard.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT script/libgleecbtc_common_a-standard.o -MD -MP -MF script/$(DEPDIR)/libgleecbtc_common_a-standard.Tpo -c -o script/libgleecbtc_common_a-standard.o `test -f 'script/standard.cpp' || echo '$(srcdir)/'`script/standard.cpp
 	$(AM_V_at)$(am__mv) script/$(DEPDIR)/libgleecbtc_common_a-standard.Tpo script/$(DEPDIR)/libgleecbtc_common_a-standard.Po
@@ -5228,6 +7099,20 @@ script/libgleecbtc_common_a-standard.obj: script/standard.cpp
 #	$(AM_V_CXX)source='script/standard.cpp' object='script/libgleecbtc_common_a-standard.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o script/libgleecbtc_common_a-standard.obj `if test -f 'script/standard.cpp'; then $(CYGPATH_W) 'script/standard.cpp'; else $(CYGPATH_W) '$(srcdir)/script/standard.cpp'; fi`
+
+libgleecbtc_common_a-versionbitsinfo.o: versionbitsinfo.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-versionbitsinfo.o -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-versionbitsinfo.Tpo -c -o libgleecbtc_common_a-versionbitsinfo.o `test -f 'versionbitsinfo.cpp' || echo '$(srcdir)/'`versionbitsinfo.cpp
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-versionbitsinfo.Tpo $(DEPDIR)/libgleecbtc_common_a-versionbitsinfo.Po
+#	$(AM_V_CXX)source='versionbitsinfo.cpp' object='libgleecbtc_common_a-versionbitsinfo.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-versionbitsinfo.o `test -f 'versionbitsinfo.cpp' || echo '$(srcdir)/'`versionbitsinfo.cpp
+
+libgleecbtc_common_a-versionbitsinfo.obj: versionbitsinfo.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-versionbitsinfo.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-versionbitsinfo.Tpo -c -o libgleecbtc_common_a-versionbitsinfo.obj `if test -f 'versionbitsinfo.cpp'; then $(CYGPATH_W) 'versionbitsinfo.cpp'; else $(CYGPATH_W) '$(srcdir)/versionbitsinfo.cpp'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_common_a-versionbitsinfo.Tpo $(DEPDIR)/libgleecbtc_common_a-versionbitsinfo.Po
+#	$(AM_V_CXX)source='versionbitsinfo.cpp' object='libgleecbtc_common_a-versionbitsinfo.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_common_a-versionbitsinfo.obj `if test -f 'versionbitsinfo.cpp'; then $(CYGPATH_W) 'versionbitsinfo.cpp'; else $(CYGPATH_W) '$(srcdir)/versionbitsinfo.cpp'; fi`
 
 libgleecbtc_common_a-warnings.o: warnings.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_common_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_common_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_common_a-warnings.o -MD -MP -MF $(DEPDIR)/libgleecbtc_common_a-warnings.Tpo -c -o libgleecbtc_common_a-warnings.o `test -f 'warnings.cpp' || echo '$(srcdir)/'`warnings.cpp
@@ -5257,20 +7142,6 @@ libgleecbtc_consensus_a-arith_uint256.obj: arith_uint256.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_consensus_a-arith_uint256.obj `if test -f 'arith_uint256.cpp'; then $(CYGPATH_W) 'arith_uint256.cpp'; else $(CYGPATH_W) '$(srcdir)/arith_uint256.cpp'; fi`
 
-consensus/libgleecbtc_consensus_a-consensus.o: consensus/consensus.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -MT consensus/libgleecbtc_consensus_a-consensus.o -MD -MP -MF consensus/$(DEPDIR)/libgleecbtc_consensus_a-consensus.Tpo -c -o consensus/libgleecbtc_consensus_a-consensus.o `test -f 'consensus/consensus.cpp' || echo '$(srcdir)/'`consensus/consensus.cpp
-	$(AM_V_at)$(am__mv) consensus/$(DEPDIR)/libgleecbtc_consensus_a-consensus.Tpo consensus/$(DEPDIR)/libgleecbtc_consensus_a-consensus.Po
-#	$(AM_V_CXX)source='consensus/consensus.cpp' object='consensus/libgleecbtc_consensus_a-consensus.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -c -o consensus/libgleecbtc_consensus_a-consensus.o `test -f 'consensus/consensus.cpp' || echo '$(srcdir)/'`consensus/consensus.cpp
-
-consensus/libgleecbtc_consensus_a-consensus.obj: consensus/consensus.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -MT consensus/libgleecbtc_consensus_a-consensus.obj -MD -MP -MF consensus/$(DEPDIR)/libgleecbtc_consensus_a-consensus.Tpo -c -o consensus/libgleecbtc_consensus_a-consensus.obj `if test -f 'consensus/consensus.cpp'; then $(CYGPATH_W) 'consensus/consensus.cpp'; else $(CYGPATH_W) '$(srcdir)/consensus/consensus.cpp'; fi`
-	$(AM_V_at)$(am__mv) consensus/$(DEPDIR)/libgleecbtc_consensus_a-consensus.Tpo consensus/$(DEPDIR)/libgleecbtc_consensus_a-consensus.Po
-#	$(AM_V_CXX)source='consensus/consensus.cpp' object='consensus/libgleecbtc_consensus_a-consensus.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -c -o consensus/libgleecbtc_consensus_a-consensus.obj `if test -f 'consensus/consensus.cpp'; then $(CYGPATH_W) 'consensus/consensus.cpp'; else $(CYGPATH_W) '$(srcdir)/consensus/consensus.cpp'; fi`
-
 consensus/libgleecbtc_consensus_a-merkle.o: consensus/merkle.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -MT consensus/libgleecbtc_consensus_a-merkle.o -MD -MP -MF consensus/$(DEPDIR)/libgleecbtc_consensus_a-merkle.Tpo -c -o consensus/libgleecbtc_consensus_a-merkle.o `test -f 'consensus/merkle.cpp' || echo '$(srcdir)/'`consensus/merkle.cpp
 	$(AM_V_at)$(am__mv) consensus/$(DEPDIR)/libgleecbtc_consensus_a-merkle.Tpo consensus/$(DEPDIR)/libgleecbtc_consensus_a-merkle.Po
@@ -5284,6 +7155,20 @@ consensus/libgleecbtc_consensus_a-merkle.obj: consensus/merkle.cpp
 #	$(AM_V_CXX)source='consensus/merkle.cpp' object='consensus/libgleecbtc_consensus_a-merkle.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -c -o consensus/libgleecbtc_consensus_a-merkle.obj `if test -f 'consensus/merkle.cpp'; then $(CYGPATH_W) 'consensus/merkle.cpp'; else $(CYGPATH_W) '$(srcdir)/consensus/merkle.cpp'; fi`
+
+consensus/libgleecbtc_consensus_a-tx_check.o: consensus/tx_check.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -MT consensus/libgleecbtc_consensus_a-tx_check.o -MD -MP -MF consensus/$(DEPDIR)/libgleecbtc_consensus_a-tx_check.Tpo -c -o consensus/libgleecbtc_consensus_a-tx_check.o `test -f 'consensus/tx_check.cpp' || echo '$(srcdir)/'`consensus/tx_check.cpp
+	$(AM_V_at)$(am__mv) consensus/$(DEPDIR)/libgleecbtc_consensus_a-tx_check.Tpo consensus/$(DEPDIR)/libgleecbtc_consensus_a-tx_check.Po
+#	$(AM_V_CXX)source='consensus/tx_check.cpp' object='consensus/libgleecbtc_consensus_a-tx_check.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -c -o consensus/libgleecbtc_consensus_a-tx_check.o `test -f 'consensus/tx_check.cpp' || echo '$(srcdir)/'`consensus/tx_check.cpp
+
+consensus/libgleecbtc_consensus_a-tx_check.obj: consensus/tx_check.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -MT consensus/libgleecbtc_consensus_a-tx_check.obj -MD -MP -MF consensus/$(DEPDIR)/libgleecbtc_consensus_a-tx_check.Tpo -c -o consensus/libgleecbtc_consensus_a-tx_check.obj `if test -f 'consensus/tx_check.cpp'; then $(CYGPATH_W) 'consensus/tx_check.cpp'; else $(CYGPATH_W) '$(srcdir)/consensus/tx_check.cpp'; fi`
+	$(AM_V_at)$(am__mv) consensus/$(DEPDIR)/libgleecbtc_consensus_a-tx_check.Tpo consensus/$(DEPDIR)/libgleecbtc_consensus_a-tx_check.Po
+#	$(AM_V_CXX)source='consensus/tx_check.cpp' object='consensus/libgleecbtc_consensus_a-tx_check.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -c -o consensus/libgleecbtc_consensus_a-tx_check.obj `if test -f 'consensus/tx_check.cpp'; then $(CYGPATH_W) 'consensus/tx_check.cpp'; else $(CYGPATH_W) '$(srcdir)/consensus/tx_check.cpp'; fi`
 
 libgleecbtc_consensus_a-hash.o: hash.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_consensus_a-hash.o -MD -MP -MF $(DEPDIR)/libgleecbtc_consensus_a-hash.Tpo -c -o libgleecbtc_consensus_a-hash.o `test -f 'hash.cpp' || echo '$(srcdir)/'`hash.cpp
@@ -5411,19 +7296,19 @@ libgleecbtc_consensus_a-uint256.obj: uint256.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_consensus_a-uint256.obj `if test -f 'uint256.cpp'; then $(CYGPATH_W) 'uint256.cpp'; else $(CYGPATH_W) '$(srcdir)/uint256.cpp'; fi`
 
-libgleecbtc_consensus_a-utilstrencodings.o: utilstrencodings.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_consensus_a-utilstrencodings.o -MD -MP -MF $(DEPDIR)/libgleecbtc_consensus_a-utilstrencodings.Tpo -c -o libgleecbtc_consensus_a-utilstrencodings.o `test -f 'utilstrencodings.cpp' || echo '$(srcdir)/'`utilstrencodings.cpp
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_consensus_a-utilstrencodings.Tpo $(DEPDIR)/libgleecbtc_consensus_a-utilstrencodings.Po
-#	$(AM_V_CXX)source='utilstrencodings.cpp' object='libgleecbtc_consensus_a-utilstrencodings.o' libtool=no \
+util/libgleecbtc_consensus_a-strencodings.o: util/strencodings.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_consensus_a-strencodings.o -MD -MP -MF util/$(DEPDIR)/libgleecbtc_consensus_a-strencodings.Tpo -c -o util/libgleecbtc_consensus_a-strencodings.o `test -f 'util/strencodings.cpp' || echo '$(srcdir)/'`util/strencodings.cpp
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_consensus_a-strencodings.Tpo util/$(DEPDIR)/libgleecbtc_consensus_a-strencodings.Po
+#	$(AM_V_CXX)source='util/strencodings.cpp' object='util/libgleecbtc_consensus_a-strencodings.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_consensus_a-utilstrencodings.o `test -f 'utilstrencodings.cpp' || echo '$(srcdir)/'`utilstrencodings.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_consensus_a-strencodings.o `test -f 'util/strencodings.cpp' || echo '$(srcdir)/'`util/strencodings.cpp
 
-libgleecbtc_consensus_a-utilstrencodings.obj: utilstrencodings.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_consensus_a-utilstrencodings.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_consensus_a-utilstrencodings.Tpo -c -o libgleecbtc_consensus_a-utilstrencodings.obj `if test -f 'utilstrencodings.cpp'; then $(CYGPATH_W) 'utilstrencodings.cpp'; else $(CYGPATH_W) '$(srcdir)/utilstrencodings.cpp'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_consensus_a-utilstrencodings.Tpo $(DEPDIR)/libgleecbtc_consensus_a-utilstrencodings.Po
-#	$(AM_V_CXX)source='utilstrencodings.cpp' object='libgleecbtc_consensus_a-utilstrencodings.obj' libtool=no \
+util/libgleecbtc_consensus_a-strencodings.obj: util/strencodings.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_consensus_a-strencodings.obj -MD -MP -MF util/$(DEPDIR)/libgleecbtc_consensus_a-strencodings.Tpo -c -o util/libgleecbtc_consensus_a-strencodings.obj `if test -f 'util/strencodings.cpp'; then $(CYGPATH_W) 'util/strencodings.cpp'; else $(CYGPATH_W) '$(srcdir)/util/strencodings.cpp'; fi`
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_consensus_a-strencodings.Tpo util/$(DEPDIR)/libgleecbtc_consensus_a-strencodings.Po
+#	$(AM_V_CXX)source='util/strencodings.cpp' object='util/libgleecbtc_consensus_a-strencodings.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_consensus_a-utilstrencodings.obj `if test -f 'utilstrencodings.cpp'; then $(CYGPATH_W) 'utilstrencodings.cpp'; else $(CYGPATH_W) '$(srcdir)/utilstrencodings.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_consensus_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_consensus_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_consensus_a-strencodings.obj `if test -f 'util/strencodings.cpp'; then $(CYGPATH_W) 'util/strencodings.cpp'; else $(CYGPATH_W) '$(srcdir)/util/strencodings.cpp'; fi`
 
 libgleecbtc_server_a-addrdb.o: addrdb.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-addrdb.o -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-addrdb.Tpo -c -o libgleecbtc_server_a-addrdb.o `test -f 'addrdb.cpp' || echo '$(srcdir)/'`addrdb.cpp
@@ -5453,19 +7338,19 @@ libgleecbtc_server_a-addrman.obj: addrman.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-addrman.obj `if test -f 'addrman.cpp'; then $(CYGPATH_W) 'addrman.cpp'; else $(CYGPATH_W) '$(srcdir)/addrman.cpp'; fi`
 
-libgleecbtc_server_a-bloom.o: bloom.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-bloom.o -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-bloom.Tpo -c -o libgleecbtc_server_a-bloom.o `test -f 'bloom.cpp' || echo '$(srcdir)/'`bloom.cpp
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-bloom.Tpo $(DEPDIR)/libgleecbtc_server_a-bloom.Po
-#	$(AM_V_CXX)source='bloom.cpp' object='libgleecbtc_server_a-bloom.o' libtool=no \
+libgleecbtc_server_a-banman.o: banman.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-banman.o -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-banman.Tpo -c -o libgleecbtc_server_a-banman.o `test -f 'banman.cpp' || echo '$(srcdir)/'`banman.cpp
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-banman.Tpo $(DEPDIR)/libgleecbtc_server_a-banman.Po
+#	$(AM_V_CXX)source='banman.cpp' object='libgleecbtc_server_a-banman.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-bloom.o `test -f 'bloom.cpp' || echo '$(srcdir)/'`bloom.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-banman.o `test -f 'banman.cpp' || echo '$(srcdir)/'`banman.cpp
 
-libgleecbtc_server_a-bloom.obj: bloom.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-bloom.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-bloom.Tpo -c -o libgleecbtc_server_a-bloom.obj `if test -f 'bloom.cpp'; then $(CYGPATH_W) 'bloom.cpp'; else $(CYGPATH_W) '$(srcdir)/bloom.cpp'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-bloom.Tpo $(DEPDIR)/libgleecbtc_server_a-bloom.Po
-#	$(AM_V_CXX)source='bloom.cpp' object='libgleecbtc_server_a-bloom.obj' libtool=no \
+libgleecbtc_server_a-banman.obj: banman.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-banman.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-banman.Tpo -c -o libgleecbtc_server_a-banman.obj `if test -f 'banman.cpp'; then $(CYGPATH_W) 'banman.cpp'; else $(CYGPATH_W) '$(srcdir)/banman.cpp'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-banman.Tpo $(DEPDIR)/libgleecbtc_server_a-banman.Po
+#	$(AM_V_CXX)source='banman.cpp' object='libgleecbtc_server_a-banman.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-bloom.obj `if test -f 'bloom.cpp'; then $(CYGPATH_W) 'bloom.cpp'; else $(CYGPATH_W) '$(srcdir)/bloom.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-banman.obj `if test -f 'banman.cpp'; then $(CYGPATH_W) 'banman.cpp'; else $(CYGPATH_W) '$(srcdir)/banman.cpp'; fi`
 
 libgleecbtc_server_a-blockencodings.o: blockencodings.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-blockencodings.o -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-blockencodings.Tpo -c -o libgleecbtc_server_a-blockencodings.o `test -f 'blockencodings.cpp' || echo '$(srcdir)/'`blockencodings.cpp
@@ -5481,6 +7366,20 @@ libgleecbtc_server_a-blockencodings.obj: blockencodings.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-blockencodings.obj `if test -f 'blockencodings.cpp'; then $(CYGPATH_W) 'blockencodings.cpp'; else $(CYGPATH_W) '$(srcdir)/blockencodings.cpp'; fi`
 
+libgleecbtc_server_a-blockfilter.o: blockfilter.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-blockfilter.o -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-blockfilter.Tpo -c -o libgleecbtc_server_a-blockfilter.o `test -f 'blockfilter.cpp' || echo '$(srcdir)/'`blockfilter.cpp
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-blockfilter.Tpo $(DEPDIR)/libgleecbtc_server_a-blockfilter.Po
+#	$(AM_V_CXX)source='blockfilter.cpp' object='libgleecbtc_server_a-blockfilter.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-blockfilter.o `test -f 'blockfilter.cpp' || echo '$(srcdir)/'`blockfilter.cpp
+
+libgleecbtc_server_a-blockfilter.obj: blockfilter.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-blockfilter.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-blockfilter.Tpo -c -o libgleecbtc_server_a-blockfilter.obj `if test -f 'blockfilter.cpp'; then $(CYGPATH_W) 'blockfilter.cpp'; else $(CYGPATH_W) '$(srcdir)/blockfilter.cpp'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-blockfilter.Tpo $(DEPDIR)/libgleecbtc_server_a-blockfilter.Po
+#	$(AM_V_CXX)source='blockfilter.cpp' object='libgleecbtc_server_a-blockfilter.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-blockfilter.obj `if test -f 'blockfilter.cpp'; then $(CYGPATH_W) 'blockfilter.cpp'; else $(CYGPATH_W) '$(srcdir)/blockfilter.cpp'; fi`
+
 libgleecbtc_server_a-chain.o: chain.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-chain.o -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-chain.Tpo -c -o libgleecbtc_server_a-chain.o `test -f 'chain.cpp' || echo '$(srcdir)/'`chain.cpp
 	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-chain.Tpo $(DEPDIR)/libgleecbtc_server_a-chain.Po
@@ -5495,20 +7394,6 @@ libgleecbtc_server_a-chain.obj: chain.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-chain.obj `if test -f 'chain.cpp'; then $(CYGPATH_W) 'chain.cpp'; else $(CYGPATH_W) '$(srcdir)/chain.cpp'; fi`
 
-libgleecbtc_server_a-checkpoints.o: checkpoints.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-checkpoints.o -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-checkpoints.Tpo -c -o libgleecbtc_server_a-checkpoints.o `test -f 'checkpoints.cpp' || echo '$(srcdir)/'`checkpoints.cpp
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-checkpoints.Tpo $(DEPDIR)/libgleecbtc_server_a-checkpoints.Po
-#	$(AM_V_CXX)source='checkpoints.cpp' object='libgleecbtc_server_a-checkpoints.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-checkpoints.o `test -f 'checkpoints.cpp' || echo '$(srcdir)/'`checkpoints.cpp
-
-libgleecbtc_server_a-checkpoints.obj: checkpoints.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-checkpoints.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-checkpoints.Tpo -c -o libgleecbtc_server_a-checkpoints.obj `if test -f 'checkpoints.cpp'; then $(CYGPATH_W) 'checkpoints.cpp'; else $(CYGPATH_W) '$(srcdir)/checkpoints.cpp'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-checkpoints.Tpo $(DEPDIR)/libgleecbtc_server_a-checkpoints.Po
-#	$(AM_V_CXX)source='checkpoints.cpp' object='libgleecbtc_server_a-checkpoints.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-checkpoints.obj `if test -f 'checkpoints.cpp'; then $(CYGPATH_W) 'checkpoints.cpp'; else $(CYGPATH_W) '$(srcdir)/checkpoints.cpp'; fi`
-
 consensus/libgleecbtc_server_a-tx_verify.o: consensus/tx_verify.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT consensus/libgleecbtc_server_a-tx_verify.o -MD -MP -MF consensus/$(DEPDIR)/libgleecbtc_server_a-tx_verify.Tpo -c -o consensus/libgleecbtc_server_a-tx_verify.o `test -f 'consensus/tx_verify.cpp' || echo '$(srcdir)/'`consensus/tx_verify.cpp
 	$(AM_V_at)$(am__mv) consensus/$(DEPDIR)/libgleecbtc_server_a-tx_verify.Tpo consensus/$(DEPDIR)/libgleecbtc_server_a-tx_verify.Po
@@ -5522,6 +7407,20 @@ consensus/libgleecbtc_server_a-tx_verify.obj: consensus/tx_verify.cpp
 #	$(AM_V_CXX)source='consensus/tx_verify.cpp' object='consensus/libgleecbtc_server_a-tx_verify.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o consensus/libgleecbtc_server_a-tx_verify.obj `if test -f 'consensus/tx_verify.cpp'; then $(CYGPATH_W) 'consensus/tx_verify.cpp'; else $(CYGPATH_W) '$(srcdir)/consensus/tx_verify.cpp'; fi`
+
+libgleecbtc_server_a-flatfile.o: flatfile.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-flatfile.o -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-flatfile.Tpo -c -o libgleecbtc_server_a-flatfile.o `test -f 'flatfile.cpp' || echo '$(srcdir)/'`flatfile.cpp
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-flatfile.Tpo $(DEPDIR)/libgleecbtc_server_a-flatfile.Po
+#	$(AM_V_CXX)source='flatfile.cpp' object='libgleecbtc_server_a-flatfile.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-flatfile.o `test -f 'flatfile.cpp' || echo '$(srcdir)/'`flatfile.cpp
+
+libgleecbtc_server_a-flatfile.obj: flatfile.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-flatfile.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-flatfile.Tpo -c -o libgleecbtc_server_a-flatfile.obj `if test -f 'flatfile.cpp'; then $(CYGPATH_W) 'flatfile.cpp'; else $(CYGPATH_W) '$(srcdir)/flatfile.cpp'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-flatfile.Tpo $(DEPDIR)/libgleecbtc_server_a-flatfile.Po
+#	$(AM_V_CXX)source='flatfile.cpp' object='libgleecbtc_server_a-flatfile.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-flatfile.obj `if test -f 'flatfile.cpp'; then $(CYGPATH_W) 'flatfile.cpp'; else $(CYGPATH_W) '$(srcdir)/flatfile.cpp'; fi`
 
 libgleecbtc_server_a-httprpc.o: httprpc.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-httprpc.o -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-httprpc.Tpo -c -o libgleecbtc_server_a-httprpc.o `test -f 'httprpc.cpp' || echo '$(srcdir)/'`httprpc.cpp
@@ -5551,6 +7450,76 @@ libgleecbtc_server_a-httpserver.obj: httpserver.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-httpserver.obj `if test -f 'httpserver.cpp'; then $(CYGPATH_W) 'httpserver.cpp'; else $(CYGPATH_W) '$(srcdir)/httpserver.cpp'; fi`
 
+index/libgleecbtc_server_a-base.o: index/base.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT index/libgleecbtc_server_a-base.o -MD -MP -MF index/$(DEPDIR)/libgleecbtc_server_a-base.Tpo -c -o index/libgleecbtc_server_a-base.o `test -f 'index/base.cpp' || echo '$(srcdir)/'`index/base.cpp
+	$(AM_V_at)$(am__mv) index/$(DEPDIR)/libgleecbtc_server_a-base.Tpo index/$(DEPDIR)/libgleecbtc_server_a-base.Po
+#	$(AM_V_CXX)source='index/base.cpp' object='index/libgleecbtc_server_a-base.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o index/libgleecbtc_server_a-base.o `test -f 'index/base.cpp' || echo '$(srcdir)/'`index/base.cpp
+
+index/libgleecbtc_server_a-base.obj: index/base.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT index/libgleecbtc_server_a-base.obj -MD -MP -MF index/$(DEPDIR)/libgleecbtc_server_a-base.Tpo -c -o index/libgleecbtc_server_a-base.obj `if test -f 'index/base.cpp'; then $(CYGPATH_W) 'index/base.cpp'; else $(CYGPATH_W) '$(srcdir)/index/base.cpp'; fi`
+	$(AM_V_at)$(am__mv) index/$(DEPDIR)/libgleecbtc_server_a-base.Tpo index/$(DEPDIR)/libgleecbtc_server_a-base.Po
+#	$(AM_V_CXX)source='index/base.cpp' object='index/libgleecbtc_server_a-base.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o index/libgleecbtc_server_a-base.obj `if test -f 'index/base.cpp'; then $(CYGPATH_W) 'index/base.cpp'; else $(CYGPATH_W) '$(srcdir)/index/base.cpp'; fi`
+
+index/libgleecbtc_server_a-blockfilterindex.o: index/blockfilterindex.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT index/libgleecbtc_server_a-blockfilterindex.o -MD -MP -MF index/$(DEPDIR)/libgleecbtc_server_a-blockfilterindex.Tpo -c -o index/libgleecbtc_server_a-blockfilterindex.o `test -f 'index/blockfilterindex.cpp' || echo '$(srcdir)/'`index/blockfilterindex.cpp
+	$(AM_V_at)$(am__mv) index/$(DEPDIR)/libgleecbtc_server_a-blockfilterindex.Tpo index/$(DEPDIR)/libgleecbtc_server_a-blockfilterindex.Po
+#	$(AM_V_CXX)source='index/blockfilterindex.cpp' object='index/libgleecbtc_server_a-blockfilterindex.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o index/libgleecbtc_server_a-blockfilterindex.o `test -f 'index/blockfilterindex.cpp' || echo '$(srcdir)/'`index/blockfilterindex.cpp
+
+index/libgleecbtc_server_a-blockfilterindex.obj: index/blockfilterindex.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT index/libgleecbtc_server_a-blockfilterindex.obj -MD -MP -MF index/$(DEPDIR)/libgleecbtc_server_a-blockfilterindex.Tpo -c -o index/libgleecbtc_server_a-blockfilterindex.obj `if test -f 'index/blockfilterindex.cpp'; then $(CYGPATH_W) 'index/blockfilterindex.cpp'; else $(CYGPATH_W) '$(srcdir)/index/blockfilterindex.cpp'; fi`
+	$(AM_V_at)$(am__mv) index/$(DEPDIR)/libgleecbtc_server_a-blockfilterindex.Tpo index/$(DEPDIR)/libgleecbtc_server_a-blockfilterindex.Po
+#	$(AM_V_CXX)source='index/blockfilterindex.cpp' object='index/libgleecbtc_server_a-blockfilterindex.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o index/libgleecbtc_server_a-blockfilterindex.obj `if test -f 'index/blockfilterindex.cpp'; then $(CYGPATH_W) 'index/blockfilterindex.cpp'; else $(CYGPATH_W) '$(srcdir)/index/blockfilterindex.cpp'; fi`
+
+index/libgleecbtc_server_a-txindex.o: index/txindex.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT index/libgleecbtc_server_a-txindex.o -MD -MP -MF index/$(DEPDIR)/libgleecbtc_server_a-txindex.Tpo -c -o index/libgleecbtc_server_a-txindex.o `test -f 'index/txindex.cpp' || echo '$(srcdir)/'`index/txindex.cpp
+	$(AM_V_at)$(am__mv) index/$(DEPDIR)/libgleecbtc_server_a-txindex.Tpo index/$(DEPDIR)/libgleecbtc_server_a-txindex.Po
+#	$(AM_V_CXX)source='index/txindex.cpp' object='index/libgleecbtc_server_a-txindex.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o index/libgleecbtc_server_a-txindex.o `test -f 'index/txindex.cpp' || echo '$(srcdir)/'`index/txindex.cpp
+
+index/libgleecbtc_server_a-txindex.obj: index/txindex.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT index/libgleecbtc_server_a-txindex.obj -MD -MP -MF index/$(DEPDIR)/libgleecbtc_server_a-txindex.Tpo -c -o index/libgleecbtc_server_a-txindex.obj `if test -f 'index/txindex.cpp'; then $(CYGPATH_W) 'index/txindex.cpp'; else $(CYGPATH_W) '$(srcdir)/index/txindex.cpp'; fi`
+	$(AM_V_at)$(am__mv) index/$(DEPDIR)/libgleecbtc_server_a-txindex.Tpo index/$(DEPDIR)/libgleecbtc_server_a-txindex.Po
+#	$(AM_V_CXX)source='index/txindex.cpp' object='index/libgleecbtc_server_a-txindex.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o index/libgleecbtc_server_a-txindex.obj `if test -f 'index/txindex.cpp'; then $(CYGPATH_W) 'index/txindex.cpp'; else $(CYGPATH_W) '$(srcdir)/index/txindex.cpp'; fi`
+
+interfaces/libgleecbtc_server_a-chain.o: interfaces/chain.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT interfaces/libgleecbtc_server_a-chain.o -MD -MP -MF interfaces/$(DEPDIR)/libgleecbtc_server_a-chain.Tpo -c -o interfaces/libgleecbtc_server_a-chain.o `test -f 'interfaces/chain.cpp' || echo '$(srcdir)/'`interfaces/chain.cpp
+	$(AM_V_at)$(am__mv) interfaces/$(DEPDIR)/libgleecbtc_server_a-chain.Tpo interfaces/$(DEPDIR)/libgleecbtc_server_a-chain.Po
+#	$(AM_V_CXX)source='interfaces/chain.cpp' object='interfaces/libgleecbtc_server_a-chain.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o interfaces/libgleecbtc_server_a-chain.o `test -f 'interfaces/chain.cpp' || echo '$(srcdir)/'`interfaces/chain.cpp
+
+interfaces/libgleecbtc_server_a-chain.obj: interfaces/chain.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT interfaces/libgleecbtc_server_a-chain.obj -MD -MP -MF interfaces/$(DEPDIR)/libgleecbtc_server_a-chain.Tpo -c -o interfaces/libgleecbtc_server_a-chain.obj `if test -f 'interfaces/chain.cpp'; then $(CYGPATH_W) 'interfaces/chain.cpp'; else $(CYGPATH_W) '$(srcdir)/interfaces/chain.cpp'; fi`
+	$(AM_V_at)$(am__mv) interfaces/$(DEPDIR)/libgleecbtc_server_a-chain.Tpo interfaces/$(DEPDIR)/libgleecbtc_server_a-chain.Po
+#	$(AM_V_CXX)source='interfaces/chain.cpp' object='interfaces/libgleecbtc_server_a-chain.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o interfaces/libgleecbtc_server_a-chain.obj `if test -f 'interfaces/chain.cpp'; then $(CYGPATH_W) 'interfaces/chain.cpp'; else $(CYGPATH_W) '$(srcdir)/interfaces/chain.cpp'; fi`
+
+interfaces/libgleecbtc_server_a-node.o: interfaces/node.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT interfaces/libgleecbtc_server_a-node.o -MD -MP -MF interfaces/$(DEPDIR)/libgleecbtc_server_a-node.Tpo -c -o interfaces/libgleecbtc_server_a-node.o `test -f 'interfaces/node.cpp' || echo '$(srcdir)/'`interfaces/node.cpp
+	$(AM_V_at)$(am__mv) interfaces/$(DEPDIR)/libgleecbtc_server_a-node.Tpo interfaces/$(DEPDIR)/libgleecbtc_server_a-node.Po
+#	$(AM_V_CXX)source='interfaces/node.cpp' object='interfaces/libgleecbtc_server_a-node.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o interfaces/libgleecbtc_server_a-node.o `test -f 'interfaces/node.cpp' || echo '$(srcdir)/'`interfaces/node.cpp
+
+interfaces/libgleecbtc_server_a-node.obj: interfaces/node.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT interfaces/libgleecbtc_server_a-node.obj -MD -MP -MF interfaces/$(DEPDIR)/libgleecbtc_server_a-node.Tpo -c -o interfaces/libgleecbtc_server_a-node.obj `if test -f 'interfaces/node.cpp'; then $(CYGPATH_W) 'interfaces/node.cpp'; else $(CYGPATH_W) '$(srcdir)/interfaces/node.cpp'; fi`
+	$(AM_V_at)$(am__mv) interfaces/$(DEPDIR)/libgleecbtc_server_a-node.Tpo interfaces/$(DEPDIR)/libgleecbtc_server_a-node.Po
+#	$(AM_V_CXX)source='interfaces/node.cpp' object='interfaces/libgleecbtc_server_a-node.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o interfaces/libgleecbtc_server_a-node.obj `if test -f 'interfaces/node.cpp'; then $(CYGPATH_W) 'interfaces/node.cpp'; else $(CYGPATH_W) '$(srcdir)/interfaces/node.cpp'; fi`
+
 libgleecbtc_server_a-init.o: init.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-init.o -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-init.Tpo -c -o libgleecbtc_server_a-init.o `test -f 'init.cpp' || echo '$(srcdir)/'`init.cpp
 	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-init.Tpo $(DEPDIR)/libgleecbtc_server_a-init.Po
@@ -5578,20 +7547,6 @@ libgleecbtc_server_a-dbwrapper.obj: dbwrapper.cpp
 #	$(AM_V_CXX)source='dbwrapper.cpp' object='libgleecbtc_server_a-dbwrapper.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-dbwrapper.obj `if test -f 'dbwrapper.cpp'; then $(CYGPATH_W) 'dbwrapper.cpp'; else $(CYGPATH_W) '$(srcdir)/dbwrapper.cpp'; fi`
-
-libgleecbtc_server_a-merkleblock.o: merkleblock.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-merkleblock.o -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-merkleblock.Tpo -c -o libgleecbtc_server_a-merkleblock.o `test -f 'merkleblock.cpp' || echo '$(srcdir)/'`merkleblock.cpp
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-merkleblock.Tpo $(DEPDIR)/libgleecbtc_server_a-merkleblock.Po
-#	$(AM_V_CXX)source='merkleblock.cpp' object='libgleecbtc_server_a-merkleblock.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-merkleblock.o `test -f 'merkleblock.cpp' || echo '$(srcdir)/'`merkleblock.cpp
-
-libgleecbtc_server_a-merkleblock.obj: merkleblock.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-merkleblock.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-merkleblock.Tpo -c -o libgleecbtc_server_a-merkleblock.obj `if test -f 'merkleblock.cpp'; then $(CYGPATH_W) 'merkleblock.cpp'; else $(CYGPATH_W) '$(srcdir)/merkleblock.cpp'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-merkleblock.Tpo $(DEPDIR)/libgleecbtc_server_a-merkleblock.Po
-#	$(AM_V_CXX)source='merkleblock.cpp' object='libgleecbtc_server_a-merkleblock.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-merkleblock.obj `if test -f 'merkleblock.cpp'; then $(CYGPATH_W) 'merkleblock.cpp'; else $(CYGPATH_W) '$(srcdir)/merkleblock.cpp'; fi`
 
 libgleecbtc_server_a-miner.o: miner.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-miner.o -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-miner.Tpo -c -o libgleecbtc_server_a-miner.o `test -f 'miner.cpp' || echo '$(srcdir)/'`miner.cpp
@@ -5635,6 +7590,62 @@ libgleecbtc_server_a-net_processing.obj: net_processing.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-net_processing.obj `if test -f 'net_processing.cpp'; then $(CYGPATH_W) 'net_processing.cpp'; else $(CYGPATH_W) '$(srcdir)/net_processing.cpp'; fi`
 
+node/libgleecbtc_server_a-coin.o: node/coin.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT node/libgleecbtc_server_a-coin.o -MD -MP -MF node/$(DEPDIR)/libgleecbtc_server_a-coin.Tpo -c -o node/libgleecbtc_server_a-coin.o `test -f 'node/coin.cpp' || echo '$(srcdir)/'`node/coin.cpp
+	$(AM_V_at)$(am__mv) node/$(DEPDIR)/libgleecbtc_server_a-coin.Tpo node/$(DEPDIR)/libgleecbtc_server_a-coin.Po
+#	$(AM_V_CXX)source='node/coin.cpp' object='node/libgleecbtc_server_a-coin.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o node/libgleecbtc_server_a-coin.o `test -f 'node/coin.cpp' || echo '$(srcdir)/'`node/coin.cpp
+
+node/libgleecbtc_server_a-coin.obj: node/coin.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT node/libgleecbtc_server_a-coin.obj -MD -MP -MF node/$(DEPDIR)/libgleecbtc_server_a-coin.Tpo -c -o node/libgleecbtc_server_a-coin.obj `if test -f 'node/coin.cpp'; then $(CYGPATH_W) 'node/coin.cpp'; else $(CYGPATH_W) '$(srcdir)/node/coin.cpp'; fi`
+	$(AM_V_at)$(am__mv) node/$(DEPDIR)/libgleecbtc_server_a-coin.Tpo node/$(DEPDIR)/libgleecbtc_server_a-coin.Po
+#	$(AM_V_CXX)source='node/coin.cpp' object='node/libgleecbtc_server_a-coin.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o node/libgleecbtc_server_a-coin.obj `if test -f 'node/coin.cpp'; then $(CYGPATH_W) 'node/coin.cpp'; else $(CYGPATH_W) '$(srcdir)/node/coin.cpp'; fi`
+
+node/libgleecbtc_server_a-coinstats.o: node/coinstats.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT node/libgleecbtc_server_a-coinstats.o -MD -MP -MF node/$(DEPDIR)/libgleecbtc_server_a-coinstats.Tpo -c -o node/libgleecbtc_server_a-coinstats.o `test -f 'node/coinstats.cpp' || echo '$(srcdir)/'`node/coinstats.cpp
+	$(AM_V_at)$(am__mv) node/$(DEPDIR)/libgleecbtc_server_a-coinstats.Tpo node/$(DEPDIR)/libgleecbtc_server_a-coinstats.Po
+#	$(AM_V_CXX)source='node/coinstats.cpp' object='node/libgleecbtc_server_a-coinstats.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o node/libgleecbtc_server_a-coinstats.o `test -f 'node/coinstats.cpp' || echo '$(srcdir)/'`node/coinstats.cpp
+
+node/libgleecbtc_server_a-coinstats.obj: node/coinstats.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT node/libgleecbtc_server_a-coinstats.obj -MD -MP -MF node/$(DEPDIR)/libgleecbtc_server_a-coinstats.Tpo -c -o node/libgleecbtc_server_a-coinstats.obj `if test -f 'node/coinstats.cpp'; then $(CYGPATH_W) 'node/coinstats.cpp'; else $(CYGPATH_W) '$(srcdir)/node/coinstats.cpp'; fi`
+	$(AM_V_at)$(am__mv) node/$(DEPDIR)/libgleecbtc_server_a-coinstats.Tpo node/$(DEPDIR)/libgleecbtc_server_a-coinstats.Po
+#	$(AM_V_CXX)source='node/coinstats.cpp' object='node/libgleecbtc_server_a-coinstats.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o node/libgleecbtc_server_a-coinstats.obj `if test -f 'node/coinstats.cpp'; then $(CYGPATH_W) 'node/coinstats.cpp'; else $(CYGPATH_W) '$(srcdir)/node/coinstats.cpp'; fi`
+
+node/libgleecbtc_server_a-psbt.o: node/psbt.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT node/libgleecbtc_server_a-psbt.o -MD -MP -MF node/$(DEPDIR)/libgleecbtc_server_a-psbt.Tpo -c -o node/libgleecbtc_server_a-psbt.o `test -f 'node/psbt.cpp' || echo '$(srcdir)/'`node/psbt.cpp
+	$(AM_V_at)$(am__mv) node/$(DEPDIR)/libgleecbtc_server_a-psbt.Tpo node/$(DEPDIR)/libgleecbtc_server_a-psbt.Po
+#	$(AM_V_CXX)source='node/psbt.cpp' object='node/libgleecbtc_server_a-psbt.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o node/libgleecbtc_server_a-psbt.o `test -f 'node/psbt.cpp' || echo '$(srcdir)/'`node/psbt.cpp
+
+node/libgleecbtc_server_a-psbt.obj: node/psbt.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT node/libgleecbtc_server_a-psbt.obj -MD -MP -MF node/$(DEPDIR)/libgleecbtc_server_a-psbt.Tpo -c -o node/libgleecbtc_server_a-psbt.obj `if test -f 'node/psbt.cpp'; then $(CYGPATH_W) 'node/psbt.cpp'; else $(CYGPATH_W) '$(srcdir)/node/psbt.cpp'; fi`
+	$(AM_V_at)$(am__mv) node/$(DEPDIR)/libgleecbtc_server_a-psbt.Tpo node/$(DEPDIR)/libgleecbtc_server_a-psbt.Po
+#	$(AM_V_CXX)source='node/psbt.cpp' object='node/libgleecbtc_server_a-psbt.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o node/libgleecbtc_server_a-psbt.obj `if test -f 'node/psbt.cpp'; then $(CYGPATH_W) 'node/psbt.cpp'; else $(CYGPATH_W) '$(srcdir)/node/psbt.cpp'; fi`
+
+node/libgleecbtc_server_a-transaction.o: node/transaction.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT node/libgleecbtc_server_a-transaction.o -MD -MP -MF node/$(DEPDIR)/libgleecbtc_server_a-transaction.Tpo -c -o node/libgleecbtc_server_a-transaction.o `test -f 'node/transaction.cpp' || echo '$(srcdir)/'`node/transaction.cpp
+	$(AM_V_at)$(am__mv) node/$(DEPDIR)/libgleecbtc_server_a-transaction.Tpo node/$(DEPDIR)/libgleecbtc_server_a-transaction.Po
+#	$(AM_V_CXX)source='node/transaction.cpp' object='node/libgleecbtc_server_a-transaction.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o node/libgleecbtc_server_a-transaction.o `test -f 'node/transaction.cpp' || echo '$(srcdir)/'`node/transaction.cpp
+
+node/libgleecbtc_server_a-transaction.obj: node/transaction.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT node/libgleecbtc_server_a-transaction.obj -MD -MP -MF node/$(DEPDIR)/libgleecbtc_server_a-transaction.Tpo -c -o node/libgleecbtc_server_a-transaction.obj `if test -f 'node/transaction.cpp'; then $(CYGPATH_W) 'node/transaction.cpp'; else $(CYGPATH_W) '$(srcdir)/node/transaction.cpp'; fi`
+	$(AM_V_at)$(am__mv) node/$(DEPDIR)/libgleecbtc_server_a-transaction.Tpo node/$(DEPDIR)/libgleecbtc_server_a-transaction.Po
+#	$(AM_V_CXX)source='node/transaction.cpp' object='node/libgleecbtc_server_a-transaction.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o node/libgleecbtc_server_a-transaction.obj `if test -f 'node/transaction.cpp'; then $(CYGPATH_W) 'node/transaction.cpp'; else $(CYGPATH_W) '$(srcdir)/node/transaction.cpp'; fi`
+
 libgleecbtc_server_a-noui.o: noui.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-noui.o -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-noui.Tpo -c -o libgleecbtc_server_a-noui.o `test -f 'noui.cpp' || echo '$(srcdir)/'`noui.cpp
 	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-noui.Tpo $(DEPDIR)/libgleecbtc_server_a-noui.Po
@@ -5663,20 +7674,6 @@ policy/libgleecbtc_server_a-fees.obj: policy/fees.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o policy/libgleecbtc_server_a-fees.obj `if test -f 'policy/fees.cpp'; then $(CYGPATH_W) 'policy/fees.cpp'; else $(CYGPATH_W) '$(srcdir)/policy/fees.cpp'; fi`
 
-policy/libgleecbtc_server_a-policy.o: policy/policy.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT policy/libgleecbtc_server_a-policy.o -MD -MP -MF policy/$(DEPDIR)/libgleecbtc_server_a-policy.Tpo -c -o policy/libgleecbtc_server_a-policy.o `test -f 'policy/policy.cpp' || echo '$(srcdir)/'`policy/policy.cpp
-	$(AM_V_at)$(am__mv) policy/$(DEPDIR)/libgleecbtc_server_a-policy.Tpo policy/$(DEPDIR)/libgleecbtc_server_a-policy.Po
-#	$(AM_V_CXX)source='policy/policy.cpp' object='policy/libgleecbtc_server_a-policy.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o policy/libgleecbtc_server_a-policy.o `test -f 'policy/policy.cpp' || echo '$(srcdir)/'`policy/policy.cpp
-
-policy/libgleecbtc_server_a-policy.obj: policy/policy.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT policy/libgleecbtc_server_a-policy.obj -MD -MP -MF policy/$(DEPDIR)/libgleecbtc_server_a-policy.Tpo -c -o policy/libgleecbtc_server_a-policy.obj `if test -f 'policy/policy.cpp'; then $(CYGPATH_W) 'policy/policy.cpp'; else $(CYGPATH_W) '$(srcdir)/policy/policy.cpp'; fi`
-	$(AM_V_at)$(am__mv) policy/$(DEPDIR)/libgleecbtc_server_a-policy.Tpo policy/$(DEPDIR)/libgleecbtc_server_a-policy.Po
-#	$(AM_V_CXX)source='policy/policy.cpp' object='policy/libgleecbtc_server_a-policy.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o policy/libgleecbtc_server_a-policy.obj `if test -f 'policy/policy.cpp'; then $(CYGPATH_W) 'policy/policy.cpp'; else $(CYGPATH_W) '$(srcdir)/policy/policy.cpp'; fi`
-
 policy/libgleecbtc_server_a-rbf.o: policy/rbf.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT policy/libgleecbtc_server_a-rbf.o -MD -MP -MF policy/$(DEPDIR)/libgleecbtc_server_a-rbf.Tpo -c -o policy/libgleecbtc_server_a-rbf.o `test -f 'policy/rbf.cpp' || echo '$(srcdir)/'`policy/rbf.cpp
 	$(AM_V_at)$(am__mv) policy/$(DEPDIR)/libgleecbtc_server_a-rbf.Tpo policy/$(DEPDIR)/libgleecbtc_server_a-rbf.Po
@@ -5690,6 +7687,20 @@ policy/libgleecbtc_server_a-rbf.obj: policy/rbf.cpp
 #	$(AM_V_CXX)source='policy/rbf.cpp' object='policy/libgleecbtc_server_a-rbf.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o policy/libgleecbtc_server_a-rbf.obj `if test -f 'policy/rbf.cpp'; then $(CYGPATH_W) 'policy/rbf.cpp'; else $(CYGPATH_W) '$(srcdir)/policy/rbf.cpp'; fi`
+
+policy/libgleecbtc_server_a-settings.o: policy/settings.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT policy/libgleecbtc_server_a-settings.o -MD -MP -MF policy/$(DEPDIR)/libgleecbtc_server_a-settings.Tpo -c -o policy/libgleecbtc_server_a-settings.o `test -f 'policy/settings.cpp' || echo '$(srcdir)/'`policy/settings.cpp
+	$(AM_V_at)$(am__mv) policy/$(DEPDIR)/libgleecbtc_server_a-settings.Tpo policy/$(DEPDIR)/libgleecbtc_server_a-settings.Po
+#	$(AM_V_CXX)source='policy/settings.cpp' object='policy/libgleecbtc_server_a-settings.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o policy/libgleecbtc_server_a-settings.o `test -f 'policy/settings.cpp' || echo '$(srcdir)/'`policy/settings.cpp
+
+policy/libgleecbtc_server_a-settings.obj: policy/settings.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT policy/libgleecbtc_server_a-settings.obj -MD -MP -MF policy/$(DEPDIR)/libgleecbtc_server_a-settings.Tpo -c -o policy/libgleecbtc_server_a-settings.obj `if test -f 'policy/settings.cpp'; then $(CYGPATH_W) 'policy/settings.cpp'; else $(CYGPATH_W) '$(srcdir)/policy/settings.cpp'; fi`
+	$(AM_V_at)$(am__mv) policy/$(DEPDIR)/libgleecbtc_server_a-settings.Tpo policy/$(DEPDIR)/libgleecbtc_server_a-settings.Po
+#	$(AM_V_CXX)source='policy/settings.cpp' object='policy/libgleecbtc_server_a-settings.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o policy/libgleecbtc_server_a-settings.obj `if test -f 'policy/settings.cpp'; then $(CYGPATH_W) 'policy/settings.cpp'; else $(CYGPATH_W) '$(srcdir)/policy/settings.cpp'; fi`
 
 libgleecbtc_server_a-pow.o: pow.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-pow.o -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-pow.Tpo -c -o libgleecbtc_server_a-pow.o `test -f 'pow.cpp' || echo '$(srcdir)/'`pow.cpp
@@ -5817,19 +7828,19 @@ script/libgleecbtc_server_a-sigcache.obj: script/sigcache.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o script/libgleecbtc_server_a-sigcache.obj `if test -f 'script/sigcache.cpp'; then $(CYGPATH_W) 'script/sigcache.cpp'; else $(CYGPATH_W) '$(srcdir)/script/sigcache.cpp'; fi`
 
-script/libgleecbtc_server_a-ismine.o: script/ismine.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT script/libgleecbtc_server_a-ismine.o -MD -MP -MF script/$(DEPDIR)/libgleecbtc_server_a-ismine.Tpo -c -o script/libgleecbtc_server_a-ismine.o `test -f 'script/ismine.cpp' || echo '$(srcdir)/'`script/ismine.cpp
-	$(AM_V_at)$(am__mv) script/$(DEPDIR)/libgleecbtc_server_a-ismine.Tpo script/$(DEPDIR)/libgleecbtc_server_a-ismine.Po
-#	$(AM_V_CXX)source='script/ismine.cpp' object='script/libgleecbtc_server_a-ismine.o' libtool=no \
+libgleecbtc_server_a-shutdown.o: shutdown.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-shutdown.o -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-shutdown.Tpo -c -o libgleecbtc_server_a-shutdown.o `test -f 'shutdown.cpp' || echo '$(srcdir)/'`shutdown.cpp
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-shutdown.Tpo $(DEPDIR)/libgleecbtc_server_a-shutdown.Po
+#	$(AM_V_CXX)source='shutdown.cpp' object='libgleecbtc_server_a-shutdown.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o script/libgleecbtc_server_a-ismine.o `test -f 'script/ismine.cpp' || echo '$(srcdir)/'`script/ismine.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-shutdown.o `test -f 'shutdown.cpp' || echo '$(srcdir)/'`shutdown.cpp
 
-script/libgleecbtc_server_a-ismine.obj: script/ismine.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT script/libgleecbtc_server_a-ismine.obj -MD -MP -MF script/$(DEPDIR)/libgleecbtc_server_a-ismine.Tpo -c -o script/libgleecbtc_server_a-ismine.obj `if test -f 'script/ismine.cpp'; then $(CYGPATH_W) 'script/ismine.cpp'; else $(CYGPATH_W) '$(srcdir)/script/ismine.cpp'; fi`
-	$(AM_V_at)$(am__mv) script/$(DEPDIR)/libgleecbtc_server_a-ismine.Tpo script/$(DEPDIR)/libgleecbtc_server_a-ismine.Po
-#	$(AM_V_CXX)source='script/ismine.cpp' object='script/libgleecbtc_server_a-ismine.obj' libtool=no \
+libgleecbtc_server_a-shutdown.obj: shutdown.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-shutdown.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-shutdown.Tpo -c -o libgleecbtc_server_a-shutdown.obj `if test -f 'shutdown.cpp'; then $(CYGPATH_W) 'shutdown.cpp'; else $(CYGPATH_W) '$(srcdir)/shutdown.cpp'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-shutdown.Tpo $(DEPDIR)/libgleecbtc_server_a-shutdown.Po
+#	$(AM_V_CXX)source='shutdown.cpp' object='libgleecbtc_server_a-shutdown.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o script/libgleecbtc_server_a-ismine.obj `if test -f 'script/ismine.cpp'; then $(CYGPATH_W) 'script/ismine.cpp'; else $(CYGPATH_W) '$(srcdir)/script/ismine.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-shutdown.obj `if test -f 'shutdown.cpp'; then $(CYGPATH_W) 'shutdown.cpp'; else $(CYGPATH_W) '$(srcdir)/shutdown.cpp'; fi`
 
 libgleecbtc_server_a-timedata.o: timedata.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-timedata.o -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-timedata.Tpo -c -o libgleecbtc_server_a-timedata.o `test -f 'timedata.cpp' || echo '$(srcdir)/'`timedata.cpp
@@ -5943,6 +7954,34 @@ libgleecbtc_server_a-versionbits.obj: versionbits.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-versionbits.obj `if test -f 'versionbits.cpp'; then $(CYGPATH_W) 'versionbits.cpp'; else $(CYGPATH_W) '$(srcdir)/versionbits.cpp'; fi`
 
+wallet/libgleecbtc_server_a-init.o: wallet/init.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_server_a-init.o -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_server_a-init.Tpo -c -o wallet/libgleecbtc_server_a-init.o `test -f 'wallet/init.cpp' || echo '$(srcdir)/'`wallet/init.cpp
+	$(AM_V_at)$(am__mv) wallet/$(DEPDIR)/libgleecbtc_server_a-init.Tpo wallet/$(DEPDIR)/libgleecbtc_server_a-init.Po
+#	$(AM_V_CXX)source='wallet/init.cpp' object='wallet/libgleecbtc_server_a-init.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_server_a-init.o `test -f 'wallet/init.cpp' || echo '$(srcdir)/'`wallet/init.cpp
+
+wallet/libgleecbtc_server_a-init.obj: wallet/init.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_server_a-init.obj -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_server_a-init.Tpo -c -o wallet/libgleecbtc_server_a-init.obj `if test -f 'wallet/init.cpp'; then $(CYGPATH_W) 'wallet/init.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/init.cpp'; fi`
+	$(AM_V_at)$(am__mv) wallet/$(DEPDIR)/libgleecbtc_server_a-init.Tpo wallet/$(DEPDIR)/libgleecbtc_server_a-init.Po
+#	$(AM_V_CXX)source='wallet/init.cpp' object='wallet/libgleecbtc_server_a-init.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_server_a-init.obj `if test -f 'wallet/init.cpp'; then $(CYGPATH_W) 'wallet/init.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/init.cpp'; fi`
+
+libgleecbtc_server_a-dummywallet.o: dummywallet.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-dummywallet.o -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-dummywallet.Tpo -c -o libgleecbtc_server_a-dummywallet.o `test -f 'dummywallet.cpp' || echo '$(srcdir)/'`dummywallet.cpp
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-dummywallet.Tpo $(DEPDIR)/libgleecbtc_server_a-dummywallet.Po
+#	$(AM_V_CXX)source='dummywallet.cpp' object='libgleecbtc_server_a-dummywallet.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-dummywallet.o `test -f 'dummywallet.cpp' || echo '$(srcdir)/'`dummywallet.cpp
+
+libgleecbtc_server_a-dummywallet.obj: dummywallet.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_server_a-dummywallet.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_server_a-dummywallet.Tpo -c -o libgleecbtc_server_a-dummywallet.obj `if test -f 'dummywallet.cpp'; then $(CYGPATH_W) 'dummywallet.cpp'; else $(CYGPATH_W) '$(srcdir)/dummywallet.cpp'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_server_a-dummywallet.Tpo $(DEPDIR)/libgleecbtc_server_a-dummywallet.Po
+#	$(AM_V_CXX)source='dummywallet.cpp' object='libgleecbtc_server_a-dummywallet.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_server_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_server_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_server_a-dummywallet.obj `if test -f 'dummywallet.cpp'; then $(CYGPATH_W) 'dummywallet.cpp'; else $(CYGPATH_W) '$(srcdir)/dummywallet.cpp'; fi`
+
 support/libgleecbtc_util_a-lockedpool.o: support/lockedpool.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT support/libgleecbtc_util_a-lockedpool.o -MD -MP -MF support/$(DEPDIR)/libgleecbtc_util_a-lockedpool.Tpo -c -o support/libgleecbtc_util_a-lockedpool.o `test -f 'support/lockedpool.cpp' || echo '$(srcdir)/'`support/lockedpool.cpp
 	$(AM_V_at)$(am__mv) support/$(DEPDIR)/libgleecbtc_util_a-lockedpool.Tpo support/$(DEPDIR)/libgleecbtc_util_a-lockedpool.Po
@@ -5984,6 +8023,20 @@ libgleecbtc_util_a-clientversion.obj: clientversion.cpp
 #	$(AM_V_CXX)source='clientversion.cpp' object='libgleecbtc_util_a-clientversion.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_util_a-clientversion.obj `if test -f 'clientversion.cpp'; then $(CYGPATH_W) 'clientversion.cpp'; else $(CYGPATH_W) '$(srcdir)/clientversion.cpp'; fi`
+
+compat/libgleecbtc_util_a-glibc_sanity_fdelt.o: compat/glibc_sanity_fdelt.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT compat/libgleecbtc_util_a-glibc_sanity_fdelt.o -MD -MP -MF compat/$(DEPDIR)/libgleecbtc_util_a-glibc_sanity_fdelt.Tpo -c -o compat/libgleecbtc_util_a-glibc_sanity_fdelt.o `test -f 'compat/glibc_sanity_fdelt.cpp' || echo '$(srcdir)/'`compat/glibc_sanity_fdelt.cpp
+	$(AM_V_at)$(am__mv) compat/$(DEPDIR)/libgleecbtc_util_a-glibc_sanity_fdelt.Tpo compat/$(DEPDIR)/libgleecbtc_util_a-glibc_sanity_fdelt.Po
+#	$(AM_V_CXX)source='compat/glibc_sanity_fdelt.cpp' object='compat/libgleecbtc_util_a-glibc_sanity_fdelt.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o compat/libgleecbtc_util_a-glibc_sanity_fdelt.o `test -f 'compat/glibc_sanity_fdelt.cpp' || echo '$(srcdir)/'`compat/glibc_sanity_fdelt.cpp
+
+compat/libgleecbtc_util_a-glibc_sanity_fdelt.obj: compat/glibc_sanity_fdelt.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT compat/libgleecbtc_util_a-glibc_sanity_fdelt.obj -MD -MP -MF compat/$(DEPDIR)/libgleecbtc_util_a-glibc_sanity_fdelt.Tpo -c -o compat/libgleecbtc_util_a-glibc_sanity_fdelt.obj `if test -f 'compat/glibc_sanity_fdelt.cpp'; then $(CYGPATH_W) 'compat/glibc_sanity_fdelt.cpp'; else $(CYGPATH_W) '$(srcdir)/compat/glibc_sanity_fdelt.cpp'; fi`
+	$(AM_V_at)$(am__mv) compat/$(DEPDIR)/libgleecbtc_util_a-glibc_sanity_fdelt.Tpo compat/$(DEPDIR)/libgleecbtc_util_a-glibc_sanity_fdelt.Po
+#	$(AM_V_CXX)source='compat/glibc_sanity_fdelt.cpp' object='compat/libgleecbtc_util_a-glibc_sanity_fdelt.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o compat/libgleecbtc_util_a-glibc_sanity_fdelt.obj `if test -f 'compat/glibc_sanity_fdelt.cpp'; then $(CYGPATH_W) 'compat/glibc_sanity_fdelt.cpp'; else $(CYGPATH_W) '$(srcdir)/compat/glibc_sanity_fdelt.cpp'; fi`
 
 compat/libgleecbtc_util_a-glibc_sanity.o: compat/glibc_sanity.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT compat/libgleecbtc_util_a-glibc_sanity.o -MD -MP -MF compat/$(DEPDIR)/libgleecbtc_util_a-glibc_sanity.Tpo -c -o compat/libgleecbtc_util_a-glibc_sanity.o `test -f 'compat/glibc_sanity.cpp' || echo '$(srcdir)/'`compat/glibc_sanity.cpp
@@ -6041,6 +8094,34 @@ libgleecbtc_util_a-fs.obj: fs.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_util_a-fs.obj `if test -f 'fs.cpp'; then $(CYGPATH_W) 'fs.cpp'; else $(CYGPATH_W) '$(srcdir)/fs.cpp'; fi`
 
+interfaces/libgleecbtc_util_a-handler.o: interfaces/handler.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT interfaces/libgleecbtc_util_a-handler.o -MD -MP -MF interfaces/$(DEPDIR)/libgleecbtc_util_a-handler.Tpo -c -o interfaces/libgleecbtc_util_a-handler.o `test -f 'interfaces/handler.cpp' || echo '$(srcdir)/'`interfaces/handler.cpp
+	$(AM_V_at)$(am__mv) interfaces/$(DEPDIR)/libgleecbtc_util_a-handler.Tpo interfaces/$(DEPDIR)/libgleecbtc_util_a-handler.Po
+#	$(AM_V_CXX)source='interfaces/handler.cpp' object='interfaces/libgleecbtc_util_a-handler.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o interfaces/libgleecbtc_util_a-handler.o `test -f 'interfaces/handler.cpp' || echo '$(srcdir)/'`interfaces/handler.cpp
+
+interfaces/libgleecbtc_util_a-handler.obj: interfaces/handler.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT interfaces/libgleecbtc_util_a-handler.obj -MD -MP -MF interfaces/$(DEPDIR)/libgleecbtc_util_a-handler.Tpo -c -o interfaces/libgleecbtc_util_a-handler.obj `if test -f 'interfaces/handler.cpp'; then $(CYGPATH_W) 'interfaces/handler.cpp'; else $(CYGPATH_W) '$(srcdir)/interfaces/handler.cpp'; fi`
+	$(AM_V_at)$(am__mv) interfaces/$(DEPDIR)/libgleecbtc_util_a-handler.Tpo interfaces/$(DEPDIR)/libgleecbtc_util_a-handler.Po
+#	$(AM_V_CXX)source='interfaces/handler.cpp' object='interfaces/libgleecbtc_util_a-handler.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o interfaces/libgleecbtc_util_a-handler.obj `if test -f 'interfaces/handler.cpp'; then $(CYGPATH_W) 'interfaces/handler.cpp'; else $(CYGPATH_W) '$(srcdir)/interfaces/handler.cpp'; fi`
+
+libgleecbtc_util_a-logging.o: logging.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_util_a-logging.o -MD -MP -MF $(DEPDIR)/libgleecbtc_util_a-logging.Tpo -c -o libgleecbtc_util_a-logging.o `test -f 'logging.cpp' || echo '$(srcdir)/'`logging.cpp
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_util_a-logging.Tpo $(DEPDIR)/libgleecbtc_util_a-logging.Po
+#	$(AM_V_CXX)source='logging.cpp' object='libgleecbtc_util_a-logging.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_util_a-logging.o `test -f 'logging.cpp' || echo '$(srcdir)/'`logging.cpp
+
+libgleecbtc_util_a-logging.obj: logging.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_util_a-logging.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_util_a-logging.Tpo -c -o libgleecbtc_util_a-logging.obj `if test -f 'logging.cpp'; then $(CYGPATH_W) 'logging.cpp'; else $(CYGPATH_W) '$(srcdir)/logging.cpp'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_util_a-logging.Tpo $(DEPDIR)/libgleecbtc_util_a-logging.Po
+#	$(AM_V_CXX)source='logging.cpp' object='libgleecbtc_util_a-logging.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_util_a-logging.obj `if test -f 'logging.cpp'; then $(CYGPATH_W) 'logging.cpp'; else $(CYGPATH_W) '$(srcdir)/logging.cpp'; fi`
+
 libgleecbtc_util_a-random.o: random.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_util_a-random.o -MD -MP -MF $(DEPDIR)/libgleecbtc_util_a-random.Tpo -c -o libgleecbtc_util_a-random.o `test -f 'random.cpp' || echo '$(srcdir)/'`random.cpp
 	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_util_a-random.Tpo $(DEPDIR)/libgleecbtc_util_a-random.Po
@@ -6055,19 +8136,19 @@ libgleecbtc_util_a-random.obj: random.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_util_a-random.obj `if test -f 'random.cpp'; then $(CYGPATH_W) 'random.cpp'; else $(CYGPATH_W) '$(srcdir)/random.cpp'; fi`
 
-rpc/libgleecbtc_util_a-protocol.o: rpc/protocol.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT rpc/libgleecbtc_util_a-protocol.o -MD -MP -MF rpc/$(DEPDIR)/libgleecbtc_util_a-protocol.Tpo -c -o rpc/libgleecbtc_util_a-protocol.o `test -f 'rpc/protocol.cpp' || echo '$(srcdir)/'`rpc/protocol.cpp
-	$(AM_V_at)$(am__mv) rpc/$(DEPDIR)/libgleecbtc_util_a-protocol.Tpo rpc/$(DEPDIR)/libgleecbtc_util_a-protocol.Po
-#	$(AM_V_CXX)source='rpc/protocol.cpp' object='rpc/libgleecbtc_util_a-protocol.o' libtool=no \
+rpc/libgleecbtc_util_a-request.o: rpc/request.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT rpc/libgleecbtc_util_a-request.o -MD -MP -MF rpc/$(DEPDIR)/libgleecbtc_util_a-request.Tpo -c -o rpc/libgleecbtc_util_a-request.o `test -f 'rpc/request.cpp' || echo '$(srcdir)/'`rpc/request.cpp
+	$(AM_V_at)$(am__mv) rpc/$(DEPDIR)/libgleecbtc_util_a-request.Tpo rpc/$(DEPDIR)/libgleecbtc_util_a-request.Po
+#	$(AM_V_CXX)source='rpc/request.cpp' object='rpc/libgleecbtc_util_a-request.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o rpc/libgleecbtc_util_a-protocol.o `test -f 'rpc/protocol.cpp' || echo '$(srcdir)/'`rpc/protocol.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o rpc/libgleecbtc_util_a-request.o `test -f 'rpc/request.cpp' || echo '$(srcdir)/'`rpc/request.cpp
 
-rpc/libgleecbtc_util_a-protocol.obj: rpc/protocol.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT rpc/libgleecbtc_util_a-protocol.obj -MD -MP -MF rpc/$(DEPDIR)/libgleecbtc_util_a-protocol.Tpo -c -o rpc/libgleecbtc_util_a-protocol.obj `if test -f 'rpc/protocol.cpp'; then $(CYGPATH_W) 'rpc/protocol.cpp'; else $(CYGPATH_W) '$(srcdir)/rpc/protocol.cpp'; fi`
-	$(AM_V_at)$(am__mv) rpc/$(DEPDIR)/libgleecbtc_util_a-protocol.Tpo rpc/$(DEPDIR)/libgleecbtc_util_a-protocol.Po
-#	$(AM_V_CXX)source='rpc/protocol.cpp' object='rpc/libgleecbtc_util_a-protocol.obj' libtool=no \
+rpc/libgleecbtc_util_a-request.obj: rpc/request.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT rpc/libgleecbtc_util_a-request.obj -MD -MP -MF rpc/$(DEPDIR)/libgleecbtc_util_a-request.Tpo -c -o rpc/libgleecbtc_util_a-request.obj `if test -f 'rpc/request.cpp'; then $(CYGPATH_W) 'rpc/request.cpp'; else $(CYGPATH_W) '$(srcdir)/rpc/request.cpp'; fi`
+	$(AM_V_at)$(am__mv) rpc/$(DEPDIR)/libgleecbtc_util_a-request.Tpo rpc/$(DEPDIR)/libgleecbtc_util_a-request.Po
+#	$(AM_V_CXX)source='rpc/request.cpp' object='rpc/libgleecbtc_util_a-request.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o rpc/libgleecbtc_util_a-protocol.obj `if test -f 'rpc/protocol.cpp'; then $(CYGPATH_W) 'rpc/protocol.cpp'; else $(CYGPATH_W) '$(srcdir)/rpc/protocol.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o rpc/libgleecbtc_util_a-request.obj `if test -f 'rpc/request.cpp'; then $(CYGPATH_W) 'rpc/request.cpp'; else $(CYGPATH_W) '$(srcdir)/rpc/request.cpp'; fi`
 
 support/libgleecbtc_util_a-cleanse.o: support/cleanse.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT support/libgleecbtc_util_a-cleanse.o -MD -MP -MF support/$(DEPDIR)/libgleecbtc_util_a-cleanse.Tpo -c -o support/libgleecbtc_util_a-cleanse.o `test -f 'support/cleanse.cpp' || echo '$(srcdir)/'`support/cleanse.cpp
@@ -6111,61 +8192,187 @@ libgleecbtc_util_a-threadinterrupt.obj: threadinterrupt.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_util_a-threadinterrupt.obj `if test -f 'threadinterrupt.cpp'; then $(CYGPATH_W) 'threadinterrupt.cpp'; else $(CYGPATH_W) '$(srcdir)/threadinterrupt.cpp'; fi`
 
-libgleecbtc_util_a-util.o: util.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_util_a-util.o -MD -MP -MF $(DEPDIR)/libgleecbtc_util_a-util.Tpo -c -o libgleecbtc_util_a-util.o `test -f 'util.cpp' || echo '$(srcdir)/'`util.cpp
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_util_a-util.Tpo $(DEPDIR)/libgleecbtc_util_a-util.Po
-#	$(AM_V_CXX)source='util.cpp' object='libgleecbtc_util_a-util.o' libtool=no \
+util/libgleecbtc_util_a-bip32.o: util/bip32.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-bip32.o -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-bip32.Tpo -c -o util/libgleecbtc_util_a-bip32.o `test -f 'util/bip32.cpp' || echo '$(srcdir)/'`util/bip32.cpp
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-bip32.Tpo util/$(DEPDIR)/libgleecbtc_util_a-bip32.Po
+#	$(AM_V_CXX)source='util/bip32.cpp' object='util/libgleecbtc_util_a-bip32.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_util_a-util.o `test -f 'util.cpp' || echo '$(srcdir)/'`util.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-bip32.o `test -f 'util/bip32.cpp' || echo '$(srcdir)/'`util/bip32.cpp
 
-libgleecbtc_util_a-util.obj: util.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_util_a-util.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_util_a-util.Tpo -c -o libgleecbtc_util_a-util.obj `if test -f 'util.cpp'; then $(CYGPATH_W) 'util.cpp'; else $(CYGPATH_W) '$(srcdir)/util.cpp'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_util_a-util.Tpo $(DEPDIR)/libgleecbtc_util_a-util.Po
-#	$(AM_V_CXX)source='util.cpp' object='libgleecbtc_util_a-util.obj' libtool=no \
+util/libgleecbtc_util_a-bip32.obj: util/bip32.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-bip32.obj -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-bip32.Tpo -c -o util/libgleecbtc_util_a-bip32.obj `if test -f 'util/bip32.cpp'; then $(CYGPATH_W) 'util/bip32.cpp'; else $(CYGPATH_W) '$(srcdir)/util/bip32.cpp'; fi`
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-bip32.Tpo util/$(DEPDIR)/libgleecbtc_util_a-bip32.Po
+#	$(AM_V_CXX)source='util/bip32.cpp' object='util/libgleecbtc_util_a-bip32.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_util_a-util.obj `if test -f 'util.cpp'; then $(CYGPATH_W) 'util.cpp'; else $(CYGPATH_W) '$(srcdir)/util.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-bip32.obj `if test -f 'util/bip32.cpp'; then $(CYGPATH_W) 'util/bip32.cpp'; else $(CYGPATH_W) '$(srcdir)/util/bip32.cpp'; fi`
 
-libgleecbtc_util_a-utilmoneystr.o: utilmoneystr.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_util_a-utilmoneystr.o -MD -MP -MF $(DEPDIR)/libgleecbtc_util_a-utilmoneystr.Tpo -c -o libgleecbtc_util_a-utilmoneystr.o `test -f 'utilmoneystr.cpp' || echo '$(srcdir)/'`utilmoneystr.cpp
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_util_a-utilmoneystr.Tpo $(DEPDIR)/libgleecbtc_util_a-utilmoneystr.Po
-#	$(AM_V_CXX)source='utilmoneystr.cpp' object='libgleecbtc_util_a-utilmoneystr.o' libtool=no \
+util/libgleecbtc_util_a-bytevectorhash.o: util/bytevectorhash.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-bytevectorhash.o -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-bytevectorhash.Tpo -c -o util/libgleecbtc_util_a-bytevectorhash.o `test -f 'util/bytevectorhash.cpp' || echo '$(srcdir)/'`util/bytevectorhash.cpp
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-bytevectorhash.Tpo util/$(DEPDIR)/libgleecbtc_util_a-bytevectorhash.Po
+#	$(AM_V_CXX)source='util/bytevectorhash.cpp' object='util/libgleecbtc_util_a-bytevectorhash.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_util_a-utilmoneystr.o `test -f 'utilmoneystr.cpp' || echo '$(srcdir)/'`utilmoneystr.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-bytevectorhash.o `test -f 'util/bytevectorhash.cpp' || echo '$(srcdir)/'`util/bytevectorhash.cpp
 
-libgleecbtc_util_a-utilmoneystr.obj: utilmoneystr.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_util_a-utilmoneystr.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_util_a-utilmoneystr.Tpo -c -o libgleecbtc_util_a-utilmoneystr.obj `if test -f 'utilmoneystr.cpp'; then $(CYGPATH_W) 'utilmoneystr.cpp'; else $(CYGPATH_W) '$(srcdir)/utilmoneystr.cpp'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_util_a-utilmoneystr.Tpo $(DEPDIR)/libgleecbtc_util_a-utilmoneystr.Po
-#	$(AM_V_CXX)source='utilmoneystr.cpp' object='libgleecbtc_util_a-utilmoneystr.obj' libtool=no \
+util/libgleecbtc_util_a-bytevectorhash.obj: util/bytevectorhash.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-bytevectorhash.obj -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-bytevectorhash.Tpo -c -o util/libgleecbtc_util_a-bytevectorhash.obj `if test -f 'util/bytevectorhash.cpp'; then $(CYGPATH_W) 'util/bytevectorhash.cpp'; else $(CYGPATH_W) '$(srcdir)/util/bytevectorhash.cpp'; fi`
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-bytevectorhash.Tpo util/$(DEPDIR)/libgleecbtc_util_a-bytevectorhash.Po
+#	$(AM_V_CXX)source='util/bytevectorhash.cpp' object='util/libgleecbtc_util_a-bytevectorhash.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_util_a-utilmoneystr.obj `if test -f 'utilmoneystr.cpp'; then $(CYGPATH_W) 'utilmoneystr.cpp'; else $(CYGPATH_W) '$(srcdir)/utilmoneystr.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-bytevectorhash.obj `if test -f 'util/bytevectorhash.cpp'; then $(CYGPATH_W) 'util/bytevectorhash.cpp'; else $(CYGPATH_W) '$(srcdir)/util/bytevectorhash.cpp'; fi`
 
-libgleecbtc_util_a-utilstrencodings.o: utilstrencodings.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_util_a-utilstrencodings.o -MD -MP -MF $(DEPDIR)/libgleecbtc_util_a-utilstrencodings.Tpo -c -o libgleecbtc_util_a-utilstrencodings.o `test -f 'utilstrencodings.cpp' || echo '$(srcdir)/'`utilstrencodings.cpp
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_util_a-utilstrencodings.Tpo $(DEPDIR)/libgleecbtc_util_a-utilstrencodings.Po
-#	$(AM_V_CXX)source='utilstrencodings.cpp' object='libgleecbtc_util_a-utilstrencodings.o' libtool=no \
+util/libgleecbtc_util_a-error.o: util/error.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-error.o -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-error.Tpo -c -o util/libgleecbtc_util_a-error.o `test -f 'util/error.cpp' || echo '$(srcdir)/'`util/error.cpp
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-error.Tpo util/$(DEPDIR)/libgleecbtc_util_a-error.Po
+#	$(AM_V_CXX)source='util/error.cpp' object='util/libgleecbtc_util_a-error.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_util_a-utilstrencodings.o `test -f 'utilstrencodings.cpp' || echo '$(srcdir)/'`utilstrencodings.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-error.o `test -f 'util/error.cpp' || echo '$(srcdir)/'`util/error.cpp
 
-libgleecbtc_util_a-utilstrencodings.obj: utilstrencodings.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_util_a-utilstrencodings.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_util_a-utilstrencodings.Tpo -c -o libgleecbtc_util_a-utilstrencodings.obj `if test -f 'utilstrencodings.cpp'; then $(CYGPATH_W) 'utilstrencodings.cpp'; else $(CYGPATH_W) '$(srcdir)/utilstrencodings.cpp'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_util_a-utilstrencodings.Tpo $(DEPDIR)/libgleecbtc_util_a-utilstrencodings.Po
-#	$(AM_V_CXX)source='utilstrencodings.cpp' object='libgleecbtc_util_a-utilstrencodings.obj' libtool=no \
+util/libgleecbtc_util_a-error.obj: util/error.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-error.obj -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-error.Tpo -c -o util/libgleecbtc_util_a-error.obj `if test -f 'util/error.cpp'; then $(CYGPATH_W) 'util/error.cpp'; else $(CYGPATH_W) '$(srcdir)/util/error.cpp'; fi`
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-error.Tpo util/$(DEPDIR)/libgleecbtc_util_a-error.Po
+#	$(AM_V_CXX)source='util/error.cpp' object='util/libgleecbtc_util_a-error.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_util_a-utilstrencodings.obj `if test -f 'utilstrencodings.cpp'; then $(CYGPATH_W) 'utilstrencodings.cpp'; else $(CYGPATH_W) '$(srcdir)/utilstrencodings.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-error.obj `if test -f 'util/error.cpp'; then $(CYGPATH_W) 'util/error.cpp'; else $(CYGPATH_W) '$(srcdir)/util/error.cpp'; fi`
 
-libgleecbtc_util_a-utiltime.o: utiltime.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_util_a-utiltime.o -MD -MP -MF $(DEPDIR)/libgleecbtc_util_a-utiltime.Tpo -c -o libgleecbtc_util_a-utiltime.o `test -f 'utiltime.cpp' || echo '$(srcdir)/'`utiltime.cpp
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_util_a-utiltime.Tpo $(DEPDIR)/libgleecbtc_util_a-utiltime.Po
-#	$(AM_V_CXX)source='utiltime.cpp' object='libgleecbtc_util_a-utiltime.o' libtool=no \
+util/libgleecbtc_util_a-fees.o: util/fees.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-fees.o -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-fees.Tpo -c -o util/libgleecbtc_util_a-fees.o `test -f 'util/fees.cpp' || echo '$(srcdir)/'`util/fees.cpp
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-fees.Tpo util/$(DEPDIR)/libgleecbtc_util_a-fees.Po
+#	$(AM_V_CXX)source='util/fees.cpp' object='util/libgleecbtc_util_a-fees.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_util_a-utiltime.o `test -f 'utiltime.cpp' || echo '$(srcdir)/'`utiltime.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-fees.o `test -f 'util/fees.cpp' || echo '$(srcdir)/'`util/fees.cpp
 
-libgleecbtc_util_a-utiltime.obj: utiltime.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtc_util_a-utiltime.obj -MD -MP -MF $(DEPDIR)/libgleecbtc_util_a-utiltime.Tpo -c -o libgleecbtc_util_a-utiltime.obj `if test -f 'utiltime.cpp'; then $(CYGPATH_W) 'utiltime.cpp'; else $(CYGPATH_W) '$(srcdir)/utiltime.cpp'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtc_util_a-utiltime.Tpo $(DEPDIR)/libgleecbtc_util_a-utiltime.Po
-#	$(AM_V_CXX)source='utiltime.cpp' object='libgleecbtc_util_a-utiltime.obj' libtool=no \
+util/libgleecbtc_util_a-fees.obj: util/fees.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-fees.obj -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-fees.Tpo -c -o util/libgleecbtc_util_a-fees.obj `if test -f 'util/fees.cpp'; then $(CYGPATH_W) 'util/fees.cpp'; else $(CYGPATH_W) '$(srcdir)/util/fees.cpp'; fi`
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-fees.Tpo util/$(DEPDIR)/libgleecbtc_util_a-fees.Po
+#	$(AM_V_CXX)source='util/fees.cpp' object='util/libgleecbtc_util_a-fees.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtc_util_a-utiltime.obj `if test -f 'utiltime.cpp'; then $(CYGPATH_W) 'utiltime.cpp'; else $(CYGPATH_W) '$(srcdir)/utiltime.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-fees.obj `if test -f 'util/fees.cpp'; then $(CYGPATH_W) 'util/fees.cpp'; else $(CYGPATH_W) '$(srcdir)/util/fees.cpp'; fi`
+
+util/libgleecbtc_util_a-system.o: util/system.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-system.o -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-system.Tpo -c -o util/libgleecbtc_util_a-system.o `test -f 'util/system.cpp' || echo '$(srcdir)/'`util/system.cpp
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-system.Tpo util/$(DEPDIR)/libgleecbtc_util_a-system.Po
+#	$(AM_V_CXX)source='util/system.cpp' object='util/libgleecbtc_util_a-system.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-system.o `test -f 'util/system.cpp' || echo '$(srcdir)/'`util/system.cpp
+
+util/libgleecbtc_util_a-system.obj: util/system.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-system.obj -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-system.Tpo -c -o util/libgleecbtc_util_a-system.obj `if test -f 'util/system.cpp'; then $(CYGPATH_W) 'util/system.cpp'; else $(CYGPATH_W) '$(srcdir)/util/system.cpp'; fi`
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-system.Tpo util/$(DEPDIR)/libgleecbtc_util_a-system.Po
+#	$(AM_V_CXX)source='util/system.cpp' object='util/libgleecbtc_util_a-system.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-system.obj `if test -f 'util/system.cpp'; then $(CYGPATH_W) 'util/system.cpp'; else $(CYGPATH_W) '$(srcdir)/util/system.cpp'; fi`
+
+util/libgleecbtc_util_a-moneystr.o: util/moneystr.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-moneystr.o -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-moneystr.Tpo -c -o util/libgleecbtc_util_a-moneystr.o `test -f 'util/moneystr.cpp' || echo '$(srcdir)/'`util/moneystr.cpp
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-moneystr.Tpo util/$(DEPDIR)/libgleecbtc_util_a-moneystr.Po
+#	$(AM_V_CXX)source='util/moneystr.cpp' object='util/libgleecbtc_util_a-moneystr.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-moneystr.o `test -f 'util/moneystr.cpp' || echo '$(srcdir)/'`util/moneystr.cpp
+
+util/libgleecbtc_util_a-moneystr.obj: util/moneystr.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-moneystr.obj -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-moneystr.Tpo -c -o util/libgleecbtc_util_a-moneystr.obj `if test -f 'util/moneystr.cpp'; then $(CYGPATH_W) 'util/moneystr.cpp'; else $(CYGPATH_W) '$(srcdir)/util/moneystr.cpp'; fi`
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-moneystr.Tpo util/$(DEPDIR)/libgleecbtc_util_a-moneystr.Po
+#	$(AM_V_CXX)source='util/moneystr.cpp' object='util/libgleecbtc_util_a-moneystr.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-moneystr.obj `if test -f 'util/moneystr.cpp'; then $(CYGPATH_W) 'util/moneystr.cpp'; else $(CYGPATH_W) '$(srcdir)/util/moneystr.cpp'; fi`
+
+util/libgleecbtc_util_a-rbf.o: util/rbf.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-rbf.o -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-rbf.Tpo -c -o util/libgleecbtc_util_a-rbf.o `test -f 'util/rbf.cpp' || echo '$(srcdir)/'`util/rbf.cpp
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-rbf.Tpo util/$(DEPDIR)/libgleecbtc_util_a-rbf.Po
+#	$(AM_V_CXX)source='util/rbf.cpp' object='util/libgleecbtc_util_a-rbf.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-rbf.o `test -f 'util/rbf.cpp' || echo '$(srcdir)/'`util/rbf.cpp
+
+util/libgleecbtc_util_a-rbf.obj: util/rbf.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-rbf.obj -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-rbf.Tpo -c -o util/libgleecbtc_util_a-rbf.obj `if test -f 'util/rbf.cpp'; then $(CYGPATH_W) 'util/rbf.cpp'; else $(CYGPATH_W) '$(srcdir)/util/rbf.cpp'; fi`
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-rbf.Tpo util/$(DEPDIR)/libgleecbtc_util_a-rbf.Po
+#	$(AM_V_CXX)source='util/rbf.cpp' object='util/libgleecbtc_util_a-rbf.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-rbf.obj `if test -f 'util/rbf.cpp'; then $(CYGPATH_W) 'util/rbf.cpp'; else $(CYGPATH_W) '$(srcdir)/util/rbf.cpp'; fi`
+
+util/libgleecbtc_util_a-threadnames.o: util/threadnames.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-threadnames.o -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-threadnames.Tpo -c -o util/libgleecbtc_util_a-threadnames.o `test -f 'util/threadnames.cpp' || echo '$(srcdir)/'`util/threadnames.cpp
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-threadnames.Tpo util/$(DEPDIR)/libgleecbtc_util_a-threadnames.Po
+#	$(AM_V_CXX)source='util/threadnames.cpp' object='util/libgleecbtc_util_a-threadnames.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-threadnames.o `test -f 'util/threadnames.cpp' || echo '$(srcdir)/'`util/threadnames.cpp
+
+util/libgleecbtc_util_a-threadnames.obj: util/threadnames.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-threadnames.obj -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-threadnames.Tpo -c -o util/libgleecbtc_util_a-threadnames.obj `if test -f 'util/threadnames.cpp'; then $(CYGPATH_W) 'util/threadnames.cpp'; else $(CYGPATH_W) '$(srcdir)/util/threadnames.cpp'; fi`
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-threadnames.Tpo util/$(DEPDIR)/libgleecbtc_util_a-threadnames.Po
+#	$(AM_V_CXX)source='util/threadnames.cpp' object='util/libgleecbtc_util_a-threadnames.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-threadnames.obj `if test -f 'util/threadnames.cpp'; then $(CYGPATH_W) 'util/threadnames.cpp'; else $(CYGPATH_W) '$(srcdir)/util/threadnames.cpp'; fi`
+
+util/libgleecbtc_util_a-strencodings.o: util/strencodings.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-strencodings.o -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-strencodings.Tpo -c -o util/libgleecbtc_util_a-strencodings.o `test -f 'util/strencodings.cpp' || echo '$(srcdir)/'`util/strencodings.cpp
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-strencodings.Tpo util/$(DEPDIR)/libgleecbtc_util_a-strencodings.Po
+#	$(AM_V_CXX)source='util/strencodings.cpp' object='util/libgleecbtc_util_a-strencodings.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-strencodings.o `test -f 'util/strencodings.cpp' || echo '$(srcdir)/'`util/strencodings.cpp
+
+util/libgleecbtc_util_a-strencodings.obj: util/strencodings.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-strencodings.obj -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-strencodings.Tpo -c -o util/libgleecbtc_util_a-strencodings.obj `if test -f 'util/strencodings.cpp'; then $(CYGPATH_W) 'util/strencodings.cpp'; else $(CYGPATH_W) '$(srcdir)/util/strencodings.cpp'; fi`
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-strencodings.Tpo util/$(DEPDIR)/libgleecbtc_util_a-strencodings.Po
+#	$(AM_V_CXX)source='util/strencodings.cpp' object='util/libgleecbtc_util_a-strencodings.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-strencodings.obj `if test -f 'util/strencodings.cpp'; then $(CYGPATH_W) 'util/strencodings.cpp'; else $(CYGPATH_W) '$(srcdir)/util/strencodings.cpp'; fi`
+
+util/libgleecbtc_util_a-string.o: util/string.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-string.o -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-string.Tpo -c -o util/libgleecbtc_util_a-string.o `test -f 'util/string.cpp' || echo '$(srcdir)/'`util/string.cpp
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-string.Tpo util/$(DEPDIR)/libgleecbtc_util_a-string.Po
+#	$(AM_V_CXX)source='util/string.cpp' object='util/libgleecbtc_util_a-string.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-string.o `test -f 'util/string.cpp' || echo '$(srcdir)/'`util/string.cpp
+
+util/libgleecbtc_util_a-string.obj: util/string.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-string.obj -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-string.Tpo -c -o util/libgleecbtc_util_a-string.obj `if test -f 'util/string.cpp'; then $(CYGPATH_W) 'util/string.cpp'; else $(CYGPATH_W) '$(srcdir)/util/string.cpp'; fi`
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-string.Tpo util/$(DEPDIR)/libgleecbtc_util_a-string.Po
+#	$(AM_V_CXX)source='util/string.cpp' object='util/libgleecbtc_util_a-string.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-string.obj `if test -f 'util/string.cpp'; then $(CYGPATH_W) 'util/string.cpp'; else $(CYGPATH_W) '$(srcdir)/util/string.cpp'; fi`
+
+util/libgleecbtc_util_a-time.o: util/time.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-time.o -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-time.Tpo -c -o util/libgleecbtc_util_a-time.o `test -f 'util/time.cpp' || echo '$(srcdir)/'`util/time.cpp
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-time.Tpo util/$(DEPDIR)/libgleecbtc_util_a-time.Po
+#	$(AM_V_CXX)source='util/time.cpp' object='util/libgleecbtc_util_a-time.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-time.o `test -f 'util/time.cpp' || echo '$(srcdir)/'`util/time.cpp
+
+util/libgleecbtc_util_a-time.obj: util/time.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-time.obj -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-time.Tpo -c -o util/libgleecbtc_util_a-time.obj `if test -f 'util/time.cpp'; then $(CYGPATH_W) 'util/time.cpp'; else $(CYGPATH_W) '$(srcdir)/util/time.cpp'; fi`
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-time.Tpo util/$(DEPDIR)/libgleecbtc_util_a-time.Po
+#	$(AM_V_CXX)source='util/time.cpp' object='util/libgleecbtc_util_a-time.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-time.obj `if test -f 'util/time.cpp'; then $(CYGPATH_W) 'util/time.cpp'; else $(CYGPATH_W) '$(srcdir)/util/time.cpp'; fi`
+
+util/libgleecbtc_util_a-url.o: util/url.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-url.o -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-url.Tpo -c -o util/libgleecbtc_util_a-url.o `test -f 'util/url.cpp' || echo '$(srcdir)/'`util/url.cpp
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-url.Tpo util/$(DEPDIR)/libgleecbtc_util_a-url.Po
+#	$(AM_V_CXX)source='util/url.cpp' object='util/libgleecbtc_util_a-url.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-url.o `test -f 'util/url.cpp' || echo '$(srcdir)/'`util/url.cpp
+
+util/libgleecbtc_util_a-url.obj: util/url.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-url.obj -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-url.Tpo -c -o util/libgleecbtc_util_a-url.obj `if test -f 'util/url.cpp'; then $(CYGPATH_W) 'util/url.cpp'; else $(CYGPATH_W) '$(srcdir)/util/url.cpp'; fi`
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-url.Tpo util/$(DEPDIR)/libgleecbtc_util_a-url.Po
+#	$(AM_V_CXX)source='util/url.cpp' object='util/libgleecbtc_util_a-url.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-url.obj `if test -f 'util/url.cpp'; then $(CYGPATH_W) 'util/url.cpp'; else $(CYGPATH_W) '$(srcdir)/util/url.cpp'; fi`
+
+util/libgleecbtc_util_a-validation.o: util/validation.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-validation.o -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-validation.Tpo -c -o util/libgleecbtc_util_a-validation.o `test -f 'util/validation.cpp' || echo '$(srcdir)/'`util/validation.cpp
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-validation.Tpo util/$(DEPDIR)/libgleecbtc_util_a-validation.Po
+#	$(AM_V_CXX)source='util/validation.cpp' object='util/libgleecbtc_util_a-validation.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-validation.o `test -f 'util/validation.cpp' || echo '$(srcdir)/'`util/validation.cpp
+
+util/libgleecbtc_util_a-validation.obj: util/validation.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtc_util_a-validation.obj -MD -MP -MF util/$(DEPDIR)/libgleecbtc_util_a-validation.Tpo -c -o util/libgleecbtc_util_a-validation.obj `if test -f 'util/validation.cpp'; then $(CYGPATH_W) 'util/validation.cpp'; else $(CYGPATH_W) '$(srcdir)/util/validation.cpp'; fi`
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtc_util_a-validation.Tpo util/$(DEPDIR)/libgleecbtc_util_a-validation.Po
+#	$(AM_V_CXX)source='util/validation.cpp' object='util/libgleecbtc_util_a-validation.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtc_util_a-validation.obj `if test -f 'util/validation.cpp'; then $(CYGPATH_W) 'util/validation.cpp'; else $(CYGPATH_W) '$(srcdir)/util/validation.cpp'; fi`
 
 compat/libgleecbtc_util_a-glibc_compat.o: compat/glibc_compat.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -MT compat/libgleecbtc_util_a-glibc_compat.o -MD -MP -MF compat/$(DEPDIR)/libgleecbtc_util_a-glibc_compat.Tpo -c -o compat/libgleecbtc_util_a-glibc_compat.o `test -f 'compat/glibc_compat.cpp' || echo '$(srcdir)/'`compat/glibc_compat.cpp
@@ -6180,6 +8387,34 @@ compat/libgleecbtc_util_a-glibc_compat.obj: compat/glibc_compat.cpp
 #	$(AM_V_CXX)source='compat/glibc_compat.cpp' object='compat/libgleecbtc_util_a-glibc_compat.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_util_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_util_a_CXXFLAGS) $(CXXFLAGS) -c -o compat/libgleecbtc_util_a-glibc_compat.obj `if test -f 'compat/glibc_compat.cpp'; then $(CYGPATH_W) 'compat/glibc_compat.cpp'; else $(CYGPATH_W) '$(srcdir)/compat/glibc_compat.cpp'; fi`
+
+interfaces/libgleecbtc_wallet_a-wallet.o: interfaces/wallet.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -MT interfaces/libgleecbtc_wallet_a-wallet.o -MD -MP -MF interfaces/$(DEPDIR)/libgleecbtc_wallet_a-wallet.Tpo -c -o interfaces/libgleecbtc_wallet_a-wallet.o `test -f 'interfaces/wallet.cpp' || echo '$(srcdir)/'`interfaces/wallet.cpp
+	$(AM_V_at)$(am__mv) interfaces/$(DEPDIR)/libgleecbtc_wallet_a-wallet.Tpo interfaces/$(DEPDIR)/libgleecbtc_wallet_a-wallet.Po
+#	$(AM_V_CXX)source='interfaces/wallet.cpp' object='interfaces/libgleecbtc_wallet_a-wallet.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -c -o interfaces/libgleecbtc_wallet_a-wallet.o `test -f 'interfaces/wallet.cpp' || echo '$(srcdir)/'`interfaces/wallet.cpp
+
+interfaces/libgleecbtc_wallet_a-wallet.obj: interfaces/wallet.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -MT interfaces/libgleecbtc_wallet_a-wallet.obj -MD -MP -MF interfaces/$(DEPDIR)/libgleecbtc_wallet_a-wallet.Tpo -c -o interfaces/libgleecbtc_wallet_a-wallet.obj `if test -f 'interfaces/wallet.cpp'; then $(CYGPATH_W) 'interfaces/wallet.cpp'; else $(CYGPATH_W) '$(srcdir)/interfaces/wallet.cpp'; fi`
+	$(AM_V_at)$(am__mv) interfaces/$(DEPDIR)/libgleecbtc_wallet_a-wallet.Tpo interfaces/$(DEPDIR)/libgleecbtc_wallet_a-wallet.Po
+#	$(AM_V_CXX)source='interfaces/wallet.cpp' object='interfaces/libgleecbtc_wallet_a-wallet.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -c -o interfaces/libgleecbtc_wallet_a-wallet.obj `if test -f 'interfaces/wallet.cpp'; then $(CYGPATH_W) 'interfaces/wallet.cpp'; else $(CYGPATH_W) '$(srcdir)/interfaces/wallet.cpp'; fi`
+
+wallet/libgleecbtc_wallet_a-coincontrol.o: wallet/coincontrol.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_wallet_a-coincontrol.o -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_wallet_a-coincontrol.Tpo -c -o wallet/libgleecbtc_wallet_a-coincontrol.o `test -f 'wallet/coincontrol.cpp' || echo '$(srcdir)/'`wallet/coincontrol.cpp
+	$(AM_V_at)$(am__mv) wallet/$(DEPDIR)/libgleecbtc_wallet_a-coincontrol.Tpo wallet/$(DEPDIR)/libgleecbtc_wallet_a-coincontrol.Po
+#	$(AM_V_CXX)source='wallet/coincontrol.cpp' object='wallet/libgleecbtc_wallet_a-coincontrol.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_wallet_a-coincontrol.o `test -f 'wallet/coincontrol.cpp' || echo '$(srcdir)/'`wallet/coincontrol.cpp
+
+wallet/libgleecbtc_wallet_a-coincontrol.obj: wallet/coincontrol.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_wallet_a-coincontrol.obj -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_wallet_a-coincontrol.Tpo -c -o wallet/libgleecbtc_wallet_a-coincontrol.obj `if test -f 'wallet/coincontrol.cpp'; then $(CYGPATH_W) 'wallet/coincontrol.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/coincontrol.cpp'; fi`
+	$(AM_V_at)$(am__mv) wallet/$(DEPDIR)/libgleecbtc_wallet_a-coincontrol.Tpo wallet/$(DEPDIR)/libgleecbtc_wallet_a-coincontrol.Po
+#	$(AM_V_CXX)source='wallet/coincontrol.cpp' object='wallet/libgleecbtc_wallet_a-coincontrol.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_wallet_a-coincontrol.obj `if test -f 'wallet/coincontrol.cpp'; then $(CYGPATH_W) 'wallet/coincontrol.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/coincontrol.cpp'; fi`
 
 wallet/libgleecbtc_wallet_a-crypter.o: wallet/crypter.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_wallet_a-crypter.o -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_wallet_a-crypter.Tpo -c -o wallet/libgleecbtc_wallet_a-crypter.o `test -f 'wallet/crypter.cpp' || echo '$(srcdir)/'`wallet/crypter.cpp
@@ -6222,6 +8457,62 @@ wallet/libgleecbtc_wallet_a-feebumper.obj: wallet/feebumper.cpp
 #	$(AM_V_CXX)source='wallet/feebumper.cpp' object='wallet/libgleecbtc_wallet_a-feebumper.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_wallet_a-feebumper.obj `if test -f 'wallet/feebumper.cpp'; then $(CYGPATH_W) 'wallet/feebumper.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/feebumper.cpp'; fi`
+
+wallet/libgleecbtc_wallet_a-fees.o: wallet/fees.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_wallet_a-fees.o -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_wallet_a-fees.Tpo -c -o wallet/libgleecbtc_wallet_a-fees.o `test -f 'wallet/fees.cpp' || echo '$(srcdir)/'`wallet/fees.cpp
+	$(AM_V_at)$(am__mv) wallet/$(DEPDIR)/libgleecbtc_wallet_a-fees.Tpo wallet/$(DEPDIR)/libgleecbtc_wallet_a-fees.Po
+#	$(AM_V_CXX)source='wallet/fees.cpp' object='wallet/libgleecbtc_wallet_a-fees.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_wallet_a-fees.o `test -f 'wallet/fees.cpp' || echo '$(srcdir)/'`wallet/fees.cpp
+
+wallet/libgleecbtc_wallet_a-fees.obj: wallet/fees.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_wallet_a-fees.obj -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_wallet_a-fees.Tpo -c -o wallet/libgleecbtc_wallet_a-fees.obj `if test -f 'wallet/fees.cpp'; then $(CYGPATH_W) 'wallet/fees.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/fees.cpp'; fi`
+	$(AM_V_at)$(am__mv) wallet/$(DEPDIR)/libgleecbtc_wallet_a-fees.Tpo wallet/$(DEPDIR)/libgleecbtc_wallet_a-fees.Po
+#	$(AM_V_CXX)source='wallet/fees.cpp' object='wallet/libgleecbtc_wallet_a-fees.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_wallet_a-fees.obj `if test -f 'wallet/fees.cpp'; then $(CYGPATH_W) 'wallet/fees.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/fees.cpp'; fi`
+
+wallet/libgleecbtc_wallet_a-ismine.o: wallet/ismine.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_wallet_a-ismine.o -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_wallet_a-ismine.Tpo -c -o wallet/libgleecbtc_wallet_a-ismine.o `test -f 'wallet/ismine.cpp' || echo '$(srcdir)/'`wallet/ismine.cpp
+	$(AM_V_at)$(am__mv) wallet/$(DEPDIR)/libgleecbtc_wallet_a-ismine.Tpo wallet/$(DEPDIR)/libgleecbtc_wallet_a-ismine.Po
+#	$(AM_V_CXX)source='wallet/ismine.cpp' object='wallet/libgleecbtc_wallet_a-ismine.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_wallet_a-ismine.o `test -f 'wallet/ismine.cpp' || echo '$(srcdir)/'`wallet/ismine.cpp
+
+wallet/libgleecbtc_wallet_a-ismine.obj: wallet/ismine.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_wallet_a-ismine.obj -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_wallet_a-ismine.Tpo -c -o wallet/libgleecbtc_wallet_a-ismine.obj `if test -f 'wallet/ismine.cpp'; then $(CYGPATH_W) 'wallet/ismine.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/ismine.cpp'; fi`
+	$(AM_V_at)$(am__mv) wallet/$(DEPDIR)/libgleecbtc_wallet_a-ismine.Tpo wallet/$(DEPDIR)/libgleecbtc_wallet_a-ismine.Po
+#	$(AM_V_CXX)source='wallet/ismine.cpp' object='wallet/libgleecbtc_wallet_a-ismine.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_wallet_a-ismine.obj `if test -f 'wallet/ismine.cpp'; then $(CYGPATH_W) 'wallet/ismine.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/ismine.cpp'; fi`
+
+wallet/libgleecbtc_wallet_a-load.o: wallet/load.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_wallet_a-load.o -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_wallet_a-load.Tpo -c -o wallet/libgleecbtc_wallet_a-load.o `test -f 'wallet/load.cpp' || echo '$(srcdir)/'`wallet/load.cpp
+	$(AM_V_at)$(am__mv) wallet/$(DEPDIR)/libgleecbtc_wallet_a-load.Tpo wallet/$(DEPDIR)/libgleecbtc_wallet_a-load.Po
+#	$(AM_V_CXX)source='wallet/load.cpp' object='wallet/libgleecbtc_wallet_a-load.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_wallet_a-load.o `test -f 'wallet/load.cpp' || echo '$(srcdir)/'`wallet/load.cpp
+
+wallet/libgleecbtc_wallet_a-load.obj: wallet/load.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_wallet_a-load.obj -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_wallet_a-load.Tpo -c -o wallet/libgleecbtc_wallet_a-load.obj `if test -f 'wallet/load.cpp'; then $(CYGPATH_W) 'wallet/load.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/load.cpp'; fi`
+	$(AM_V_at)$(am__mv) wallet/$(DEPDIR)/libgleecbtc_wallet_a-load.Tpo wallet/$(DEPDIR)/libgleecbtc_wallet_a-load.Po
+#	$(AM_V_CXX)source='wallet/load.cpp' object='wallet/libgleecbtc_wallet_a-load.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_wallet_a-load.obj `if test -f 'wallet/load.cpp'; then $(CYGPATH_W) 'wallet/load.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/load.cpp'; fi`
+
+wallet/libgleecbtc_wallet_a-psbtwallet.o: wallet/psbtwallet.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_wallet_a-psbtwallet.o -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_wallet_a-psbtwallet.Tpo -c -o wallet/libgleecbtc_wallet_a-psbtwallet.o `test -f 'wallet/psbtwallet.cpp' || echo '$(srcdir)/'`wallet/psbtwallet.cpp
+	$(AM_V_at)$(am__mv) wallet/$(DEPDIR)/libgleecbtc_wallet_a-psbtwallet.Tpo wallet/$(DEPDIR)/libgleecbtc_wallet_a-psbtwallet.Po
+#	$(AM_V_CXX)source='wallet/psbtwallet.cpp' object='wallet/libgleecbtc_wallet_a-psbtwallet.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_wallet_a-psbtwallet.o `test -f 'wallet/psbtwallet.cpp' || echo '$(srcdir)/'`wallet/psbtwallet.cpp
+
+wallet/libgleecbtc_wallet_a-psbtwallet.obj: wallet/psbtwallet.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_wallet_a-psbtwallet.obj -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_wallet_a-psbtwallet.Tpo -c -o wallet/libgleecbtc_wallet_a-psbtwallet.obj `if test -f 'wallet/psbtwallet.cpp'; then $(CYGPATH_W) 'wallet/psbtwallet.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/psbtwallet.cpp'; fi`
+	$(AM_V_at)$(am__mv) wallet/$(DEPDIR)/libgleecbtc_wallet_a-psbtwallet.Tpo wallet/$(DEPDIR)/libgleecbtc_wallet_a-psbtwallet.Po
+#	$(AM_V_CXX)source='wallet/psbtwallet.cpp' object='wallet/libgleecbtc_wallet_a-psbtwallet.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_wallet_a-psbtwallet.obj `if test -f 'wallet/psbtwallet.cpp'; then $(CYGPATH_W) 'wallet/psbtwallet.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/psbtwallet.cpp'; fi`
 
 wallet/libgleecbtc_wallet_a-rpcdump.o: wallet/rpcdump.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_wallet_a-rpcdump.o -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_wallet_a-rpcdump.Tpo -c -o wallet/libgleecbtc_wallet_a-rpcdump.o `test -f 'wallet/rpcdump.cpp' || echo '$(srcdir)/'`wallet/rpcdump.cpp
@@ -6279,6 +8570,48 @@ wallet/libgleecbtc_wallet_a-walletdb.obj: wallet/walletdb.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_wallet_a-walletdb.obj `if test -f 'wallet/walletdb.cpp'; then $(CYGPATH_W) 'wallet/walletdb.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/walletdb.cpp'; fi`
 
+wallet/libgleecbtc_wallet_a-walletutil.o: wallet/walletutil.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_wallet_a-walletutil.o -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_wallet_a-walletutil.Tpo -c -o wallet/libgleecbtc_wallet_a-walletutil.o `test -f 'wallet/walletutil.cpp' || echo '$(srcdir)/'`wallet/walletutil.cpp
+	$(AM_V_at)$(am__mv) wallet/$(DEPDIR)/libgleecbtc_wallet_a-walletutil.Tpo wallet/$(DEPDIR)/libgleecbtc_wallet_a-walletutil.Po
+#	$(AM_V_CXX)source='wallet/walletutil.cpp' object='wallet/libgleecbtc_wallet_a-walletutil.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_wallet_a-walletutil.o `test -f 'wallet/walletutil.cpp' || echo '$(srcdir)/'`wallet/walletutil.cpp
+
+wallet/libgleecbtc_wallet_a-walletutil.obj: wallet/walletutil.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_wallet_a-walletutil.obj -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_wallet_a-walletutil.Tpo -c -o wallet/libgleecbtc_wallet_a-walletutil.obj `if test -f 'wallet/walletutil.cpp'; then $(CYGPATH_W) 'wallet/walletutil.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/walletutil.cpp'; fi`
+	$(AM_V_at)$(am__mv) wallet/$(DEPDIR)/libgleecbtc_wallet_a-walletutil.Tpo wallet/$(DEPDIR)/libgleecbtc_wallet_a-walletutil.Po
+#	$(AM_V_CXX)source='wallet/walletutil.cpp' object='wallet/libgleecbtc_wallet_a-walletutil.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_wallet_a-walletutil.obj `if test -f 'wallet/walletutil.cpp'; then $(CYGPATH_W) 'wallet/walletutil.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/walletutil.cpp'; fi`
+
+wallet/libgleecbtc_wallet_a-coinselection.o: wallet/coinselection.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_wallet_a-coinselection.o -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_wallet_a-coinselection.Tpo -c -o wallet/libgleecbtc_wallet_a-coinselection.o `test -f 'wallet/coinselection.cpp' || echo '$(srcdir)/'`wallet/coinselection.cpp
+	$(AM_V_at)$(am__mv) wallet/$(DEPDIR)/libgleecbtc_wallet_a-coinselection.Tpo wallet/$(DEPDIR)/libgleecbtc_wallet_a-coinselection.Po
+#	$(AM_V_CXX)source='wallet/coinselection.cpp' object='wallet/libgleecbtc_wallet_a-coinselection.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_wallet_a-coinselection.o `test -f 'wallet/coinselection.cpp' || echo '$(srcdir)/'`wallet/coinselection.cpp
+
+wallet/libgleecbtc_wallet_a-coinselection.obj: wallet/coinselection.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_wallet_a-coinselection.obj -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_wallet_a-coinselection.Tpo -c -o wallet/libgleecbtc_wallet_a-coinselection.obj `if test -f 'wallet/coinselection.cpp'; then $(CYGPATH_W) 'wallet/coinselection.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/coinselection.cpp'; fi`
+	$(AM_V_at)$(am__mv) wallet/$(DEPDIR)/libgleecbtc_wallet_a-coinselection.Tpo wallet/$(DEPDIR)/libgleecbtc_wallet_a-coinselection.Po
+#	$(AM_V_CXX)source='wallet/coinselection.cpp' object='wallet/libgleecbtc_wallet_a-coinselection.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_wallet_a-coinselection.obj `if test -f 'wallet/coinselection.cpp'; then $(CYGPATH_W) 'wallet/coinselection.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/coinselection.cpp'; fi`
+
+wallet/libgleecbtc_wallet_tool_a-wallettool.o: wallet/wallettool.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_tool_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_tool_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_wallet_tool_a-wallettool.o -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_wallet_tool_a-wallettool.Tpo -c -o wallet/libgleecbtc_wallet_tool_a-wallettool.o `test -f 'wallet/wallettool.cpp' || echo '$(srcdir)/'`wallet/wallettool.cpp
+	$(AM_V_at)$(am__mv) wallet/$(DEPDIR)/libgleecbtc_wallet_tool_a-wallettool.Tpo wallet/$(DEPDIR)/libgleecbtc_wallet_tool_a-wallettool.Po
+#	$(AM_V_CXX)source='wallet/wallettool.cpp' object='wallet/libgleecbtc_wallet_tool_a-wallettool.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_tool_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_tool_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_wallet_tool_a-wallettool.o `test -f 'wallet/wallettool.cpp' || echo '$(srcdir)/'`wallet/wallettool.cpp
+
+wallet/libgleecbtc_wallet_tool_a-wallettool.obj: wallet/wallettool.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_tool_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_tool_a_CXXFLAGS) $(CXXFLAGS) -MT wallet/libgleecbtc_wallet_tool_a-wallettool.obj -MD -MP -MF wallet/$(DEPDIR)/libgleecbtc_wallet_tool_a-wallettool.Tpo -c -o wallet/libgleecbtc_wallet_tool_a-wallettool.obj `if test -f 'wallet/wallettool.cpp'; then $(CYGPATH_W) 'wallet/wallettool.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/wallettool.cpp'; fi`
+	$(AM_V_at)$(am__mv) wallet/$(DEPDIR)/libgleecbtc_wallet_tool_a-wallettool.Tpo wallet/$(DEPDIR)/libgleecbtc_wallet_tool_a-wallettool.Po
+#	$(AM_V_CXX)source='wallet/wallettool.cpp' object='wallet/libgleecbtc_wallet_tool_a-wallettool.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_wallet_tool_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_wallet_tool_a_CXXFLAGS) $(CXXFLAGS) -c -o wallet/libgleecbtc_wallet_tool_a-wallettool.obj `if test -f 'wallet/wallettool.cpp'; then $(CYGPATH_W) 'wallet/wallettool.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/wallettool.cpp'; fi`
+
 zmq/libgleecbtc_zmq_a-zmqabstractnotifier.o: zmq/zmqabstractnotifier.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_zmq_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_zmq_a_CXXFLAGS) $(CXXFLAGS) -MT zmq/libgleecbtc_zmq_a-zmqabstractnotifier.o -MD -MP -MF zmq/$(DEPDIR)/libgleecbtc_zmq_a-zmqabstractnotifier.Tpo -c -o zmq/libgleecbtc_zmq_a-zmqabstractnotifier.o `test -f 'zmq/zmqabstractnotifier.cpp' || echo '$(srcdir)/'`zmq/zmqabstractnotifier.cpp
 	$(AM_V_at)$(am__mv) zmq/$(DEPDIR)/libgleecbtc_zmq_a-zmqabstractnotifier.Tpo zmq/$(DEPDIR)/libgleecbtc_zmq_a-zmqabstractnotifier.Po
@@ -6321,6 +8654,20 @@ zmq/libgleecbtc_zmq_a-zmqpublishnotifier.obj: zmq/zmqpublishnotifier.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_zmq_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_zmq_a_CXXFLAGS) $(CXXFLAGS) -c -o zmq/libgleecbtc_zmq_a-zmqpublishnotifier.obj `if test -f 'zmq/zmqpublishnotifier.cpp'; then $(CYGPATH_W) 'zmq/zmqpublishnotifier.cpp'; else $(CYGPATH_W) '$(srcdir)/zmq/zmqpublishnotifier.cpp'; fi`
 
+zmq/libgleecbtc_zmq_a-zmqrpc.o: zmq/zmqrpc.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_zmq_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_zmq_a_CXXFLAGS) $(CXXFLAGS) -MT zmq/libgleecbtc_zmq_a-zmqrpc.o -MD -MP -MF zmq/$(DEPDIR)/libgleecbtc_zmq_a-zmqrpc.Tpo -c -o zmq/libgleecbtc_zmq_a-zmqrpc.o `test -f 'zmq/zmqrpc.cpp' || echo '$(srcdir)/'`zmq/zmqrpc.cpp
+	$(AM_V_at)$(am__mv) zmq/$(DEPDIR)/libgleecbtc_zmq_a-zmqrpc.Tpo zmq/$(DEPDIR)/libgleecbtc_zmq_a-zmqrpc.Po
+#	$(AM_V_CXX)source='zmq/zmqrpc.cpp' object='zmq/libgleecbtc_zmq_a-zmqrpc.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_zmq_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_zmq_a_CXXFLAGS) $(CXXFLAGS) -c -o zmq/libgleecbtc_zmq_a-zmqrpc.o `test -f 'zmq/zmqrpc.cpp' || echo '$(srcdir)/'`zmq/zmqrpc.cpp
+
+zmq/libgleecbtc_zmq_a-zmqrpc.obj: zmq/zmqrpc.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_zmq_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_zmq_a_CXXFLAGS) $(CXXFLAGS) -MT zmq/libgleecbtc_zmq_a-zmqrpc.obj -MD -MP -MF zmq/$(DEPDIR)/libgleecbtc_zmq_a-zmqrpc.Tpo -c -o zmq/libgleecbtc_zmq_a-zmqrpc.obj `if test -f 'zmq/zmqrpc.cpp'; then $(CYGPATH_W) 'zmq/zmqrpc.cpp'; else $(CYGPATH_W) '$(srcdir)/zmq/zmqrpc.cpp'; fi`
+	$(AM_V_at)$(am__mv) zmq/$(DEPDIR)/libgleecbtc_zmq_a-zmqrpc.Tpo zmq/$(DEPDIR)/libgleecbtc_zmq_a-zmqrpc.Po
+#	$(AM_V_CXX)source='zmq/zmqrpc.cpp' object='zmq/libgleecbtc_zmq_a-zmqrpc.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtc_zmq_a_CPPFLAGS) $(CPPFLAGS) $(libgleecbtc_zmq_a_CXXFLAGS) $(CXXFLAGS) -c -o zmq/libgleecbtc_zmq_a-zmqrpc.obj `if test -f 'zmq/zmqrpc.cpp'; then $(CYGPATH_W) 'zmq/zmqrpc.cpp'; else $(CYGPATH_W) '$(srcdir)/zmq/zmqrpc.cpp'; fi`
+
 qt/qt_libgleecbtcqt_a-bantablemodel.o: qt/bantablemodel.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-bantablemodel.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-bantablemodel.Tpo -c -o qt/qt_libgleecbtcqt_a-bantablemodel.o `test -f 'qt/bantablemodel.cpp' || echo '$(srcdir)/'`qt/bantablemodel.cpp
 	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-bantablemodel.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-bantablemodel.Po
@@ -6334,6 +8681,20 @@ qt/qt_libgleecbtcqt_a-bantablemodel.obj: qt/bantablemodel.cpp
 #	$(AM_V_CXX)source='qt/bantablemodel.cpp' object='qt/qt_libgleecbtcqt_a-bantablemodel.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-bantablemodel.obj `if test -f 'qt/bantablemodel.cpp'; then $(CYGPATH_W) 'qt/bantablemodel.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/bantablemodel.cpp'; fi`
+
+qt/qt_libgleecbtcqt_a-gleecbtc.o: qt/gleecbtc.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-gleecbtc.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-gleecbtc.Tpo -c -o qt/qt_libgleecbtcqt_a-gleecbtc.o `test -f 'qt/gleecbtc.cpp' || echo '$(srcdir)/'`qt/gleecbtc.cpp
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-gleecbtc.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-gleecbtc.Po
+#	$(AM_V_CXX)source='qt/gleecbtc.cpp' object='qt/qt_libgleecbtcqt_a-gleecbtc.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-gleecbtc.o `test -f 'qt/gleecbtc.cpp' || echo '$(srcdir)/'`qt/gleecbtc.cpp
+
+qt/qt_libgleecbtcqt_a-gleecbtc.obj: qt/gleecbtc.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-gleecbtc.obj -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-gleecbtc.Tpo -c -o qt/qt_libgleecbtcqt_a-gleecbtc.obj `if test -f 'qt/gleecbtc.cpp'; then $(CYGPATH_W) 'qt/gleecbtc.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/gleecbtc.cpp'; fi`
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-gleecbtc.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-gleecbtc.Po
+#	$(AM_V_CXX)source='qt/gleecbtc.cpp' object='qt/qt_libgleecbtcqt_a-gleecbtc.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-gleecbtc.obj `if test -f 'qt/gleecbtc.cpp'; then $(CYGPATH_W) 'qt/gleecbtc.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/gleecbtc.cpp'; fi`
 
 qt/qt_libgleecbtcqt_a-gleecbtcaddressvalidator.o: qt/gleecbtcaddressvalidator.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-gleecbtcaddressvalidator.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-gleecbtcaddressvalidator.Tpo -c -o qt/qt_libgleecbtcqt_a-gleecbtcaddressvalidator.o `test -f 'qt/gleecbtcaddressvalidator.cpp' || echo '$(srcdir)/'`qt/gleecbtcaddressvalidator.cpp
@@ -6713,6 +9074,20 @@ qt/qt_libgleecbtcqt_a-coincontroltreewidget.obj: qt/coincontroltreewidget.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-coincontroltreewidget.obj `if test -f 'qt/coincontroltreewidget.cpp'; then $(CYGPATH_W) 'qt/coincontroltreewidget.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/coincontroltreewidget.cpp'; fi`
 
+qt/qt_libgleecbtcqt_a-createwalletdialog.o: qt/createwalletdialog.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-createwalletdialog.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-createwalletdialog.Tpo -c -o qt/qt_libgleecbtcqt_a-createwalletdialog.o `test -f 'qt/createwalletdialog.cpp' || echo '$(srcdir)/'`qt/createwalletdialog.cpp
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-createwalletdialog.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-createwalletdialog.Po
+#	$(AM_V_CXX)source='qt/createwalletdialog.cpp' object='qt/qt_libgleecbtcqt_a-createwalletdialog.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-createwalletdialog.o `test -f 'qt/createwalletdialog.cpp' || echo '$(srcdir)/'`qt/createwalletdialog.cpp
+
+qt/qt_libgleecbtcqt_a-createwalletdialog.obj: qt/createwalletdialog.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-createwalletdialog.obj -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-createwalletdialog.Tpo -c -o qt/qt_libgleecbtcqt_a-createwalletdialog.obj `if test -f 'qt/createwalletdialog.cpp'; then $(CYGPATH_W) 'qt/createwalletdialog.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/createwalletdialog.cpp'; fi`
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-createwalletdialog.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-createwalletdialog.Po
+#	$(AM_V_CXX)source='qt/createwalletdialog.cpp' object='qt/qt_libgleecbtcqt_a-createwalletdialog.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-createwalletdialog.obj `if test -f 'qt/createwalletdialog.cpp'; then $(CYGPATH_W) 'qt/createwalletdialog.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/createwalletdialog.cpp'; fi`
+
 qt/qt_libgleecbtcqt_a-editaddressdialog.o: qt/editaddressdialog.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-editaddressdialog.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-editaddressdialog.Tpo -c -o qt/qt_libgleecbtcqt_a-editaddressdialog.o `test -f 'qt/editaddressdialog.cpp' || echo '$(srcdir)/'`qt/editaddressdialog.cpp
 	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-editaddressdialog.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-editaddressdialog.Po
@@ -6755,20 +9130,6 @@ qt/qt_libgleecbtcqt_a-overviewpage.obj: qt/overviewpage.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-overviewpage.obj `if test -f 'qt/overviewpage.cpp'; then $(CYGPATH_W) 'qt/overviewpage.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/overviewpage.cpp'; fi`
 
-qt/qt_libgleecbtcqt_a-paymentrequestplus.o: qt/paymentrequestplus.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-paymentrequestplus.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-paymentrequestplus.Tpo -c -o qt/qt_libgleecbtcqt_a-paymentrequestplus.o `test -f 'qt/paymentrequestplus.cpp' || echo '$(srcdir)/'`qt/paymentrequestplus.cpp
-	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-paymentrequestplus.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-paymentrequestplus.Po
-#	$(AM_V_CXX)source='qt/paymentrequestplus.cpp' object='qt/qt_libgleecbtcqt_a-paymentrequestplus.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-paymentrequestplus.o `test -f 'qt/paymentrequestplus.cpp' || echo '$(srcdir)/'`qt/paymentrequestplus.cpp
-
-qt/qt_libgleecbtcqt_a-paymentrequestplus.obj: qt/paymentrequestplus.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-paymentrequestplus.obj -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-paymentrequestplus.Tpo -c -o qt/qt_libgleecbtcqt_a-paymentrequestplus.obj `if test -f 'qt/paymentrequestplus.cpp'; then $(CYGPATH_W) 'qt/paymentrequestplus.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/paymentrequestplus.cpp'; fi`
-	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-paymentrequestplus.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-paymentrequestplus.Po
-#	$(AM_V_CXX)source='qt/paymentrequestplus.cpp' object='qt/qt_libgleecbtcqt_a-paymentrequestplus.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-paymentrequestplus.obj `if test -f 'qt/paymentrequestplus.cpp'; then $(CYGPATH_W) 'qt/paymentrequestplus.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/paymentrequestplus.cpp'; fi`
-
 qt/qt_libgleecbtcqt_a-paymentserver.o: qt/paymentserver.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-paymentserver.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-paymentserver.Tpo -c -o qt/qt_libgleecbtcqt_a-paymentserver.o `test -f 'qt/paymentserver.cpp' || echo '$(srcdir)/'`qt/paymentserver.cpp
 	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-paymentserver.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-paymentserver.Po
@@ -6782,6 +9143,20 @@ qt/qt_libgleecbtcqt_a-paymentserver.obj: qt/paymentserver.cpp
 #	$(AM_V_CXX)source='qt/paymentserver.cpp' object='qt/qt_libgleecbtcqt_a-paymentserver.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-paymentserver.obj `if test -f 'qt/paymentserver.cpp'; then $(CYGPATH_W) 'qt/paymentserver.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/paymentserver.cpp'; fi`
+
+qt/qt_libgleecbtcqt_a-qrimagewidget.o: qt/qrimagewidget.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-qrimagewidget.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-qrimagewidget.Tpo -c -o qt/qt_libgleecbtcqt_a-qrimagewidget.o `test -f 'qt/qrimagewidget.cpp' || echo '$(srcdir)/'`qt/qrimagewidget.cpp
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-qrimagewidget.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-qrimagewidget.Po
+#	$(AM_V_CXX)source='qt/qrimagewidget.cpp' object='qt/qt_libgleecbtcqt_a-qrimagewidget.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-qrimagewidget.o `test -f 'qt/qrimagewidget.cpp' || echo '$(srcdir)/'`qt/qrimagewidget.cpp
+
+qt/qt_libgleecbtcqt_a-qrimagewidget.obj: qt/qrimagewidget.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-qrimagewidget.obj -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-qrimagewidget.Tpo -c -o qt/qt_libgleecbtcqt_a-qrimagewidget.obj `if test -f 'qt/qrimagewidget.cpp'; then $(CYGPATH_W) 'qt/qrimagewidget.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/qrimagewidget.cpp'; fi`
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-qrimagewidget.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-qrimagewidget.Po
+#	$(AM_V_CXX)source='qt/qrimagewidget.cpp' object='qt/qt_libgleecbtcqt_a-qrimagewidget.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-qrimagewidget.obj `if test -f 'qt/qrimagewidget.cpp'; then $(CYGPATH_W) 'qt/qrimagewidget.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/qrimagewidget.cpp'; fi`
 
 qt/qt_libgleecbtcqt_a-receivecoinsdialog.o: qt/receivecoinsdialog.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-receivecoinsdialog.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-receivecoinsdialog.Tpo -c -o qt/qt_libgleecbtcqt_a-receivecoinsdialog.o `test -f 'qt/receivecoinsdialog.cpp' || echo '$(srcdir)/'`qt/receivecoinsdialog.cpp
@@ -6951,6 +9326,20 @@ qt/qt_libgleecbtcqt_a-transactionview.obj: qt/transactionview.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-transactionview.obj `if test -f 'qt/transactionview.cpp'; then $(CYGPATH_W) 'qt/transactionview.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/transactionview.cpp'; fi`
 
+qt/qt_libgleecbtcqt_a-walletcontroller.o: qt/walletcontroller.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-walletcontroller.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-walletcontroller.Tpo -c -o qt/qt_libgleecbtcqt_a-walletcontroller.o `test -f 'qt/walletcontroller.cpp' || echo '$(srcdir)/'`qt/walletcontroller.cpp
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-walletcontroller.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-walletcontroller.Po
+#	$(AM_V_CXX)source='qt/walletcontroller.cpp' object='qt/qt_libgleecbtcqt_a-walletcontroller.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-walletcontroller.o `test -f 'qt/walletcontroller.cpp' || echo '$(srcdir)/'`qt/walletcontroller.cpp
+
+qt/qt_libgleecbtcqt_a-walletcontroller.obj: qt/walletcontroller.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-walletcontroller.obj -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-walletcontroller.Tpo -c -o qt/qt_libgleecbtcqt_a-walletcontroller.obj `if test -f 'qt/walletcontroller.cpp'; then $(CYGPATH_W) 'qt/walletcontroller.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/walletcontroller.cpp'; fi`
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-walletcontroller.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-walletcontroller.Po
+#	$(AM_V_CXX)source='qt/walletcontroller.cpp' object='qt/qt_libgleecbtcqt_a-walletcontroller.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-walletcontroller.obj `if test -f 'qt/walletcontroller.cpp'; then $(CYGPATH_W) 'qt/walletcontroller.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/walletcontroller.cpp'; fi`
+
 qt/qt_libgleecbtcqt_a-walletframe.o: qt/walletframe.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-walletframe.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-walletframe.Tpo -c -o qt/qt_libgleecbtcqt_a-walletframe.o `test -f 'qt/walletframe.cpp' || echo '$(srcdir)/'`qt/walletframe.cpp
 	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-walletframe.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-walletframe.Po
@@ -7007,6 +9396,20 @@ qt/qt_libgleecbtcqt_a-walletview.obj: qt/walletview.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-walletview.obj `if test -f 'qt/walletview.cpp'; then $(CYGPATH_W) 'qt/walletview.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/walletview.cpp'; fi`
 
+qt/qt_libgleecbtcqt_a-paymentrequestplus.o: qt/paymentrequestplus.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-paymentrequestplus.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-paymentrequestplus.Tpo -c -o qt/qt_libgleecbtcqt_a-paymentrequestplus.o `test -f 'qt/paymentrequestplus.cpp' || echo '$(srcdir)/'`qt/paymentrequestplus.cpp
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-paymentrequestplus.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-paymentrequestplus.Po
+#	$(AM_V_CXX)source='qt/paymentrequestplus.cpp' object='qt/qt_libgleecbtcqt_a-paymentrequestplus.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-paymentrequestplus.o `test -f 'qt/paymentrequestplus.cpp' || echo '$(srcdir)/'`qt/paymentrequestplus.cpp
+
+qt/qt_libgleecbtcqt_a-paymentrequestplus.obj: qt/paymentrequestplus.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-paymentrequestplus.obj -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-paymentrequestplus.Tpo -c -o qt/qt_libgleecbtcqt_a-paymentrequestplus.obj `if test -f 'qt/paymentrequestplus.cpp'; then $(CYGPATH_W) 'qt/paymentrequestplus.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/paymentrequestplus.cpp'; fi`
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-paymentrequestplus.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-paymentrequestplus.Po
+#	$(AM_V_CXX)source='qt/paymentrequestplus.cpp' object='qt/qt_libgleecbtcqt_a-paymentrequestplus.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-paymentrequestplus.obj `if test -f 'qt/paymentrequestplus.cpp'; then $(CYGPATH_W) 'qt/paymentrequestplus.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/paymentrequestplus.cpp'; fi`
+
 qt/qt_libgleecbtcqt_a-moc_addressbookpage.o: qt/moc_addressbookpage.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-moc_addressbookpage.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_addressbookpage.Tpo -c -o qt/qt_libgleecbtcqt_a-moc_addressbookpage.o `test -f 'qt/moc_addressbookpage.cpp' || echo '$(srcdir)/'`qt/moc_addressbookpage.cpp
 	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_addressbookpage.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_addressbookpage.Po
@@ -7048,6 +9451,20 @@ qt/qt_libgleecbtcqt_a-moc_askpassphrasedialog.obj: qt/moc_askpassphrasedialog.cp
 #	$(AM_V_CXX)source='qt/moc_askpassphrasedialog.cpp' object='qt/qt_libgleecbtcqt_a-moc_askpassphrasedialog.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-moc_askpassphrasedialog.obj `if test -f 'qt/moc_askpassphrasedialog.cpp'; then $(CYGPATH_W) 'qt/moc_askpassphrasedialog.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/moc_askpassphrasedialog.cpp'; fi`
+
+qt/qt_libgleecbtcqt_a-moc_createwalletdialog.o: qt/moc_createwalletdialog.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-moc_createwalletdialog.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_createwalletdialog.Tpo -c -o qt/qt_libgleecbtcqt_a-moc_createwalletdialog.o `test -f 'qt/moc_createwalletdialog.cpp' || echo '$(srcdir)/'`qt/moc_createwalletdialog.cpp
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_createwalletdialog.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_createwalletdialog.Po
+#	$(AM_V_CXX)source='qt/moc_createwalletdialog.cpp' object='qt/qt_libgleecbtcqt_a-moc_createwalletdialog.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-moc_createwalletdialog.o `test -f 'qt/moc_createwalletdialog.cpp' || echo '$(srcdir)/'`qt/moc_createwalletdialog.cpp
+
+qt/qt_libgleecbtcqt_a-moc_createwalletdialog.obj: qt/moc_createwalletdialog.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-moc_createwalletdialog.obj -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_createwalletdialog.Tpo -c -o qt/qt_libgleecbtcqt_a-moc_createwalletdialog.obj `if test -f 'qt/moc_createwalletdialog.cpp'; then $(CYGPATH_W) 'qt/moc_createwalletdialog.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/moc_createwalletdialog.cpp'; fi`
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_createwalletdialog.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_createwalletdialog.Po
+#	$(AM_V_CXX)source='qt/moc_createwalletdialog.cpp' object='qt/qt_libgleecbtcqt_a-moc_createwalletdialog.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-moc_createwalletdialog.obj `if test -f 'qt/moc_createwalletdialog.cpp'; then $(CYGPATH_W) 'qt/moc_createwalletdialog.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/moc_createwalletdialog.cpp'; fi`
 
 qt/qt_libgleecbtcqt_a-moc_bantablemodel.o: qt/moc_bantablemodel.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-moc_bantablemodel.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_bantablemodel.Tpo -c -o qt/qt_libgleecbtcqt_a-moc_bantablemodel.o `test -f 'qt/moc_bantablemodel.cpp' || echo '$(srcdir)/'`qt/moc_bantablemodel.cpp
@@ -7091,6 +9508,20 @@ qt/qt_libgleecbtcqt_a-moc_gleecbtcamountfield.obj: qt/moc_gleecbtcamountfield.cp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-moc_gleecbtcamountfield.obj `if test -f 'qt/moc_gleecbtcamountfield.cpp'; then $(CYGPATH_W) 'qt/moc_gleecbtcamountfield.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/moc_gleecbtcamountfield.cpp'; fi`
 
+qt/qt_libgleecbtcqt_a-moc_gleecbtc.o: qt/moc_gleecbtc.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-moc_gleecbtc.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_gleecbtc.Tpo -c -o qt/qt_libgleecbtcqt_a-moc_gleecbtc.o `test -f 'qt/moc_gleecbtc.cpp' || echo '$(srcdir)/'`qt/moc_gleecbtc.cpp
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_gleecbtc.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_gleecbtc.Po
+#	$(AM_V_CXX)source='qt/moc_gleecbtc.cpp' object='qt/qt_libgleecbtcqt_a-moc_gleecbtc.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-moc_gleecbtc.o `test -f 'qt/moc_gleecbtc.cpp' || echo '$(srcdir)/'`qt/moc_gleecbtc.cpp
+
+qt/qt_libgleecbtcqt_a-moc_gleecbtc.obj: qt/moc_gleecbtc.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-moc_gleecbtc.obj -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_gleecbtc.Tpo -c -o qt/qt_libgleecbtcqt_a-moc_gleecbtc.obj `if test -f 'qt/moc_gleecbtc.cpp'; then $(CYGPATH_W) 'qt/moc_gleecbtc.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/moc_gleecbtc.cpp'; fi`
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_gleecbtc.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_gleecbtc.Po
+#	$(AM_V_CXX)source='qt/moc_gleecbtc.cpp' object='qt/qt_libgleecbtcqt_a-moc_gleecbtc.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-moc_gleecbtc.obj `if test -f 'qt/moc_gleecbtc.cpp'; then $(CYGPATH_W) 'qt/moc_gleecbtc.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/moc_gleecbtc.cpp'; fi`
+
 qt/qt_libgleecbtcqt_a-moc_gleecbtcgui.o: qt/moc_gleecbtcgui.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-moc_gleecbtcgui.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_gleecbtcgui.Tpo -c -o qt/qt_libgleecbtcqt_a-moc_gleecbtcgui.o `test -f 'qt/moc_gleecbtcgui.cpp' || echo '$(srcdir)/'`qt/moc_gleecbtcgui.cpp
 	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_gleecbtcgui.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_gleecbtcgui.Po
@@ -7118,20 +9549,6 @@ qt/qt_libgleecbtcqt_a-moc_gleecbtcunits.obj: qt/moc_gleecbtcunits.cpp
 #	$(AM_V_CXX)source='qt/moc_gleecbtcunits.cpp' object='qt/qt_libgleecbtcqt_a-moc_gleecbtcunits.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-moc_gleecbtcunits.obj `if test -f 'qt/moc_gleecbtcunits.cpp'; then $(CYGPATH_W) 'qt/moc_gleecbtcunits.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/moc_gleecbtcunits.cpp'; fi`
-
-qt/qt_libgleecbtcqt_a-moc_callback.o: qt/moc_callback.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-moc_callback.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_callback.Tpo -c -o qt/qt_libgleecbtcqt_a-moc_callback.o `test -f 'qt/moc_callback.cpp' || echo '$(srcdir)/'`qt/moc_callback.cpp
-	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_callback.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_callback.Po
-#	$(AM_V_CXX)source='qt/moc_callback.cpp' object='qt/qt_libgleecbtcqt_a-moc_callback.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-moc_callback.o `test -f 'qt/moc_callback.cpp' || echo '$(srcdir)/'`qt/moc_callback.cpp
-
-qt/qt_libgleecbtcqt_a-moc_callback.obj: qt/moc_callback.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-moc_callback.obj -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_callback.Tpo -c -o qt/qt_libgleecbtcqt_a-moc_callback.obj `if test -f 'qt/moc_callback.cpp'; then $(CYGPATH_W) 'qt/moc_callback.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/moc_callback.cpp'; fi`
-	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_callback.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_callback.Po
-#	$(AM_V_CXX)source='qt/moc_callback.cpp' object='qt/qt_libgleecbtcqt_a-moc_callback.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-moc_callback.obj `if test -f 'qt/moc_callback.cpp'; then $(CYGPATH_W) 'qt/moc_callback.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/moc_callback.cpp'; fi`
 
 qt/qt_libgleecbtcqt_a-moc_clientmodel.o: qt/moc_clientmodel.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-moc_clientmodel.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_clientmodel.Tpo -c -o qt/qt_libgleecbtcqt_a-moc_clientmodel.o `test -f 'qt/moc_clientmodel.cpp' || echo '$(srcdir)/'`qt/moc_clientmodel.cpp
@@ -7371,6 +9788,20 @@ qt/qt_libgleecbtcqt_a-moc_paymentserver.obj: qt/moc_paymentserver.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-moc_paymentserver.obj `if test -f 'qt/moc_paymentserver.cpp'; then $(CYGPATH_W) 'qt/moc_paymentserver.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/moc_paymentserver.cpp'; fi`
 
+qt/qt_libgleecbtcqt_a-moc_qrimagewidget.o: qt/moc_qrimagewidget.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-moc_qrimagewidget.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_qrimagewidget.Tpo -c -o qt/qt_libgleecbtcqt_a-moc_qrimagewidget.o `test -f 'qt/moc_qrimagewidget.cpp' || echo '$(srcdir)/'`qt/moc_qrimagewidget.cpp
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_qrimagewidget.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_qrimagewidget.Po
+#	$(AM_V_CXX)source='qt/moc_qrimagewidget.cpp' object='qt/qt_libgleecbtcqt_a-moc_qrimagewidget.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-moc_qrimagewidget.o `test -f 'qt/moc_qrimagewidget.cpp' || echo '$(srcdir)/'`qt/moc_qrimagewidget.cpp
+
+qt/qt_libgleecbtcqt_a-moc_qrimagewidget.obj: qt/moc_qrimagewidget.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-moc_qrimagewidget.obj -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_qrimagewidget.Tpo -c -o qt/qt_libgleecbtcqt_a-moc_qrimagewidget.obj `if test -f 'qt/moc_qrimagewidget.cpp'; then $(CYGPATH_W) 'qt/moc_qrimagewidget.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/moc_qrimagewidget.cpp'; fi`
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_qrimagewidget.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_qrimagewidget.Po
+#	$(AM_V_CXX)source='qt/moc_qrimagewidget.cpp' object='qt/qt_libgleecbtcqt_a-moc_qrimagewidget.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-moc_qrimagewidget.obj `if test -f 'qt/moc_qrimagewidget.cpp'; then $(CYGPATH_W) 'qt/moc_qrimagewidget.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/moc_qrimagewidget.cpp'; fi`
+
 qt/qt_libgleecbtcqt_a-moc_qvalidatedlineedit.o: qt/moc_qvalidatedlineedit.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-moc_qvalidatedlineedit.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_qvalidatedlineedit.Tpo -c -o qt/qt_libgleecbtcqt_a-moc_qvalidatedlineedit.o `test -f 'qt/moc_qvalidatedlineedit.cpp' || echo '$(srcdir)/'`qt/moc_qvalidatedlineedit.cpp
 	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_qvalidatedlineedit.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_qvalidatedlineedit.Po
@@ -7609,6 +10040,20 @@ qt/qt_libgleecbtcqt_a-moc_utilitydialog.obj: qt/moc_utilitydialog.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-moc_utilitydialog.obj `if test -f 'qt/moc_utilitydialog.cpp'; then $(CYGPATH_W) 'qt/moc_utilitydialog.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/moc_utilitydialog.cpp'; fi`
 
+qt/qt_libgleecbtcqt_a-moc_walletcontroller.o: qt/moc_walletcontroller.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-moc_walletcontroller.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_walletcontroller.Tpo -c -o qt/qt_libgleecbtcqt_a-moc_walletcontroller.o `test -f 'qt/moc_walletcontroller.cpp' || echo '$(srcdir)/'`qt/moc_walletcontroller.cpp
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_walletcontroller.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_walletcontroller.Po
+#	$(AM_V_CXX)source='qt/moc_walletcontroller.cpp' object='qt/qt_libgleecbtcqt_a-moc_walletcontroller.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-moc_walletcontroller.o `test -f 'qt/moc_walletcontroller.cpp' || echo '$(srcdir)/'`qt/moc_walletcontroller.cpp
+
+qt/qt_libgleecbtcqt_a-moc_walletcontroller.obj: qt/moc_walletcontroller.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-moc_walletcontroller.obj -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_walletcontroller.Tpo -c -o qt/qt_libgleecbtcqt_a-moc_walletcontroller.obj `if test -f 'qt/moc_walletcontroller.cpp'; then $(CYGPATH_W) 'qt/moc_walletcontroller.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/moc_walletcontroller.cpp'; fi`
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_walletcontroller.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_walletcontroller.Po
+#	$(AM_V_CXX)source='qt/moc_walletcontroller.cpp' object='qt/qt_libgleecbtcqt_a-moc_walletcontroller.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-moc_walletcontroller.obj `if test -f 'qt/moc_walletcontroller.cpp'; then $(CYGPATH_W) 'qt/moc_walletcontroller.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/moc_walletcontroller.cpp'; fi`
+
 qt/qt_libgleecbtcqt_a-moc_walletframe.o: qt/moc_walletframe.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_libgleecbtcqt_a-moc_walletframe.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_walletframe.Tpo -c -o qt/qt_libgleecbtcqt_a-moc_walletframe.o `test -f 'qt/moc_walletframe.cpp' || echo '$(srcdir)/'`qt/moc_walletframe.cpp
 	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_walletframe.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-moc_walletframe.Po
@@ -7693,6 +10138,13 @@ qt/qt_libgleecbtcqt_a-qrc_gleecbtc_locale.obj: qt/qrc_gleecbtc_locale.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-qrc_gleecbtc_locale.obj `if test -f 'qt/qrc_gleecbtc_locale.cpp'; then $(CYGPATH_W) 'qt/qrc_gleecbtc_locale.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/qrc_gleecbtc_locale.cpp'; fi`
 
+support/libgleecbtcconsensus_la-cleanse.lo: support/cleanse.cpp
+	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -MT support/libgleecbtcconsensus_la-cleanse.lo -MD -MP -MF support/$(DEPDIR)/libgleecbtcconsensus_la-cleanse.Tpo -c -o support/libgleecbtcconsensus_la-cleanse.lo `test -f 'support/cleanse.cpp' || echo '$(srcdir)/'`support/cleanse.cpp
+	$(AM_V_at)$(am__mv) support/$(DEPDIR)/libgleecbtcconsensus_la-cleanse.Tpo support/$(DEPDIR)/libgleecbtcconsensus_la-cleanse.Plo
+#	$(AM_V_CXX)source='support/cleanse.cpp' object='support/libgleecbtcconsensus_la-cleanse.lo' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -c -o support/libgleecbtcconsensus_la-cleanse.lo `test -f 'support/cleanse.cpp' || echo '$(srcdir)/'`support/cleanse.cpp
+
 crypto/libgleecbtcconsensus_la-aes.lo: crypto/aes.cpp
 	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -MT crypto/libgleecbtcconsensus_la-aes.lo -MD -MP -MF crypto/$(DEPDIR)/libgleecbtcconsensus_la-aes.Tpo -c -o crypto/libgleecbtcconsensus_la-aes.lo `test -f 'crypto/aes.cpp' || echo '$(srcdir)/'`crypto/aes.cpp
 	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/libgleecbtcconsensus_la-aes.Tpo crypto/$(DEPDIR)/libgleecbtcconsensus_la-aes.Plo
@@ -7700,12 +10152,26 @@ crypto/libgleecbtcconsensus_la-aes.lo: crypto/aes.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -c -o crypto/libgleecbtcconsensus_la-aes.lo `test -f 'crypto/aes.cpp' || echo '$(srcdir)/'`crypto/aes.cpp
 
+crypto/libgleecbtcconsensus_la-chacha_poly_aead.lo: crypto/chacha_poly_aead.cpp
+	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -MT crypto/libgleecbtcconsensus_la-chacha_poly_aead.lo -MD -MP -MF crypto/$(DEPDIR)/libgleecbtcconsensus_la-chacha_poly_aead.Tpo -c -o crypto/libgleecbtcconsensus_la-chacha_poly_aead.lo `test -f 'crypto/chacha_poly_aead.cpp' || echo '$(srcdir)/'`crypto/chacha_poly_aead.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/libgleecbtcconsensus_la-chacha_poly_aead.Tpo crypto/$(DEPDIR)/libgleecbtcconsensus_la-chacha_poly_aead.Plo
+#	$(AM_V_CXX)source='crypto/chacha_poly_aead.cpp' object='crypto/libgleecbtcconsensus_la-chacha_poly_aead.lo' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -c -o crypto/libgleecbtcconsensus_la-chacha_poly_aead.lo `test -f 'crypto/chacha_poly_aead.cpp' || echo '$(srcdir)/'`crypto/chacha_poly_aead.cpp
+
 crypto/libgleecbtcconsensus_la-chacha20.lo: crypto/chacha20.cpp
 	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -MT crypto/libgleecbtcconsensus_la-chacha20.lo -MD -MP -MF crypto/$(DEPDIR)/libgleecbtcconsensus_la-chacha20.Tpo -c -o crypto/libgleecbtcconsensus_la-chacha20.lo `test -f 'crypto/chacha20.cpp' || echo '$(srcdir)/'`crypto/chacha20.cpp
 	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/libgleecbtcconsensus_la-chacha20.Tpo crypto/$(DEPDIR)/libgleecbtcconsensus_la-chacha20.Plo
 #	$(AM_V_CXX)source='crypto/chacha20.cpp' object='crypto/libgleecbtcconsensus_la-chacha20.lo' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -c -o crypto/libgleecbtcconsensus_la-chacha20.lo `test -f 'crypto/chacha20.cpp' || echo '$(srcdir)/'`crypto/chacha20.cpp
+
+crypto/libgleecbtcconsensus_la-hkdf_sha256_32.lo: crypto/hkdf_sha256_32.cpp
+	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -MT crypto/libgleecbtcconsensus_la-hkdf_sha256_32.lo -MD -MP -MF crypto/$(DEPDIR)/libgleecbtcconsensus_la-hkdf_sha256_32.Tpo -c -o crypto/libgleecbtcconsensus_la-hkdf_sha256_32.lo `test -f 'crypto/hkdf_sha256_32.cpp' || echo '$(srcdir)/'`crypto/hkdf_sha256_32.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/libgleecbtcconsensus_la-hkdf_sha256_32.Tpo crypto/$(DEPDIR)/libgleecbtcconsensus_la-hkdf_sha256_32.Plo
+#	$(AM_V_CXX)source='crypto/hkdf_sha256_32.cpp' object='crypto/libgleecbtcconsensus_la-hkdf_sha256_32.lo' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -c -o crypto/libgleecbtcconsensus_la-hkdf_sha256_32.lo `test -f 'crypto/hkdf_sha256_32.cpp' || echo '$(srcdir)/'`crypto/hkdf_sha256_32.cpp
 
 crypto/libgleecbtcconsensus_la-hmac_sha256.lo: crypto/hmac_sha256.cpp
 	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -MT crypto/libgleecbtcconsensus_la-hmac_sha256.lo -MD -MP -MF crypto/$(DEPDIR)/libgleecbtcconsensus_la-hmac_sha256.Tpo -c -o crypto/libgleecbtcconsensus_la-hmac_sha256.lo `test -f 'crypto/hmac_sha256.cpp' || echo '$(srcdir)/'`crypto/hmac_sha256.cpp
@@ -7720,6 +10186,13 @@ crypto/libgleecbtcconsensus_la-hmac_sha512.lo: crypto/hmac_sha512.cpp
 #	$(AM_V_CXX)source='crypto/hmac_sha512.cpp' object='crypto/libgleecbtcconsensus_la-hmac_sha512.lo' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -c -o crypto/libgleecbtcconsensus_la-hmac_sha512.lo `test -f 'crypto/hmac_sha512.cpp' || echo '$(srcdir)/'`crypto/hmac_sha512.cpp
+
+crypto/libgleecbtcconsensus_la-poly1305.lo: crypto/poly1305.cpp
+	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -MT crypto/libgleecbtcconsensus_la-poly1305.lo -MD -MP -MF crypto/$(DEPDIR)/libgleecbtcconsensus_la-poly1305.Tpo -c -o crypto/libgleecbtcconsensus_la-poly1305.lo `test -f 'crypto/poly1305.cpp' || echo '$(srcdir)/'`crypto/poly1305.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/libgleecbtcconsensus_la-poly1305.Tpo crypto/$(DEPDIR)/libgleecbtcconsensus_la-poly1305.Plo
+#	$(AM_V_CXX)source='crypto/poly1305.cpp' object='crypto/libgleecbtcconsensus_la-poly1305.lo' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -c -o crypto/libgleecbtcconsensus_la-poly1305.lo `test -f 'crypto/poly1305.cpp' || echo '$(srcdir)/'`crypto/poly1305.cpp
 
 crypto/libgleecbtcconsensus_la-ripemd160.lo: crypto/ripemd160.cpp
 	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -MT crypto/libgleecbtcconsensus_la-ripemd160.lo -MD -MP -MF crypto/$(DEPDIR)/libgleecbtcconsensus_la-ripemd160.Tpo -c -o crypto/libgleecbtcconsensus_la-ripemd160.lo `test -f 'crypto/ripemd160.cpp' || echo '$(srcdir)/'`crypto/ripemd160.cpp
@@ -7749,6 +10222,13 @@ crypto/libgleecbtcconsensus_la-sha512.lo: crypto/sha512.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -c -o crypto/libgleecbtcconsensus_la-sha512.lo `test -f 'crypto/sha512.cpp' || echo '$(srcdir)/'`crypto/sha512.cpp
 
+crypto/libgleecbtcconsensus_la-siphash.lo: crypto/siphash.cpp
+	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -MT crypto/libgleecbtcconsensus_la-siphash.lo -MD -MP -MF crypto/$(DEPDIR)/libgleecbtcconsensus_la-siphash.Tpo -c -o crypto/libgleecbtcconsensus_la-siphash.lo `test -f 'crypto/siphash.cpp' || echo '$(srcdir)/'`crypto/siphash.cpp
+	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/libgleecbtcconsensus_la-siphash.Tpo crypto/$(DEPDIR)/libgleecbtcconsensus_la-siphash.Plo
+#	$(AM_V_CXX)source='crypto/siphash.cpp' object='crypto/libgleecbtcconsensus_la-siphash.lo' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -c -o crypto/libgleecbtcconsensus_la-siphash.lo `test -f 'crypto/siphash.cpp' || echo '$(srcdir)/'`crypto/siphash.cpp
+
 crypto/libgleecbtcconsensus_la-sha256_sse4.lo: crypto/sha256_sse4.cpp
 	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -MT crypto/libgleecbtcconsensus_la-sha256_sse4.lo -MD -MP -MF crypto/$(DEPDIR)/libgleecbtcconsensus_la-sha256_sse4.Tpo -c -o crypto/libgleecbtcconsensus_la-sha256_sse4.lo `test -f 'crypto/sha256_sse4.cpp' || echo '$(srcdir)/'`crypto/sha256_sse4.cpp
 	$(AM_V_at)$(am__mv) crypto/$(DEPDIR)/libgleecbtcconsensus_la-sha256_sse4.Tpo crypto/$(DEPDIR)/libgleecbtcconsensus_la-sha256_sse4.Plo
@@ -7763,19 +10243,19 @@ libgleecbtcconsensus_la-arith_uint256.lo: arith_uint256.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtcconsensus_la-arith_uint256.lo `test -f 'arith_uint256.cpp' || echo '$(srcdir)/'`arith_uint256.cpp
 
-consensus/libgleecbtcconsensus_la-consensus.lo: consensus/consensus.cpp
-	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -MT consensus/libgleecbtcconsensus_la-consensus.lo -MD -MP -MF consensus/$(DEPDIR)/libgleecbtcconsensus_la-consensus.Tpo -c -o consensus/libgleecbtcconsensus_la-consensus.lo `test -f 'consensus/consensus.cpp' || echo '$(srcdir)/'`consensus/consensus.cpp
-	$(AM_V_at)$(am__mv) consensus/$(DEPDIR)/libgleecbtcconsensus_la-consensus.Tpo consensus/$(DEPDIR)/libgleecbtcconsensus_la-consensus.Plo
-#	$(AM_V_CXX)source='consensus/consensus.cpp' object='consensus/libgleecbtcconsensus_la-consensus.lo' libtool=yes \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -c -o consensus/libgleecbtcconsensus_la-consensus.lo `test -f 'consensus/consensus.cpp' || echo '$(srcdir)/'`consensus/consensus.cpp
-
 consensus/libgleecbtcconsensus_la-merkle.lo: consensus/merkle.cpp
 	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -MT consensus/libgleecbtcconsensus_la-merkle.lo -MD -MP -MF consensus/$(DEPDIR)/libgleecbtcconsensus_la-merkle.Tpo -c -o consensus/libgleecbtcconsensus_la-merkle.lo `test -f 'consensus/merkle.cpp' || echo '$(srcdir)/'`consensus/merkle.cpp
 	$(AM_V_at)$(am__mv) consensus/$(DEPDIR)/libgleecbtcconsensus_la-merkle.Tpo consensus/$(DEPDIR)/libgleecbtcconsensus_la-merkle.Plo
 #	$(AM_V_CXX)source='consensus/merkle.cpp' object='consensus/libgleecbtcconsensus_la-merkle.lo' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -c -o consensus/libgleecbtcconsensus_la-merkle.lo `test -f 'consensus/merkle.cpp' || echo '$(srcdir)/'`consensus/merkle.cpp
+
+consensus/libgleecbtcconsensus_la-tx_check.lo: consensus/tx_check.cpp
+	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -MT consensus/libgleecbtcconsensus_la-tx_check.lo -MD -MP -MF consensus/$(DEPDIR)/libgleecbtcconsensus_la-tx_check.Tpo -c -o consensus/libgleecbtcconsensus_la-tx_check.lo `test -f 'consensus/tx_check.cpp' || echo '$(srcdir)/'`consensus/tx_check.cpp
+	$(AM_V_at)$(am__mv) consensus/$(DEPDIR)/libgleecbtcconsensus_la-tx_check.Tpo consensus/$(DEPDIR)/libgleecbtcconsensus_la-tx_check.Plo
+#	$(AM_V_CXX)source='consensus/tx_check.cpp' object='consensus/libgleecbtcconsensus_la-tx_check.lo' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -c -o consensus/libgleecbtcconsensus_la-tx_check.lo `test -f 'consensus/tx_check.cpp' || echo '$(srcdir)/'`consensus/tx_check.cpp
 
 libgleecbtcconsensus_la-hash.lo: hash.cpp
 	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtcconsensus_la-hash.lo -MD -MP -MF $(DEPDIR)/libgleecbtcconsensus_la-hash.Tpo -c -o libgleecbtcconsensus_la-hash.lo `test -f 'hash.cpp' || echo '$(srcdir)/'`hash.cpp
@@ -7840,12 +10320,12 @@ libgleecbtcconsensus_la-uint256.lo: uint256.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtcconsensus_la-uint256.lo `test -f 'uint256.cpp' || echo '$(srcdir)/'`uint256.cpp
 
-libgleecbtcconsensus_la-utilstrencodings.lo: utilstrencodings.cpp
-	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -MT libgleecbtcconsensus_la-utilstrencodings.lo -MD -MP -MF $(DEPDIR)/libgleecbtcconsensus_la-utilstrencodings.Tpo -c -o libgleecbtcconsensus_la-utilstrencodings.lo `test -f 'utilstrencodings.cpp' || echo '$(srcdir)/'`utilstrencodings.cpp
-	$(AM_V_at)$(am__mv) $(DEPDIR)/libgleecbtcconsensus_la-utilstrencodings.Tpo $(DEPDIR)/libgleecbtcconsensus_la-utilstrencodings.Plo
-#	$(AM_V_CXX)source='utilstrencodings.cpp' object='libgleecbtcconsensus_la-utilstrencodings.lo' libtool=yes \
+util/libgleecbtcconsensus_la-strencodings.lo: util/strencodings.cpp
+	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -MT util/libgleecbtcconsensus_la-strencodings.lo -MD -MP -MF util/$(DEPDIR)/libgleecbtcconsensus_la-strencodings.Tpo -c -o util/libgleecbtcconsensus_la-strencodings.lo `test -f 'util/strencodings.cpp' || echo '$(srcdir)/'`util/strencodings.cpp
+	$(AM_V_at)$(am__mv) util/$(DEPDIR)/libgleecbtcconsensus_la-strencodings.Tpo util/$(DEPDIR)/libgleecbtcconsensus_la-strencodings.Plo
+#	$(AM_V_CXX)source='util/strencodings.cpp' object='util/libgleecbtcconsensus_la-strencodings.lo' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -c -o libgleecbtcconsensus_la-utilstrencodings.lo `test -f 'utilstrencodings.cpp' || echo '$(srcdir)/'`utilstrencodings.cpp
+#	$(AM_V_CXX_no)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -c -o util/libgleecbtcconsensus_la-strencodings.lo `test -f 'util/strencodings.cpp' || echo '$(srcdir)/'`util/strencodings.cpp
 
 compat/libgleecbtcconsensus_la-glibc_compat.lo: compat/glibc_compat.cpp
 	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgleecbtcconsensus_la_CPPFLAGS) $(CPPFLAGS) $(libgleecbtcconsensus_la_CXXFLAGS) $(CXXFLAGS) -MT compat/libgleecbtcconsensus_la-glibc_compat.lo -MD -MP -MF compat/$(DEPDIR)/libgleecbtcconsensus_la-glibc_compat.Tpo -c -o compat/libgleecbtcconsensus_la-glibc_compat.lo `test -f 'compat/glibc_compat.cpp' || echo '$(srcdir)/'`compat/glibc_compat.cpp
@@ -7882,6 +10362,20 @@ bench/bench_bench_gleecbtc-bench.obj: bench/bench.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-bench.obj `if test -f 'bench/bench.cpp'; then $(CYGPATH_W) 'bench/bench.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/bench.cpp'; fi`
 
+bench/bench_bench_gleecbtc-block_assemble.o: bench/block_assemble.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-block_assemble.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-block_assemble.Tpo -c -o bench/bench_bench_gleecbtc-block_assemble.o `test -f 'bench/block_assemble.cpp' || echo '$(srcdir)/'`bench/block_assemble.cpp
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-block_assemble.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-block_assemble.Po
+#	$(AM_V_CXX)source='bench/block_assemble.cpp' object='bench/bench_bench_gleecbtc-block_assemble.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-block_assemble.o `test -f 'bench/block_assemble.cpp' || echo '$(srcdir)/'`bench/block_assemble.cpp
+
+bench/bench_bench_gleecbtc-block_assemble.obj: bench/block_assemble.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-block_assemble.obj -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-block_assemble.Tpo -c -o bench/bench_bench_gleecbtc-block_assemble.obj `if test -f 'bench/block_assemble.cpp'; then $(CYGPATH_W) 'bench/block_assemble.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/block_assemble.cpp'; fi`
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-block_assemble.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-block_assemble.Po
+#	$(AM_V_CXX)source='bench/block_assemble.cpp' object='bench/bench_bench_gleecbtc-block_assemble.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-block_assemble.obj `if test -f 'bench/block_assemble.cpp'; then $(CYGPATH_W) 'bench/block_assemble.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/block_assemble.cpp'; fi`
+
 bench/bench_bench_gleecbtc-checkblock.o: bench/checkblock.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-checkblock.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-checkblock.Tpo -c -o bench/bench_bench_gleecbtc-checkblock.o `test -f 'bench/checkblock.cpp' || echo '$(srcdir)/'`bench/checkblock.cpp
 	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-checkblock.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-checkblock.Po
@@ -7910,19 +10404,47 @@ bench/bench_bench_gleecbtc-checkqueue.obj: bench/checkqueue.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-checkqueue.obj `if test -f 'bench/checkqueue.cpp'; then $(CYGPATH_W) 'bench/checkqueue.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/checkqueue.cpp'; fi`
 
-bench/bench_bench_gleecbtc-Examples.o: bench/Examples.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-Examples.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-Examples.Tpo -c -o bench/bench_bench_gleecbtc-Examples.o `test -f 'bench/Examples.cpp' || echo '$(srcdir)/'`bench/Examples.cpp
-	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-Examples.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-Examples.Po
-#	$(AM_V_CXX)source='bench/Examples.cpp' object='bench/bench_bench_gleecbtc-Examples.o' libtool=no \
+bench/bench_bench_gleecbtc-data.o: bench/data.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-data.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-data.Tpo -c -o bench/bench_bench_gleecbtc-data.o `test -f 'bench/data.cpp' || echo '$(srcdir)/'`bench/data.cpp
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-data.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-data.Po
+#	$(AM_V_CXX)source='bench/data.cpp' object='bench/bench_bench_gleecbtc-data.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-Examples.o `test -f 'bench/Examples.cpp' || echo '$(srcdir)/'`bench/Examples.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-data.o `test -f 'bench/data.cpp' || echo '$(srcdir)/'`bench/data.cpp
 
-bench/bench_bench_gleecbtc-Examples.obj: bench/Examples.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-Examples.obj -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-Examples.Tpo -c -o bench/bench_bench_gleecbtc-Examples.obj `if test -f 'bench/Examples.cpp'; then $(CYGPATH_W) 'bench/Examples.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/Examples.cpp'; fi`
-	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-Examples.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-Examples.Po
-#	$(AM_V_CXX)source='bench/Examples.cpp' object='bench/bench_bench_gleecbtc-Examples.obj' libtool=no \
+bench/bench_bench_gleecbtc-data.obj: bench/data.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-data.obj -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-data.Tpo -c -o bench/bench_bench_gleecbtc-data.obj `if test -f 'bench/data.cpp'; then $(CYGPATH_W) 'bench/data.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/data.cpp'; fi`
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-data.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-data.Po
+#	$(AM_V_CXX)source='bench/data.cpp' object='bench/bench_bench_gleecbtc-data.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-Examples.obj `if test -f 'bench/Examples.cpp'; then $(CYGPATH_W) 'bench/Examples.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/Examples.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-data.obj `if test -f 'bench/data.cpp'; then $(CYGPATH_W) 'bench/data.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/data.cpp'; fi`
+
+bench/bench_bench_gleecbtc-duplicate_inputs.o: bench/duplicate_inputs.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-duplicate_inputs.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-duplicate_inputs.Tpo -c -o bench/bench_bench_gleecbtc-duplicate_inputs.o `test -f 'bench/duplicate_inputs.cpp' || echo '$(srcdir)/'`bench/duplicate_inputs.cpp
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-duplicate_inputs.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-duplicate_inputs.Po
+#	$(AM_V_CXX)source='bench/duplicate_inputs.cpp' object='bench/bench_bench_gleecbtc-duplicate_inputs.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-duplicate_inputs.o `test -f 'bench/duplicate_inputs.cpp' || echo '$(srcdir)/'`bench/duplicate_inputs.cpp
+
+bench/bench_bench_gleecbtc-duplicate_inputs.obj: bench/duplicate_inputs.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-duplicate_inputs.obj -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-duplicate_inputs.Tpo -c -o bench/bench_bench_gleecbtc-duplicate_inputs.obj `if test -f 'bench/duplicate_inputs.cpp'; then $(CYGPATH_W) 'bench/duplicate_inputs.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/duplicate_inputs.cpp'; fi`
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-duplicate_inputs.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-duplicate_inputs.Po
+#	$(AM_V_CXX)source='bench/duplicate_inputs.cpp' object='bench/bench_bench_gleecbtc-duplicate_inputs.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-duplicate_inputs.obj `if test -f 'bench/duplicate_inputs.cpp'; then $(CYGPATH_W) 'bench/duplicate_inputs.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/duplicate_inputs.cpp'; fi`
+
+bench/bench_bench_gleecbtc-examples.o: bench/examples.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-examples.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-examples.Tpo -c -o bench/bench_bench_gleecbtc-examples.o `test -f 'bench/examples.cpp' || echo '$(srcdir)/'`bench/examples.cpp
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-examples.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-examples.Po
+#	$(AM_V_CXX)source='bench/examples.cpp' object='bench/bench_bench_gleecbtc-examples.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-examples.o `test -f 'bench/examples.cpp' || echo '$(srcdir)/'`bench/examples.cpp
+
+bench/bench_bench_gleecbtc-examples.obj: bench/examples.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-examples.obj -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-examples.Tpo -c -o bench/bench_bench_gleecbtc-examples.obj `if test -f 'bench/examples.cpp'; then $(CYGPATH_W) 'bench/examples.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/examples.cpp'; fi`
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-examples.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-examples.Po
+#	$(AM_V_CXX)source='bench/examples.cpp' object='bench/bench_bench_gleecbtc-examples.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-examples.obj `if test -f 'bench/examples.cpp'; then $(CYGPATH_W) 'bench/examples.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/examples.cpp'; fi`
 
 bench/bench_bench_gleecbtc-rollingbloom.o: bench/rollingbloom.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-rollingbloom.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-rollingbloom.Tpo -c -o bench/bench_bench_gleecbtc-rollingbloom.o `test -f 'bench/rollingbloom.cpp' || echo '$(srcdir)/'`bench/rollingbloom.cpp
@@ -7937,6 +10459,34 @@ bench/bench_bench_gleecbtc-rollingbloom.obj: bench/rollingbloom.cpp
 #	$(AM_V_CXX)source='bench/rollingbloom.cpp' object='bench/bench_bench_gleecbtc-rollingbloom.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-rollingbloom.obj `if test -f 'bench/rollingbloom.cpp'; then $(CYGPATH_W) 'bench/rollingbloom.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/rollingbloom.cpp'; fi`
+
+bench/bench_bench_gleecbtc-chacha20.o: bench/chacha20.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-chacha20.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-chacha20.Tpo -c -o bench/bench_bench_gleecbtc-chacha20.o `test -f 'bench/chacha20.cpp' || echo '$(srcdir)/'`bench/chacha20.cpp
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-chacha20.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-chacha20.Po
+#	$(AM_V_CXX)source='bench/chacha20.cpp' object='bench/bench_bench_gleecbtc-chacha20.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-chacha20.o `test -f 'bench/chacha20.cpp' || echo '$(srcdir)/'`bench/chacha20.cpp
+
+bench/bench_bench_gleecbtc-chacha20.obj: bench/chacha20.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-chacha20.obj -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-chacha20.Tpo -c -o bench/bench_bench_gleecbtc-chacha20.obj `if test -f 'bench/chacha20.cpp'; then $(CYGPATH_W) 'bench/chacha20.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/chacha20.cpp'; fi`
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-chacha20.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-chacha20.Po
+#	$(AM_V_CXX)source='bench/chacha20.cpp' object='bench/bench_bench_gleecbtc-chacha20.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-chacha20.obj `if test -f 'bench/chacha20.cpp'; then $(CYGPATH_W) 'bench/chacha20.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/chacha20.cpp'; fi`
+
+bench/bench_bench_gleecbtc-chacha_poly_aead.o: bench/chacha_poly_aead.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-chacha_poly_aead.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-chacha_poly_aead.Tpo -c -o bench/bench_bench_gleecbtc-chacha_poly_aead.o `test -f 'bench/chacha_poly_aead.cpp' || echo '$(srcdir)/'`bench/chacha_poly_aead.cpp
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-chacha_poly_aead.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-chacha_poly_aead.Po
+#	$(AM_V_CXX)source='bench/chacha_poly_aead.cpp' object='bench/bench_bench_gleecbtc-chacha_poly_aead.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-chacha_poly_aead.o `test -f 'bench/chacha_poly_aead.cpp' || echo '$(srcdir)/'`bench/chacha_poly_aead.cpp
+
+bench/bench_bench_gleecbtc-chacha_poly_aead.obj: bench/chacha_poly_aead.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-chacha_poly_aead.obj -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-chacha_poly_aead.Tpo -c -o bench/bench_bench_gleecbtc-chacha_poly_aead.obj `if test -f 'bench/chacha_poly_aead.cpp'; then $(CYGPATH_W) 'bench/chacha_poly_aead.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/chacha_poly_aead.cpp'; fi`
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-chacha_poly_aead.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-chacha_poly_aead.Po
+#	$(AM_V_CXX)source='bench/chacha_poly_aead.cpp' object='bench/bench_bench_gleecbtc-chacha_poly_aead.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-chacha_poly_aead.obj `if test -f 'bench/chacha_poly_aead.cpp'; then $(CYGPATH_W) 'bench/chacha_poly_aead.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/chacha_poly_aead.cpp'; fi`
 
 bench/bench_bench_gleecbtc-crypto_hash.o: bench/crypto_hash.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-crypto_hash.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-crypto_hash.Tpo -c -o bench/bench_bench_gleecbtc-crypto_hash.o `test -f 'bench/crypto_hash.cpp' || echo '$(srcdir)/'`bench/crypto_hash.cpp
@@ -7966,6 +10516,34 @@ bench/bench_bench_gleecbtc-ccoins_caching.obj: bench/ccoins_caching.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-ccoins_caching.obj `if test -f 'bench/ccoins_caching.cpp'; then $(CYGPATH_W) 'bench/ccoins_caching.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/ccoins_caching.cpp'; fi`
 
+bench/bench_bench_gleecbtc-gcs_filter.o: bench/gcs_filter.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-gcs_filter.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-gcs_filter.Tpo -c -o bench/bench_bench_gleecbtc-gcs_filter.o `test -f 'bench/gcs_filter.cpp' || echo '$(srcdir)/'`bench/gcs_filter.cpp
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-gcs_filter.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-gcs_filter.Po
+#	$(AM_V_CXX)source='bench/gcs_filter.cpp' object='bench/bench_bench_gleecbtc-gcs_filter.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-gcs_filter.o `test -f 'bench/gcs_filter.cpp' || echo '$(srcdir)/'`bench/gcs_filter.cpp
+
+bench/bench_bench_gleecbtc-gcs_filter.obj: bench/gcs_filter.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-gcs_filter.obj -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-gcs_filter.Tpo -c -o bench/bench_bench_gleecbtc-gcs_filter.obj `if test -f 'bench/gcs_filter.cpp'; then $(CYGPATH_W) 'bench/gcs_filter.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/gcs_filter.cpp'; fi`
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-gcs_filter.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-gcs_filter.Po
+#	$(AM_V_CXX)source='bench/gcs_filter.cpp' object='bench/bench_bench_gleecbtc-gcs_filter.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-gcs_filter.obj `if test -f 'bench/gcs_filter.cpp'; then $(CYGPATH_W) 'bench/gcs_filter.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/gcs_filter.cpp'; fi`
+
+bench/bench_bench_gleecbtc-merkle_root.o: bench/merkle_root.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-merkle_root.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-merkle_root.Tpo -c -o bench/bench_bench_gleecbtc-merkle_root.o `test -f 'bench/merkle_root.cpp' || echo '$(srcdir)/'`bench/merkle_root.cpp
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-merkle_root.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-merkle_root.Po
+#	$(AM_V_CXX)source='bench/merkle_root.cpp' object='bench/bench_bench_gleecbtc-merkle_root.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-merkle_root.o `test -f 'bench/merkle_root.cpp' || echo '$(srcdir)/'`bench/merkle_root.cpp
+
+bench/bench_bench_gleecbtc-merkle_root.obj: bench/merkle_root.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-merkle_root.obj -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-merkle_root.Tpo -c -o bench/bench_bench_gleecbtc-merkle_root.obj `if test -f 'bench/merkle_root.cpp'; then $(CYGPATH_W) 'bench/merkle_root.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/merkle_root.cpp'; fi`
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-merkle_root.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-merkle_root.Po
+#	$(AM_V_CXX)source='bench/merkle_root.cpp' object='bench/bench_bench_gleecbtc-merkle_root.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-merkle_root.obj `if test -f 'bench/merkle_root.cpp'; then $(CYGPATH_W) 'bench/merkle_root.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/merkle_root.cpp'; fi`
+
 bench/bench_bench_gleecbtc-mempool_eviction.o: bench/mempool_eviction.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-mempool_eviction.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-mempool_eviction.Tpo -c -o bench/bench_bench_gleecbtc-mempool_eviction.o `test -f 'bench/mempool_eviction.cpp' || echo '$(srcdir)/'`bench/mempool_eviction.cpp
 	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-mempool_eviction.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-mempool_eviction.Po
@@ -7979,6 +10557,48 @@ bench/bench_bench_gleecbtc-mempool_eviction.obj: bench/mempool_eviction.cpp
 #	$(AM_V_CXX)source='bench/mempool_eviction.cpp' object='bench/bench_bench_gleecbtc-mempool_eviction.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-mempool_eviction.obj `if test -f 'bench/mempool_eviction.cpp'; then $(CYGPATH_W) 'bench/mempool_eviction.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/mempool_eviction.cpp'; fi`
+
+bench/bench_bench_gleecbtc-rpc_blockchain.o: bench/rpc_blockchain.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-rpc_blockchain.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-rpc_blockchain.Tpo -c -o bench/bench_bench_gleecbtc-rpc_blockchain.o `test -f 'bench/rpc_blockchain.cpp' || echo '$(srcdir)/'`bench/rpc_blockchain.cpp
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-rpc_blockchain.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-rpc_blockchain.Po
+#	$(AM_V_CXX)source='bench/rpc_blockchain.cpp' object='bench/bench_bench_gleecbtc-rpc_blockchain.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-rpc_blockchain.o `test -f 'bench/rpc_blockchain.cpp' || echo '$(srcdir)/'`bench/rpc_blockchain.cpp
+
+bench/bench_bench_gleecbtc-rpc_blockchain.obj: bench/rpc_blockchain.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-rpc_blockchain.obj -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-rpc_blockchain.Tpo -c -o bench/bench_bench_gleecbtc-rpc_blockchain.obj `if test -f 'bench/rpc_blockchain.cpp'; then $(CYGPATH_W) 'bench/rpc_blockchain.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/rpc_blockchain.cpp'; fi`
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-rpc_blockchain.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-rpc_blockchain.Po
+#	$(AM_V_CXX)source='bench/rpc_blockchain.cpp' object='bench/bench_bench_gleecbtc-rpc_blockchain.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-rpc_blockchain.obj `if test -f 'bench/rpc_blockchain.cpp'; then $(CYGPATH_W) 'bench/rpc_blockchain.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/rpc_blockchain.cpp'; fi`
+
+bench/bench_bench_gleecbtc-rpc_mempool.o: bench/rpc_mempool.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-rpc_mempool.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-rpc_mempool.Tpo -c -o bench/bench_bench_gleecbtc-rpc_mempool.o `test -f 'bench/rpc_mempool.cpp' || echo '$(srcdir)/'`bench/rpc_mempool.cpp
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-rpc_mempool.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-rpc_mempool.Po
+#	$(AM_V_CXX)source='bench/rpc_mempool.cpp' object='bench/bench_bench_gleecbtc-rpc_mempool.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-rpc_mempool.o `test -f 'bench/rpc_mempool.cpp' || echo '$(srcdir)/'`bench/rpc_mempool.cpp
+
+bench/bench_bench_gleecbtc-rpc_mempool.obj: bench/rpc_mempool.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-rpc_mempool.obj -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-rpc_mempool.Tpo -c -o bench/bench_bench_gleecbtc-rpc_mempool.obj `if test -f 'bench/rpc_mempool.cpp'; then $(CYGPATH_W) 'bench/rpc_mempool.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/rpc_mempool.cpp'; fi`
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-rpc_mempool.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-rpc_mempool.Po
+#	$(AM_V_CXX)source='bench/rpc_mempool.cpp' object='bench/bench_bench_gleecbtc-rpc_mempool.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-rpc_mempool.obj `if test -f 'bench/rpc_mempool.cpp'; then $(CYGPATH_W) 'bench/rpc_mempool.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/rpc_mempool.cpp'; fi`
+
+bench/bench_bench_gleecbtc-util_time.o: bench/util_time.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-util_time.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-util_time.Tpo -c -o bench/bench_bench_gleecbtc-util_time.o `test -f 'bench/util_time.cpp' || echo '$(srcdir)/'`bench/util_time.cpp
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-util_time.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-util_time.Po
+#	$(AM_V_CXX)source='bench/util_time.cpp' object='bench/bench_bench_gleecbtc-util_time.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-util_time.o `test -f 'bench/util_time.cpp' || echo '$(srcdir)/'`bench/util_time.cpp
+
+bench/bench_bench_gleecbtc-util_time.obj: bench/util_time.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-util_time.obj -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-util_time.Tpo -c -o bench/bench_bench_gleecbtc-util_time.obj `if test -f 'bench/util_time.cpp'; then $(CYGPATH_W) 'bench/util_time.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/util_time.cpp'; fi`
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-util_time.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-util_time.Po
+#	$(AM_V_CXX)source='bench/util_time.cpp' object='bench/bench_bench_gleecbtc-util_time.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-util_time.obj `if test -f 'bench/util_time.cpp'; then $(CYGPATH_W) 'bench/util_time.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/util_time.cpp'; fi`
 
 bench/bench_bench_gleecbtc-verify_script.o: bench/verify_script.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-verify_script.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-verify_script.Tpo -c -o bench/bench_bench_gleecbtc-verify_script.o `test -f 'bench/verify_script.cpp' || echo '$(srcdir)/'`bench/verify_script.cpp
@@ -8008,6 +10628,20 @@ bench/bench_bench_gleecbtc-base58.obj: bench/base58.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-base58.obj `if test -f 'bench/base58.cpp'; then $(CYGPATH_W) 'bench/base58.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/base58.cpp'; fi`
 
+bench/bench_bench_gleecbtc-bech32.o: bench/bech32.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-bech32.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-bech32.Tpo -c -o bench/bench_bench_gleecbtc-bech32.o `test -f 'bench/bech32.cpp' || echo '$(srcdir)/'`bench/bech32.cpp
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-bech32.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-bech32.Po
+#	$(AM_V_CXX)source='bench/bech32.cpp' object='bench/bench_bench_gleecbtc-bech32.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-bech32.o `test -f 'bench/bech32.cpp' || echo '$(srcdir)/'`bench/bech32.cpp
+
+bench/bench_bench_gleecbtc-bech32.obj: bench/bech32.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-bech32.obj -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-bech32.Tpo -c -o bench/bench_bench_gleecbtc-bech32.obj `if test -f 'bench/bech32.cpp'; then $(CYGPATH_W) 'bench/bech32.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/bech32.cpp'; fi`
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-bech32.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-bech32.Po
+#	$(AM_V_CXX)source='bench/bech32.cpp' object='bench/bench_bench_gleecbtc-bech32.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-bech32.obj `if test -f 'bench/bech32.cpp'; then $(CYGPATH_W) 'bench/bech32.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/bech32.cpp'; fi`
+
 bench/bench_bench_gleecbtc-lockedpool.o: bench/lockedpool.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-lockedpool.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-lockedpool.Tpo -c -o bench/bench_bench_gleecbtc-lockedpool.o `test -f 'bench/lockedpool.cpp' || echo '$(srcdir)/'`bench/lockedpool.cpp
 	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-lockedpool.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-lockedpool.Po
@@ -8022,33 +10656,61 @@ bench/bench_bench_gleecbtc-lockedpool.obj: bench/lockedpool.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-lockedpool.obj `if test -f 'bench/lockedpool.cpp'; then $(CYGPATH_W) 'bench/lockedpool.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/lockedpool.cpp'; fi`
 
-bench/bench_bench_gleecbtc-perf.o: bench/perf.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-perf.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-perf.Tpo -c -o bench/bench_bench_gleecbtc-perf.o `test -f 'bench/perf.cpp' || echo '$(srcdir)/'`bench/perf.cpp
-	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-perf.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-perf.Po
-#	$(AM_V_CXX)source='bench/perf.cpp' object='bench/bench_bench_gleecbtc-perf.o' libtool=no \
+bench/bench_bench_gleecbtc-poly1305.o: bench/poly1305.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-poly1305.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-poly1305.Tpo -c -o bench/bench_bench_gleecbtc-poly1305.o `test -f 'bench/poly1305.cpp' || echo '$(srcdir)/'`bench/poly1305.cpp
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-poly1305.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-poly1305.Po
+#	$(AM_V_CXX)source='bench/poly1305.cpp' object='bench/bench_bench_gleecbtc-poly1305.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-perf.o `test -f 'bench/perf.cpp' || echo '$(srcdir)/'`bench/perf.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-poly1305.o `test -f 'bench/poly1305.cpp' || echo '$(srcdir)/'`bench/poly1305.cpp
 
-bench/bench_bench_gleecbtc-perf.obj: bench/perf.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-perf.obj -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-perf.Tpo -c -o bench/bench_bench_gleecbtc-perf.obj `if test -f 'bench/perf.cpp'; then $(CYGPATH_W) 'bench/perf.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/perf.cpp'; fi`
-	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-perf.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-perf.Po
-#	$(AM_V_CXX)source='bench/perf.cpp' object='bench/bench_bench_gleecbtc-perf.obj' libtool=no \
+bench/bench_bench_gleecbtc-poly1305.obj: bench/poly1305.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-poly1305.obj -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-poly1305.Tpo -c -o bench/bench_bench_gleecbtc-poly1305.obj `if test -f 'bench/poly1305.cpp'; then $(CYGPATH_W) 'bench/poly1305.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/poly1305.cpp'; fi`
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-poly1305.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-poly1305.Po
+#	$(AM_V_CXX)source='bench/poly1305.cpp' object='bench/bench_bench_gleecbtc-poly1305.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-perf.obj `if test -f 'bench/perf.cpp'; then $(CYGPATH_W) 'bench/perf.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/perf.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-poly1305.obj `if test -f 'bench/poly1305.cpp'; then $(CYGPATH_W) 'bench/poly1305.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/poly1305.cpp'; fi`
 
-bench/bench_bench_gleecbtc-prevector_destructor.o: bench/prevector_destructor.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-prevector_destructor.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-prevector_destructor.Tpo -c -o bench/bench_bench_gleecbtc-prevector_destructor.o `test -f 'bench/prevector_destructor.cpp' || echo '$(srcdir)/'`bench/prevector_destructor.cpp
-	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-prevector_destructor.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-prevector_destructor.Po
-#	$(AM_V_CXX)source='bench/prevector_destructor.cpp' object='bench/bench_bench_gleecbtc-prevector_destructor.o' libtool=no \
+bench/bench_bench_gleecbtc-prevector.o: bench/prevector.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-prevector.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-prevector.Tpo -c -o bench/bench_bench_gleecbtc-prevector.o `test -f 'bench/prevector.cpp' || echo '$(srcdir)/'`bench/prevector.cpp
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-prevector.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-prevector.Po
+#	$(AM_V_CXX)source='bench/prevector.cpp' object='bench/bench_bench_gleecbtc-prevector.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-prevector_destructor.o `test -f 'bench/prevector_destructor.cpp' || echo '$(srcdir)/'`bench/prevector_destructor.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-prevector.o `test -f 'bench/prevector.cpp' || echo '$(srcdir)/'`bench/prevector.cpp
 
-bench/bench_bench_gleecbtc-prevector_destructor.obj: bench/prevector_destructor.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-prevector_destructor.obj -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-prevector_destructor.Tpo -c -o bench/bench_bench_gleecbtc-prevector_destructor.obj `if test -f 'bench/prevector_destructor.cpp'; then $(CYGPATH_W) 'bench/prevector_destructor.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/prevector_destructor.cpp'; fi`
-	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-prevector_destructor.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-prevector_destructor.Po
-#	$(AM_V_CXX)source='bench/prevector_destructor.cpp' object='bench/bench_bench_gleecbtc-prevector_destructor.obj' libtool=no \
+bench/bench_bench_gleecbtc-prevector.obj: bench/prevector.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-prevector.obj -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-prevector.Tpo -c -o bench/bench_bench_gleecbtc-prevector.obj `if test -f 'bench/prevector.cpp'; then $(CYGPATH_W) 'bench/prevector.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/prevector.cpp'; fi`
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-prevector.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-prevector.Po
+#	$(AM_V_CXX)source='bench/prevector.cpp' object='bench/bench_bench_gleecbtc-prevector.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-prevector_destructor.obj `if test -f 'bench/prevector_destructor.cpp'; then $(CYGPATH_W) 'bench/prevector_destructor.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/prevector_destructor.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-prevector.obj `if test -f 'bench/prevector.cpp'; then $(CYGPATH_W) 'bench/prevector.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/prevector.cpp'; fi`
+
+test/bench_bench_gleecbtc-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/bench_bench_gleecbtc-setup_common.o -MD -MP -MF test/$(DEPDIR)/bench_bench_gleecbtc-setup_common.Tpo -c -o test/bench_bench_gleecbtc-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/bench_bench_gleecbtc-setup_common.Tpo test/$(DEPDIR)/bench_bench_gleecbtc-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/bench_bench_gleecbtc-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/bench_bench_gleecbtc-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/bench_bench_gleecbtc-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/bench_bench_gleecbtc-setup_common.obj -MD -MP -MF test/$(DEPDIR)/bench_bench_gleecbtc-setup_common.Tpo -c -o test/bench_bench_gleecbtc-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/bench_bench_gleecbtc-setup_common.Tpo test/$(DEPDIR)/bench_bench_gleecbtc-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/bench_bench_gleecbtc-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/bench_bench_gleecbtc-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/bench_bench_gleecbtc-util.o: test/util.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/bench_bench_gleecbtc-util.o -MD -MP -MF test/$(DEPDIR)/bench_bench_gleecbtc-util.Tpo -c -o test/bench_bench_gleecbtc-util.o `test -f 'test/util.cpp' || echo '$(srcdir)/'`test/util.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/bench_bench_gleecbtc-util.Tpo test/$(DEPDIR)/bench_bench_gleecbtc-util.Po
+#	$(AM_V_CXX)source='test/util.cpp' object='test/bench_bench_gleecbtc-util.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/bench_bench_gleecbtc-util.o `test -f 'test/util.cpp' || echo '$(srcdir)/'`test/util.cpp
+
+test/bench_bench_gleecbtc-util.obj: test/util.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/bench_bench_gleecbtc-util.obj -MD -MP -MF test/$(DEPDIR)/bench_bench_gleecbtc-util.Tpo -c -o test/bench_bench_gleecbtc-util.obj `if test -f 'test/util.cpp'; then $(CYGPATH_W) 'test/util.cpp'; else $(CYGPATH_W) '$(srcdir)/test/util.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/bench_bench_gleecbtc-util.Tpo test/$(DEPDIR)/bench_bench_gleecbtc-util.Po
+#	$(AM_V_CXX)source='test/util.cpp' object='test/bench_bench_gleecbtc-util.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/bench_bench_gleecbtc-util.obj `if test -f 'test/util.cpp'; then $(CYGPATH_W) 'test/util.cpp'; else $(CYGPATH_W) '$(srcdir)/test/util.cpp'; fi`
 
 bench/bench_bench_gleecbtc-coin_selection.o: bench/coin_selection.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-coin_selection.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-coin_selection.Tpo -c -o bench/bench_bench_gleecbtc-coin_selection.o `test -f 'bench/coin_selection.cpp' || echo '$(srcdir)/'`bench/coin_selection.cpp
@@ -8063,6 +10725,20 @@ bench/bench_bench_gleecbtc-coin_selection.obj: bench/coin_selection.cpp
 #	$(AM_V_CXX)source='bench/coin_selection.cpp' object='bench/bench_bench_gleecbtc-coin_selection.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-coin_selection.obj `if test -f 'bench/coin_selection.cpp'; then $(CYGPATH_W) 'bench/coin_selection.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/coin_selection.cpp'; fi`
+
+bench/bench_bench_gleecbtc-wallet_balance.o: bench/wallet_balance.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-wallet_balance.o -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-wallet_balance.Tpo -c -o bench/bench_bench_gleecbtc-wallet_balance.o `test -f 'bench/wallet_balance.cpp' || echo '$(srcdir)/'`bench/wallet_balance.cpp
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-wallet_balance.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-wallet_balance.Po
+#	$(AM_V_CXX)source='bench/wallet_balance.cpp' object='bench/bench_bench_gleecbtc-wallet_balance.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-wallet_balance.o `test -f 'bench/wallet_balance.cpp' || echo '$(srcdir)/'`bench/wallet_balance.cpp
+
+bench/bench_bench_gleecbtc-wallet_balance.obj: bench/wallet_balance.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT bench/bench_bench_gleecbtc-wallet_balance.obj -MD -MP -MF bench/$(DEPDIR)/bench_bench_gleecbtc-wallet_balance.Tpo -c -o bench/bench_bench_gleecbtc-wallet_balance.obj `if test -f 'bench/wallet_balance.cpp'; then $(CYGPATH_W) 'bench/wallet_balance.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/wallet_balance.cpp'; fi`
+	$(AM_V_at)$(am__mv) bench/$(DEPDIR)/bench_bench_gleecbtc-wallet_balance.Tpo bench/$(DEPDIR)/bench_bench_gleecbtc-wallet_balance.Po
+#	$(AM_V_CXX)source='bench/wallet_balance.cpp' object='bench/bench_bench_gleecbtc-wallet_balance.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(bench_bench_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_gleecbtc-wallet_balance.obj `if test -f 'bench/wallet_balance.cpp'; then $(CYGPATH_W) 'bench/wallet_balance.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/wallet_balance.cpp'; fi`
 
 gleecbtc_cli-gleecbtc-cli.o: gleecbtc-cli.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gleecbtc_cli_CPPFLAGS) $(CPPFLAGS) $(gleecbtc_cli_CXXFLAGS) $(CXXFLAGS) -MT gleecbtc_cli-gleecbtc-cli.o -MD -MP -MF $(DEPDIR)/gleecbtc_cli-gleecbtc-cli.Tpo -c -o gleecbtc_cli-gleecbtc-cli.o `test -f 'gleecbtc-cli.cpp' || echo '$(srcdir)/'`gleecbtc-cli.cpp
@@ -8092,6 +10768,20 @@ gleecbtc_tx-gleecbtc-tx.obj: gleecbtc-tx.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gleecbtc_tx_CPPFLAGS) $(CPPFLAGS) $(gleecbtc_tx_CXXFLAGS) $(CXXFLAGS) -c -o gleecbtc_tx-gleecbtc-tx.obj `if test -f 'gleecbtc-tx.cpp'; then $(CYGPATH_W) 'gleecbtc-tx.cpp'; else $(CYGPATH_W) '$(srcdir)/gleecbtc-tx.cpp'; fi`
 
+gleecbtc_wallet-gleecbtc-wallet.o: gleecbtc-wallet.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gleecbtc_wallet_CPPFLAGS) $(CPPFLAGS) $(gleecbtc_wallet_CXXFLAGS) $(CXXFLAGS) -MT gleecbtc_wallet-gleecbtc-wallet.o -MD -MP -MF $(DEPDIR)/gleecbtc_wallet-gleecbtc-wallet.Tpo -c -o gleecbtc_wallet-gleecbtc-wallet.o `test -f 'gleecbtc-wallet.cpp' || echo '$(srcdir)/'`gleecbtc-wallet.cpp
+	$(AM_V_at)$(am__mv) $(DEPDIR)/gleecbtc_wallet-gleecbtc-wallet.Tpo $(DEPDIR)/gleecbtc_wallet-gleecbtc-wallet.Po
+#	$(AM_V_CXX)source='gleecbtc-wallet.cpp' object='gleecbtc_wallet-gleecbtc-wallet.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gleecbtc_wallet_CPPFLAGS) $(CPPFLAGS) $(gleecbtc_wallet_CXXFLAGS) $(CXXFLAGS) -c -o gleecbtc_wallet-gleecbtc-wallet.o `test -f 'gleecbtc-wallet.cpp' || echo '$(srcdir)/'`gleecbtc-wallet.cpp
+
+gleecbtc_wallet-gleecbtc-wallet.obj: gleecbtc-wallet.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gleecbtc_wallet_CPPFLAGS) $(CPPFLAGS) $(gleecbtc_wallet_CXXFLAGS) $(CXXFLAGS) -MT gleecbtc_wallet-gleecbtc-wallet.obj -MD -MP -MF $(DEPDIR)/gleecbtc_wallet-gleecbtc-wallet.Tpo -c -o gleecbtc_wallet-gleecbtc-wallet.obj `if test -f 'gleecbtc-wallet.cpp'; then $(CYGPATH_W) 'gleecbtc-wallet.cpp'; else $(CYGPATH_W) '$(srcdir)/gleecbtc-wallet.cpp'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/gleecbtc_wallet-gleecbtc-wallet.Tpo $(DEPDIR)/gleecbtc_wallet-gleecbtc-wallet.Po
+#	$(AM_V_CXX)source='gleecbtc-wallet.cpp' object='gleecbtc_wallet-gleecbtc-wallet.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gleecbtc_wallet_CPPFLAGS) $(CPPFLAGS) $(gleecbtc_wallet_CXXFLAGS) $(CXXFLAGS) -c -o gleecbtc_wallet-gleecbtc-wallet.obj `if test -f 'gleecbtc-wallet.cpp'; then $(CYGPATH_W) 'gleecbtc-wallet.cpp'; else $(CYGPATH_W) '$(srcdir)/gleecbtc-wallet.cpp'; fi`
+
 gleecbtcd-gleecbtcd.o: gleecbtcd.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gleecbtcd_CPPFLAGS) $(CPPFLAGS) $(gleecbtcd_CXXFLAGS) $(CXXFLAGS) -MT gleecbtcd-gleecbtcd.o -MD -MP -MF $(DEPDIR)/gleecbtcd-gleecbtcd.Tpo -c -o gleecbtcd-gleecbtcd.o `test -f 'gleecbtcd.cpp' || echo '$(srcdir)/'`gleecbtcd.cpp
 	$(AM_V_at)$(am__mv) $(DEPDIR)/gleecbtcd-gleecbtcd.Tpo $(DEPDIR)/gleecbtcd-gleecbtcd.Po
@@ -8106,19 +10796,33 @@ gleecbtcd-gleecbtcd.obj: gleecbtcd.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gleecbtcd_CPPFLAGS) $(CPPFLAGS) $(gleecbtcd_CXXFLAGS) $(CXXFLAGS) -c -o gleecbtcd-gleecbtcd.obj `if test -f 'gleecbtcd.cpp'; then $(CYGPATH_W) 'gleecbtcd.cpp'; else $(CYGPATH_W) '$(srcdir)/gleecbtcd.cpp'; fi`
 
-qt/qt_gleecbtc_qt-gleecbtc.o: qt/gleecbtc.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_gleecbtc_qt-gleecbtc.o -MD -MP -MF qt/$(DEPDIR)/qt_gleecbtc_qt-gleecbtc.Tpo -c -o qt/qt_gleecbtc_qt-gleecbtc.o `test -f 'qt/gleecbtc.cpp' || echo '$(srcdir)/'`qt/gleecbtc.cpp
-	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_gleecbtc_qt-gleecbtc.Tpo qt/$(DEPDIR)/qt_gleecbtc_qt-gleecbtc.Po
-#	$(AM_V_CXX)source='qt/gleecbtc.cpp' object='qt/qt_gleecbtc_qt-gleecbtc.o' libtool=no \
+qt/qt_gleecbtc_qt-main.o: qt/main.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_gleecbtc_qt-main.o -MD -MP -MF qt/$(DEPDIR)/qt_gleecbtc_qt-main.Tpo -c -o qt/qt_gleecbtc_qt-main.o `test -f 'qt/main.cpp' || echo '$(srcdir)/'`qt/main.cpp
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_gleecbtc_qt-main.Tpo qt/$(DEPDIR)/qt_gleecbtc_qt-main.Po
+#	$(AM_V_CXX)source='qt/main.cpp' object='qt/qt_gleecbtc_qt-main.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_gleecbtc_qt-gleecbtc.o `test -f 'qt/gleecbtc.cpp' || echo '$(srcdir)/'`qt/gleecbtc.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_gleecbtc_qt-main.o `test -f 'qt/main.cpp' || echo '$(srcdir)/'`qt/main.cpp
 
-qt/qt_gleecbtc_qt-gleecbtc.obj: qt/gleecbtc.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_gleecbtc_qt-gleecbtc.obj -MD -MP -MF qt/$(DEPDIR)/qt_gleecbtc_qt-gleecbtc.Tpo -c -o qt/qt_gleecbtc_qt-gleecbtc.obj `if test -f 'qt/gleecbtc.cpp'; then $(CYGPATH_W) 'qt/gleecbtc.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/gleecbtc.cpp'; fi`
-	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_gleecbtc_qt-gleecbtc.Tpo qt/$(DEPDIR)/qt_gleecbtc_qt-gleecbtc.Po
-#	$(AM_V_CXX)source='qt/gleecbtc.cpp' object='qt/qt_gleecbtc_qt-gleecbtc.obj' libtool=no \
+qt/qt_gleecbtc_qt-main.obj: qt/main.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_gleecbtc_qt-main.obj -MD -MP -MF qt/$(DEPDIR)/qt_gleecbtc_qt-main.Tpo -c -o qt/qt_gleecbtc_qt-main.obj `if test -f 'qt/main.cpp'; then $(CYGPATH_W) 'qt/main.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/main.cpp'; fi`
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_gleecbtc_qt-main.Tpo qt/$(DEPDIR)/qt_gleecbtc_qt-main.Po
+#	$(AM_V_CXX)source='qt/main.cpp' object='qt/qt_gleecbtc_qt-main.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_gleecbtc_qt-gleecbtc.obj `if test -f 'qt/gleecbtc.cpp'; then $(CYGPATH_W) 'qt/gleecbtc.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/gleecbtc.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/qt_gleecbtc_qt-main.obj `if test -f 'qt/main.cpp'; then $(CYGPATH_W) 'qt/main.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/main.cpp'; fi`
+
+qt/test/qt_test_test_gleecbtc_qt-apptests.o: qt/test/apptests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-apptests.o -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-apptests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-apptests.o `test -f 'qt/test/apptests.cpp' || echo '$(srcdir)/'`qt/test/apptests.cpp
+	$(AM_V_at)$(am__mv) qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-apptests.Tpo qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-apptests.Po
+#	$(AM_V_CXX)source='qt/test/apptests.cpp' object='qt/test/qt_test_test_gleecbtc_qt-apptests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-apptests.o `test -f 'qt/test/apptests.cpp' || echo '$(srcdir)/'`qt/test/apptests.cpp
+
+qt/test/qt_test_test_gleecbtc_qt-apptests.obj: qt/test/apptests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-apptests.obj -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-apptests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-apptests.obj `if test -f 'qt/test/apptests.cpp'; then $(CYGPATH_W) 'qt/test/apptests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/apptests.cpp'; fi`
+	$(AM_V_at)$(am__mv) qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-apptests.Tpo qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-apptests.Po
+#	$(AM_V_CXX)source='qt/test/apptests.cpp' object='qt/test/qt_test_test_gleecbtc_qt-apptests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-apptests.obj `if test -f 'qt/test/apptests.cpp'; then $(CYGPATH_W) 'qt/test/apptests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/apptests.cpp'; fi`
 
 qt/test/qt_test_test_gleecbtc_qt-compattests.o: qt/test/compattests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-compattests.o -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-compattests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-compattests.o `test -f 'qt/test/compattests.cpp' || echo '$(srcdir)/'`qt/test/compattests.cpp
@@ -8176,33 +10880,47 @@ qt/test/qt_test_test_gleecbtc_qt-uritests.obj: qt/test/uritests.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-uritests.obj `if test -f 'qt/test/uritests.cpp'; then $(CYGPATH_W) 'qt/test/uritests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/uritests.cpp'; fi`
 
-test/qt_test_test_gleecbtc_qt-test_gleecbtc.o: test/test_gleecbtc.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT test/qt_test_test_gleecbtc_qt-test_gleecbtc.o -MD -MP -MF test/$(DEPDIR)/qt_test_test_gleecbtc_qt-test_gleecbtc.Tpo -c -o test/qt_test_test_gleecbtc_qt-test_gleecbtc.o `test -f 'test/test_gleecbtc.cpp' || echo '$(srcdir)/'`test/test_gleecbtc.cpp
-	$(AM_V_at)$(am__mv) test/$(DEPDIR)/qt_test_test_gleecbtc_qt-test_gleecbtc.Tpo test/$(DEPDIR)/qt_test_test_gleecbtc_qt-test_gleecbtc.Po
-#	$(AM_V_CXX)source='test/test_gleecbtc.cpp' object='test/qt_test_test_gleecbtc_qt-test_gleecbtc.o' libtool=no \
+qt/test/qt_test_test_gleecbtc_qt-util.o: qt/test/util.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-util.o -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-util.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-util.o `test -f 'qt/test/util.cpp' || echo '$(srcdir)/'`qt/test/util.cpp
+	$(AM_V_at)$(am__mv) qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-util.Tpo qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-util.Po
+#	$(AM_V_CXX)source='qt/test/util.cpp' object='qt/test/qt_test_test_gleecbtc_qt-util.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o test/qt_test_test_gleecbtc_qt-test_gleecbtc.o `test -f 'test/test_gleecbtc.cpp' || echo '$(srcdir)/'`test/test_gleecbtc.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-util.o `test -f 'qt/test/util.cpp' || echo '$(srcdir)/'`qt/test/util.cpp
 
-test/qt_test_test_gleecbtc_qt-test_gleecbtc.obj: test/test_gleecbtc.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT test/qt_test_test_gleecbtc_qt-test_gleecbtc.obj -MD -MP -MF test/$(DEPDIR)/qt_test_test_gleecbtc_qt-test_gleecbtc.Tpo -c -o test/qt_test_test_gleecbtc_qt-test_gleecbtc.obj `if test -f 'test/test_gleecbtc.cpp'; then $(CYGPATH_W) 'test/test_gleecbtc.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_gleecbtc.cpp'; fi`
-	$(AM_V_at)$(am__mv) test/$(DEPDIR)/qt_test_test_gleecbtc_qt-test_gleecbtc.Tpo test/$(DEPDIR)/qt_test_test_gleecbtc_qt-test_gleecbtc.Po
-#	$(AM_V_CXX)source='test/test_gleecbtc.cpp' object='test/qt_test_test_gleecbtc_qt-test_gleecbtc.obj' libtool=no \
+qt/test/qt_test_test_gleecbtc_qt-util.obj: qt/test/util.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-util.obj -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-util.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-util.obj `if test -f 'qt/test/util.cpp'; then $(CYGPATH_W) 'qt/test/util.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/util.cpp'; fi`
+	$(AM_V_at)$(am__mv) qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-util.Tpo qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-util.Po
+#	$(AM_V_CXX)source='qt/test/util.cpp' object='qt/test/qt_test_test_gleecbtc_qt-util.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o test/qt_test_test_gleecbtc_qt-test_gleecbtc.obj `if test -f 'test/test_gleecbtc.cpp'; then $(CYGPATH_W) 'test/test_gleecbtc.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_gleecbtc.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-util.obj `if test -f 'qt/test/util.cpp'; then $(CYGPATH_W) 'qt/test/util.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/util.cpp'; fi`
 
-qt/test/qt_test_test_gleecbtc_qt-paymentservertests.o: qt/test/paymentservertests.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-paymentservertests.o -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-paymentservertests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-paymentservertests.o `test -f 'qt/test/paymentservertests.cpp' || echo '$(srcdir)/'`qt/test/paymentservertests.cpp
-	$(AM_V_at)$(am__mv) qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-paymentservertests.Tpo qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-paymentservertests.Po
-#	$(AM_V_CXX)source='qt/test/paymentservertests.cpp' object='qt/test/qt_test_test_gleecbtc_qt-paymentservertests.o' libtool=no \
+test/qt_test_test_gleecbtc_qt-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT test/qt_test_test_gleecbtc_qt-setup_common.o -MD -MP -MF test/$(DEPDIR)/qt_test_test_gleecbtc_qt-setup_common.Tpo -c -o test/qt_test_test_gleecbtc_qt-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/qt_test_test_gleecbtc_qt-setup_common.Tpo test/$(DEPDIR)/qt_test_test_gleecbtc_qt-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/qt_test_test_gleecbtc_qt-setup_common.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-paymentservertests.o `test -f 'qt/test/paymentservertests.cpp' || echo '$(srcdir)/'`qt/test/paymentservertests.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o test/qt_test_test_gleecbtc_qt-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
 
-qt/test/qt_test_test_gleecbtc_qt-paymentservertests.obj: qt/test/paymentservertests.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-paymentservertests.obj -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-paymentservertests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-paymentservertests.obj `if test -f 'qt/test/paymentservertests.cpp'; then $(CYGPATH_W) 'qt/test/paymentservertests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/paymentservertests.cpp'; fi`
-	$(AM_V_at)$(am__mv) qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-paymentservertests.Tpo qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-paymentservertests.Po
-#	$(AM_V_CXX)source='qt/test/paymentservertests.cpp' object='qt/test/qt_test_test_gleecbtc_qt-paymentservertests.obj' libtool=no \
+test/qt_test_test_gleecbtc_qt-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT test/qt_test_test_gleecbtc_qt-setup_common.obj -MD -MP -MF test/$(DEPDIR)/qt_test_test_gleecbtc_qt-setup_common.Tpo -c -o test/qt_test_test_gleecbtc_qt-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/qt_test_test_gleecbtc_qt-setup_common.Tpo test/$(DEPDIR)/qt_test_test_gleecbtc_qt-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/qt_test_test_gleecbtc_qt-setup_common.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-paymentservertests.obj `if test -f 'qt/test/paymentservertests.cpp'; then $(CYGPATH_W) 'qt/test/paymentservertests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/paymentservertests.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o test/qt_test_test_gleecbtc_qt-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+qt/test/qt_test_test_gleecbtc_qt-addressbooktests.o: qt/test/addressbooktests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-addressbooktests.o -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-addressbooktests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-addressbooktests.o `test -f 'qt/test/addressbooktests.cpp' || echo '$(srcdir)/'`qt/test/addressbooktests.cpp
+	$(AM_V_at)$(am__mv) qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-addressbooktests.Tpo qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-addressbooktests.Po
+#	$(AM_V_CXX)source='qt/test/addressbooktests.cpp' object='qt/test/qt_test_test_gleecbtc_qt-addressbooktests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-addressbooktests.o `test -f 'qt/test/addressbooktests.cpp' || echo '$(srcdir)/'`qt/test/addressbooktests.cpp
+
+qt/test/qt_test_test_gleecbtc_qt-addressbooktests.obj: qt/test/addressbooktests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-addressbooktests.obj -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-addressbooktests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-addressbooktests.obj `if test -f 'qt/test/addressbooktests.cpp'; then $(CYGPATH_W) 'qt/test/addressbooktests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/addressbooktests.cpp'; fi`
+	$(AM_V_at)$(am__mv) qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-addressbooktests.Tpo qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-addressbooktests.Po
+#	$(AM_V_CXX)source='qt/test/addressbooktests.cpp' object='qt/test/qt_test_test_gleecbtc_qt-addressbooktests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-addressbooktests.obj `if test -f 'qt/test/addressbooktests.cpp'; then $(CYGPATH_W) 'qt/test/addressbooktests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/addressbooktests.cpp'; fi`
 
 qt/test/qt_test_test_gleecbtc_qt-wallettests.o: qt/test/wallettests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-wallettests.o -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-wallettests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-wallettests.o `test -f 'qt/test/wallettests.cpp' || echo '$(srcdir)/'`qt/test/wallettests.cpp
@@ -8231,6 +10949,34 @@ wallet/test/qt_test_test_gleecbtc_qt-wallet_test_fixture.obj: wallet/test/wallet
 #	$(AM_V_CXX)source='wallet/test/wallet_test_fixture.cpp' object='wallet/test/qt_test_test_gleecbtc_qt-wallet_test_fixture.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/qt_test_test_gleecbtc_qt-wallet_test_fixture.obj `if test -f 'wallet/test/wallet_test_fixture.cpp'; then $(CYGPATH_W) 'wallet/test/wallet_test_fixture.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/wallet_test_fixture.cpp'; fi`
+
+qt/test/qt_test_test_gleecbtc_qt-paymentservertests.o: qt/test/paymentservertests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-paymentservertests.o -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-paymentservertests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-paymentservertests.o `test -f 'qt/test/paymentservertests.cpp' || echo '$(srcdir)/'`qt/test/paymentservertests.cpp
+	$(AM_V_at)$(am__mv) qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-paymentservertests.Tpo qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-paymentservertests.Po
+#	$(AM_V_CXX)source='qt/test/paymentservertests.cpp' object='qt/test/qt_test_test_gleecbtc_qt-paymentservertests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-paymentservertests.o `test -f 'qt/test/paymentservertests.cpp' || echo '$(srcdir)/'`qt/test/paymentservertests.cpp
+
+qt/test/qt_test_test_gleecbtc_qt-paymentservertests.obj: qt/test/paymentservertests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-paymentservertests.obj -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-paymentservertests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-paymentservertests.obj `if test -f 'qt/test/paymentservertests.cpp'; then $(CYGPATH_W) 'qt/test/paymentservertests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/paymentservertests.cpp'; fi`
+	$(AM_V_at)$(am__mv) qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-paymentservertests.Tpo qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-paymentservertests.Po
+#	$(AM_V_CXX)source='qt/test/paymentservertests.cpp' object='qt/test/qt_test_test_gleecbtc_qt-paymentservertests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-paymentservertests.obj `if test -f 'qt/test/paymentservertests.cpp'; then $(CYGPATH_W) 'qt/test/paymentservertests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/paymentservertests.cpp'; fi`
+
+qt/test/qt_test_test_gleecbtc_qt-moc_apptests.o: qt/test/moc_apptests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-moc_apptests.o -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_apptests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-moc_apptests.o `test -f 'qt/test/moc_apptests.cpp' || echo '$(srcdir)/'`qt/test/moc_apptests.cpp
+	$(AM_V_at)$(am__mv) qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_apptests.Tpo qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_apptests.Po
+#	$(AM_V_CXX)source='qt/test/moc_apptests.cpp' object='qt/test/qt_test_test_gleecbtc_qt-moc_apptests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-moc_apptests.o `test -f 'qt/test/moc_apptests.cpp' || echo '$(srcdir)/'`qt/test/moc_apptests.cpp
+
+qt/test/qt_test_test_gleecbtc_qt-moc_apptests.obj: qt/test/moc_apptests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-moc_apptests.obj -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_apptests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-moc_apptests.obj `if test -f 'qt/test/moc_apptests.cpp'; then $(CYGPATH_W) 'qt/test/moc_apptests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/moc_apptests.cpp'; fi`
+	$(AM_V_at)$(am__mv) qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_apptests.Tpo qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_apptests.Po
+#	$(AM_V_CXX)source='qt/test/moc_apptests.cpp' object='qt/test/qt_test_test_gleecbtc_qt-moc_apptests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-moc_apptests.obj `if test -f 'qt/test/moc_apptests.cpp'; then $(CYGPATH_W) 'qt/test/moc_apptests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/moc_apptests.cpp'; fi`
 
 qt/test/qt_test_test_gleecbtc_qt-moc_compattests.o: qt/test/moc_compattests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-moc_compattests.o -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_compattests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-moc_compattests.o `test -f 'qt/test/moc_compattests.cpp' || echo '$(srcdir)/'`qt/test/moc_compattests.cpp
@@ -8274,19 +11020,19 @@ qt/test/qt_test_test_gleecbtc_qt-moc_uritests.obj: qt/test/moc_uritests.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-moc_uritests.obj `if test -f 'qt/test/moc_uritests.cpp'; then $(CYGPATH_W) 'qt/test/moc_uritests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/moc_uritests.cpp'; fi`
 
-qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.o: qt/test/moc_paymentservertests.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.o -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_paymentservertests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.o `test -f 'qt/test/moc_paymentservertests.cpp' || echo '$(srcdir)/'`qt/test/moc_paymentservertests.cpp
-	$(AM_V_at)$(am__mv) qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_paymentservertests.Tpo qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_paymentservertests.Po
-#	$(AM_V_CXX)source='qt/test/moc_paymentservertests.cpp' object='qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.o' libtool=no \
+qt/test/qt_test_test_gleecbtc_qt-moc_addressbooktests.o: qt/test/moc_addressbooktests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-moc_addressbooktests.o -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_addressbooktests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-moc_addressbooktests.o `test -f 'qt/test/moc_addressbooktests.cpp' || echo '$(srcdir)/'`qt/test/moc_addressbooktests.cpp
+	$(AM_V_at)$(am__mv) qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_addressbooktests.Tpo qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_addressbooktests.Po
+#	$(AM_V_CXX)source='qt/test/moc_addressbooktests.cpp' object='qt/test/qt_test_test_gleecbtc_qt-moc_addressbooktests.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.o `test -f 'qt/test/moc_paymentservertests.cpp' || echo '$(srcdir)/'`qt/test/moc_paymentservertests.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-moc_addressbooktests.o `test -f 'qt/test/moc_addressbooktests.cpp' || echo '$(srcdir)/'`qt/test/moc_addressbooktests.cpp
 
-qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.obj: qt/test/moc_paymentservertests.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.obj -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_paymentservertests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.obj `if test -f 'qt/test/moc_paymentservertests.cpp'; then $(CYGPATH_W) 'qt/test/moc_paymentservertests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/moc_paymentservertests.cpp'; fi`
-	$(AM_V_at)$(am__mv) qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_paymentservertests.Tpo qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_paymentservertests.Po
-#	$(AM_V_CXX)source='qt/test/moc_paymentservertests.cpp' object='qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.obj' libtool=no \
+qt/test/qt_test_test_gleecbtc_qt-moc_addressbooktests.obj: qt/test/moc_addressbooktests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-moc_addressbooktests.obj -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_addressbooktests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-moc_addressbooktests.obj `if test -f 'qt/test/moc_addressbooktests.cpp'; then $(CYGPATH_W) 'qt/test/moc_addressbooktests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/moc_addressbooktests.cpp'; fi`
+	$(AM_V_at)$(am__mv) qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_addressbooktests.Tpo qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_addressbooktests.Po
+#	$(AM_V_CXX)source='qt/test/moc_addressbooktests.cpp' object='qt/test/qt_test_test_gleecbtc_qt-moc_addressbooktests.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.obj `if test -f 'qt/test/moc_paymentservertests.cpp'; then $(CYGPATH_W) 'qt/test/moc_paymentservertests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/moc_paymentservertests.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-moc_addressbooktests.obj `if test -f 'qt/test/moc_addressbooktests.cpp'; then $(CYGPATH_W) 'qt/test/moc_addressbooktests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/moc_addressbooktests.cpp'; fi`
 
 qt/test/qt_test_test_gleecbtc_qt-moc_wallettests.o: qt/test/moc_wallettests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-moc_wallettests.o -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_wallettests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-moc_wallettests.o `test -f 'qt/test/moc_wallettests.cpp' || echo '$(srcdir)/'`qt/test/moc_wallettests.cpp
@@ -8301,6 +11047,972 @@ qt/test/qt_test_test_gleecbtc_qt-moc_wallettests.obj: qt/test/moc_wallettests.cp
 #	$(AM_V_CXX)source='qt/test/moc_wallettests.cpp' object='qt/test/qt_test_test_gleecbtc_qt-moc_wallettests.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-moc_wallettests.obj `if test -f 'qt/test/moc_wallettests.cpp'; then $(CYGPATH_W) 'qt/test/moc_wallettests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/moc_wallettests.cpp'; fi`
+
+qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.o: qt/test/moc_paymentservertests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.o -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_paymentservertests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.o `test -f 'qt/test/moc_paymentservertests.cpp' || echo '$(srcdir)/'`qt/test/moc_paymentservertests.cpp
+	$(AM_V_at)$(am__mv) qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_paymentservertests.Tpo qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_paymentservertests.Po
+#	$(AM_V_CXX)source='qt/test/moc_paymentservertests.cpp' object='qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.o `test -f 'qt/test/moc_paymentservertests.cpp' || echo '$(srcdir)/'`qt/test/moc_paymentservertests.cpp
+
+qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.obj: qt/test/moc_paymentservertests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.obj -MD -MP -MF qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_paymentservertests.Tpo -c -o qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.obj `if test -f 'qt/test/moc_paymentservertests.cpp'; then $(CYGPATH_W) 'qt/test/moc_paymentservertests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/moc_paymentservertests.cpp'; fi`
+	$(AM_V_at)$(am__mv) qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_paymentservertests.Tpo qt/test/$(DEPDIR)/qt_test_test_gleecbtc_qt-moc_paymentservertests.Po
+#	$(AM_V_CXX)source='qt/test/moc_paymentservertests.cpp' object='qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_test_test_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(qt_test_test_gleecbtc_qt_CXXFLAGS) $(CXXFLAGS) -c -o qt/test/qt_test_test_gleecbtc_qt-moc_paymentservertests.obj `if test -f 'qt/test/moc_paymentservertests.cpp'; then $(CYGPATH_W) 'qt/test/moc_paymentservertests.cpp'; else $(CYGPATH_W) '$(srcdir)/qt/test/moc_paymentservertests.cpp'; fi`
+
+test/test_fuzz_address_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_address_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_address_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_address_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_address_deserialize-setup_common.Tpo -c -o test/test_fuzz_address_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_address_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_address_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_address_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_address_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_address_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_address_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_address_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_address_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_address_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_address_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_address_deserialize-setup_common.Tpo -c -o test/test_fuzz_address_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_address_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_address_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_address_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_address_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_address_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_address_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_address_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_address_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_address_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_address_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_address_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_address_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_address_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_address_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_address_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_address_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_address_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_address_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_address_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_address_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_address_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_address_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_address_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_address_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_address_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_address_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_address_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_address_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_address_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_address_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_address_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_address_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_address_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_address_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_address_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_address_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_address_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_address_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_address_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_address_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_address_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_address_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_address_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_address_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_address_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_address_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_address_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_address_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_address_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_address_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_address_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_address_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_address_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_address_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_addrman_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_addrman_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_addrman_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_addrman_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_addrman_deserialize-setup_common.Tpo -c -o test/test_fuzz_addrman_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_addrman_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_addrman_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_addrman_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_addrman_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_addrman_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_addrman_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_addrman_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_addrman_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_addrman_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_addrman_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_addrman_deserialize-setup_common.Tpo -c -o test/test_fuzz_addrman_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_addrman_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_addrman_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_addrman_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_addrman_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_addrman_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_addrman_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_addrman_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_addrman_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_addrman_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_addrman_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_addrman_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_addrman_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_addrman_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_addrman_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_addrman_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_addrman_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_addrman_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_addrman_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_addrman_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_addrman_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_addrman_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_addrman_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_addrman_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_addrman_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_addrman_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_addrman_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_addrman_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_addrman_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_addrman_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_addrman_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_addrman_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_addrman_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_addrman_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_addrman_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_addrman_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_addrman_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_addrman_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_addrman_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_addrman_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_addrman_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_addrman_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_addrman_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_addrman_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_addrman_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_addrman_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_addrman_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_addrman_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_addrman_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_addrman_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_addrman_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_addrman_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_addrman_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_addrman_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_addrman_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_banentry_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_banentry_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_banentry_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_banentry_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_banentry_deserialize-setup_common.Tpo -c -o test/test_fuzz_banentry_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_banentry_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_banentry_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_banentry_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_banentry_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_banentry_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_banentry_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_banentry_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_banentry_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_banentry_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_banentry_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_banentry_deserialize-setup_common.Tpo -c -o test/test_fuzz_banentry_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_banentry_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_banentry_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_banentry_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_banentry_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_banentry_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_banentry_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_banentry_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_banentry_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_banentry_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_banentry_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_banentry_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_banentry_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_banentry_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_banentry_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_banentry_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_banentry_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_banentry_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_banentry_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_banentry_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_banentry_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_banentry_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_banentry_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_banentry_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_banentry_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_banentry_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_banentry_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_banentry_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_banentry_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_banentry_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_banentry_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_banentry_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_banentry_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_banentry_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_banentry_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_banentry_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_banentry_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_banentry_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_banentry_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_banentry_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_banentry_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_banentry_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_banentry_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_banentry_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_banentry_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_banentry_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_banentry_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_banentry_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_banentry_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_banentry_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_banentry_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_banentry_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_banentry_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_banentry_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_banentry_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_block_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_block_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_block_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_block_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_block_deserialize-setup_common.Tpo -c -o test/test_fuzz_block_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_block_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_block_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_block_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_block_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_block_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_block_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_block_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_block_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_block_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_block_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_block_deserialize-setup_common.Tpo -c -o test/test_fuzz_block_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_block_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_block_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_block_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_block_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_block_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_block_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_block_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_block_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_block_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_block_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_block_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_block_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_block_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_block_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_block_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_block_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_block_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_block_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_block_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_block_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_block_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_block_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_block_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_block_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_block_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_block_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_block_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_block_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_block_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_block_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_block_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_block_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_block_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_block_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_block_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_block_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_block_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_block_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_block_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_block_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_block_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_block_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_block_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_block_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_block_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_block_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_block_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_block_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_block_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_block_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_block_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_block_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_block_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_block_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_blockheader_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockheader_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_blockheader_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_blockheader_deserialize-setup_common.Tpo -c -o test/test_fuzz_blockheader_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_blockheader_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_blockheader_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_blockheader_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockheader_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_blockheader_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_blockheader_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockheader_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_blockheader_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_blockheader_deserialize-setup_common.Tpo -c -o test/test_fuzz_blockheader_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_blockheader_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_blockheader_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_blockheader_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockheader_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_blockheader_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_blockheader_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockheader_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blockheader_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blockheader_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_blockheader_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blockheader_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blockheader_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_blockheader_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockheader_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blockheader_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_blockheader_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockheader_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blockheader_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blockheader_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_blockheader_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blockheader_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blockheader_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_blockheader_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockheader_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blockheader_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_blockheader_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockheader_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blockheader_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blockheader_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_blockheader_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blockheader_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blockheader_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_blockheader_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockheader_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blockheader_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_blockheader_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockheader_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blockheader_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blockheader_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_blockheader_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blockheader_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blockheader_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_blockheader_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockheader_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blockheader_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_blocklocator_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocklocator_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocklocator_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_blocklocator_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_blocklocator_deserialize-setup_common.Tpo -c -o test/test_fuzz_blocklocator_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_blocklocator_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_blocklocator_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_blocklocator_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocklocator_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocklocator_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_blocklocator_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_blocklocator_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocklocator_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocklocator_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_blocklocator_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_blocklocator_deserialize-setup_common.Tpo -c -o test/test_fuzz_blocklocator_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_blocklocator_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_blocklocator_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_blocklocator_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocklocator_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocklocator_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_blocklocator_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_blocklocator_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocklocator_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocklocator_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blocklocator_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blocklocator_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_blocklocator_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blocklocator_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blocklocator_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_blocklocator_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocklocator_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocklocator_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blocklocator_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_blocklocator_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocklocator_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocklocator_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blocklocator_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blocklocator_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_blocklocator_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blocklocator_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blocklocator_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_blocklocator_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocklocator_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocklocator_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blocklocator_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_blocklocator_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocklocator_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocklocator_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blocklocator_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blocklocator_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_blocklocator_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blocklocator_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blocklocator_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_blocklocator_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocklocator_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocklocator_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blocklocator_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_blocklocator_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocklocator_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocklocator_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blocklocator_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blocklocator_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_blocklocator_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blocklocator_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blocklocator_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_blocklocator_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocklocator_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocklocator_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blocklocator_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_blockmerkleroot-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockmerkleroot_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockmerkleroot_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_blockmerkleroot-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_blockmerkleroot-setup_common.Tpo -c -o test/test_fuzz_blockmerkleroot-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_blockmerkleroot-setup_common.Tpo test/$(DEPDIR)/test_fuzz_blockmerkleroot-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_blockmerkleroot-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockmerkleroot_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockmerkleroot_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_blockmerkleroot-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_blockmerkleroot-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockmerkleroot_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockmerkleroot_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_blockmerkleroot-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_blockmerkleroot-setup_common.Tpo -c -o test/test_fuzz_blockmerkleroot-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_blockmerkleroot-setup_common.Tpo test/$(DEPDIR)/test_fuzz_blockmerkleroot-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_blockmerkleroot-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockmerkleroot_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockmerkleroot_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_blockmerkleroot-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_blockmerkleroot-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockmerkleroot_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockmerkleroot_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blockmerkleroot-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blockmerkleroot-fuzz.Tpo -c -o test/fuzz/test_fuzz_blockmerkleroot-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blockmerkleroot-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blockmerkleroot-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_blockmerkleroot-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockmerkleroot_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockmerkleroot_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blockmerkleroot-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_blockmerkleroot-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockmerkleroot_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockmerkleroot_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blockmerkleroot-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blockmerkleroot-fuzz.Tpo -c -o test/fuzz/test_fuzz_blockmerkleroot-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blockmerkleroot-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blockmerkleroot-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_blockmerkleroot-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockmerkleroot_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockmerkleroot_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blockmerkleroot-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_blockmerkleroot-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockmerkleroot_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockmerkleroot_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blockmerkleroot-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blockmerkleroot-deserialize.Tpo -c -o test/fuzz/test_fuzz_blockmerkleroot-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blockmerkleroot-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blockmerkleroot-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_blockmerkleroot-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockmerkleroot_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockmerkleroot_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blockmerkleroot-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_blockmerkleroot-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockmerkleroot_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockmerkleroot_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blockmerkleroot-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blockmerkleroot-deserialize.Tpo -c -o test/fuzz/test_fuzz_blockmerkleroot-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blockmerkleroot-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blockmerkleroot-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_blockmerkleroot-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockmerkleroot_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockmerkleroot_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blockmerkleroot-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_blocktransactions_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactions_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactions_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_blocktransactions_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-setup_common.Tpo -c -o test/test_fuzz_blocktransactions_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_blocktransactions_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactions_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactions_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_blocktransactions_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_blocktransactions_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactions_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactions_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_blocktransactions_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-setup_common.Tpo -c -o test/test_fuzz_blocktransactions_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_blocktransactions_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactions_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactions_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_blocktransactions_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_blocktransactions_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactions_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactions_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blocktransactions_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_blocktransactions_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_blocktransactions_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactions_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactions_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blocktransactions_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_blocktransactions_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactions_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactions_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blocktransactions_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_blocktransactions_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_blocktransactions_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactions_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactions_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blocktransactions_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_blocktransactions_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactions_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactions_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blocktransactions_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_blocktransactions_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_blocktransactions_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactions_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactions_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blocktransactions_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_blocktransactions_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactions_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactions_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blocktransactions_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_blocktransactions_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blocktransactions_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_blocktransactions_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactions_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactions_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blocktransactions_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_blocktransactionsrequest_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactionsrequest_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactionsrequest_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_blocktransactionsrequest_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-setup_common.Tpo -c -o test/test_fuzz_blocktransactionsrequest_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_blocktransactionsrequest_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactionsrequest_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactionsrequest_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_blocktransactionsrequest_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_blocktransactionsrequest_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactionsrequest_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactionsrequest_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_blocktransactionsrequest_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-setup_common.Tpo -c -o test/test_fuzz_blocktransactionsrequest_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_blocktransactionsrequest_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactionsrequest_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactionsrequest_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_blocktransactionsrequest_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactionsrequest_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactionsrequest_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactionsrequest_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactionsrequest_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactionsrequest_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactionsrequest_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactionsrequest_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactionsrequest_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactionsrequest_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactionsrequest_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactionsrequest_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactionsrequest_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactionsrequest_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactionsrequest_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blocktransactionsrequest_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blocktransactionsrequest_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blocktransactionsrequest_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blocktransactionsrequest_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_blockundo_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockundo_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_blockundo_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_blockundo_deserialize-setup_common.Tpo -c -o test/test_fuzz_blockundo_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_blockundo_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_blockundo_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_blockundo_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockundo_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_blockundo_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_blockundo_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockundo_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_blockundo_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_blockundo_deserialize-setup_common.Tpo -c -o test/test_fuzz_blockundo_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_blockundo_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_blockundo_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_blockundo_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockundo_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_blockundo_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_blockundo_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockundo_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blockundo_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blockundo_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_blockundo_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blockundo_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blockundo_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_blockundo_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockundo_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blockundo_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_blockundo_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockundo_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blockundo_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blockundo_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_blockundo_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blockundo_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blockundo_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_blockundo_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockundo_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blockundo_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_blockundo_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockundo_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blockundo_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blockundo_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_blockundo_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blockundo_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blockundo_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_blockundo_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockundo_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blockundo_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_blockundo_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockundo_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_blockundo_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_blockundo_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_blockundo_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_blockundo_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_blockundo_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_blockundo_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_blockundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_blockundo_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_blockundo_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_bloomfilter_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_bloomfilter_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_bloomfilter_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_bloomfilter_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-setup_common.Tpo -c -o test/test_fuzz_bloomfilter_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_bloomfilter_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_bloomfilter_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_bloomfilter_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_bloomfilter_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_bloomfilter_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_bloomfilter_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_bloomfilter_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_bloomfilter_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-setup_common.Tpo -c -o test/test_fuzz_bloomfilter_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_bloomfilter_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_bloomfilter_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_bloomfilter_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_bloomfilter_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_bloomfilter_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_bloomfilter_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_bloomfilter_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_bloomfilter_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_bloomfilter_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_bloomfilter_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_bloomfilter_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_bloomfilter_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_bloomfilter_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_bloomfilter_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_bloomfilter_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_bloomfilter_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_bloomfilter_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_bloomfilter_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_bloomfilter_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_bloomfilter_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_bloomfilter_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_bloomfilter_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_bloomfilter_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_bloomfilter_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_bloomfilter_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_bloomfilter_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_bloomfilter_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_bloomfilter_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_bloomfilter_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_bloomfilter_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_bloomfilter_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_bloomfilter_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_bloomfilter_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_bloomfilter_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_bloomfilter_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_bloomfilter_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_bloomfilter_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_bloomfilter_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_bloomfilter_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_bloomfilter_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_bloomfilter_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_coins_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_coins_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_coins_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_coins_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_coins_deserialize-setup_common.Tpo -c -o test/test_fuzz_coins_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_coins_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_coins_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_coins_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_coins_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_coins_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_coins_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_coins_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_coins_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_coins_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_coins_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_coins_deserialize-setup_common.Tpo -c -o test/test_fuzz_coins_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_coins_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_coins_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_coins_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_coins_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_coins_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_coins_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_coins_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_coins_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_coins_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_coins_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_coins_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_coins_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_coins_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_coins_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_coins_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_coins_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_coins_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_coins_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_coins_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_coins_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_coins_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_coins_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_coins_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_coins_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_coins_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_coins_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_coins_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_coins_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_coins_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_coins_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_coins_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_coins_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_coins_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_coins_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_coins_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_coins_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_coins_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_coins_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_coins_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_coins_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_coins_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_coins_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_coins_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_coins_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_coins_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_coins_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_coins_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_coins_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_coins_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_coins_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_coins_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_coins_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_coins_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_coins_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_diskblockindex_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_diskblockindex_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_diskblockindex_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_diskblockindex_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-setup_common.Tpo -c -o test/test_fuzz_diskblockindex_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_diskblockindex_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_diskblockindex_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_diskblockindex_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_diskblockindex_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_diskblockindex_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_diskblockindex_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_diskblockindex_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_diskblockindex_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-setup_common.Tpo -c -o test/test_fuzz_diskblockindex_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_diskblockindex_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_diskblockindex_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_diskblockindex_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_diskblockindex_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_diskblockindex_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_diskblockindex_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_diskblockindex_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_diskblockindex_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_diskblockindex_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_diskblockindex_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_diskblockindex_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_diskblockindex_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_diskblockindex_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_diskblockindex_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_diskblockindex_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_diskblockindex_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_diskblockindex_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_diskblockindex_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_diskblockindex_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_diskblockindex_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_diskblockindex_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_diskblockindex_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_diskblockindex_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_diskblockindex_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_diskblockindex_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_diskblockindex_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_diskblockindex_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_diskblockindex_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_diskblockindex_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_diskblockindex_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_diskblockindex_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_diskblockindex_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_diskblockindex_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_diskblockindex_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_diskblockindex_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_diskblockindex_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_diskblockindex_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_diskblockindex_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_diskblockindex_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_diskblockindex_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_diskblockindex_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_inv_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_inv_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_inv_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_inv_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_inv_deserialize-setup_common.Tpo -c -o test/test_fuzz_inv_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_inv_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_inv_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_inv_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_inv_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_inv_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_inv_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_inv_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_inv_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_inv_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_inv_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_inv_deserialize-setup_common.Tpo -c -o test/test_fuzz_inv_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_inv_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_inv_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_inv_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_inv_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_inv_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_inv_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_inv_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_inv_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_inv_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_inv_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_inv_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_inv_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_inv_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_inv_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_inv_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_inv_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_inv_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_inv_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_inv_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_inv_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_inv_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_inv_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_inv_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_inv_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_inv_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_inv_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_inv_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_inv_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_inv_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_inv_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_inv_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_inv_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_inv_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_inv_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_inv_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_inv_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_inv_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_inv_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_inv_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_inv_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_inv_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_inv_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_inv_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_inv_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_inv_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_inv_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_inv_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_inv_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_inv_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_inv_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_inv_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_inv_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_inv_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_inv_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_messageheader_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_messageheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_messageheader_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_messageheader_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_messageheader_deserialize-setup_common.Tpo -c -o test/test_fuzz_messageheader_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_messageheader_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_messageheader_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_messageheader_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_messageheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_messageheader_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_messageheader_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_messageheader_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_messageheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_messageheader_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_messageheader_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_messageheader_deserialize-setup_common.Tpo -c -o test/test_fuzz_messageheader_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_messageheader_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_messageheader_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_messageheader_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_messageheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_messageheader_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_messageheader_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_messageheader_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_messageheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_messageheader_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_messageheader_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_messageheader_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_messageheader_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_messageheader_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_messageheader_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_messageheader_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_messageheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_messageheader_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_messageheader_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_messageheader_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_messageheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_messageheader_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_messageheader_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_messageheader_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_messageheader_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_messageheader_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_messageheader_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_messageheader_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_messageheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_messageheader_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_messageheader_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_messageheader_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_messageheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_messageheader_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_messageheader_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_messageheader_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_messageheader_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_messageheader_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_messageheader_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_messageheader_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_messageheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_messageheader_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_messageheader_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_messageheader_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_messageheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_messageheader_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_messageheader_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_messageheader_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_messageheader_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_messageheader_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_messageheader_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_messageheader_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_messageheader_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_messageheader_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_messageheader_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_netaddr_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_netaddr_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_netaddr_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_netaddr_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_netaddr_deserialize-setup_common.Tpo -c -o test/test_fuzz_netaddr_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_netaddr_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_netaddr_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_netaddr_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_netaddr_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_netaddr_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_netaddr_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_netaddr_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_netaddr_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_netaddr_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_netaddr_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_netaddr_deserialize-setup_common.Tpo -c -o test/test_fuzz_netaddr_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_netaddr_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_netaddr_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_netaddr_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_netaddr_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_netaddr_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_netaddr_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_netaddr_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_netaddr_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_netaddr_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_netaddr_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_netaddr_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_netaddr_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_netaddr_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_netaddr_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_netaddr_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_netaddr_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_netaddr_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_netaddr_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_netaddr_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_netaddr_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_netaddr_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_netaddr_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_netaddr_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_netaddr_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_netaddr_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_netaddr_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_netaddr_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_netaddr_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_netaddr_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_netaddr_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_netaddr_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_netaddr_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_netaddr_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_netaddr_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_netaddr_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_netaddr_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_netaddr_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_netaddr_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_netaddr_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_netaddr_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_netaddr_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_netaddr_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_netaddr_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_netaddr_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_netaddr_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_netaddr_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_netaddr_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_netaddr_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_netaddr_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_netaddr_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_netaddr_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_netaddr_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_netaddr_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_netaddr_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_script_flags-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_script_flags_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_script_flags_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_script_flags-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_script_flags-setup_common.Tpo -c -o test/test_fuzz_script_flags-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_script_flags-setup_common.Tpo test/$(DEPDIR)/test_fuzz_script_flags-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_script_flags-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_script_flags_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_script_flags_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_script_flags-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_script_flags-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_script_flags_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_script_flags_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_script_flags-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_script_flags-setup_common.Tpo -c -o test/test_fuzz_script_flags-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_script_flags-setup_common.Tpo test/$(DEPDIR)/test_fuzz_script_flags-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_script_flags-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_script_flags_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_script_flags_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_script_flags-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_script_flags-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_script_flags_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_script_flags_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_script_flags-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_script_flags-fuzz.Tpo -c -o test/fuzz/test_fuzz_script_flags-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_script_flags-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_script_flags-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_script_flags-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_script_flags_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_script_flags_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_script_flags-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_script_flags-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_script_flags_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_script_flags_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_script_flags-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_script_flags-fuzz.Tpo -c -o test/fuzz/test_fuzz_script_flags-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_script_flags-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_script_flags-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_script_flags-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_script_flags_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_script_flags_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_script_flags-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_script_flags-script_flags.o: test/fuzz/script_flags.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_script_flags_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_script_flags_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_script_flags-script_flags.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_script_flags-script_flags.Tpo -c -o test/fuzz/test_fuzz_script_flags-script_flags.o `test -f 'test/fuzz/script_flags.cpp' || echo '$(srcdir)/'`test/fuzz/script_flags.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_script_flags-script_flags.Tpo test/fuzz/$(DEPDIR)/test_fuzz_script_flags-script_flags.Po
+#	$(AM_V_CXX)source='test/fuzz/script_flags.cpp' object='test/fuzz/test_fuzz_script_flags-script_flags.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_script_flags_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_script_flags_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_script_flags-script_flags.o `test -f 'test/fuzz/script_flags.cpp' || echo '$(srcdir)/'`test/fuzz/script_flags.cpp
+
+test/fuzz/test_fuzz_script_flags-script_flags.obj: test/fuzz/script_flags.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_script_flags_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_script_flags_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_script_flags-script_flags.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_script_flags-script_flags.Tpo -c -o test/fuzz/test_fuzz_script_flags-script_flags.obj `if test -f 'test/fuzz/script_flags.cpp'; then $(CYGPATH_W) 'test/fuzz/script_flags.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/script_flags.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_script_flags-script_flags.Tpo test/fuzz/$(DEPDIR)/test_fuzz_script_flags-script_flags.Po
+#	$(AM_V_CXX)source='test/fuzz/script_flags.cpp' object='test/fuzz/test_fuzz_script_flags-script_flags.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_script_flags_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_script_flags_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_script_flags-script_flags.obj `if test -f 'test/fuzz/script_flags.cpp'; then $(CYGPATH_W) 'test/fuzz/script_flags.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/script_flags.cpp'; fi`
+
+test/test_fuzz_service_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_service_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_service_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_service_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_service_deserialize-setup_common.Tpo -c -o test/test_fuzz_service_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_service_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_service_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_service_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_service_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_service_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_service_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_service_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_service_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_service_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_service_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_service_deserialize-setup_common.Tpo -c -o test/test_fuzz_service_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_service_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_service_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_service_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_service_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_service_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_service_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_service_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_service_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_service_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_service_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_service_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_service_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_service_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_service_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_service_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_service_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_service_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_service_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_service_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_service_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_service_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_service_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_service_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_service_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_service_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_service_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_service_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_service_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_service_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_service_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_service_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_service_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_service_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_service_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_service_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_service_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_service_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_service_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_service_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_service_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_service_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_service_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_service_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_service_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_service_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_service_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_service_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_service_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_service_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_service_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_service_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_service_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_service_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_service_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_transaction_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_transaction_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_transaction_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_transaction_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_transaction_deserialize-setup_common.Tpo -c -o test/test_fuzz_transaction_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_transaction_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_transaction_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_transaction_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_transaction_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_transaction_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_transaction_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_transaction_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_transaction_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_transaction_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_transaction_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_transaction_deserialize-setup_common.Tpo -c -o test/test_fuzz_transaction_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_transaction_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_transaction_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_transaction_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_transaction_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_transaction_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_transaction_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_transaction_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_transaction_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_transaction_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_transaction_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_transaction_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_transaction_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_transaction_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_transaction_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_transaction_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_transaction_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_transaction_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_transaction_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_transaction_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_transaction_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_transaction_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_transaction_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_transaction_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_transaction_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_transaction_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_transaction_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_transaction_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_transaction_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_transaction_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_transaction_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_transaction_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_transaction_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_transaction_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_transaction_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_transaction_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_transaction_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_transaction_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_transaction_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_transaction_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_transaction_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_transaction_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_transaction_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_transaction_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_transaction_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_transaction_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_transaction_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_transaction_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_transaction_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_transaction_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_transaction_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_transaction_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_transaction_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_transaction_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_transaction_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_txoutcompressor_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txoutcompressor_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txoutcompressor_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_txoutcompressor_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-setup_common.Tpo -c -o test/test_fuzz_txoutcompressor_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_txoutcompressor_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txoutcompressor_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txoutcompressor_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_txoutcompressor_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_txoutcompressor_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txoutcompressor_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txoutcompressor_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_txoutcompressor_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-setup_common.Tpo -c -o test/test_fuzz_txoutcompressor_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_txoutcompressor_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txoutcompressor_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txoutcompressor_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_txoutcompressor_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_txoutcompressor_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txoutcompressor_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txoutcompressor_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_txoutcompressor_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_txoutcompressor_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_txoutcompressor_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txoutcompressor_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txoutcompressor_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_txoutcompressor_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_txoutcompressor_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txoutcompressor_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txoutcompressor_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_txoutcompressor_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_txoutcompressor_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_txoutcompressor_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txoutcompressor_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txoutcompressor_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_txoutcompressor_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_txoutcompressor_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txoutcompressor_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txoutcompressor_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_txoutcompressor_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_txoutcompressor_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_txoutcompressor_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txoutcompressor_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txoutcompressor_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_txoutcompressor_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_txoutcompressor_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txoutcompressor_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txoutcompressor_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_txoutcompressor_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_txoutcompressor_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_txoutcompressor_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_txoutcompressor_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txoutcompressor_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txoutcompressor_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_txoutcompressor_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_fuzz_txundo_deserialize-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txundo_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_txundo_deserialize-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_fuzz_txundo_deserialize-setup_common.Tpo -c -o test/test_fuzz_txundo_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_txundo_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_txundo_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_txundo_deserialize-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txundo_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_txundo_deserialize-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_fuzz_txundo_deserialize-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txundo_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/test_fuzz_txundo_deserialize-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_fuzz_txundo_deserialize-setup_common.Tpo -c -o test/test_fuzz_txundo_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_fuzz_txundo_deserialize-setup_common.Tpo test/$(DEPDIR)/test_fuzz_txundo_deserialize-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_fuzz_txundo_deserialize-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txundo_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/test_fuzz_txundo_deserialize-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/fuzz/test_fuzz_txundo_deserialize-fuzz.o: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txundo_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_txundo_deserialize-fuzz.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_txundo_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_txundo_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_txundo_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_txundo_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_txundo_deserialize-fuzz.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txundo_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_txundo_deserialize-fuzz.o `test -f 'test/fuzz/fuzz.cpp' || echo '$(srcdir)/'`test/fuzz/fuzz.cpp
+
+test/fuzz/test_fuzz_txundo_deserialize-fuzz.obj: test/fuzz/fuzz.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txundo_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_txundo_deserialize-fuzz.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_txundo_deserialize-fuzz.Tpo -c -o test/fuzz/test_fuzz_txundo_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_txundo_deserialize-fuzz.Tpo test/fuzz/$(DEPDIR)/test_fuzz_txundo_deserialize-fuzz.Po
+#	$(AM_V_CXX)source='test/fuzz/fuzz.cpp' object='test/fuzz/test_fuzz_txundo_deserialize-fuzz.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txundo_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_txundo_deserialize-fuzz.obj `if test -f 'test/fuzz/fuzz.cpp'; then $(CYGPATH_W) 'test/fuzz/fuzz.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/fuzz.cpp'; fi`
+
+test/fuzz/test_fuzz_txundo_deserialize-deserialize.o: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txundo_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_txundo_deserialize-deserialize.o -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_txundo_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_txundo_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_txundo_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_txundo_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_txundo_deserialize-deserialize.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txundo_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_txundo_deserialize-deserialize.o `test -f 'test/fuzz/deserialize.cpp' || echo '$(srcdir)/'`test/fuzz/deserialize.cpp
+
+test/fuzz/test_fuzz_txundo_deserialize-deserialize.obj: test/fuzz/deserialize.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txundo_deserialize_CXXFLAGS) $(CXXFLAGS) -MT test/fuzz/test_fuzz_txundo_deserialize-deserialize.obj -MD -MP -MF test/fuzz/$(DEPDIR)/test_fuzz_txundo_deserialize-deserialize.Tpo -c -o test/fuzz/test_fuzz_txundo_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/fuzz/$(DEPDIR)/test_fuzz_txundo_deserialize-deserialize.Tpo test/fuzz/$(DEPDIR)/test_fuzz_txundo_deserialize-deserialize.Po
+#	$(AM_V_CXX)source='test/fuzz/deserialize.cpp' object='test/fuzz/test_fuzz_txundo_deserialize-deserialize.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_fuzz_txundo_deserialize_CPPFLAGS) $(CPPFLAGS) $(test_fuzz_txundo_deserialize_CXXFLAGS) $(CXXFLAGS) -c -o test/fuzz/test_fuzz_txundo_deserialize-deserialize.obj `if test -f 'test/fuzz/deserialize.cpp'; then $(CYGPATH_W) 'test/fuzz/deserialize.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fuzz/deserialize.cpp'; fi`
+
+test/test_test_gleecbtc-main.o: test/main.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-main.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-main.Tpo -c -o test/test_test_gleecbtc-main.o `test -f 'test/main.cpp' || echo '$(srcdir)/'`test/main.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-main.Tpo test/$(DEPDIR)/test_test_gleecbtc-main.Po
+#	$(AM_V_CXX)source='test/main.cpp' object='test/test_test_gleecbtc-main.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-main.o `test -f 'test/main.cpp' || echo '$(srcdir)/'`test/main.cpp
+
+test/test_test_gleecbtc-main.obj: test/main.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-main.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-main.Tpo -c -o test/test_test_gleecbtc-main.obj `if test -f 'test/main.cpp'; then $(CYGPATH_W) 'test/main.cpp'; else $(CYGPATH_W) '$(srcdir)/test/main.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-main.Tpo test/$(DEPDIR)/test_test_gleecbtc-main.Po
+#	$(AM_V_CXX)source='test/main.cpp' object='test/test_test_gleecbtc-main.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-main.obj `if test -f 'test/main.cpp'; then $(CYGPATH_W) 'test/main.cpp'; else $(CYGPATH_W) '$(srcdir)/test/main.cpp'; fi`
+
+test/test_test_gleecbtc-setup_common.o: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-setup_common.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-setup_common.Tpo -c -o test/test_test_gleecbtc-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-setup_common.Tpo test/$(DEPDIR)/test_test_gleecbtc-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_test_gleecbtc-setup_common.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-setup_common.o `test -f 'test/setup_common.cpp' || echo '$(srcdir)/'`test/setup_common.cpp
+
+test/test_test_gleecbtc-setup_common.obj: test/setup_common.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-setup_common.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-setup_common.Tpo -c -o test/test_test_gleecbtc-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-setup_common.Tpo test/$(DEPDIR)/test_test_gleecbtc-setup_common.Po
+#	$(AM_V_CXX)source='test/setup_common.cpp' object='test/test_test_gleecbtc-setup_common.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-setup_common.obj `if test -f 'test/setup_common.cpp'; then $(CYGPATH_W) 'test/setup_common.cpp'; else $(CYGPATH_W) '$(srcdir)/test/setup_common.cpp'; fi`
+
+test/gen/test_test_gleecbtc-crypto_gen.o: test/gen/crypto_gen.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/gen/test_test_gleecbtc-crypto_gen.o -MD -MP -MF test/gen/$(DEPDIR)/test_test_gleecbtc-crypto_gen.Tpo -c -o test/gen/test_test_gleecbtc-crypto_gen.o `test -f 'test/gen/crypto_gen.cpp' || echo '$(srcdir)/'`test/gen/crypto_gen.cpp
+	$(AM_V_at)$(am__mv) test/gen/$(DEPDIR)/test_test_gleecbtc-crypto_gen.Tpo test/gen/$(DEPDIR)/test_test_gleecbtc-crypto_gen.Po
+#	$(AM_V_CXX)source='test/gen/crypto_gen.cpp' object='test/gen/test_test_gleecbtc-crypto_gen.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/gen/test_test_gleecbtc-crypto_gen.o `test -f 'test/gen/crypto_gen.cpp' || echo '$(srcdir)/'`test/gen/crypto_gen.cpp
+
+test/gen/test_test_gleecbtc-crypto_gen.obj: test/gen/crypto_gen.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/gen/test_test_gleecbtc-crypto_gen.obj -MD -MP -MF test/gen/$(DEPDIR)/test_test_gleecbtc-crypto_gen.Tpo -c -o test/gen/test_test_gleecbtc-crypto_gen.obj `if test -f 'test/gen/crypto_gen.cpp'; then $(CYGPATH_W) 'test/gen/crypto_gen.cpp'; else $(CYGPATH_W) '$(srcdir)/test/gen/crypto_gen.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/gen/$(DEPDIR)/test_test_gleecbtc-crypto_gen.Tpo test/gen/$(DEPDIR)/test_test_gleecbtc-crypto_gen.Po
+#	$(AM_V_CXX)source='test/gen/crypto_gen.cpp' object='test/gen/test_test_gleecbtc-crypto_gen.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/gen/test_test_gleecbtc-crypto_gen.obj `if test -f 'test/gen/crypto_gen.cpp'; then $(CYGPATH_W) 'test/gen/crypto_gen.cpp'; else $(CYGPATH_W) '$(srcdir)/test/gen/crypto_gen.cpp'; fi`
+
+wallet/test/test_test_gleecbtc-wallet_test_fixture.o: wallet/test/wallet_test_fixture.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-wallet_test_fixture.o -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_test_fixture.Tpo -c -o wallet/test/test_test_gleecbtc-wallet_test_fixture.o `test -f 'wallet/test/wallet_test_fixture.cpp' || echo '$(srcdir)/'`wallet/test/wallet_test_fixture.cpp
+	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_test_fixture.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_test_fixture.Po
+#	$(AM_V_CXX)source='wallet/test/wallet_test_fixture.cpp' object='wallet/test/test_test_gleecbtc-wallet_test_fixture.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-wallet_test_fixture.o `test -f 'wallet/test/wallet_test_fixture.cpp' || echo '$(srcdir)/'`wallet/test/wallet_test_fixture.cpp
+
+wallet/test/test_test_gleecbtc-wallet_test_fixture.obj: wallet/test/wallet_test_fixture.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-wallet_test_fixture.obj -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_test_fixture.Tpo -c -o wallet/test/test_test_gleecbtc-wallet_test_fixture.obj `if test -f 'wallet/test/wallet_test_fixture.cpp'; then $(CYGPATH_W) 'wallet/test/wallet_test_fixture.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/wallet_test_fixture.cpp'; fi`
+	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_test_fixture.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_test_fixture.Po
+#	$(AM_V_CXX)source='wallet/test/wallet_test_fixture.cpp' object='wallet/test/test_test_gleecbtc-wallet_test_fixture.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-wallet_test_fixture.obj `if test -f 'wallet/test/wallet_test_fixture.cpp'; then $(CYGPATH_W) 'wallet/test/wallet_test_fixture.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/wallet_test_fixture.cpp'; fi`
+
+wallet/test/test_test_gleecbtc-init_test_fixture.o: wallet/test/init_test_fixture.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-init_test_fixture.o -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-init_test_fixture.Tpo -c -o wallet/test/test_test_gleecbtc-init_test_fixture.o `test -f 'wallet/test/init_test_fixture.cpp' || echo '$(srcdir)/'`wallet/test/init_test_fixture.cpp
+	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-init_test_fixture.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-init_test_fixture.Po
+#	$(AM_V_CXX)source='wallet/test/init_test_fixture.cpp' object='wallet/test/test_test_gleecbtc-init_test_fixture.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-init_test_fixture.o `test -f 'wallet/test/init_test_fixture.cpp' || echo '$(srcdir)/'`wallet/test/init_test_fixture.cpp
+
+wallet/test/test_test_gleecbtc-init_test_fixture.obj: wallet/test/init_test_fixture.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-init_test_fixture.obj -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-init_test_fixture.Tpo -c -o wallet/test/test_test_gleecbtc-init_test_fixture.obj `if test -f 'wallet/test/init_test_fixture.cpp'; then $(CYGPATH_W) 'wallet/test/init_test_fixture.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/init_test_fixture.cpp'; fi`
+	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-init_test_fixture.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-init_test_fixture.Po
+#	$(AM_V_CXX)source='wallet/test/init_test_fixture.cpp' object='wallet/test/test_test_gleecbtc-init_test_fixture.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-init_test_fixture.obj `if test -f 'wallet/test/init_test_fixture.cpp'; then $(CYGPATH_W) 'wallet/test/init_test_fixture.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/init_test_fixture.cpp'; fi`
 
 test/test_test_gleecbtc-arith_uint256_tests.o: test/arith_uint256_tests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-arith_uint256_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-arith_uint256_tests.Tpo -c -o test/test_test_gleecbtc-arith_uint256_tests.o `test -f 'test/arith_uint256_tests.cpp' || echo '$(srcdir)/'`test/arith_uint256_tests.cpp
@@ -8400,6 +12112,20 @@ test/test_test_gleecbtc-base64_tests.obj: test/base64_tests.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-base64_tests.obj `if test -f 'test/base64_tests.cpp'; then $(CYGPATH_W) 'test/base64_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/base64_tests.cpp'; fi`
 
+test/test_test_gleecbtc-bech32_tests.o: test/bech32_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-bech32_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-bech32_tests.Tpo -c -o test/test_test_gleecbtc-bech32_tests.o `test -f 'test/bech32_tests.cpp' || echo '$(srcdir)/'`test/bech32_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-bech32_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-bech32_tests.Po
+#	$(AM_V_CXX)source='test/bech32_tests.cpp' object='test/test_test_gleecbtc-bech32_tests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-bech32_tests.o `test -f 'test/bech32_tests.cpp' || echo '$(srcdir)/'`test/bech32_tests.cpp
+
+test/test_test_gleecbtc-bech32_tests.obj: test/bech32_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-bech32_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-bech32_tests.Tpo -c -o test/test_test_gleecbtc-bech32_tests.obj `if test -f 'test/bech32_tests.cpp'; then $(CYGPATH_W) 'test/bech32_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/bech32_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-bech32_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-bech32_tests.Po
+#	$(AM_V_CXX)source='test/bech32_tests.cpp' object='test/test_test_gleecbtc-bech32_tests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-bech32_tests.obj `if test -f 'test/bech32_tests.cpp'; then $(CYGPATH_W) 'test/bech32_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/bech32_tests.cpp'; fi`
+
 test/test_test_gleecbtc-bip32_tests.o: test/bip32_tests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-bip32_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-bip32_tests.Tpo -c -o test/test_test_gleecbtc-bip32_tests.o `test -f 'test/bip32_tests.cpp' || echo '$(srcdir)/'`test/bip32_tests.cpp
 	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-bip32_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-bip32_tests.Po
@@ -8414,6 +12140,20 @@ test/test_test_gleecbtc-bip32_tests.obj: test/bip32_tests.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-bip32_tests.obj `if test -f 'test/bip32_tests.cpp'; then $(CYGPATH_W) 'test/bip32_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/bip32_tests.cpp'; fi`
 
+test/test_test_gleecbtc-blockchain_tests.o: test/blockchain_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-blockchain_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-blockchain_tests.Tpo -c -o test/test_test_gleecbtc-blockchain_tests.o `test -f 'test/blockchain_tests.cpp' || echo '$(srcdir)/'`test/blockchain_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-blockchain_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-blockchain_tests.Po
+#	$(AM_V_CXX)source='test/blockchain_tests.cpp' object='test/test_test_gleecbtc-blockchain_tests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-blockchain_tests.o `test -f 'test/blockchain_tests.cpp' || echo '$(srcdir)/'`test/blockchain_tests.cpp
+
+test/test_test_gleecbtc-blockchain_tests.obj: test/blockchain_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-blockchain_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-blockchain_tests.Tpo -c -o test/test_test_gleecbtc-blockchain_tests.obj `if test -f 'test/blockchain_tests.cpp'; then $(CYGPATH_W) 'test/blockchain_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/blockchain_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-blockchain_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-blockchain_tests.Po
+#	$(AM_V_CXX)source='test/blockchain_tests.cpp' object='test/test_test_gleecbtc-blockchain_tests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-blockchain_tests.obj `if test -f 'test/blockchain_tests.cpp'; then $(CYGPATH_W) 'test/blockchain_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/blockchain_tests.cpp'; fi`
+
 test/test_test_gleecbtc-blockencodings_tests.o: test/blockencodings_tests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-blockencodings_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-blockencodings_tests.Tpo -c -o test/test_test_gleecbtc-blockencodings_tests.o `test -f 'test/blockencodings_tests.cpp' || echo '$(srcdir)/'`test/blockencodings_tests.cpp
 	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-blockencodings_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-blockencodings_tests.Po
@@ -8427,6 +12167,34 @@ test/test_test_gleecbtc-blockencodings_tests.obj: test/blockencodings_tests.cpp
 #	$(AM_V_CXX)source='test/blockencodings_tests.cpp' object='test/test_test_gleecbtc-blockencodings_tests.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-blockencodings_tests.obj `if test -f 'test/blockencodings_tests.cpp'; then $(CYGPATH_W) 'test/blockencodings_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/blockencodings_tests.cpp'; fi`
+
+test/test_test_gleecbtc-blockfilter_tests.o: test/blockfilter_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-blockfilter_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-blockfilter_tests.Tpo -c -o test/test_test_gleecbtc-blockfilter_tests.o `test -f 'test/blockfilter_tests.cpp' || echo '$(srcdir)/'`test/blockfilter_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-blockfilter_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-blockfilter_tests.Po
+#	$(AM_V_CXX)source='test/blockfilter_tests.cpp' object='test/test_test_gleecbtc-blockfilter_tests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-blockfilter_tests.o `test -f 'test/blockfilter_tests.cpp' || echo '$(srcdir)/'`test/blockfilter_tests.cpp
+
+test/test_test_gleecbtc-blockfilter_tests.obj: test/blockfilter_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-blockfilter_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-blockfilter_tests.Tpo -c -o test/test_test_gleecbtc-blockfilter_tests.obj `if test -f 'test/blockfilter_tests.cpp'; then $(CYGPATH_W) 'test/blockfilter_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/blockfilter_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-blockfilter_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-blockfilter_tests.Po
+#	$(AM_V_CXX)source='test/blockfilter_tests.cpp' object='test/test_test_gleecbtc-blockfilter_tests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-blockfilter_tests.obj `if test -f 'test/blockfilter_tests.cpp'; then $(CYGPATH_W) 'test/blockfilter_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/blockfilter_tests.cpp'; fi`
+
+test/test_test_gleecbtc-blockfilter_index_tests.o: test/blockfilter_index_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-blockfilter_index_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-blockfilter_index_tests.Tpo -c -o test/test_test_gleecbtc-blockfilter_index_tests.o `test -f 'test/blockfilter_index_tests.cpp' || echo '$(srcdir)/'`test/blockfilter_index_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-blockfilter_index_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-blockfilter_index_tests.Po
+#	$(AM_V_CXX)source='test/blockfilter_index_tests.cpp' object='test/test_test_gleecbtc-blockfilter_index_tests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-blockfilter_index_tests.o `test -f 'test/blockfilter_index_tests.cpp' || echo '$(srcdir)/'`test/blockfilter_index_tests.cpp
+
+test/test_test_gleecbtc-blockfilter_index_tests.obj: test/blockfilter_index_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-blockfilter_index_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-blockfilter_index_tests.Tpo -c -o test/test_test_gleecbtc-blockfilter_index_tests.obj `if test -f 'test/blockfilter_index_tests.cpp'; then $(CYGPATH_W) 'test/blockfilter_index_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/blockfilter_index_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-blockfilter_index_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-blockfilter_index_tests.Po
+#	$(AM_V_CXX)source='test/blockfilter_index_tests.cpp' object='test/test_test_gleecbtc-blockfilter_index_tests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-blockfilter_index_tests.obj `if test -f 'test/blockfilter_index_tests.cpp'; then $(CYGPATH_W) 'test/blockfilter_index_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/blockfilter_index_tests.cpp'; fi`
 
 test/test_test_gleecbtc-bloom_tests.o: test/bloom_tests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-bloom_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-bloom_tests.Tpo -c -o test/test_test_gleecbtc-bloom_tests.o `test -f 'test/bloom_tests.cpp' || echo '$(srcdir)/'`test/bloom_tests.cpp
@@ -8484,6 +12252,20 @@ test/test_test_gleecbtc-coins_tests.obj: test/coins_tests.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-coins_tests.obj `if test -f 'test/coins_tests.cpp'; then $(CYGPATH_W) 'test/coins_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/coins_tests.cpp'; fi`
 
+test/test_test_gleecbtc-compilerbug_tests.o: test/compilerbug_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-compilerbug_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-compilerbug_tests.Tpo -c -o test/test_test_gleecbtc-compilerbug_tests.o `test -f 'test/compilerbug_tests.cpp' || echo '$(srcdir)/'`test/compilerbug_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-compilerbug_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-compilerbug_tests.Po
+#	$(AM_V_CXX)source='test/compilerbug_tests.cpp' object='test/test_test_gleecbtc-compilerbug_tests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-compilerbug_tests.o `test -f 'test/compilerbug_tests.cpp' || echo '$(srcdir)/'`test/compilerbug_tests.cpp
+
+test/test_test_gleecbtc-compilerbug_tests.obj: test/compilerbug_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-compilerbug_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-compilerbug_tests.Tpo -c -o test/test_test_gleecbtc-compilerbug_tests.obj `if test -f 'test/compilerbug_tests.cpp'; then $(CYGPATH_W) 'test/compilerbug_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/compilerbug_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-compilerbug_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-compilerbug_tests.Po
+#	$(AM_V_CXX)source='test/compilerbug_tests.cpp' object='test/test_test_gleecbtc-compilerbug_tests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-compilerbug_tests.obj `if test -f 'test/compilerbug_tests.cpp'; then $(CYGPATH_W) 'test/compilerbug_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/compilerbug_tests.cpp'; fi`
+
 test/test_test_gleecbtc-compress_tests.o: test/compress_tests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-compress_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-compress_tests.Tpo -c -o test/test_test_gleecbtc-compress_tests.o `test -f 'test/compress_tests.cpp' || echo '$(srcdir)/'`test/compress_tests.cpp
 	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-compress_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-compress_tests.Po
@@ -8526,19 +12308,61 @@ test/test_test_gleecbtc-cuckoocache_tests.obj: test/cuckoocache_tests.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-cuckoocache_tests.obj `if test -f 'test/cuckoocache_tests.cpp'; then $(CYGPATH_W) 'test/cuckoocache_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/cuckoocache_tests.cpp'; fi`
 
-test/test_test_gleecbtc-DoS_tests.o: test/DoS_tests.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-DoS_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-DoS_tests.Tpo -c -o test/test_test_gleecbtc-DoS_tests.o `test -f 'test/DoS_tests.cpp' || echo '$(srcdir)/'`test/DoS_tests.cpp
-	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-DoS_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-DoS_tests.Po
-#	$(AM_V_CXX)source='test/DoS_tests.cpp' object='test/test_test_gleecbtc-DoS_tests.o' libtool=no \
+test/test_test_gleecbtc-denialofservice_tests.o: test/denialofservice_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-denialofservice_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-denialofservice_tests.Tpo -c -o test/test_test_gleecbtc-denialofservice_tests.o `test -f 'test/denialofservice_tests.cpp' || echo '$(srcdir)/'`test/denialofservice_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-denialofservice_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-denialofservice_tests.Po
+#	$(AM_V_CXX)source='test/denialofservice_tests.cpp' object='test/test_test_gleecbtc-denialofservice_tests.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-DoS_tests.o `test -f 'test/DoS_tests.cpp' || echo '$(srcdir)/'`test/DoS_tests.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-denialofservice_tests.o `test -f 'test/denialofservice_tests.cpp' || echo '$(srcdir)/'`test/denialofservice_tests.cpp
 
-test/test_test_gleecbtc-DoS_tests.obj: test/DoS_tests.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-DoS_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-DoS_tests.Tpo -c -o test/test_test_gleecbtc-DoS_tests.obj `if test -f 'test/DoS_tests.cpp'; then $(CYGPATH_W) 'test/DoS_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/DoS_tests.cpp'; fi`
-	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-DoS_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-DoS_tests.Po
-#	$(AM_V_CXX)source='test/DoS_tests.cpp' object='test/test_test_gleecbtc-DoS_tests.obj' libtool=no \
+test/test_test_gleecbtc-denialofservice_tests.obj: test/denialofservice_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-denialofservice_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-denialofservice_tests.Tpo -c -o test/test_test_gleecbtc-denialofservice_tests.obj `if test -f 'test/denialofservice_tests.cpp'; then $(CYGPATH_W) 'test/denialofservice_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/denialofservice_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-denialofservice_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-denialofservice_tests.Po
+#	$(AM_V_CXX)source='test/denialofservice_tests.cpp' object='test/test_test_gleecbtc-denialofservice_tests.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-DoS_tests.obj `if test -f 'test/DoS_tests.cpp'; then $(CYGPATH_W) 'test/DoS_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/DoS_tests.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-denialofservice_tests.obj `if test -f 'test/denialofservice_tests.cpp'; then $(CYGPATH_W) 'test/denialofservice_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/denialofservice_tests.cpp'; fi`
+
+test/test_test_gleecbtc-descriptor_tests.o: test/descriptor_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-descriptor_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-descriptor_tests.Tpo -c -o test/test_test_gleecbtc-descriptor_tests.o `test -f 'test/descriptor_tests.cpp' || echo '$(srcdir)/'`test/descriptor_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-descriptor_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-descriptor_tests.Po
+#	$(AM_V_CXX)source='test/descriptor_tests.cpp' object='test/test_test_gleecbtc-descriptor_tests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-descriptor_tests.o `test -f 'test/descriptor_tests.cpp' || echo '$(srcdir)/'`test/descriptor_tests.cpp
+
+test/test_test_gleecbtc-descriptor_tests.obj: test/descriptor_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-descriptor_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-descriptor_tests.Tpo -c -o test/test_test_gleecbtc-descriptor_tests.obj `if test -f 'test/descriptor_tests.cpp'; then $(CYGPATH_W) 'test/descriptor_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/descriptor_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-descriptor_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-descriptor_tests.Po
+#	$(AM_V_CXX)source='test/descriptor_tests.cpp' object='test/test_test_gleecbtc-descriptor_tests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-descriptor_tests.obj `if test -f 'test/descriptor_tests.cpp'; then $(CYGPATH_W) 'test/descriptor_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/descriptor_tests.cpp'; fi`
+
+test/test_test_gleecbtc-flatfile_tests.o: test/flatfile_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-flatfile_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-flatfile_tests.Tpo -c -o test/test_test_gleecbtc-flatfile_tests.o `test -f 'test/flatfile_tests.cpp' || echo '$(srcdir)/'`test/flatfile_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-flatfile_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-flatfile_tests.Po
+#	$(AM_V_CXX)source='test/flatfile_tests.cpp' object='test/test_test_gleecbtc-flatfile_tests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-flatfile_tests.o `test -f 'test/flatfile_tests.cpp' || echo '$(srcdir)/'`test/flatfile_tests.cpp
+
+test/test_test_gleecbtc-flatfile_tests.obj: test/flatfile_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-flatfile_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-flatfile_tests.Tpo -c -o test/test_test_gleecbtc-flatfile_tests.obj `if test -f 'test/flatfile_tests.cpp'; then $(CYGPATH_W) 'test/flatfile_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/flatfile_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-flatfile_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-flatfile_tests.Po
+#	$(AM_V_CXX)source='test/flatfile_tests.cpp' object='test/test_test_gleecbtc-flatfile_tests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-flatfile_tests.obj `if test -f 'test/flatfile_tests.cpp'; then $(CYGPATH_W) 'test/flatfile_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/flatfile_tests.cpp'; fi`
+
+test/test_test_gleecbtc-fs_tests.o: test/fs_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-fs_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-fs_tests.Tpo -c -o test/test_test_gleecbtc-fs_tests.o `test -f 'test/fs_tests.cpp' || echo '$(srcdir)/'`test/fs_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-fs_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-fs_tests.Po
+#	$(AM_V_CXX)source='test/fs_tests.cpp' object='test/test_test_gleecbtc-fs_tests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-fs_tests.o `test -f 'test/fs_tests.cpp' || echo '$(srcdir)/'`test/fs_tests.cpp
+
+test/test_test_gleecbtc-fs_tests.obj: test/fs_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-fs_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-fs_tests.Tpo -c -o test/test_test_gleecbtc-fs_tests.obj `if test -f 'test/fs_tests.cpp'; then $(CYGPATH_W) 'test/fs_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fs_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-fs_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-fs_tests.Po
+#	$(AM_V_CXX)source='test/fs_tests.cpp' object='test/test_test_gleecbtc-fs_tests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-fs_tests.obj `if test -f 'test/fs_tests.cpp'; then $(CYGPATH_W) 'test/fs_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/fs_tests.cpp'; fi`
 
 test/test_test_gleecbtc-getarg_tests.o: test/getarg_tests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-getarg_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-getarg_tests.Tpo -c -o test/test_test_gleecbtc-getarg_tests.o `test -f 'test/getarg_tests.cpp' || echo '$(srcdir)/'`test/getarg_tests.cpp
@@ -8567,6 +12391,20 @@ test/test_test_gleecbtc-hash_tests.obj: test/hash_tests.cpp
 #	$(AM_V_CXX)source='test/hash_tests.cpp' object='test/test_test_gleecbtc-hash_tests.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-hash_tests.obj `if test -f 'test/hash_tests.cpp'; then $(CYGPATH_W) 'test/hash_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/hash_tests.cpp'; fi`
+
+test/test_test_gleecbtc-key_io_tests.o: test/key_io_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-key_io_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-key_io_tests.Tpo -c -o test/test_test_gleecbtc-key_io_tests.o `test -f 'test/key_io_tests.cpp' || echo '$(srcdir)/'`test/key_io_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-key_io_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-key_io_tests.Po
+#	$(AM_V_CXX)source='test/key_io_tests.cpp' object='test/test_test_gleecbtc-key_io_tests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-key_io_tests.o `test -f 'test/key_io_tests.cpp' || echo '$(srcdir)/'`test/key_io_tests.cpp
+
+test/test_test_gleecbtc-key_io_tests.obj: test/key_io_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-key_io_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-key_io_tests.Tpo -c -o test/test_test_gleecbtc-key_io_tests.obj `if test -f 'test/key_io_tests.cpp'; then $(CYGPATH_W) 'test/key_io_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/key_io_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-key_io_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-key_io_tests.Po
+#	$(AM_V_CXX)source='test/key_io_tests.cpp' object='test/test_test_gleecbtc-key_io_tests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-key_io_tests.obj `if test -f 'test/key_io_tests.cpp'; then $(CYGPATH_W) 'test/key_io_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/key_io_tests.cpp'; fi`
 
 test/test_test_gleecbtc-key_tests.o: test/key_tests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-key_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-key_tests.Tpo -c -o test/test_test_gleecbtc-key_tests.o `test -f 'test/key_tests.cpp' || echo '$(srcdir)/'`test/key_tests.cpp
@@ -8610,19 +12448,19 @@ test/test_test_gleecbtc-dbwrapper_tests.obj: test/dbwrapper_tests.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-dbwrapper_tests.obj `if test -f 'test/dbwrapper_tests.cpp'; then $(CYGPATH_W) 'test/dbwrapper_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/dbwrapper_tests.cpp'; fi`
 
-test/test_test_gleecbtc-main_tests.o: test/main_tests.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-main_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-main_tests.Tpo -c -o test/test_test_gleecbtc-main_tests.o `test -f 'test/main_tests.cpp' || echo '$(srcdir)/'`test/main_tests.cpp
-	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-main_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-main_tests.Po
-#	$(AM_V_CXX)source='test/main_tests.cpp' object='test/test_test_gleecbtc-main_tests.o' libtool=no \
+test/test_test_gleecbtc-validation_tests.o: test/validation_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-validation_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-validation_tests.Tpo -c -o test/test_test_gleecbtc-validation_tests.o `test -f 'test/validation_tests.cpp' || echo '$(srcdir)/'`test/validation_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-validation_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-validation_tests.Po
+#	$(AM_V_CXX)source='test/validation_tests.cpp' object='test/test_test_gleecbtc-validation_tests.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-main_tests.o `test -f 'test/main_tests.cpp' || echo '$(srcdir)/'`test/main_tests.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-validation_tests.o `test -f 'test/validation_tests.cpp' || echo '$(srcdir)/'`test/validation_tests.cpp
 
-test/test_test_gleecbtc-main_tests.obj: test/main_tests.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-main_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-main_tests.Tpo -c -o test/test_test_gleecbtc-main_tests.obj `if test -f 'test/main_tests.cpp'; then $(CYGPATH_W) 'test/main_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/main_tests.cpp'; fi`
-	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-main_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-main_tests.Po
-#	$(AM_V_CXX)source='test/main_tests.cpp' object='test/test_test_gleecbtc-main_tests.obj' libtool=no \
+test/test_test_gleecbtc-validation_tests.obj: test/validation_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-validation_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-validation_tests.Tpo -c -o test/test_test_gleecbtc-validation_tests.obj `if test -f 'test/validation_tests.cpp'; then $(CYGPATH_W) 'test/validation_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/validation_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-validation_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-validation_tests.Po
+#	$(AM_V_CXX)source='test/validation_tests.cpp' object='test/test_test_gleecbtc-validation_tests.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-main_tests.obj `if test -f 'test/main_tests.cpp'; then $(CYGPATH_W) 'test/main_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/main_tests.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-validation_tests.obj `if test -f 'test/validation_tests.cpp'; then $(CYGPATH_W) 'test/validation_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/validation_tests.cpp'; fi`
 
 test/test_test_gleecbtc-mempool_tests.o: test/mempool_tests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-mempool_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-mempool_tests.Tpo -c -o test/test_test_gleecbtc-mempool_tests.o `test -f 'test/mempool_tests.cpp' || echo '$(srcdir)/'`test/mempool_tests.cpp
@@ -8651,6 +12489,20 @@ test/test_test_gleecbtc-merkle_tests.obj: test/merkle_tests.cpp
 #	$(AM_V_CXX)source='test/merkle_tests.cpp' object='test/test_test_gleecbtc-merkle_tests.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-merkle_tests.obj `if test -f 'test/merkle_tests.cpp'; then $(CYGPATH_W) 'test/merkle_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/merkle_tests.cpp'; fi`
+
+test/test_test_gleecbtc-merkleblock_tests.o: test/merkleblock_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-merkleblock_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-merkleblock_tests.Tpo -c -o test/test_test_gleecbtc-merkleblock_tests.o `test -f 'test/merkleblock_tests.cpp' || echo '$(srcdir)/'`test/merkleblock_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-merkleblock_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-merkleblock_tests.Po
+#	$(AM_V_CXX)source='test/merkleblock_tests.cpp' object='test/test_test_gleecbtc-merkleblock_tests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-merkleblock_tests.o `test -f 'test/merkleblock_tests.cpp' || echo '$(srcdir)/'`test/merkleblock_tests.cpp
+
+test/test_test_gleecbtc-merkleblock_tests.obj: test/merkleblock_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-merkleblock_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-merkleblock_tests.Tpo -c -o test/test_test_gleecbtc-merkleblock_tests.obj `if test -f 'test/merkleblock_tests.cpp'; then $(CYGPATH_W) 'test/merkleblock_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/merkleblock_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-merkleblock_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-merkleblock_tests.Po
+#	$(AM_V_CXX)source='test/merkleblock_tests.cpp' object='test/test_test_gleecbtc-merkleblock_tests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-merkleblock_tests.obj `if test -f 'test/merkleblock_tests.cpp'; then $(CYGPATH_W) 'test/merkleblock_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/merkleblock_tests.cpp'; fi`
 
 test/test_test_gleecbtc-miner_tests.o: test/miner_tests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-miner_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-miner_tests.Tpo -c -o test/test_test_gleecbtc-miner_tests.o `test -f 'test/miner_tests.cpp' || echo '$(srcdir)/'`test/miner_tests.cpp
@@ -8848,19 +12700,19 @@ test/test_test_gleecbtc-scheduler_tests.obj: test/scheduler_tests.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-scheduler_tests.obj `if test -f 'test/scheduler_tests.cpp'; then $(CYGPATH_W) 'test/scheduler_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/scheduler_tests.cpp'; fi`
 
-test/test_test_gleecbtc-script_P2SH_tests.o: test/script_P2SH_tests.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-script_P2SH_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-script_P2SH_tests.Tpo -c -o test/test_test_gleecbtc-script_P2SH_tests.o `test -f 'test/script_P2SH_tests.cpp' || echo '$(srcdir)/'`test/script_P2SH_tests.cpp
-	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-script_P2SH_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-script_P2SH_tests.Po
-#	$(AM_V_CXX)source='test/script_P2SH_tests.cpp' object='test/test_test_gleecbtc-script_P2SH_tests.o' libtool=no \
+test/test_test_gleecbtc-script_p2sh_tests.o: test/script_p2sh_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-script_p2sh_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-script_p2sh_tests.Tpo -c -o test/test_test_gleecbtc-script_p2sh_tests.o `test -f 'test/script_p2sh_tests.cpp' || echo '$(srcdir)/'`test/script_p2sh_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-script_p2sh_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-script_p2sh_tests.Po
+#	$(AM_V_CXX)source='test/script_p2sh_tests.cpp' object='test/test_test_gleecbtc-script_p2sh_tests.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-script_P2SH_tests.o `test -f 'test/script_P2SH_tests.cpp' || echo '$(srcdir)/'`test/script_P2SH_tests.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-script_p2sh_tests.o `test -f 'test/script_p2sh_tests.cpp' || echo '$(srcdir)/'`test/script_p2sh_tests.cpp
 
-test/test_test_gleecbtc-script_P2SH_tests.obj: test/script_P2SH_tests.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-script_P2SH_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-script_P2SH_tests.Tpo -c -o test/test_test_gleecbtc-script_P2SH_tests.obj `if test -f 'test/script_P2SH_tests.cpp'; then $(CYGPATH_W) 'test/script_P2SH_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/script_P2SH_tests.cpp'; fi`
-	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-script_P2SH_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-script_P2SH_tests.Po
-#	$(AM_V_CXX)source='test/script_P2SH_tests.cpp' object='test/test_test_gleecbtc-script_P2SH_tests.obj' libtool=no \
+test/test_test_gleecbtc-script_p2sh_tests.obj: test/script_p2sh_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-script_p2sh_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-script_p2sh_tests.Tpo -c -o test/test_test_gleecbtc-script_p2sh_tests.obj `if test -f 'test/script_p2sh_tests.cpp'; then $(CYGPATH_W) 'test/script_p2sh_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/script_p2sh_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-script_p2sh_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-script_p2sh_tests.Po
+#	$(AM_V_CXX)source='test/script_p2sh_tests.cpp' object='test/test_test_gleecbtc-script_p2sh_tests.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-script_P2SH_tests.obj `if test -f 'test/script_P2SH_tests.cpp'; then $(CYGPATH_W) 'test/script_P2SH_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/script_P2SH_tests.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-script_p2sh_tests.obj `if test -f 'test/script_p2sh_tests.cpp'; then $(CYGPATH_W) 'test/script_p2sh_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/script_p2sh_tests.cpp'; fi`
 
 test/test_test_gleecbtc-script_tests.o: test/script_tests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-script_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-script_tests.Tpo -c -o test/test_test_gleecbtc-script_tests.o `test -f 'test/script_tests.cpp' || echo '$(srcdir)/'`test/script_tests.cpp
@@ -8974,33 +12826,33 @@ test/test_test_gleecbtc-streams_tests.obj: test/streams_tests.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-streams_tests.obj `if test -f 'test/streams_tests.cpp'; then $(CYGPATH_W) 'test/streams_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/streams_tests.cpp'; fi`
 
-test/test_test_gleecbtc-test_gleecbtc.o: test/test_gleecbtc.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-test_gleecbtc.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-test_gleecbtc.Tpo -c -o test/test_test_gleecbtc-test_gleecbtc.o `test -f 'test/test_gleecbtc.cpp' || echo '$(srcdir)/'`test/test_gleecbtc.cpp
-	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-test_gleecbtc.Tpo test/$(DEPDIR)/test_test_gleecbtc-test_gleecbtc.Po
-#	$(AM_V_CXX)source='test/test_gleecbtc.cpp' object='test/test_test_gleecbtc-test_gleecbtc.o' libtool=no \
+test/test_test_gleecbtc-sync_tests.o: test/sync_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-sync_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-sync_tests.Tpo -c -o test/test_test_gleecbtc-sync_tests.o `test -f 'test/sync_tests.cpp' || echo '$(srcdir)/'`test/sync_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-sync_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-sync_tests.Po
+#	$(AM_V_CXX)source='test/sync_tests.cpp' object='test/test_test_gleecbtc-sync_tests.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-test_gleecbtc.o `test -f 'test/test_gleecbtc.cpp' || echo '$(srcdir)/'`test/test_gleecbtc.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-sync_tests.o `test -f 'test/sync_tests.cpp' || echo '$(srcdir)/'`test/sync_tests.cpp
 
-test/test_test_gleecbtc-test_gleecbtc.obj: test/test_gleecbtc.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-test_gleecbtc.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-test_gleecbtc.Tpo -c -o test/test_test_gleecbtc-test_gleecbtc.obj `if test -f 'test/test_gleecbtc.cpp'; then $(CYGPATH_W) 'test/test_gleecbtc.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_gleecbtc.cpp'; fi`
-	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-test_gleecbtc.Tpo test/$(DEPDIR)/test_test_gleecbtc-test_gleecbtc.Po
-#	$(AM_V_CXX)source='test/test_gleecbtc.cpp' object='test/test_test_gleecbtc-test_gleecbtc.obj' libtool=no \
+test/test_test_gleecbtc-sync_tests.obj: test/sync_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-sync_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-sync_tests.Tpo -c -o test/test_test_gleecbtc-sync_tests.obj `if test -f 'test/sync_tests.cpp'; then $(CYGPATH_W) 'test/sync_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/sync_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-sync_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-sync_tests.Po
+#	$(AM_V_CXX)source='test/sync_tests.cpp' object='test/test_test_gleecbtc-sync_tests.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-test_gleecbtc.obj `if test -f 'test/test_gleecbtc.cpp'; then $(CYGPATH_W) 'test/test_gleecbtc.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_gleecbtc.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-sync_tests.obj `if test -f 'test/sync_tests.cpp'; then $(CYGPATH_W) 'test/sync_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/sync_tests.cpp'; fi`
 
-test/test_test_gleecbtc-test_gleecbtc_main.o: test/test_gleecbtc_main.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-test_gleecbtc_main.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-test_gleecbtc_main.Tpo -c -o test/test_test_gleecbtc-test_gleecbtc_main.o `test -f 'test/test_gleecbtc_main.cpp' || echo '$(srcdir)/'`test/test_gleecbtc_main.cpp
-	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-test_gleecbtc_main.Tpo test/$(DEPDIR)/test_test_gleecbtc-test_gleecbtc_main.Po
-#	$(AM_V_CXX)source='test/test_gleecbtc_main.cpp' object='test/test_test_gleecbtc-test_gleecbtc_main.o' libtool=no \
+test/test_test_gleecbtc-util_threadnames_tests.o: test/util_threadnames_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-util_threadnames_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-util_threadnames_tests.Tpo -c -o test/test_test_gleecbtc-util_threadnames_tests.o `test -f 'test/util_threadnames_tests.cpp' || echo '$(srcdir)/'`test/util_threadnames_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-util_threadnames_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-util_threadnames_tests.Po
+#	$(AM_V_CXX)source='test/util_threadnames_tests.cpp' object='test/test_test_gleecbtc-util_threadnames_tests.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-test_gleecbtc_main.o `test -f 'test/test_gleecbtc_main.cpp' || echo '$(srcdir)/'`test/test_gleecbtc_main.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-util_threadnames_tests.o `test -f 'test/util_threadnames_tests.cpp' || echo '$(srcdir)/'`test/util_threadnames_tests.cpp
 
-test/test_test_gleecbtc-test_gleecbtc_main.obj: test/test_gleecbtc_main.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-test_gleecbtc_main.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-test_gleecbtc_main.Tpo -c -o test/test_test_gleecbtc-test_gleecbtc_main.obj `if test -f 'test/test_gleecbtc_main.cpp'; then $(CYGPATH_W) 'test/test_gleecbtc_main.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_gleecbtc_main.cpp'; fi`
-	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-test_gleecbtc_main.Tpo test/$(DEPDIR)/test_test_gleecbtc-test_gleecbtc_main.Po
-#	$(AM_V_CXX)source='test/test_gleecbtc_main.cpp' object='test/test_test_gleecbtc-test_gleecbtc_main.obj' libtool=no \
+test/test_test_gleecbtc-util_threadnames_tests.obj: test/util_threadnames_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-util_threadnames_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-util_threadnames_tests.Tpo -c -o test/test_test_gleecbtc-util_threadnames_tests.obj `if test -f 'test/util_threadnames_tests.cpp'; then $(CYGPATH_W) 'test/util_threadnames_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/util_threadnames_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-util_threadnames_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-util_threadnames_tests.Po
+#	$(AM_V_CXX)source='test/util_threadnames_tests.cpp' object='test/test_test_gleecbtc-util_threadnames_tests.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-test_gleecbtc_main.obj `if test -f 'test/test_gleecbtc_main.cpp'; then $(CYGPATH_W) 'test/test_gleecbtc_main.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_gleecbtc_main.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-util_threadnames_tests.obj `if test -f 'test/util_threadnames_tests.cpp'; then $(CYGPATH_W) 'test/util_threadnames_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/util_threadnames_tests.cpp'; fi`
 
 test/test_test_gleecbtc-timedata_tests.o: test/timedata_tests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-timedata_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-timedata_tests.Tpo -c -o test/test_test_gleecbtc-timedata_tests.o `test -f 'test/timedata_tests.cpp' || echo '$(srcdir)/'`test/timedata_tests.cpp
@@ -9044,6 +12896,34 @@ test/test_test_gleecbtc-transaction_tests.obj: test/transaction_tests.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-transaction_tests.obj `if test -f 'test/transaction_tests.cpp'; then $(CYGPATH_W) 'test/transaction_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/transaction_tests.cpp'; fi`
 
+test/test_test_gleecbtc-txindex_tests.o: test/txindex_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-txindex_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-txindex_tests.Tpo -c -o test/test_test_gleecbtc-txindex_tests.o `test -f 'test/txindex_tests.cpp' || echo '$(srcdir)/'`test/txindex_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-txindex_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-txindex_tests.Po
+#	$(AM_V_CXX)source='test/txindex_tests.cpp' object='test/test_test_gleecbtc-txindex_tests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-txindex_tests.o `test -f 'test/txindex_tests.cpp' || echo '$(srcdir)/'`test/txindex_tests.cpp
+
+test/test_test_gleecbtc-txindex_tests.obj: test/txindex_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-txindex_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-txindex_tests.Tpo -c -o test/test_test_gleecbtc-txindex_tests.obj `if test -f 'test/txindex_tests.cpp'; then $(CYGPATH_W) 'test/txindex_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/txindex_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-txindex_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-txindex_tests.Po
+#	$(AM_V_CXX)source='test/txindex_tests.cpp' object='test/test_test_gleecbtc-txindex_tests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-txindex_tests.obj `if test -f 'test/txindex_tests.cpp'; then $(CYGPATH_W) 'test/txindex_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/txindex_tests.cpp'; fi`
+
+test/test_test_gleecbtc-txvalidation_tests.o: test/txvalidation_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-txvalidation_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-txvalidation_tests.Tpo -c -o test/test_test_gleecbtc-txvalidation_tests.o `test -f 'test/txvalidation_tests.cpp' || echo '$(srcdir)/'`test/txvalidation_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-txvalidation_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-txvalidation_tests.Po
+#	$(AM_V_CXX)source='test/txvalidation_tests.cpp' object='test/test_test_gleecbtc-txvalidation_tests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-txvalidation_tests.o `test -f 'test/txvalidation_tests.cpp' || echo '$(srcdir)/'`test/txvalidation_tests.cpp
+
+test/test_test_gleecbtc-txvalidation_tests.obj: test/txvalidation_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-txvalidation_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-txvalidation_tests.Tpo -c -o test/test_test_gleecbtc-txvalidation_tests.obj `if test -f 'test/txvalidation_tests.cpp'; then $(CYGPATH_W) 'test/txvalidation_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/txvalidation_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-txvalidation_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-txvalidation_tests.Po
+#	$(AM_V_CXX)source='test/txvalidation_tests.cpp' object='test/test_test_gleecbtc-txvalidation_tests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-txvalidation_tests.obj `if test -f 'test/txvalidation_tests.cpp'; then $(CYGPATH_W) 'test/txvalidation_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/txvalidation_tests.cpp'; fi`
+
 test/test_test_gleecbtc-txvalidationcache_tests.o: test/txvalidationcache_tests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-txvalidationcache_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-txvalidationcache_tests.Tpo -c -o test/test_test_gleecbtc-txvalidationcache_tests.o `test -f 'test/txvalidationcache_tests.cpp' || echo '$(srcdir)/'`test/txvalidationcache_tests.cpp
 	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-txvalidationcache_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-txvalidationcache_tests.Po
@@ -9057,20 +12937,6 @@ test/test_test_gleecbtc-txvalidationcache_tests.obj: test/txvalidationcache_test
 #	$(AM_V_CXX)source='test/txvalidationcache_tests.cpp' object='test/test_test_gleecbtc-txvalidationcache_tests.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-txvalidationcache_tests.obj `if test -f 'test/txvalidationcache_tests.cpp'; then $(CYGPATH_W) 'test/txvalidationcache_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/txvalidationcache_tests.cpp'; fi`
-
-test/test_test_gleecbtc-versionbits_tests.o: test/versionbits_tests.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-versionbits_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-versionbits_tests.Tpo -c -o test/test_test_gleecbtc-versionbits_tests.o `test -f 'test/versionbits_tests.cpp' || echo '$(srcdir)/'`test/versionbits_tests.cpp
-	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-versionbits_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-versionbits_tests.Po
-#	$(AM_V_CXX)source='test/versionbits_tests.cpp' object='test/test_test_gleecbtc-versionbits_tests.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-versionbits_tests.o `test -f 'test/versionbits_tests.cpp' || echo '$(srcdir)/'`test/versionbits_tests.cpp
-
-test/test_test_gleecbtc-versionbits_tests.obj: test/versionbits_tests.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-versionbits_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-versionbits_tests.Tpo -c -o test/test_test_gleecbtc-versionbits_tests.obj `if test -f 'test/versionbits_tests.cpp'; then $(CYGPATH_W) 'test/versionbits_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/versionbits_tests.cpp'; fi`
-	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-versionbits_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-versionbits_tests.Po
-#	$(AM_V_CXX)source='test/versionbits_tests.cpp' object='test/test_test_gleecbtc-versionbits_tests.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-versionbits_tests.obj `if test -f 'test/versionbits_tests.cpp'; then $(CYGPATH_W) 'test/versionbits_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/versionbits_tests.cpp'; fi`
 
 test/test_test_gleecbtc-uint256_tests.o: test/uint256_tests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-uint256_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-uint256_tests.Tpo -c -o test/test_test_gleecbtc-uint256_tests.o `test -f 'test/uint256_tests.cpp' || echo '$(srcdir)/'`test/uint256_tests.cpp
@@ -9086,20 +12952,6 @@ test/test_test_gleecbtc-uint256_tests.obj: test/uint256_tests.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-uint256_tests.obj `if test -f 'test/uint256_tests.cpp'; then $(CYGPATH_W) 'test/uint256_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/uint256_tests.cpp'; fi`
 
-test/test_test_gleecbtc-univalue_tests.o: test/univalue_tests.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-univalue_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-univalue_tests.Tpo -c -o test/test_test_gleecbtc-univalue_tests.o `test -f 'test/univalue_tests.cpp' || echo '$(srcdir)/'`test/univalue_tests.cpp
-	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-univalue_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-univalue_tests.Po
-#	$(AM_V_CXX)source='test/univalue_tests.cpp' object='test/test_test_gleecbtc-univalue_tests.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-univalue_tests.o `test -f 'test/univalue_tests.cpp' || echo '$(srcdir)/'`test/univalue_tests.cpp
-
-test/test_test_gleecbtc-univalue_tests.obj: test/univalue_tests.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-univalue_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-univalue_tests.Tpo -c -o test/test_test_gleecbtc-univalue_tests.obj `if test -f 'test/univalue_tests.cpp'; then $(CYGPATH_W) 'test/univalue_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/univalue_tests.cpp'; fi`
-	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-univalue_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-univalue_tests.Po
-#	$(AM_V_CXX)source='test/univalue_tests.cpp' object='test/test_test_gleecbtc-univalue_tests.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-univalue_tests.obj `if test -f 'test/univalue_tests.cpp'; then $(CYGPATH_W) 'test/univalue_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/univalue_tests.cpp'; fi`
-
 test/test_test_gleecbtc-util_tests.o: test/util_tests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-util_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-util_tests.Tpo -c -o test/test_test_gleecbtc-util_tests.o `test -f 'test/util_tests.cpp' || echo '$(srcdir)/'`test/util_tests.cpp
 	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-util_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-util_tests.Po
@@ -9114,33 +12966,75 @@ test/test_test_gleecbtc-util_tests.obj: test/util_tests.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-util_tests.obj `if test -f 'test/util_tests.cpp'; then $(CYGPATH_W) 'test/util_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/util_tests.cpp'; fi`
 
-wallet/test/test_test_gleecbtc-wallet_test_fixture.o: wallet/test/wallet_test_fixture.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-wallet_test_fixture.o -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_test_fixture.Tpo -c -o wallet/test/test_test_gleecbtc-wallet_test_fixture.o `test -f 'wallet/test/wallet_test_fixture.cpp' || echo '$(srcdir)/'`wallet/test/wallet_test_fixture.cpp
-	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_test_fixture.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_test_fixture.Po
-#	$(AM_V_CXX)source='wallet/test/wallet_test_fixture.cpp' object='wallet/test/test_test_gleecbtc-wallet_test_fixture.o' libtool=no \
+test/test_test_gleecbtc-validation_block_tests.o: test/validation_block_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-validation_block_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-validation_block_tests.Tpo -c -o test/test_test_gleecbtc-validation_block_tests.o `test -f 'test/validation_block_tests.cpp' || echo '$(srcdir)/'`test/validation_block_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-validation_block_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-validation_block_tests.Po
+#	$(AM_V_CXX)source='test/validation_block_tests.cpp' object='test/test_test_gleecbtc-validation_block_tests.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-wallet_test_fixture.o `test -f 'wallet/test/wallet_test_fixture.cpp' || echo '$(srcdir)/'`wallet/test/wallet_test_fixture.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-validation_block_tests.o `test -f 'test/validation_block_tests.cpp' || echo '$(srcdir)/'`test/validation_block_tests.cpp
 
-wallet/test/test_test_gleecbtc-wallet_test_fixture.obj: wallet/test/wallet_test_fixture.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-wallet_test_fixture.obj -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_test_fixture.Tpo -c -o wallet/test/test_test_gleecbtc-wallet_test_fixture.obj `if test -f 'wallet/test/wallet_test_fixture.cpp'; then $(CYGPATH_W) 'wallet/test/wallet_test_fixture.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/wallet_test_fixture.cpp'; fi`
-	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_test_fixture.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_test_fixture.Po
-#	$(AM_V_CXX)source='wallet/test/wallet_test_fixture.cpp' object='wallet/test/test_test_gleecbtc-wallet_test_fixture.obj' libtool=no \
+test/test_test_gleecbtc-validation_block_tests.obj: test/validation_block_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-validation_block_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-validation_block_tests.Tpo -c -o test/test_test_gleecbtc-validation_block_tests.obj `if test -f 'test/validation_block_tests.cpp'; then $(CYGPATH_W) 'test/validation_block_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/validation_block_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-validation_block_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-validation_block_tests.Po
+#	$(AM_V_CXX)source='test/validation_block_tests.cpp' object='test/test_test_gleecbtc-validation_block_tests.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-wallet_test_fixture.obj `if test -f 'wallet/test/wallet_test_fixture.cpp'; then $(CYGPATH_W) 'wallet/test/wallet_test_fixture.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/wallet_test_fixture.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-validation_block_tests.obj `if test -f 'test/validation_block_tests.cpp'; then $(CYGPATH_W) 'test/validation_block_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/validation_block_tests.cpp'; fi`
 
-wallet/test/test_test_gleecbtc-accounting_tests.o: wallet/test/accounting_tests.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-accounting_tests.o -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-accounting_tests.Tpo -c -o wallet/test/test_test_gleecbtc-accounting_tests.o `test -f 'wallet/test/accounting_tests.cpp' || echo '$(srcdir)/'`wallet/test/accounting_tests.cpp
-	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-accounting_tests.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-accounting_tests.Po
-#	$(AM_V_CXX)source='wallet/test/accounting_tests.cpp' object='wallet/test/test_test_gleecbtc-accounting_tests.o' libtool=no \
+test/test_test_gleecbtc-versionbits_tests.o: test/versionbits_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-versionbits_tests.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-versionbits_tests.Tpo -c -o test/test_test_gleecbtc-versionbits_tests.o `test -f 'test/versionbits_tests.cpp' || echo '$(srcdir)/'`test/versionbits_tests.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-versionbits_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-versionbits_tests.Po
+#	$(AM_V_CXX)source='test/versionbits_tests.cpp' object='test/test_test_gleecbtc-versionbits_tests.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-accounting_tests.o `test -f 'wallet/test/accounting_tests.cpp' || echo '$(srcdir)/'`wallet/test/accounting_tests.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-versionbits_tests.o `test -f 'test/versionbits_tests.cpp' || echo '$(srcdir)/'`test/versionbits_tests.cpp
 
-wallet/test/test_test_gleecbtc-accounting_tests.obj: wallet/test/accounting_tests.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-accounting_tests.obj -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-accounting_tests.Tpo -c -o wallet/test/test_test_gleecbtc-accounting_tests.obj `if test -f 'wallet/test/accounting_tests.cpp'; then $(CYGPATH_W) 'wallet/test/accounting_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/accounting_tests.cpp'; fi`
-	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-accounting_tests.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-accounting_tests.Po
-#	$(AM_V_CXX)source='wallet/test/accounting_tests.cpp' object='wallet/test/test_test_gleecbtc-accounting_tests.obj' libtool=no \
+test/test_test_gleecbtc-versionbits_tests.obj: test/versionbits_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-versionbits_tests.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-versionbits_tests.Tpo -c -o test/test_test_gleecbtc-versionbits_tests.obj `if test -f 'test/versionbits_tests.cpp'; then $(CYGPATH_W) 'test/versionbits_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/versionbits_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-versionbits_tests.Tpo test/$(DEPDIR)/test_test_gleecbtc-versionbits_tests.Po
+#	$(AM_V_CXX)source='test/versionbits_tests.cpp' object='test/test_test_gleecbtc-versionbits_tests.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-accounting_tests.obj `if test -f 'wallet/test/accounting_tests.cpp'; then $(CYGPATH_W) 'wallet/test/accounting_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/accounting_tests.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-versionbits_tests.obj `if test -f 'test/versionbits_tests.cpp'; then $(CYGPATH_W) 'test/versionbits_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/test/versionbits_tests.cpp'; fi`
+
+test/test_test_gleecbtc-key_properties.o: test/key_properties.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-key_properties.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-key_properties.Tpo -c -o test/test_test_gleecbtc-key_properties.o `test -f 'test/key_properties.cpp' || echo '$(srcdir)/'`test/key_properties.cpp
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-key_properties.Tpo test/$(DEPDIR)/test_test_gleecbtc-key_properties.Po
+#	$(AM_V_CXX)source='test/key_properties.cpp' object='test/test_test_gleecbtc-key_properties.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-key_properties.o `test -f 'test/key_properties.cpp' || echo '$(srcdir)/'`test/key_properties.cpp
+
+test/test_test_gleecbtc-key_properties.obj: test/key_properties.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc-key_properties.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc-key_properties.Tpo -c -o test/test_test_gleecbtc-key_properties.obj `if test -f 'test/key_properties.cpp'; then $(CYGPATH_W) 'test/key_properties.cpp'; else $(CYGPATH_W) '$(srcdir)/test/key_properties.cpp'; fi`
+	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc-key_properties.Tpo test/$(DEPDIR)/test_test_gleecbtc-key_properties.Po
+#	$(AM_V_CXX)source='test/key_properties.cpp' object='test/test_test_gleecbtc-key_properties.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc-key_properties.obj `if test -f 'test/key_properties.cpp'; then $(CYGPATH_W) 'test/key_properties.cpp'; else $(CYGPATH_W) '$(srcdir)/test/key_properties.cpp'; fi`
+
+wallet/test/test_test_gleecbtc-db_tests.o: wallet/test/db_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-db_tests.o -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-db_tests.Tpo -c -o wallet/test/test_test_gleecbtc-db_tests.o `test -f 'wallet/test/db_tests.cpp' || echo '$(srcdir)/'`wallet/test/db_tests.cpp
+	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-db_tests.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-db_tests.Po
+#	$(AM_V_CXX)source='wallet/test/db_tests.cpp' object='wallet/test/test_test_gleecbtc-db_tests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-db_tests.o `test -f 'wallet/test/db_tests.cpp' || echo '$(srcdir)/'`wallet/test/db_tests.cpp
+
+wallet/test/test_test_gleecbtc-db_tests.obj: wallet/test/db_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-db_tests.obj -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-db_tests.Tpo -c -o wallet/test/test_test_gleecbtc-db_tests.obj `if test -f 'wallet/test/db_tests.cpp'; then $(CYGPATH_W) 'wallet/test/db_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/db_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-db_tests.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-db_tests.Po
+#	$(AM_V_CXX)source='wallet/test/db_tests.cpp' object='wallet/test/test_test_gleecbtc-db_tests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-db_tests.obj `if test -f 'wallet/test/db_tests.cpp'; then $(CYGPATH_W) 'wallet/test/db_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/db_tests.cpp'; fi`
+
+wallet/test/test_test_gleecbtc-psbt_wallet_tests.o: wallet/test/psbt_wallet_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-psbt_wallet_tests.o -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-psbt_wallet_tests.Tpo -c -o wallet/test/test_test_gleecbtc-psbt_wallet_tests.o `test -f 'wallet/test/psbt_wallet_tests.cpp' || echo '$(srcdir)/'`wallet/test/psbt_wallet_tests.cpp
+	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-psbt_wallet_tests.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-psbt_wallet_tests.Po
+#	$(AM_V_CXX)source='wallet/test/psbt_wallet_tests.cpp' object='wallet/test/test_test_gleecbtc-psbt_wallet_tests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-psbt_wallet_tests.o `test -f 'wallet/test/psbt_wallet_tests.cpp' || echo '$(srcdir)/'`wallet/test/psbt_wallet_tests.cpp
+
+wallet/test/test_test_gleecbtc-psbt_wallet_tests.obj: wallet/test/psbt_wallet_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-psbt_wallet_tests.obj -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-psbt_wallet_tests.Tpo -c -o wallet/test/test_test_gleecbtc-psbt_wallet_tests.obj `if test -f 'wallet/test/psbt_wallet_tests.cpp'; then $(CYGPATH_W) 'wallet/test/psbt_wallet_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/psbt_wallet_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-psbt_wallet_tests.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-psbt_wallet_tests.Po
+#	$(AM_V_CXX)source='wallet/test/psbt_wallet_tests.cpp' object='wallet/test/test_test_gleecbtc-psbt_wallet_tests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-psbt_wallet_tests.obj `if test -f 'wallet/test/psbt_wallet_tests.cpp'; then $(CYGPATH_W) 'wallet/test/psbt_wallet_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/psbt_wallet_tests.cpp'; fi`
 
 wallet/test/test_test_gleecbtc-wallet_tests.o: wallet/test/wallet_tests.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-wallet_tests.o -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_tests.Tpo -c -o wallet/test/test_test_gleecbtc-wallet_tests.o `test -f 'wallet/test/wallet_tests.cpp' || echo '$(srcdir)/'`wallet/test/wallet_tests.cpp
@@ -9156,33 +13050,61 @@ wallet/test/test_test_gleecbtc-wallet_tests.obj: wallet/test/wallet_tests.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-wallet_tests.obj `if test -f 'wallet/test/wallet_tests.cpp'; then $(CYGPATH_W) 'wallet/test/wallet_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/wallet_tests.cpp'; fi`
 
-wallet/test/test_test_gleecbtc-crypto_tests.o: wallet/test/crypto_tests.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-crypto_tests.o -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-crypto_tests.Tpo -c -o wallet/test/test_test_gleecbtc-crypto_tests.o `test -f 'wallet/test/crypto_tests.cpp' || echo '$(srcdir)/'`wallet/test/crypto_tests.cpp
-	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-crypto_tests.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-crypto_tests.Po
-#	$(AM_V_CXX)source='wallet/test/crypto_tests.cpp' object='wallet/test/test_test_gleecbtc-crypto_tests.o' libtool=no \
+wallet/test/test_test_gleecbtc-wallet_crypto_tests.o: wallet/test/wallet_crypto_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-wallet_crypto_tests.o -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_crypto_tests.Tpo -c -o wallet/test/test_test_gleecbtc-wallet_crypto_tests.o `test -f 'wallet/test/wallet_crypto_tests.cpp' || echo '$(srcdir)/'`wallet/test/wallet_crypto_tests.cpp
+	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_crypto_tests.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_crypto_tests.Po
+#	$(AM_V_CXX)source='wallet/test/wallet_crypto_tests.cpp' object='wallet/test/test_test_gleecbtc-wallet_crypto_tests.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-crypto_tests.o `test -f 'wallet/test/crypto_tests.cpp' || echo '$(srcdir)/'`wallet/test/crypto_tests.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-wallet_crypto_tests.o `test -f 'wallet/test/wallet_crypto_tests.cpp' || echo '$(srcdir)/'`wallet/test/wallet_crypto_tests.cpp
 
-wallet/test/test_test_gleecbtc-crypto_tests.obj: wallet/test/crypto_tests.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-crypto_tests.obj -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-crypto_tests.Tpo -c -o wallet/test/test_test_gleecbtc-crypto_tests.obj `if test -f 'wallet/test/crypto_tests.cpp'; then $(CYGPATH_W) 'wallet/test/crypto_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/crypto_tests.cpp'; fi`
-	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-crypto_tests.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-crypto_tests.Po
-#	$(AM_V_CXX)source='wallet/test/crypto_tests.cpp' object='wallet/test/test_test_gleecbtc-crypto_tests.obj' libtool=no \
+wallet/test/test_test_gleecbtc-wallet_crypto_tests.obj: wallet/test/wallet_crypto_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-wallet_crypto_tests.obj -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_crypto_tests.Tpo -c -o wallet/test/test_test_gleecbtc-wallet_crypto_tests.obj `if test -f 'wallet/test/wallet_crypto_tests.cpp'; then $(CYGPATH_W) 'wallet/test/wallet_crypto_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/wallet_crypto_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_crypto_tests.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-wallet_crypto_tests.Po
+#	$(AM_V_CXX)source='wallet/test/wallet_crypto_tests.cpp' object='wallet/test/test_test_gleecbtc-wallet_crypto_tests.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-crypto_tests.obj `if test -f 'wallet/test/crypto_tests.cpp'; then $(CYGPATH_W) 'wallet/test/crypto_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/crypto_tests.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-wallet_crypto_tests.obj `if test -f 'wallet/test/wallet_crypto_tests.cpp'; then $(CYGPATH_W) 'wallet/test/wallet_crypto_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/wallet_crypto_tests.cpp'; fi`
 
-test/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.o: test/test_gleecbtc_fuzzy.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_fuzzy_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_fuzzy_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.o -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.Tpo -c -o test/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.o `test -f 'test/test_gleecbtc_fuzzy.cpp' || echo '$(srcdir)/'`test/test_gleecbtc_fuzzy.cpp
-	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.Tpo test/$(DEPDIR)/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.Po
-#	$(AM_V_CXX)source='test/test_gleecbtc_fuzzy.cpp' object='test/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.o' libtool=no \
+wallet/test/test_test_gleecbtc-coinselector_tests.o: wallet/test/coinselector_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-coinselector_tests.o -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-coinselector_tests.Tpo -c -o wallet/test/test_test_gleecbtc-coinselector_tests.o `test -f 'wallet/test/coinselector_tests.cpp' || echo '$(srcdir)/'`wallet/test/coinselector_tests.cpp
+	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-coinselector_tests.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-coinselector_tests.Po
+#	$(AM_V_CXX)source='wallet/test/coinselector_tests.cpp' object='wallet/test/test_test_gleecbtc-coinselector_tests.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_fuzzy_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_fuzzy_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.o `test -f 'test/test_gleecbtc_fuzzy.cpp' || echo '$(srcdir)/'`test/test_gleecbtc_fuzzy.cpp
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-coinselector_tests.o `test -f 'wallet/test/coinselector_tests.cpp' || echo '$(srcdir)/'`wallet/test/coinselector_tests.cpp
 
-test/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.obj: test/test_gleecbtc_fuzzy.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_fuzzy_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_fuzzy_CXXFLAGS) $(CXXFLAGS) -MT test/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.obj -MD -MP -MF test/$(DEPDIR)/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.Tpo -c -o test/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.obj `if test -f 'test/test_gleecbtc_fuzzy.cpp'; then $(CYGPATH_W) 'test/test_gleecbtc_fuzzy.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_gleecbtc_fuzzy.cpp'; fi`
-	$(AM_V_at)$(am__mv) test/$(DEPDIR)/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.Tpo test/$(DEPDIR)/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.Po
-#	$(AM_V_CXX)source='test/test_gleecbtc_fuzzy.cpp' object='test/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.obj' libtool=no \
+wallet/test/test_test_gleecbtc-coinselector_tests.obj: wallet/test/coinselector_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-coinselector_tests.obj -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-coinselector_tests.Tpo -c -o wallet/test/test_test_gleecbtc-coinselector_tests.obj `if test -f 'wallet/test/coinselector_tests.cpp'; then $(CYGPATH_W) 'wallet/test/coinselector_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/coinselector_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-coinselector_tests.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-coinselector_tests.Po
+#	$(AM_V_CXX)source='wallet/test/coinselector_tests.cpp' object='wallet/test/test_test_gleecbtc-coinselector_tests.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_fuzzy_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_fuzzy_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.obj `if test -f 'test/test_gleecbtc_fuzzy.cpp'; then $(CYGPATH_W) 'test/test_gleecbtc_fuzzy.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_gleecbtc_fuzzy.cpp'; fi`
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-coinselector_tests.obj `if test -f 'wallet/test/coinselector_tests.cpp'; then $(CYGPATH_W) 'wallet/test/coinselector_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/coinselector_tests.cpp'; fi`
+
+wallet/test/test_test_gleecbtc-init_tests.o: wallet/test/init_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-init_tests.o -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-init_tests.Tpo -c -o wallet/test/test_test_gleecbtc-init_tests.o `test -f 'wallet/test/init_tests.cpp' || echo '$(srcdir)/'`wallet/test/init_tests.cpp
+	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-init_tests.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-init_tests.Po
+#	$(AM_V_CXX)source='wallet/test/init_tests.cpp' object='wallet/test/test_test_gleecbtc-init_tests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-init_tests.o `test -f 'wallet/test/init_tests.cpp' || echo '$(srcdir)/'`wallet/test/init_tests.cpp
+
+wallet/test/test_test_gleecbtc-init_tests.obj: wallet/test/init_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-init_tests.obj -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-init_tests.Tpo -c -o wallet/test/test_test_gleecbtc-init_tests.obj `if test -f 'wallet/test/init_tests.cpp'; then $(CYGPATH_W) 'wallet/test/init_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/init_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-init_tests.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-init_tests.Po
+#	$(AM_V_CXX)source='wallet/test/init_tests.cpp' object='wallet/test/test_test_gleecbtc-init_tests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-init_tests.obj `if test -f 'wallet/test/init_tests.cpp'; then $(CYGPATH_W) 'wallet/test/init_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/init_tests.cpp'; fi`
+
+wallet/test/test_test_gleecbtc-ismine_tests.o: wallet/test/ismine_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-ismine_tests.o -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-ismine_tests.Tpo -c -o wallet/test/test_test_gleecbtc-ismine_tests.o `test -f 'wallet/test/ismine_tests.cpp' || echo '$(srcdir)/'`wallet/test/ismine_tests.cpp
+	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-ismine_tests.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-ismine_tests.Po
+#	$(AM_V_CXX)source='wallet/test/ismine_tests.cpp' object='wallet/test/test_test_gleecbtc-ismine_tests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-ismine_tests.o `test -f 'wallet/test/ismine_tests.cpp' || echo '$(srcdir)/'`wallet/test/ismine_tests.cpp
+
+wallet/test/test_test_gleecbtc-ismine_tests.obj: wallet/test/ismine_tests.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -MT wallet/test/test_test_gleecbtc-ismine_tests.obj -MD -MP -MF wallet/test/$(DEPDIR)/test_test_gleecbtc-ismine_tests.Tpo -c -o wallet/test/test_test_gleecbtc-ismine_tests.obj `if test -f 'wallet/test/ismine_tests.cpp'; then $(CYGPATH_W) 'wallet/test/ismine_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/ismine_tests.cpp'; fi`
+	$(AM_V_at)$(am__mv) wallet/test/$(DEPDIR)/test_test_gleecbtc-ismine_tests.Tpo wallet/test/$(DEPDIR)/test_test_gleecbtc-ismine_tests.Po
+#	$(AM_V_CXX)source='wallet/test/ismine_tests.cpp' object='wallet/test/test_test_gleecbtc-ismine_tests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_gleecbtc_CPPFLAGS) $(CPPFLAGS) $(test_test_gleecbtc_CXXFLAGS) $(CXXFLAGS) -c -o wallet/test/test_test_gleecbtc-ismine_tests.obj `if test -f 'wallet/test/ismine_tests.cpp'; then $(CYGPATH_W) 'wallet/test/ismine_tests.cpp'; else $(CYGPATH_W) '$(srcdir)/wallet/test/ismine_tests.cpp'; fi`
 
 .cpp.o:
 	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -9208,6 +13130,14 @@ test/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.obj: test/test_gleecbtc_fuzzy.
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(LTCXXCOMPILE) -c -o $@ $<
 
+.mm.o:
+	$(AM_V_OBJCXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+	$(OBJCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+	$(am__mv) $$depbase.Tpo $$depbase.Po
+#	$(AM_V_OBJCXX)source='$<' object='$@' libtool=no \
+#	DEPDIR=$(DEPDIR) $(OBJCXXDEPMODE) $(depcomp) \
+#	$(AM_V_OBJCXX_no)$(OBJCXXCOMPILE) -c -o $@ $<
+
 .mm.obj:
 	$(AM_V_OBJCXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
 	$(OBJCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
@@ -9224,33 +13154,47 @@ test/test_test_gleecbtc_fuzzy-test_gleecbtc_fuzzy.obj: test/test_gleecbtc_fuzzy.
 #	DEPDIR=$(DEPDIR) $(OBJCXXDEPMODE) $(depcomp) \
 #	$(AM_V_OBJCXX_no)$(LTOBJCXXCOMPILE) -c -o $@ $<
 
-qt/qt_gleecbtc_qt-macdockiconhandler.o: qt/macdockiconhandler.mm
-	$(AM_V_OBJCXX)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(AM_OBJCXXFLAGS) $(OBJCXXFLAGS) -MT qt/qt_gleecbtc_qt-macdockiconhandler.o -MD -MP -MF qt/$(DEPDIR)/qt_gleecbtc_qt-macdockiconhandler.Tpo -c -o qt/qt_gleecbtc_qt-macdockiconhandler.o `test -f 'qt/macdockiconhandler.mm' || echo '$(srcdir)/'`qt/macdockiconhandler.mm
-	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_gleecbtc_qt-macdockiconhandler.Tpo qt/$(DEPDIR)/qt_gleecbtc_qt-macdockiconhandler.Po
-#	$(AM_V_OBJCXX)source='qt/macdockiconhandler.mm' object='qt/qt_gleecbtc_qt-macdockiconhandler.o' libtool=no \
+qt/qt_libgleecbtcqt_a-macdockiconhandler.o: qt/macdockiconhandler.mm
+	$(AM_V_OBJCXX)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_OBJCXXFLAGS) $(OBJCXXFLAGS) -MT qt/qt_libgleecbtcqt_a-macdockiconhandler.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-macdockiconhandler.Tpo -c -o qt/qt_libgleecbtcqt_a-macdockiconhandler.o `test -f 'qt/macdockiconhandler.mm' || echo '$(srcdir)/'`qt/macdockiconhandler.mm
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-macdockiconhandler.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-macdockiconhandler.Po
+#	$(AM_V_OBJCXX)source='qt/macdockiconhandler.mm' object='qt/qt_libgleecbtcqt_a-macdockiconhandler.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(OBJCXXDEPMODE) $(depcomp) \
-#	$(AM_V_OBJCXX_no)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(AM_OBJCXXFLAGS) $(OBJCXXFLAGS) -c -o qt/qt_gleecbtc_qt-macdockiconhandler.o `test -f 'qt/macdockiconhandler.mm' || echo '$(srcdir)/'`qt/macdockiconhandler.mm
+#	$(AM_V_OBJCXX_no)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_OBJCXXFLAGS) $(OBJCXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-macdockiconhandler.o `test -f 'qt/macdockiconhandler.mm' || echo '$(srcdir)/'`qt/macdockiconhandler.mm
 
-qt/qt_gleecbtc_qt-macdockiconhandler.obj: qt/macdockiconhandler.mm
-	$(AM_V_OBJCXX)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(AM_OBJCXXFLAGS) $(OBJCXXFLAGS) -MT qt/qt_gleecbtc_qt-macdockiconhandler.obj -MD -MP -MF qt/$(DEPDIR)/qt_gleecbtc_qt-macdockiconhandler.Tpo -c -o qt/qt_gleecbtc_qt-macdockiconhandler.obj `if test -f 'qt/macdockiconhandler.mm'; then $(CYGPATH_W) 'qt/macdockiconhandler.mm'; else $(CYGPATH_W) '$(srcdir)/qt/macdockiconhandler.mm'; fi`
-	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_gleecbtc_qt-macdockiconhandler.Tpo qt/$(DEPDIR)/qt_gleecbtc_qt-macdockiconhandler.Po
-#	$(AM_V_OBJCXX)source='qt/macdockiconhandler.mm' object='qt/qt_gleecbtc_qt-macdockiconhandler.obj' libtool=no \
+qt/qt_libgleecbtcqt_a-macdockiconhandler.obj: qt/macdockiconhandler.mm
+	$(AM_V_OBJCXX)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_OBJCXXFLAGS) $(OBJCXXFLAGS) -MT qt/qt_libgleecbtcqt_a-macdockiconhandler.obj -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-macdockiconhandler.Tpo -c -o qt/qt_libgleecbtcqt_a-macdockiconhandler.obj `if test -f 'qt/macdockiconhandler.mm'; then $(CYGPATH_W) 'qt/macdockiconhandler.mm'; else $(CYGPATH_W) '$(srcdir)/qt/macdockiconhandler.mm'; fi`
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-macdockiconhandler.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-macdockiconhandler.Po
+#	$(AM_V_OBJCXX)source='qt/macdockiconhandler.mm' object='qt/qt_libgleecbtcqt_a-macdockiconhandler.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(OBJCXXDEPMODE) $(depcomp) \
-#	$(AM_V_OBJCXX_no)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(AM_OBJCXXFLAGS) $(OBJCXXFLAGS) -c -o qt/qt_gleecbtc_qt-macdockiconhandler.obj `if test -f 'qt/macdockiconhandler.mm'; then $(CYGPATH_W) 'qt/macdockiconhandler.mm'; else $(CYGPATH_W) '$(srcdir)/qt/macdockiconhandler.mm'; fi`
+#	$(AM_V_OBJCXX_no)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_OBJCXXFLAGS) $(OBJCXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-macdockiconhandler.obj `if test -f 'qt/macdockiconhandler.mm'; then $(CYGPATH_W) 'qt/macdockiconhandler.mm'; else $(CYGPATH_W) '$(srcdir)/qt/macdockiconhandler.mm'; fi`
 
-qt/qt_gleecbtc_qt-macnotificationhandler.o: qt/macnotificationhandler.mm
-	$(AM_V_OBJCXX)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(AM_OBJCXXFLAGS) $(OBJCXXFLAGS) -MT qt/qt_gleecbtc_qt-macnotificationhandler.o -MD -MP -MF qt/$(DEPDIR)/qt_gleecbtc_qt-macnotificationhandler.Tpo -c -o qt/qt_gleecbtc_qt-macnotificationhandler.o `test -f 'qt/macnotificationhandler.mm' || echo '$(srcdir)/'`qt/macnotificationhandler.mm
-	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_gleecbtc_qt-macnotificationhandler.Tpo qt/$(DEPDIR)/qt_gleecbtc_qt-macnotificationhandler.Po
-#	$(AM_V_OBJCXX)source='qt/macnotificationhandler.mm' object='qt/qt_gleecbtc_qt-macnotificationhandler.o' libtool=no \
+qt/qt_libgleecbtcqt_a-macnotificationhandler.o: qt/macnotificationhandler.mm
+	$(AM_V_OBJCXX)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_OBJCXXFLAGS) $(OBJCXXFLAGS) -MT qt/qt_libgleecbtcqt_a-macnotificationhandler.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-macnotificationhandler.Tpo -c -o qt/qt_libgleecbtcqt_a-macnotificationhandler.o `test -f 'qt/macnotificationhandler.mm' || echo '$(srcdir)/'`qt/macnotificationhandler.mm
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-macnotificationhandler.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-macnotificationhandler.Po
+#	$(AM_V_OBJCXX)source='qt/macnotificationhandler.mm' object='qt/qt_libgleecbtcqt_a-macnotificationhandler.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(OBJCXXDEPMODE) $(depcomp) \
-#	$(AM_V_OBJCXX_no)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(AM_OBJCXXFLAGS) $(OBJCXXFLAGS) -c -o qt/qt_gleecbtc_qt-macnotificationhandler.o `test -f 'qt/macnotificationhandler.mm' || echo '$(srcdir)/'`qt/macnotificationhandler.mm
+#	$(AM_V_OBJCXX_no)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_OBJCXXFLAGS) $(OBJCXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-macnotificationhandler.o `test -f 'qt/macnotificationhandler.mm' || echo '$(srcdir)/'`qt/macnotificationhandler.mm
 
-qt/qt_gleecbtc_qt-macnotificationhandler.obj: qt/macnotificationhandler.mm
-	$(AM_V_OBJCXX)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(AM_OBJCXXFLAGS) $(OBJCXXFLAGS) -MT qt/qt_gleecbtc_qt-macnotificationhandler.obj -MD -MP -MF qt/$(DEPDIR)/qt_gleecbtc_qt-macnotificationhandler.Tpo -c -o qt/qt_gleecbtc_qt-macnotificationhandler.obj `if test -f 'qt/macnotificationhandler.mm'; then $(CYGPATH_W) 'qt/macnotificationhandler.mm'; else $(CYGPATH_W) '$(srcdir)/qt/macnotificationhandler.mm'; fi`
-	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_gleecbtc_qt-macnotificationhandler.Tpo qt/$(DEPDIR)/qt_gleecbtc_qt-macnotificationhandler.Po
-#	$(AM_V_OBJCXX)source='qt/macnotificationhandler.mm' object='qt/qt_gleecbtc_qt-macnotificationhandler.obj' libtool=no \
+qt/qt_libgleecbtcqt_a-macnotificationhandler.obj: qt/macnotificationhandler.mm
+	$(AM_V_OBJCXX)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_OBJCXXFLAGS) $(OBJCXXFLAGS) -MT qt/qt_libgleecbtcqt_a-macnotificationhandler.obj -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-macnotificationhandler.Tpo -c -o qt/qt_libgleecbtcqt_a-macnotificationhandler.obj `if test -f 'qt/macnotificationhandler.mm'; then $(CYGPATH_W) 'qt/macnotificationhandler.mm'; else $(CYGPATH_W) '$(srcdir)/qt/macnotificationhandler.mm'; fi`
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-macnotificationhandler.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-macnotificationhandler.Po
+#	$(AM_V_OBJCXX)source='qt/macnotificationhandler.mm' object='qt/qt_libgleecbtcqt_a-macnotificationhandler.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(OBJCXXDEPMODE) $(depcomp) \
-#	$(AM_V_OBJCXX_no)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_gleecbtc_qt_CPPFLAGS) $(CPPFLAGS) $(AM_OBJCXXFLAGS) $(OBJCXXFLAGS) -c -o qt/qt_gleecbtc_qt-macnotificationhandler.obj `if test -f 'qt/macnotificationhandler.mm'; then $(CYGPATH_W) 'qt/macnotificationhandler.mm'; else $(CYGPATH_W) '$(srcdir)/qt/macnotificationhandler.mm'; fi`
+#	$(AM_V_OBJCXX_no)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_OBJCXXFLAGS) $(OBJCXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-macnotificationhandler.obj `if test -f 'qt/macnotificationhandler.mm'; then $(CYGPATH_W) 'qt/macnotificationhandler.mm'; else $(CYGPATH_W) '$(srcdir)/qt/macnotificationhandler.mm'; fi`
+
+qt/qt_libgleecbtcqt_a-macos_appnap.o: qt/macos_appnap.mm
+	$(AM_V_OBJCXX)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_OBJCXXFLAGS) $(OBJCXXFLAGS) -MT qt/qt_libgleecbtcqt_a-macos_appnap.o -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-macos_appnap.Tpo -c -o qt/qt_libgleecbtcqt_a-macos_appnap.o `test -f 'qt/macos_appnap.mm' || echo '$(srcdir)/'`qt/macos_appnap.mm
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-macos_appnap.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-macos_appnap.Po
+#	$(AM_V_OBJCXX)source='qt/macos_appnap.mm' object='qt/qt_libgleecbtcqt_a-macos_appnap.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(OBJCXXDEPMODE) $(depcomp) \
+#	$(AM_V_OBJCXX_no)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_OBJCXXFLAGS) $(OBJCXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-macos_appnap.o `test -f 'qt/macos_appnap.mm' || echo '$(srcdir)/'`qt/macos_appnap.mm
+
+qt/qt_libgleecbtcqt_a-macos_appnap.obj: qt/macos_appnap.mm
+	$(AM_V_OBJCXX)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_OBJCXXFLAGS) $(OBJCXXFLAGS) -MT qt/qt_libgleecbtcqt_a-macos_appnap.obj -MD -MP -MF qt/$(DEPDIR)/qt_libgleecbtcqt_a-macos_appnap.Tpo -c -o qt/qt_libgleecbtcqt_a-macos_appnap.obj `if test -f 'qt/macos_appnap.mm'; then $(CYGPATH_W) 'qt/macos_appnap.mm'; else $(CYGPATH_W) '$(srcdir)/qt/macos_appnap.mm'; fi`
+	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_libgleecbtcqt_a-macos_appnap.Tpo qt/$(DEPDIR)/qt_libgleecbtcqt_a-macos_appnap.Po
+#	$(AM_V_OBJCXX)source='qt/macos_appnap.mm' object='qt/qt_libgleecbtcqt_a-macos_appnap.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(OBJCXXDEPMODE) $(depcomp) \
+#	$(AM_V_OBJCXX_no)$(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_libgleecbtcqt_a_CPPFLAGS) $(CPPFLAGS) $(qt_libgleecbtcqt_a_OBJCXXFLAGS) $(OBJCXXFLAGS) -c -o qt/qt_libgleecbtcqt_a-macos_appnap.obj `if test -f 'qt/macos_appnap.mm'; then $(CYGPATH_W) 'qt/macos_appnap.mm'; else $(CYGPATH_W) '$(srcdir)/qt/macos_appnap.mm'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -9265,7 +13209,10 @@ clean-libtool:
 	-rm -rf qt/.libs qt/_libs
 	-rm -rf qt/test/.libs qt/test/_libs
 	-rm -rf script/.libs script/_libs
+	-rm -rf support/.libs support/_libs
 	-rm -rf test/.libs test/_libs
+	-rm -rf test/fuzz/.libs test/fuzz/_libs
+	-rm -rf util/.libs util/_libs
 install-includeHEADERS: $(include_HEADERS)
 	@$(NORMAL_INSTALL)
 	@list='$(include_HEADERS)'; test -n "$(includedir)" || list=; \
@@ -9528,13 +13475,6 @@ recheck: all
 	        am__force_recheck=am--force-recheck \
 	        TEST_LOGS="$$log_list"; \
 	exit $$?
-test/test_gleecbtc.log: test/test_gleecbtc$(EXEEXT)
-	@p='test/test_gleecbtc$(EXEEXT)'; \
-	b='test/test_gleecbtc'; \
-	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
 qt/test/test_gleecbtc-qt.log: qt/test/test_gleecbtc-qt$(EXEEXT)
 	@p='qt/test/test_gleecbtc-qt$(EXEEXT)'; \
 	b='qt/test/test_gleecbtc-qt'; \
@@ -9662,6 +13602,10 @@ distclean-generic:
 	-rm -f consensus/$(am__dirstamp)
 	-rm -f crypto/$(DEPDIR)/$(am__dirstamp)
 	-rm -f crypto/$(am__dirstamp)
+	-rm -f index/$(DEPDIR)/$(am__dirstamp)
+	-rm -f index/$(am__dirstamp)
+	-rm -f interfaces/$(DEPDIR)/$(am__dirstamp)
+	-rm -f interfaces/$(am__dirstamp)
 	-rm -f leveldb/$(am__dirstamp)
 	-rm -f leveldb/db/$(DEPDIR)/$(am__dirstamp)
 	-rm -f leveldb/db/$(am__dirstamp)
@@ -9673,6 +13617,8 @@ distclean-generic:
 	-rm -f leveldb/table/$(am__dirstamp)
 	-rm -f leveldb/util/$(DEPDIR)/$(am__dirstamp)
 	-rm -f leveldb/util/$(am__dirstamp)
+	-rm -f node/$(DEPDIR)/$(am__dirstamp)
+	-rm -f node/$(am__dirstamp)
 	-rm -f policy/$(DEPDIR)/$(am__dirstamp)
 	-rm -f policy/$(am__dirstamp)
 	-rm -f primitives/$(DEPDIR)/$(am__dirstamp)
@@ -9691,13 +13637,18 @@ distclean-generic:
 	-rm -f support/$(am__dirstamp)
 	-rm -f test/$(DEPDIR)/$(am__dirstamp)
 	-rm -f test/$(am__dirstamp)
+	-rm -f test/fuzz/$(DEPDIR)/$(am__dirstamp)
+	-rm -f test/fuzz/$(am__dirstamp)
+	-rm -f test/gen/$(DEPDIR)/$(am__dirstamp)
+	-rm -f test/gen/$(am__dirstamp)
+	-rm -f util/$(DEPDIR)/$(am__dirstamp)
+	-rm -f util/$(am__dirstamp)
 	-rm -f wallet/$(DEPDIR)/$(am__dirstamp)
 	-rm -f wallet/$(am__dirstamp)
 	-rm -f wallet/test/$(DEPDIR)/$(am__dirstamp)
 	-rm -f wallet/test/$(am__dirstamp)
 	-rm -f zmq/$(DEPDIR)/$(am__dirstamp)
 	-rm -f zmq/$(am__dirstamp)
-	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -9708,7 +13659,7 @@ clean-am: clean-binPROGRAMS clean-generic clean-libLTLIBRARIES \
 	clean-libtool clean-local clean-noinstPROGRAMS mostlyclean-am
 
 distclean: distclean-recursive
-	-rm -rf ./$(DEPDIR) bench/$(DEPDIR) compat/$(DEPDIR) consensus/$(DEPDIR) crypto/$(DEPDIR) leveldb/db/$(DEPDIR) leveldb/helpers/memenv/$(DEPDIR) leveldb/port/$(DEPDIR) leveldb/table/$(DEPDIR) leveldb/util/$(DEPDIR) policy/$(DEPDIR) primitives/$(DEPDIR) qt/$(DEPDIR) qt/test/$(DEPDIR) rpc/$(DEPDIR) script/$(DEPDIR) support/$(DEPDIR) test/$(DEPDIR) wallet/$(DEPDIR) wallet/test/$(DEPDIR) zmq/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) bench/$(DEPDIR) compat/$(DEPDIR) consensus/$(DEPDIR) crypto/$(DEPDIR) index/$(DEPDIR) interfaces/$(DEPDIR) leveldb/db/$(DEPDIR) leveldb/helpers/memenv/$(DEPDIR) leveldb/port/$(DEPDIR) leveldb/table/$(DEPDIR) leveldb/util/$(DEPDIR) node/$(DEPDIR) policy/$(DEPDIR) primitives/$(DEPDIR) qt/$(DEPDIR) qt/test/$(DEPDIR) rpc/$(DEPDIR) script/$(DEPDIR) support/$(DEPDIR) test/$(DEPDIR) test/fuzz/$(DEPDIR) test/gen/$(DEPDIR) util/$(DEPDIR) wallet/$(DEPDIR) wallet/test/$(DEPDIR) zmq/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -9754,7 +13705,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-recursive
-	-rm -rf ./$(DEPDIR) bench/$(DEPDIR) compat/$(DEPDIR) consensus/$(DEPDIR) crypto/$(DEPDIR) leveldb/db/$(DEPDIR) leveldb/helpers/memenv/$(DEPDIR) leveldb/port/$(DEPDIR) leveldb/table/$(DEPDIR) leveldb/util/$(DEPDIR) policy/$(DEPDIR) primitives/$(DEPDIR) qt/$(DEPDIR) qt/test/$(DEPDIR) rpc/$(DEPDIR) script/$(DEPDIR) support/$(DEPDIR) test/$(DEPDIR) wallet/$(DEPDIR) wallet/test/$(DEPDIR) zmq/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) bench/$(DEPDIR) compat/$(DEPDIR) consensus/$(DEPDIR) crypto/$(DEPDIR) index/$(DEPDIR) interfaces/$(DEPDIR) leveldb/db/$(DEPDIR) leveldb/helpers/memenv/$(DEPDIR) leveldb/port/$(DEPDIR) leveldb/table/$(DEPDIR) leveldb/util/$(DEPDIR) node/$(DEPDIR) policy/$(DEPDIR) primitives/$(DEPDIR) qt/$(DEPDIR) qt/test/$(DEPDIR) rpc/$(DEPDIR) script/$(DEPDIR) support/$(DEPDIR) test/$(DEPDIR) test/fuzz/$(DEPDIR) test/gen/$(DEPDIR) util/$(DEPDIR) wallet/$(DEPDIR) wallet/test/$(DEPDIR) zmq/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -9801,7 +13752,7 @@ uninstall-am: uninstall-binPROGRAMS uninstall-includeHEADERS \
 $(LIBUNIVALUE): $(wildcard univalue/lib/*) $(wildcard univalue/include/*)
 	$(AM_V_at)$(MAKE) $(AM_MAKEFLAGS) -C $(@D) $(@F)
 
-$(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
+$(LIBSECP256K1): $(wildcard secp256k1/src/*.h) $(wildcard secp256k1/src/*.c) $(wildcard secp256k1/include/*)
 	$(AM_V_at)$(MAKE) $(AM_MAKEFLAGS) -C $(@D) $(@F)
 
 .PHONY: FORCE check-symbols check-security
@@ -9830,37 +13781,43 @@ clean-local:
 	@test -f $(WINDRES)
 	$(AM_V_GEN) $(WINDRES) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(CPPFLAGS) -DWINDRES_PREPROC -i $< -o $@
 
-.mm.o:
-	$(AM_V_CXX) $(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	  $(CPPFLAGS) $(AM_CXXFLAGS) $(QT_INCLUDES) $(AM_CXXFLAGS) $(PIE_FLAGS) $(CXXFLAGS) -c -o $@ $<
-
 check-symbols: $(bin_PROGRAMS)
 #	@echo "Checking glibc back compat..."
-#	$(AM_V_at) READELF=$(READELF) CPPFILT=$(CPPFILT) $(top_srcdir)/contrib/devtools/symbol-check.py < $(bin_PROGRAMS)
+#	$(AM_V_at) READELF=$(READELF) CPPFILT=$(CPPFILT) $(PYTHON) $(top_srcdir)/contrib/devtools/symbol-check.py < $(bin_PROGRAMS)
 
 check-security: $(bin_PROGRAMS)
 	@echo "Checking binary security..."
-	$(AM_V_at) READELF=$(READELF) OBJDUMP=$(OBJDUMP) $(top_srcdir)/contrib/devtools/security-check.py < $(bin_PROGRAMS)
+	$(AM_V_at) READELF=$(READELF) OBJDUMP=$(OBJDUMP) $(PYTHON) $(top_srcdir)/contrib/devtools/security-check.py < $(bin_PROGRAMS)
 
-%.pb.cc %.pb.h: %.proto
-	@test -f $(PROTOC)
-	$(AM_V_GEN) $(PROTOC) --cpp_out=$(@D) --proto_path=$(<D) $<
+#%.pb.cc %.pb.h: %.proto
+#	@test -f $(PROTOC)
+#	$(AM_V_GEN) $(PROTOC) --cpp_out=$(@D) --proto_path=$(<D) $<
 
-#$(GLEECGBC_TESTS): $(GENERATED_TEST_FILES)
+#$(GLEECBTC_TESTS): $(GENERATED_TEST_FILES)
 
-#gleecbtc_test: $(TEST_BINARY)
+##gleecbtc_test: $(TEST_BINARY)
+#gleecbtc_test: $(TEST_BINARY) $(BENCH_BINARY)
+##gleecbtc_test: $(TEST_BINARY)
 
 #gleecbtc_test_check: $(TEST_BINARY) FORCE
 #	$(MAKE) check-TESTS TESTS=$^
 
 #gleecbtc_test_clean : FORCE
-#	rm -f $(CLEAN_GLEECGBC_TEST) $(test_test_gleecbtc_OBJECTS) $(TEST_BINARY)
+#	rm -f $(CLEAN_GLEECBTC_TEST) $(test_test_gleecbtc_OBJECTS) $(TEST_BINARY)
 
-#check-local:
+#check-local: $(GLEECBTC_TESTS:.cpp=.cpp.test)
 #	@echo "Running test/util/gleecbtc-util-test.py..."
 #	$(PYTHON) $(top_builddir)/test/util/gleecbtc-util-test.py
+#	@echo "Running test/util/rpcauth-test.py..."
+#	$(PYTHON) $(top_builddir)/test/util/rpcauth-test.py
+#	@echo "Running bench/bench_gleecbtc -evals=1 -scaling=0..."
+#	$(BENCH_BINARY) -evals=1 -scaling=0 > /dev/null
 #	$(AM_V_at)$(MAKE) $(AM_MAKEFLAGS) -C secp256k1 check
 #	$(AM_V_at)$(MAKE) $(AM_MAKEFLAGS) -C univalue check
+
+#%.cpp.test: %.cpp
+#	@echo Running tests: `cat $< | grep -E "(BOOST_FIXTURE_TEST_SUITE\\(|BOOST_AUTO_TEST_SUITE\\()" | cut -d '(' -f 2 | cut -d ',' -f 1 | cut -d ')' -f 1` from $<
+#	$(AM_V_at)$(TEST_BINARY) -l test_suite -t "`cat $< | grep -E "(BOOST_FIXTURE_TEST_SUITE\\(|BOOST_AUTO_TEST_SUITE\\()" | cut -d '(' -f 2 | cut -d ',' -f 1 | cut -d ')' -f 1`" > $<.log 2>&1 || (cat $<.log && false)
 
 #%.json.h: %.json
 #	@$(MKDIR_P) $(@D)
@@ -9872,7 +13829,7 @@ check-security: $(bin_PROGRAMS)
 #	} > "$@.new" && mv -f "$@.new" "$@"
 #	@echo "Generated $@"
 
-bench/checkblock.cpp: bench/data/block413567.raw.h
+bench/data.cpp: bench/data/block413567.raw.h
 
 gleecbtc_bench: $(BENCH_BINARY)
 
@@ -9880,12 +13837,12 @@ bench: $(BENCH_BINARY) FORCE
 	$(BENCH_BINARY)
 
 gleecbtc_bench_clean : FORCE
-	rm -f $(CLEAN_GLEECGBC_BENCH) $(bench_bench_gleecbtc_OBJECTS) $(BENCH_BINARY)
+	rm -f $(CLEAN_GLEECBTC_BENCH) $(bench_bench_gleecbtc_OBJECTS) $(BENCH_BINARY)
 
 %.raw.h: %.raw
 	@$(MKDIR_P) $(@D)
 	@{ \
-	 echo "static unsigned const char $(*F)[] = {" && \
+	 echo "static unsigned const char $(*F)_raw[] = {" && \
 	 $(HEXDUMP) -v -e '8/1 "0x%02x, "' -e '"\n"' $< | $(SED) -e 's/0x  ,//g' && \
 	 echo "};"; \
 	} > "$@.new" && mv -f "$@.new" "$@"
@@ -9905,9 +13862,9 @@ gleecbtc_bench_clean : FORCE
 
 #$(srcdir)/qt/gleecbtcstrings.cpp: $(libgleecbtc_server_a_SOURCES) $(libgleecbtc_wallet_a_SOURCES) $(libgleecbtc_common_a_SOURCES) $(libgleecbtc_zmq_a_SOURCES) $(libgleecbtc_consensus_a_SOURCES) $(libgleecbtc_util_a_SOURCES)
 #	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
-#	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" COPYRIGHT_HOLDERS="$(COPYRIGHT_HOLDERS)" COPYRIGHT_HOLDERS_SUBSTITUTION="$(COPYRIGHT_HOLDERS_SUBSTITUTION)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
+#	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) COPYRIGHT_HOLDERS="$(COPYRIGHT_HOLDERS)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
 
-#translate: $(srcdir)/qt/gleecbtcstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(GLEECGBC_QT_BASE_CPP) qt/gleecbtc.cpp $(GLEECGBC_QT_WINDOWS_CPP) $(GLEECGBC_QT_WALLET_CPP) $(GLEECGBC_QT_H) $(GLEECGBC_MM)
+#translate: $(srcdir)/qt/gleecbtcstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(GLEECBTC_QT_BASE_CPP) qt/gleecbtc.cpp $(GLEECBTC_QT_WINDOWS_CPP) $(GLEECBTC_QT_WALLET_CPP) $(GLEECBTC_QT_H) $(GLEECBTC_MM)
 #	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
 #	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/gleecbtc_en.ts
 
@@ -9924,7 +13881,7 @@ gleecbtc_bench_clean : FORCE
 #	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
 #gleecbtc_qt_clean: FORCE
-#	rm -f $(CLEAN_QT) $(qt_libgleecbtcqt_a_OBJECTS) $(qt_gleecbtc_qt_OBJECTS) qt/gleecbtc-qt$(EXEEXT) $(LIBGLEECGBCQT)
+#	rm -f $(CLEAN_QT) $(qt_libgleecbtcqt_a_OBJECTS) $(qt_gleecbtc_qt_OBJECTS) qt/gleecbtc-qt$(EXEEXT) $(LIBGLEECBTCQT)
 
 #gleecbtc_qt : qt/gleecbtc-qt$(EXEEXT)
 
@@ -9952,7 +13909,7 @@ gleecbtc_bench_clean : FORCE
 #	$(MAKE) check-TESTS TESTS=$^
 
 #test_gleecbtc_qt_clean: FORCE
-#	rm -f $(CLEAN_GLEECGBC_QT_TEST) $(qt_test_test_gleecbtc_qt_OBJECTS)
+#	rm -f $(CLEAN_GLEECBTC_QT_TEST) $(qt_test_test_gleecbtc_qt_OBJECTS)
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

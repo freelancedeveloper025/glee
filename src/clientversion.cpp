@@ -1,21 +1,18 @@
-// Copyright (c) 2012-2016 The Bitcoin Core developers
+// Copyright (c) 2012-2018 The GleecBTC Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "clientversion.h"
+#include <clientversion.h>
 
-#include "tinyformat.h"
-
-#include <string>
-
+#include <tinyformat.h>
 
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both gleecbtcd and gleecbtc-core, to make it harder for attackers to
+ * for both gleecbtcd and gleecbtc-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("GleecGBC");
+const std::string CLIENT_NAME("Satoshi");
 
 /**
  * Client version number
@@ -41,14 +38,14 @@ const std::string CLIENT_NAME("GleecGBC");
 
 //! First, include build.h if requested
 #ifdef HAVE_BUILD_INFO
-#include "build.h"
+#include <obj/build.h>
 #endif
 
 //! git will put "#define GIT_ARCHIVE 1" on the next line inside archives. 
 #define GIT_ARCHIVE 1
 #ifdef GIT_ARCHIVE
-#define GIT_COMMIT_ID "95fb3c1d8"
-#define GIT_COMMIT_DATE "Wed, 15 May 2019 18:39:16 +0300"
+#define GIT_COMMIT_ID "a284bbbee805cd03664fd27656795a9f7d3eeca7"
+#define GIT_COMMIT_DATE "Mon, 25 Nov 2019 10:13:25 +0100"
 #endif
 
 #define BUILD_DESC_WITH_SUFFIX(maj, min, rev, build, suffix) \
@@ -85,18 +82,19 @@ std::string FormatFullVersion()
     return CLIENT_BUILD;
 }
 
-/** 
- * Format the subversion field according to BIP 14 spec (https://github.com/gleecbtc/bips/blob/master/bip-0014.mediawiki) 
+/**
+ * Format the subversion field according to BIP 14 spec (https://github.com/gleecbtc/bips/blob/master/bip-0014.mediawiki)
  */
 std::string FormatSubVersion(const std::string& name, int nClientVersion, const std::vector<std::string>& comments)
 {
     std::ostringstream ss;
     ss << "/";
     ss << name << ":" << FormatVersion(nClientVersion);
-    if (!comments.empty()) {
+    if (!comments.empty())
+    {
         std::vector<std::string>::const_iterator it(comments.begin());
         ss << "(" << *it;
-        for (++it; it != comments.end(); ++it)
+        for(++it; it != comments.end(); ++it)
             ss << "; " << *it;
         ss << ")";
     }

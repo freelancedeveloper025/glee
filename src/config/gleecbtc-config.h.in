@@ -1,11 +1,14 @@
 /* src/config/gleecbtc-config.h.in.  Generated from configure.ac by autoheader.  */
 
-#ifndef GLEECGBC_CONFIG_H
+#ifndef GLEECBTC_CONFIG_H
 
-#define GLEECGBC_CONFIG_H
+#define GLEECBTC_CONFIG_H
 
 /* Define if building universal (internal helper macro) */
 #undef AC_APPLE_UNIVERSAL_BUILD
+
+/* Define this symbol if type char equals int8_t */
+#undef CHAR_EQUALS_INT8
 
 /* Version Build */
 #undef CLIENT_VERSION_BUILD
@@ -34,14 +37,23 @@
 /* Copyright year */
 #undef COPYRIGHT_YEAR
 
+/* Define this symbol to build code that uses AVX2 intrinsics */
+#undef ENABLE_AVX2
+
+/* Define if BIP70 support should be compiled in */
+#undef ENABLE_BIP70
+
+/* Define this symbol to build code that uses SHA-NI intrinsics */
+#undef ENABLE_SHANI
+
+/* Define this symbol to build code that uses SSE4.1 intrinsics */
+#undef ENABLE_SSE41
+
 /* Define to 1 to enable wallet functions */
 #undef ENABLE_WALLET
 
 /* Define to 1 to enable ZMQ functions */
 #undef ENABLE_ZMQ
-
-/* Define this symbol to build in experimental assembly routines */
-#undef EXPERIMENTAL_ASM
 
 /* parameter and return value type for __fdelt_chk */
 #undef FDELT_TYPE
@@ -54,9 +66,6 @@
 
 /* define if the Boost::Filesystem library is available */
 #undef HAVE_BOOST_FILESYSTEM
-
-/* define if the Boost::PROGRAM_OPTIONS library is available */
-#undef HAVE_BOOST_PROGRAM_OPTIONS
 
 /* define if the Boost::System library is available */
 #undef HAVE_BOOST_SYSTEM
@@ -72,6 +81,10 @@
 
 /* Define this symbol if the consensus lib has been built */
 #undef HAVE_CONSENSUS_LIB
+
+/* Define this symbol if FD_ZERO is dependent of a memcpy declaration being
+   available */
+#undef HAVE_CSTRING_DEPENDENT_FD_ZERO
 
 /* define if the compiler supports basic C++11 syntax */
 #undef HAVE_CXX11
@@ -107,6 +120,14 @@
 /* Define to 1 if you have the declaration of `EVP_MD_CTX_new', and to 0 if
    you don't. */
 #undef HAVE_DECL_EVP_MD_CTX_NEW
+
+/* Define to 1 if you have the declaration of `freeifaddrs', and to 0 if you
+   don't. */
+#undef HAVE_DECL_FREEIFADDRS
+
+/* Define to 1 if you have the declaration of `getifaddrs', and to 0 if you
+   don't. */
+#undef HAVE_DECL_GETIFADDRS
 
 /* Define to 1 if you have the declaration of `htobe16', and to 0 if you
    don't. */
@@ -279,17 +300,14 @@
 /* Define to 1 if you have the <miniupnpc/upnperrors.h> header file. */
 #undef HAVE_MINIUPNPC_UPNPERRORS_H
 
-/* Define this symbol if you have MSG_DONTWAIT */
-#undef HAVE_MSG_DONTWAIT
-
-/* Define this symbol if you have MSG_NOSIGNAL */
-#undef HAVE_MSG_NOSIGNAL
-
 /* Define if you have POSIX threads libraries and header files. */
 #undef HAVE_PTHREAD
 
 /* Have PTHREAD_PRIO_INHERIT. */
 #undef HAVE_PTHREAD_PRIO_INHERIT
+
+/* Define to 1 if you have the <rapidcheck.h> header file. */
+#undef HAVE_RAPIDCHECK_H
 
 /* Define to 1 if you have the <stdint.h> header file. */
 #undef HAVE_STDINT_H
@@ -299,6 +317,9 @@
 
 /* Define to 1 if you have the <stdlib.h> header file. */
 #undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the `std::system' function. */
+#undef HAVE_STD__SYSTEM
 
 /* Define to 1 if you have the `strerror_r' function. */
 #undef HAVE_STRERROR_R
@@ -311,6 +332,9 @@
 
 /* Define this symbol if the BSD sysctl(KERN_ARND) is available */
 #undef HAVE_SYSCTL_ARND
+
+/* std::system or ::wsystem */
+#undef HAVE_SYSTEM
 
 /* Define to 1 if you have the <sys/endian.h> header file. */
 #undef HAVE_SYS_ENDIAN_H
@@ -330,6 +354,9 @@
 /* Define to 1 if you have the <sys/types.h> header file. */
 #undef HAVE_SYS_TYPES_H
 
+/* Define if thread_local is supported. */
+#undef HAVE_THREAD_LOCAL
+
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
 
@@ -341,6 +368,9 @@
 
 /* Define this symbol if boost sleep_for works */
 #undef HAVE_WORKING_BOOST_SLEEP_FOR
+
+/* Define to 1 if you have the `::wsystem' function. */
+#undef HAVE_WSYSTEM
 
 /* Define to the sub-directory where libtool stores uninstalled libraries. */
 #undef LT_OBJDIR
@@ -388,6 +418,9 @@
 /* Define to 1 if strerror_r returns char *. */
 #undef STRERROR_R_CHAR_P
 
+/* Define this symbol to build in assembly routines */
+#undef USE_ASM
+
 /* Define this symbol if coverage is enabled */
 #undef USE_COVERAGE
 
@@ -424,4 +457,4 @@
 /* Define for large files, on AIX-style hosts. */
 #undef _LARGE_FILES
 
-#endif //GLEECGBC_CONFIG_H
+#endif //GLEECBTC_CONFIG_H
